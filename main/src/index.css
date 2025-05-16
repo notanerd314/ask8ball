@@ -1,68 +1,202 @@
+@keyframes shake8Ball {
+  0% {
+    transform: translate(-50%, -50%) translate(5px, 5px) rotate(0deg);
+  }
+
+  5% {
+    transform: translate(-50%, -50%) translate(3px, 3px) rotate(1deg);
+  }
+
+  10% {
+    transform: translate(-50%, -50%) translate(-5px, -8px) rotate(-5deg);
+  }
+
+  15% {
+    transform: translate(-50%, -50%) translate(-8px, -5px) rotate(-3deg);
+  }
+
+  20% {
+    transform: translate(-50%, -50%) translate(-10px, 0px) rotate(8deg);
+  }
+
+  25% {
+    transform: translate(-50%, -50%) translate(-5px, 3px) rotate(5deg);
+  }
+
+  30% {
+    transform: translate(-50%, -50%) translate(10px, 6px) rotate(5deg);
+  }
+
+  35% {
+    transform: translate(-50%, -50%) translate(7px, 4px) rotate(2deg);
+  }
+
+  40% {
+    transform: translate(-50%, -50%) translate(5px, -5px) rotate(7deg);
+  }
+
+  45% {
+    transform: translate(-50%, -50%) translate(2px, -7px) rotate(3deg);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) translate(-5px, 8px) rotate(-7deg);
+  }
+
+  55% {
+    transform: translate(-50%, -50%) translate(-3px, 5px) rotate(-4deg);
+  }
+
+  60% {
+    transform: translate(-50%, -50%) translate(-10px, 3px) rotate(6deg);
+  }
+
+  65% {
+    transform: translate(-50%, -50%) translate(-7px, 2px) rotate(4deg);
+  }
+
+  70% {
+    transform: translate(-50%, -50%) translate(10px, 4px) rotate(-6deg);
+  }
+
+  75% {
+    transform: translate(-50%, -50%) translate(8px, 1px) rotate(-2deg);
+  }
+
+  80% {
+    transform: translate(-50%, -50%) translate(-5px, -5px) rotate(9deg);
+  }
+
+  85% {
+    transform: translate(-50%, -50%) translate(-2px, -3px) rotate(5deg);
+  }
+
+  90% {
+    transform: translate(-50%, -50%) translate(5px, 7px) rotate(2deg);
+  }
+
+  95% {
+    transform: translate(-50%, -50%) translate(3px, 5px) rotate(-1deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) translate(5px, -8px) rotate(-4deg);
+  }
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  --font: Helvetica, sans-serif;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: var(--font);
+  font-weight: 400;
+  font-style: normal;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+#eightBallWrapper.shake {
+  animation: shake8Ball 0.5s infinite linear;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+#eightBallWrapper {
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+#eightBallText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: white;
+  margin: 0;
+  padding: 0;
+
+  max-width: 150px;
+  word-wrap: break-word;
+
+  transition: opacity 0.75s ease;
+}
+
+#svg_25 {
+  transition: opacity 0.75s ease;
+}
+
+.bottom_button {
+  font-size: 1.5rem;
+  padding: 10px;
+  border-radius: 0;
+
+  cursor: pointer;
+}
+
+#optionsButtons {
+  position: absolute;
+
+  transform: translate(-50%, -100%);
+  top: 100%;
+  left: 50%;
+  display: flex;
+  width: 100%;
+}
+
+#optionsButtons>button {
+  flex: 1;
+}
+
+.share_input {
+  width: 20rem;
+  height: 3rem;
+  border: 2px solid gray;
+}
+
+/* elements */
+input {
+  text-wrap: wrap;
+  height: auto;
+  width: 20rem;
+  font-size: 1rem;
+  resize: none;
+  border-color: rgb(0, 128, 255);
+  padding: 0.3em;
+}
+
+textarea {
+  font-family: var(--font);
+  width: 20rem;
+  height: 12rem;
+  border-radius: 0.3em;
+  resize: none;
+  border: 2px solid rgb(0, 128, 255);
+  padding: 0.3em;
+}
+
+/* mobile friendly */
+@media only screen and (max-width: 700px),
+(max-height: 800px) {
+  #eightBall {
+    width: 400px;
+    height: 400px;
   }
-  a:hover {
-    color: #747bff;
+
+  #eightBallText {
+    font-size: 1rem;
+    max-width: 100px;
   }
-  button {
-    background-color: #f9f9f9;
+
+  .notanerd {
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .notanerd:hover {
+    transform: translate(-50%, 0) scale(1.1);
   }
 }

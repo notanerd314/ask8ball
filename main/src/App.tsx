@@ -1,8 +1,12 @@
-import { useState } from 'react'
-import './App.css'
+import Magic8Ball from './components/Magic8Ball'
+import { GlobalProvider } from './components/GlobalContext'
 
 function App() {
-  return null;
+    return (
+        <GlobalProvider>
+            <Magic8Ball />
+        </GlobalProvider>
+    )
 }
 
 export default App
