@@ -1,7 +1,9 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from 'react'
-import { getRandomArrayElement } from './reuse'
+import { getRandomArrayElement } from '../reuse'
 import { useGlobal } from './GlobalContext';
-import '../index.css'
+import '../styles/globals.css'
 
 type Props = {
   diceStyle?: React.CSSProperties
@@ -176,18 +178,19 @@ const SvgMagic8BallResult: React.FC<Props> = ({ diceStyle }) => {
 }
 
 function Magic8Ball() {
-  const audioRef = useRef(new Audio('/media/shaking.wav'));
-
-  const { allAnswers } = useGlobal();
-  const [answer, setAnswer] = useState(getRandomArrayElement(allAnswers))
-  const [isShaking, setIsShaking] = useState(false)
-  const [shownResult, setShownResult] = useState(false)
-  const [eightBallDiceStyle, setEightBallDiceStyle] = useState({ opacity: "0", transition: "none" })
-
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const shakeTimeoutRef = useRef(null);
   const fadeInTimeoutRef = useRef(null);
 
+  const { allAnswers } = useGlobal();
+  const [answer, setAnswer] = useState(null);
+  const [isShaking, setIsShaking] = useState(false);
+  const [shownResult, setShownResult] = useState(false);
+  const [eightBallDiceStyle, setEightBallDiceStyle] = useState({ opacity: "0", transition: "none" });
+
   useEffect(() => {
+    audioRef.current = new Audio('/sounds/shaking.wav');
+    setAnswer(getRandomArrayElement(allAnswers));
     return () => { 
       clearTimeout(shakeTimeoutRef.current ?? undefined);
       clearTimeout(fadeInTimeoutRef.current ?? undefined);
@@ -196,7 +199,7 @@ function Magic8Ball() {
 
   const shakeEightBall = () => {
     if (!isShaking) {
-      audioRef.current.play();
+      audioRef!.current!.play();
       setIsShaking(true);
       setShownResult(false);
       setAnswer(getRandomArrayElement(allAnswers));
