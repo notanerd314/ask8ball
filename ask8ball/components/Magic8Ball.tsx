@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { getRandomArrayElement } from '../reuse'
 import { useGlobal } from './GlobalContext';
-import '../styles/globals.css'
+import styles from '../styles/Magic8Ball.module.css'
 
 type Props = {
   diceStyle?: React.CSSProperties
@@ -12,9 +12,7 @@ type Props = {
 function SvgMagic8BallNormal() {
   return (
     <svg
-      id="eightBall"
-      width="660"
-      height="660"
+      className={styles.eightBallSVG}
       viewBox="348 234 440 440"
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
@@ -105,9 +103,7 @@ function SvgMagic8BallNormal() {
 const SvgMagic8BallResult: React.FC<Props> = ({ diceStyle }) => {
   return (
     <svg
-      id="eightBall"
-      width="660"
-      height="660"
+      className={styles.eightBallSVG}
       viewBox="348 234 440 440"
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
@@ -216,13 +212,17 @@ function Magic8Ball() {
   }
 
   return (
-    <div id="eightBallWrapper" onClick={shakeEightBall} className={isShaking ? 'shake' : ''}>
+    <div 
+      id="eightBallWrapper" 
+      onClick={shakeEightBall} 
+      className={`${styles.eightBall} ${isShaking ? styles.shake : ''}`}
+    >
       {
         shownResult
           ? <SvgMagic8BallResult diceStyle={eightBallDiceStyle} />
           : <SvgMagic8BallNormal />
       }
-      <p id="eightBallText" style={eightBallDiceStyle}>{answer}</p>
+      <p id="eightBallText" className={styles.eightBallText} style={eightBallDiceStyle}>{answer}</p>
     </div>
   )
 }

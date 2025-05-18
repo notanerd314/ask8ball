@@ -1,0 +1,25 @@
+.bottomButtons {
+  gap: 10px;
+  margin-bottom: 1em;
+
+  position: absolute;
+  display: flex;
+
+  transform: translate(-50%, -100%);
+  top: calc(100% - 10px);
+  left: 50%;
+
+  width: calc(100vw - 20px);
+  height: 3rem;
+} 
+
+.bottomButtons > button {
+  flex: 1;
+  font-size: 1.5rem;
+  padding: 10px;
+  border-radius: 0;
+  cursor: pointer;
+
+  border: none;
+  border-radius: 10px;
+}

@@ -94,67 +94,43 @@ body {
   font-style: normal;
 }
 
-#eightBallWrapper.shake {
-  animation: shake8Ball 0.5s infinite linear;
-}
-
-#eightBallWrapper {
-  cursor: pointer;
+main {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-#eightBallText {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+/* dialog */
+dialog {
+  border-radius: var(--border-radius);
+  background-color: white;
+  padding: 1.5rem;
+  border: 2px solid var(--border-color);
+  font-size: large;
+}
 
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: normal;
+.dialogClose {
+  font-size: var(--font-size-small);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.2em 0.5em;
+  font-weight: bold;
+  border: 3px solid transparent;
+  background-color: red;
+  border-radius: 0.3em;
   color: white;
-  margin: 0;
-  padding: 0;
-
-  max-width: 150px;
-  word-wrap: break-word;
-
-  transition: opacity 0.75s ease;
-}
-
-#svg_25 {
-  transition: opacity 0.75s ease;
-}
-
-.bottom_button {
-  font-size: 1.5rem;
-  padding: 10px;
-  border-radius: 0;
-
+  transition: background-color 0.2s ease;
   cursor: pointer;
 }
 
-#optionsButtons {
-  position: absolute;
-
-  transform: translate(-50%, -100%);
-  top: 100%;
-  left: 50%;
-  display: flex;
-  width: 100%;
+.dialogClose:hover {
+  background-color: crimson;
 }
 
-#optionsButtons>button {
-  flex: 1;
-}
-
-.share_input {
-  width: 20rem;
-  height: 3rem;
-  border: 2px solid gray;
+.dialogClose:active {
+  border: 3px solid rgb(255, 140, 140);
 }
 
 /* elements */
@@ -181,16 +157,6 @@ textarea {
 /* mobile friendly */
 @media only screen and (max-width: 700px),
 (max-height: 800px) {
-  #eightBall {
-    width: 400px;
-    height: 400px;
-  }
-
-  #eightBallText {
-    font-size: 1rem;
-    max-width: 100px;
-  }
-
   .notanerd {
     left: 50%;
     transform: translate(-50%, 0);
