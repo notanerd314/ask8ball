@@ -54,8 +54,8 @@
 
   width: 60%;
   height: auto;
-  max-width: 800px;
-  max-height: 800px;
+  max-width: 900px;
+  max-height: 9000px;
 }
 
 .eightBallText {
@@ -65,7 +65,7 @@
   transform: translate(-50%, -50%);
 
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.25em;
   font-weight: normal;
   color: white;
   margin: 0;
@@ -78,21 +78,21 @@
   transition: opacity 0.75s ease;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
   .eightBall {
     width: 80%;
     height: auto;
   }
 
   .eightBallText {
-    font-size: 1em;
+    font-size: 0.9em;
     max-width: 125px;
   }
 
   @media screen and (max-width: 500px) {
     .eightBallText {
       max-width: 100px;
-      font-size: 0.6em;
+      font-size: 0.4em;
     }
   }
 }

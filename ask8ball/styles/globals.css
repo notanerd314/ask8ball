@@ -92,7 +92,7 @@ body {
   font-family: var(--font);
   font-weight: 400;
   font-style: normal;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 main {
@@ -108,10 +108,10 @@ dialog {
   background-color: white;
   padding: 1.5rem;
   border: 2px solid var(--border-color);
-  font-size: large;
+  font-size: 1.2rem;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 800px) {
   dialog {
     width: 100vw;
     height: 100vh;
