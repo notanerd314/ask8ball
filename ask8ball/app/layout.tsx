@@ -11,6 +11,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta charSet="UTF-8" />
+        <meta name="keywords" content="magic 8 ball, eight ball, " />
+        <meta name="description" content="The comeback of the classic Magic 8 Ball, with customization and more!" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
         <title>Ask Magic 8 Ball</title>
       </head>
       <body>{children}</body>

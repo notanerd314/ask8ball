@@ -1,38 +1,38 @@
 @keyframes shake8Ball {
   0% {
-    transform: translate(-50%, -50%) translate(5px, 5px) rotate(0deg);
+    transform: translate(5px, 5px) rotate(0deg);
   }
 
   5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95% {
-    transform: translate(-50%, -50%) translate(3px, 3px) rotate(1deg);
+    transform: translate(3px, 3px) rotate(1deg);
   }
 
   10%, 30%, 50%, 70% {
-    transform: translate(-50%, -50%) translate(-5px, -8px) rotate(-5deg);
+    transform: translate(-5px, -8px) rotate(-5deg);
   }
 
   20% {
-    transform: translate(-50%, -50%) translate(-10px, 0px) rotate(8deg);
+    transform: translate(-10px, 0px) rotate(8deg);
   }
 
   40% {
-    transform: translate(-50%, -50%) translate(5px, -5px) rotate(7deg);
+    transform: translate(5px, -5px) rotate(7deg);
   }
 
   60% {
-    transform: translate(-50%, -50%) translate(-10px, 3px) rotate(6deg);
+    transform: translate(-10px, 3px) rotate(6deg);
   }
 
   80% {
-    transform: translate(-50%, -50%) translate(-5px, -5px) rotate(9deg);
+    transform: translate(-5px, -5px) rotate(9deg);
   }
 
   90% {
-    transform: translate(-50%, -50%) translate(5px, 7px) rotate(2deg);
+    transform: translate(5px, 7px) rotate(2deg);
   }
 
   100% {
-    transform: translate(-50%, -50%) translate(5px, -8px) rotate(-4deg);
+    transform: translate(5px, -8px) rotate(-4deg);
   }
 }
 
@@ -41,21 +41,13 @@
 }
 
 .eightBall {
+  position: relative;
   cursor: pointer;
 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 60%;
-  height: auto;
+  width: min(60vw, 60vh);
+  aspect-ratio: 1 / 1;
   max-width: 900px;
-  max-height: 9000px;
+  max-height: 900px;
 }
 
 .eightBallText {
@@ -65,7 +57,7 @@
   transform: translate(-50%, -50%);
 
   text-align: center;
-  font-size: 1.25em;
+  font-size: 1em;
   font-weight: normal;
   color: white;
   margin: 0;
@@ -78,18 +70,50 @@
   transition: opacity 0.75s ease;
 }
 
-@media screen and (max-width: 1000px) {
-  .eightBall {
-    width: 80%;
-    height: auto;
-  }
+.askQuestion {
+  display: flex;
+  gap: 6px;
+}
 
+.askQuestionInput {
+  width: 17em;
+  
+  font-size: 1em;
+  font-weight: normal;
+
+  margin: 0;
+  padding: 0.5em;
+
+  border: 3px solid rgb(0, 106, 255);
+  border-radius: 20px;
+
+  cursor: text;
+}
+
+.askQuestionButton {
+  width: 5em;
+  padding: 1em;
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 800px) {
+  .eightBall {
+    width: min(80vw, 80vh);
+  }
+}
+
+@media screen and (max-width: 800px), (max-height: 800px) {
   .eightBallText {
-    font-size: 0.9em;
+    font-size: 0.8em;
     max-width: 125px;
   }
 
-  @media screen and (max-width: 500px) {
+  .askQuestionInput {
+    width: 15em;
+    font-size: 0.75em;
+  }
+
+  @media screen and (max-width: 600px), (max-height: 500px) {
     .eightBallText {
       max-width: 100px;
       font-size: 0.4em;

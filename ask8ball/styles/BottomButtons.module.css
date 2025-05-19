@@ -1,6 +1,5 @@
 .bottomButtons {
   gap: 10px;
-  margin-bottom: 1em;
   position: absolute;
   display: flex;
 
@@ -11,22 +10,15 @@
 } 
 
 .bottomButtons > button {
-  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   padding: 0.5em 1.5em;
-  cursor: pointer;
+  margin: 0;
 
   border: none;
   border-radius: 1.5rem;
 
   font-size: 1.5rem;
-  font-weight: bold;
-
-  background-color: rgb(0, 106, 255);
-  color: white;
-
-  transition: background-color 0.1s linear;
-}
-
-.bottomButtons > button:hover {
-  background-color: rgb(1, 92, 219);
 }

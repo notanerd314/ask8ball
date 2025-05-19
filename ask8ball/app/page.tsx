@@ -8,8 +8,8 @@ export default function Page() {
     <>
       <GlobalProvider>
         <Magic8Ball />
+        <BottomButtons />
       </GlobalProvider>
-      <BottomButtons />
     </>
   )
 }

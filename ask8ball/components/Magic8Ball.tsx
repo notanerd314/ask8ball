@@ -180,7 +180,7 @@ function Magic8Ball() {
 
   const { allAnswers } = useGlobal();
   const [answer, setAnswer] = useState(null);
-  const [isShaking, setIsShaking] = useState(false);
+  const { isShaking, setIsShaking } = useGlobal();
   const [shownResult, setShownResult] = useState(false);
   const [eightBallDiceStyle, setEightBallDiceStyle] = useState({ opacity: "0", transition: "none" });
 
@@ -214,18 +214,26 @@ function Magic8Ball() {
   }
 
   return (
-    <div 
-      id="eightBallWrapper" 
-      onClick={shakeEightBall} 
-      className={`${styles.eightBall} ${isShaking ? styles.shake : ''}`}
-    >
-      {
-        shownResult
-          ? <SvgMagic8BallResult diceStyle={eightBallDiceStyle} />
-          : <SvgMagic8BallNormal />
-      }
-      <p id="eightBallText" className={styles.eightBallText} style={eightBallDiceStyle}>{answer}</p>
-    </div>
+    <main>
+      <div 
+        id="eightBallWrapper" 
+        onClick={shakeEightBall} 
+        className={`${styles.eightBall} ${isShaking ? styles.shake : ''}`}
+      >
+        {
+          shownResult
+            ? <SvgMagic8BallResult diceStyle={eightBallDiceStyle} />
+            : <SvgMagic8BallNormal />
+        }
+        <p id="eightBallText" className={styles.eightBallText} style={eightBallDiceStyle}>{answer}</p>
+      </div>
+      <div className={styles.askQuestion}>
+        <input className={styles.askQuestionInput} placeholder='Ask a question...'></input>
+        <button className={`${styles.askQuestionButton} buttonBlue`} disabled={isShaking} onClick={shakeEightBall}>
+          <i className='fa fa-2x fa-reply'></i>
+        </button>
+      </div>
+    </main>
   )
 }
 

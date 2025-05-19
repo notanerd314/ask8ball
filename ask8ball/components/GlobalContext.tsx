@@ -30,10 +30,12 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     'My sources say no',
     'Outlook not so good',
     'Very doubtful'
-])
+  ]);
+
+  const [isShaking, setIsShaking] = useState(false);
   
   return (
-    <GlobalContext.Provider value={{ allAnswers, setAllAnswers }}>
+    <GlobalContext.Provider value={{ allAnswers, setAllAnswers, isShaking, setIsShaking }}>
       {children}
     </GlobalContext.Provider>
   );
