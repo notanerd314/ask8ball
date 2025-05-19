@@ -195,6 +195,7 @@ function Magic8Ball() {
 
   const shakeEightBall = () => {
     if (!isShaking) {
+      console.log("Shook eight ball like your balls")
       audioRef!.current!.play();
       setIsShaking(true);
       setShownResult(false);
@@ -206,6 +207,7 @@ function Magic8Ball() {
         setIsShaking(false);
         setTimeout(() => {
           setEightBallDiceStyle({ transition: "opacity 0.75s ease", opacity: "1" });
+          console.log("Shown result, and you're a ni-")
         }, 750)
       }, 2000);
     }
