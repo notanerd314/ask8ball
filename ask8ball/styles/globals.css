@@ -10,6 +10,8 @@ body {
 }
 
 main {
+  padding: 10px;
+
   position: absolute;
   top: 50%;
   left: 50%;
@@ -69,13 +71,13 @@ dialog {
 
 /* elements */
 input {
-  text-wrap: wrap;
-  height: auto;
   width: 20rem;
   font-size: 1rem;
-  resize: none;
-  border-color: rgb(0, 128, 255);
   padding: 0.3em;
+  font-family: 'Helevetica', sans-serif;
+
+  background-color: rgb(243, 243, 243);
+  border: 2px solid #cacaca;
 }
 
 textarea {
@@ -121,12 +123,12 @@ button:disabled {
 }
 
 .buttonBlue {
-  background-color: rgb(0, 128, 255);
+  background-color: #303084;
   color: white;
 }
 
 .buttonBlue:hover {
-  background-color: rgb(0, 106, 255);
+  background-color: #303084;
 }
 
 /* mobile friendly */
