@@ -36,6 +36,19 @@
   }
 }
 
+@keyframes glowButton {
+  from {
+    box-shadow: 
+      0 0 10px #3d3da3,
+      0 0 15px #3d3da3;
+  }
+  to {
+    box-shadow: 
+      0 0 15px #3d3da3,
+      0 0 20px #3d3da3;
+  }
+}
+
 .eightBall.shake {
   animation: shake8Ball 0.5s infinite linear;
 }
@@ -64,7 +77,7 @@
   padding: 0;
   cursor: text;
 
-  max-width: 150px;
+  max-width: 125px;
   word-wrap: break-word;
 
   transition: opacity 0.75s ease;
@@ -72,7 +85,8 @@
 
 .askQuestion {
   display: flex;
-  gap: 6px;
+  gap: 10px;
+  border-radius: 18px;
 }
 
 .askQuestionInput {
@@ -84,15 +98,20 @@
   margin: 0;
   padding: 0.5em;
 
-  border-radius: 20px;
+  border-radius: inherit;
 
   cursor: text;
 }
 
 .askQuestionButton {
   width: 5em;
-  padding: 1em;
-  border-radius: 20px;
+  padding: 0.5em;
+  border-radius: inherit;
+  animation: glowButton 1s ease-in-out infinite alternate;
+}
+
+.askQuestionButton:disabled {
+  animation: none;
 }
 
 @media screen and (max-width: 800px) {
@@ -101,10 +120,14 @@
   }
 }
 
-@media screen and (max-width: 800px), (max-height: 800px) {
+@media screen and (max-width: 800px), (max-height: 1000px) {
   .eightBallText {
     font-size: 0.8em;
-    max-width: 125px;
+    max-width: 100px;
+  }
+
+  .askQuestion {
+    height: 3rem;
   }
 
   .askQuestionInput {
@@ -112,10 +135,17 @@
     font-size: 0.75em;
   }
 
-  @media screen and (max-width: 600px), (max-height: 500px) {
+  @media screen and (max-width: 500px), (max-height: 700px) {
     .eightBallText {
-      max-width: 100px;
-      font-size: 0.4em;
+      font-size: 0.6em;
+    }
+
+    .askQuestion {
+      flex-direction: column;
+    }
+
+    .askQuestionButton {
+      width: 100%;
     }
   }
 }

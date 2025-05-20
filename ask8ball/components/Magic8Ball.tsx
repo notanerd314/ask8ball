@@ -177,12 +177,14 @@ function Magic8Ball() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const shakeTimeoutRef = useRef(null);
   const fadeInTimeoutRef = useRef(null);
+  const questionRef = useRef<HTMLInputElement>(null);
 
   const { allAnswers } = useGlobal();
   const [answer, setAnswer] = useState(null);
   const { isShaking, setIsShaking } = useGlobal();
   const [shownResult, setShownResult] = useState(false);
   const [eightBallDiceStyle, setEightBallDiceStyle] = useState({ opacity: "0", transition: "none" });
+  const [question, setQuestion] = useState("No question");
 
   useEffect(() => {
     audioRef.current = new Audio('/sounds/shaking.wav');
@@ -195,12 +197,23 @@ function Magic8Ball() {
 
   const shakeEightBall = () => {
     if (!isShaking) {
+      if (!questionRef.current?.value) {
+        alert("Cannot answer a blank question");
+        console.warn("Cannot anwwer a blank question");
+        return;
+      }
+
       console.log("Shook eight ball like your balls")
       audioRef!.current!.play();
       setIsShaking(true);
+      setQuestion(questionRef.current?.value!);
       setShownResult(false);
       setAnswer(getRandomArrayElement(allAnswers));
       setEightBallDiceStyle({ opacity: "0", transition: "none" });
+
+      if (questionRef.current) {
+        questionRef.current.value = "";
+      }
 
       setTimeout(() => {
         setShownResult(true);
@@ -228,7 +241,18 @@ function Magic8Ball() {
         <p id="eightBallText" className={styles.eightBallText} style={eightBallDiceStyle}>{answer}</p>
       </div>
       <div className={styles.askQuestion}>
-        <input className={styles.askQuestionInput} placeholder='Ask a question...'></input>
+        <input 
+          ref={questionRef} 
+          className={styles.askQuestionInput} 
+          placeholder='Ask a question...' 
+          disabled={isShaking}
+          onKeyDown={(evt: React.KeyboardEvent<HTMLInputElement>) => {
+            if (evt.key === "Enter") {
+              evt.preventDefault();
+              shakeEightBall();
+            }
+          }}
+        ></input>
         <button className={`${styles.askQuestionButton} buttonBlue`} disabled={isShaking} onClick={shakeEightBall}>
           <i className='fa fa-2x fa-reply'></i>
         </button>
