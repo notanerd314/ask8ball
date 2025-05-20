@@ -36,16 +36,16 @@
   }
 }
 
-@keyframes glowButton {
+@keyframes glow8Ball {
   from {
     box-shadow: 
-      0 0 10px #3d3da3,
-      0 0 15px #3d3da3;
+      0 0 20px #3d3da3,
+      0 0 30px #3d3da3;
   }
   to {
     box-shadow: 
-      0 0 15px #3d3da3,
-      0 0 20px #3d3da3;
+      0 0 25px #3d3da3,
+      0 0 35px #3d3da3;
   }
 }
 
@@ -56,11 +56,21 @@
 .eightBall {
   position: relative;
   cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 0 40px #000;
+  overflow: hidden;
 
   width: min(60vw, 60vh);
   aspect-ratio: 1 / 1;
   max-width: 900px;
   max-height: 900px;
+  background-color: black;
+  
+  transition: transform 0.15s ease;
+}
+
+.eightBall:hover {
+  transform: scale(1.03);
 }
 
 .eightBallText {
@@ -107,11 +117,6 @@
   width: 5em;
   padding: 0.5em;
   border-radius: inherit;
-  animation: glowButton 1s ease-in-out infinite alternate;
-}
-
-.askQuestionButton:disabled {
-  animation: none;
 }
 
 @media screen and (max-width: 800px) {

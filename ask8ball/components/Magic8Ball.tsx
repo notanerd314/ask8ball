@@ -28,13 +28,14 @@ function SvgMagic8BallNormal() {
           gradientTransform="matrix(5.8593 0 0 5.4391 149.6584 -166.16)"
         >
           <stop offset="0" stopColor="#262626" />
-          <stop offset="1" stopColor="#000000" />
+          <stop offset="1.1" stopColor="#000000" />
         </radialGradient>
       </defs>
       <g>
         <title>Layer 1</title>
         <g id="svg_355">
           <circle
+            className={styles.borderCircleEightBall}
             cx="568.1999"
             cy="453.19996"
             r="218.79997"
@@ -126,7 +127,7 @@ const SvgMagic8BallResult: React.FC<Props> = ({ diceStyle }) => {
         <title>Layer 1</title>
         <g id="svg_356">
           <g id="svg_355">
-            <circle id="svg_1" fill="url(#SVGID_1_)" r="218.79997" cy="453.19996" cx="568.1999" />
+            <circle id="svg_1" fill="url(#SVGID_1_)" r="218.79997" cy="453.19996" cx="568.1999" stroke="none" />
             <g id="svg_16">
               <g id="svg_17">
                 <path
@@ -184,7 +185,6 @@ function Magic8Ball() {
   const { isShaking, setIsShaking } = useGlobal();
   const [shownResult, setShownResult] = useState(false);
   const [eightBallDiceStyle, setEightBallDiceStyle] = useState({ opacity: "0", transition: "none" });
-  const [question, setQuestion] = useState("No question");
 
   useEffect(() => {
     audioRef.current = new Audio('/sounds/shaking.wav');
@@ -197,23 +197,12 @@ function Magic8Ball() {
 
   const shakeEightBall = () => {
     if (!isShaking) {
-      if (!questionRef.current?.value) {
-        alert("Cannot answer a blank question");
-        console.warn("Cannot anwwer a blank question");
-        return;
-      }
-
       console.log("Shook eight ball like your balls")
       audioRef!.current!.play();
       setIsShaking(true);
-      setQuestion(questionRef.current?.value!);
       setShownResult(false);
       setAnswer(getRandomArrayElement(allAnswers));
       setEightBallDiceStyle({ opacity: "0", transition: "none" });
-
-      if (questionRef.current) {
-        questionRef.current.value = "";
-      }
 
       setTimeout(() => {
         setShownResult(true);
@@ -223,6 +212,12 @@ function Magic8Ball() {
           console.log("Shown result, and you're a ni-")
         }, 750)
       }, 2000);
+    }
+  }
+
+  const resetQuestion = () => {
+    if (questionRef.current) {
+      questionRef.current.value = "";
     }
   }
 
@@ -253,8 +248,11 @@ function Magic8Ball() {
             }
           }}
         ></input>
-        <button className={`${styles.askQuestionButton} buttonBlue`} disabled={isShaking} onClick={shakeEightBall}>
+        <button className={`${styles.askQuestionButton} buttonBlue`} disabled={isShaking} onClick={shakeEightBall} title="Shake it!">
           <i className='fa fa-2x fa-reply'></i>
+        </button>
+        <button className={`${styles.askQuestionButton} buttonRed`} disabled={isShaking} onClick={resetQuestion} title='Reset question'>
+          <i className='fa fa-2x fa-refresh'></i>
         </button>
       </div>
     </main>
