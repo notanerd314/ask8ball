@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { getRandomArrayElement } from '../reuse'
 import { useGlobal } from './GlobalContext';
+import { CloseIcon, ReplyIcon } from './FontAwesome';
 import styles from '../styles/Magic8Ball.module.css'
 
 type Props = {
@@ -187,8 +188,7 @@ function Magic8Ball() {
   const [eightBallDiceStyle, setEightBallDiceStyle] = useState({ opacity: "0", transition: "none" });
 
   useEffect(() => {
-    audioRef.current = new Audio('/sounds/shaking.wav');
-    setAnswer(getRandomArrayElement(allAnswers));
+    audioRef.current = new Audio('/sounds/shaking.mp3');
     return () => { 
       clearTimeout(shakeTimeoutRef.current ?? undefined);
       clearTimeout(fadeInTimeoutRef.current ?? undefined);
@@ -250,11 +250,11 @@ function Magic8Ball() {
           >
           </input>
           <button disabled={isShaking} onClick={resetQuestion} title='Reset question'>
-            <i className='fa fa-2x fa-trash'></i>
+            <CloseIcon />
           </button>
         </div>
         <button className={`${styles.askQuestionButton} buttonBlue`} disabled={isShaking} onClick={shakeEightBall} title="Shake it!">
-          <i className='fa fa-2x fa-reply'></i>
+          <ReplyIcon />
         </button>
       </div>
     </main>

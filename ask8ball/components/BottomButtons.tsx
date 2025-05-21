@@ -5,6 +5,7 @@ import styles from '../styles/BottomButtons.module.css'
 import '../styles/globals.css'
 import CustomizeDialog from './CustomizeDialog';
 import { useGlobal } from './GlobalContext';
+import { BrushIcon } from './FontAwesome';
 
 function BottomButtons() {
   const customizeDialogRef = useRef<HTMLDialogElement>(null);
@@ -19,7 +20,7 @@ function BottomButtons() {
   return (
     <div className={styles.bottomButtons}>
       <button onClick={showCustomizeDialog} disabled={isShaking} className='buttonBlue'>
-        <i className='fa fa-cog'></i>
+        <BrushIcon />
         customize
       </button>
       <CustomizeDialog ref={customizeDialogRef} />
