@@ -7,8 +7,10 @@ export default function Page() {
   return (
     <>
       <GlobalProvider>
-        <Magic8Ball />
-        <BottomButtons />
+        <div className='eightBallMain'>
+          <Magic8Ball />
+          <BottomButtons />
+        </div>
       </GlobalProvider>
     </>
   )

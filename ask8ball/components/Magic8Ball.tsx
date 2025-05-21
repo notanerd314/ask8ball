@@ -185,6 +185,7 @@ function Magic8Ball() {
   const [answer, setAnswer] = useState(null);
   const { isShaking, setIsShaking } = useGlobal();
   const [shownResult, setShownResult] = useState(false);
+  const [question, setQuestion] = useState("");
   const [eightBallDiceStyle, setEightBallDiceStyle] = useState({ opacity: "0", transition: "none" });
 
   useEffect(() => {
@@ -197,12 +198,23 @@ function Magic8Ball() {
 
   const shakeEightBall = () => {
     if (!isShaking) {
+      if (allAnswers.length < 1) {
+        alert("No responses are provided, how am I supposed to answer your questions??????")
+        return
+      }
+
       console.log("Shook eight ball like your balls")
       audioRef!.current!.play();
       setIsShaking(true);
       setShownResult(false);
       setAnswer(getRandomArrayElement(allAnswers));
       setEightBallDiceStyle({ opacity: "0", transition: "none" });
+
+      if (questionRef.current?.value.replace(" ", "")) {
+        setQuestion(questionRef.current.value);
+      } else {
+        setQuestion("[No question]")
+      }
 
       setTimeout(() => {
         setShownResult(true);
@@ -222,7 +234,7 @@ function Magic8Ball() {
   }
 
   return (
-    <main>
+    <>
       <div 
         id="eightBallWrapper" 
         onClick={shakeEightBall} 
@@ -235,9 +247,11 @@ function Magic8Ball() {
         }
         <p id="eightBallText" className={styles.eightBallText} style={eightBallDiceStyle}>{answer}</p>
       </div>
+
       <div className={styles.askQuestion}>
         <div className={styles.askQuestionInput}>
-          <input 
+          <input
+            type='text'
             ref={questionRef} 
             placeholder='Ask a question...' 
             disabled={isShaking}
@@ -247,8 +261,7 @@ function Magic8Ball() {
                 shakeEightBall();
               }
             }}
-          >
-          </input>
+          />
           <button disabled={isShaking} onClick={resetQuestion} title='Reset question'>
             <CloseIcon />
           </button>
@@ -257,7 +270,7 @@ function Magic8Ball() {
           <ReplyIcon />
         </button>
       </div>
-    </main>
+    </>
   )
 }
 

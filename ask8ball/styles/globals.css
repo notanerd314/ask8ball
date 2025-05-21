@@ -7,13 +7,17 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: 25px;
+  padding: 0;
+  margin: 0;
 }
 
-main {
-  position: absolute;
-  top: 50%;
+.eightBallMain {
+  position: relative;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
+
+  margin: 0;
+  padding: 0;
 
   display: flex;
   flex-direction: column;
