@@ -51,6 +51,7 @@
 
 .eightBall.shake {
   animation: shake8Ball 0.5s infinite linear;
+  cursor: default;
 }
 
 .eightBall {
@@ -96,27 +97,37 @@
 .askQuestion {
   display: flex;
   gap: 10px;
-  border-radius: 18px;
 }
 
 .askQuestionInput {
-  width: 17em;
-  
+  position: relative;
+  display: inline-block;
+}
+
+.askQuestionInput input {
   font-size: 1em;
   font-weight: normal;
 
   margin: 0;
-  padding: 0.5em;
+  padding: 0.5em 15rem 0.5em 0.5em;
 
-  border-radius: inherit;
+  border-radius: 18px;
 
   cursor: text;
+}
+
+.askQuestionInput button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background-color: transparent;
 }
 
 .askQuestionButton {
   width: 5em;
   padding: 0.5em;
-  border-radius: inherit;
+  border-radius: 18px;
 }
 
 @media screen and (max-width: 800px) {
@@ -135,8 +146,8 @@
     height: 3rem;
   }
 
-  .askQuestionInput {
-    width: 15em;
+  .askQuestionInput input {
+    padding: 0.5em 12rem 0.5em 0.5em;
     font-size: 0.75em;
   }
 

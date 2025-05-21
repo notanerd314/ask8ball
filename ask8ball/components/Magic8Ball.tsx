@@ -236,23 +236,25 @@ function Magic8Ball() {
         <p id="eightBallText" className={styles.eightBallText} style={eightBallDiceStyle}>{answer}</p>
       </div>
       <div className={styles.askQuestion}>
-        <input 
-          ref={questionRef} 
-          className={styles.askQuestionInput} 
-          placeholder='Ask a question...' 
-          disabled={isShaking}
-          onKeyDown={(evt: React.KeyboardEvent<HTMLInputElement>) => {
-            if (evt.key === "Enter") {
-              evt.preventDefault();
-              shakeEightBall();
-            }
-          }}
-        ></input>
+        <div className={styles.askQuestionInput}>
+          <input 
+            ref={questionRef} 
+            placeholder='Ask a question...' 
+            disabled={isShaking}
+            onKeyDown={(evt: React.KeyboardEvent<HTMLInputElement>) => {
+              if (evt.key === "Enter") {
+                evt.preventDefault();
+                shakeEightBall();
+              }
+            }}
+          >
+          </input>
+          <button disabled={isShaking} onClick={resetQuestion} title='Reset question'>
+            <i className='fa fa-2x fa-trash'></i>
+          </button>
+        </div>
         <button className={`${styles.askQuestionButton} buttonBlue`} disabled={isShaking} onClick={shakeEightBall} title="Shake it!">
           <i className='fa fa-2x fa-reply'></i>
-        </button>
-        <button className={`${styles.askQuestionButton} buttonRed`} disabled={isShaking} onClick={resetQuestion} title='Reset question'>
-          <i className='fa fa-2x fa-refresh'></i>
         </button>
       </div>
     </main>
