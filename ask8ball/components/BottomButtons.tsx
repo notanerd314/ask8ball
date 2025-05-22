@@ -3,7 +3,8 @@
 import { useRef } from 'react';
 import styles from '../styles/BottomButtons.module.css'
 import '../styles/globals.css'
-import CustomizeDialog from './CustomizeDialog';
+import CustomizeDialog from './dialog/CustomizeDialog';
+import ShareDialog from './dialog/ShareDialog';
 import { useGlobal } from './GlobalContext';
 import { BrushIcon, ShareIcon } from './FontAwesome';
 
@@ -23,6 +24,7 @@ function BottomButtons() {
         share
       </button>
       <CustomizeDialog ref={customizeDialogRef} />
+      <ShareDialog ref={shareDialogRef} />
     </div>
   )
 }

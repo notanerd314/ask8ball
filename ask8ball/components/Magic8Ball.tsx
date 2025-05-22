@@ -116,10 +116,10 @@ function Magic8Ball() {
   const questionRef = useRef<HTMLInputElement>(null);
 
   const { allAnswers } = useGlobal();
-  const [answer, setAnswer] = useState(null);
+  const { answer, setAnswer } = useGlobal();
   const { isShaking, setIsShaking } = useGlobal();
   const [shownResult, setShownResult] = useState(false);
-  const [question, setQuestion] = useState("");
+  const { setQuestion } = useGlobal();
   const [eightBallDiceStyle, setEightBallDiceStyle] = useState({ opacity: "0", transition: "none" });
 
   useEffect(() => {

@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, forwardRef, useImperativeHandle, ChangeEvent } from 'react';
-import { useGlobal } from './GlobalContext';
-import '../styles/globals.css'
+import { useRef, forwardRef, useImperativeHandle } from 'react';
+import { useGlobal } from '../GlobalContext';
+import '../../styles/globals.css'
 
 const CustomizeDialog = forwardRef<HTMLDialogElement, React.HTMLAttributes<HTMLDialogElement>>((props, ref) => {
   const { setAllAnswers } = useGlobal();
