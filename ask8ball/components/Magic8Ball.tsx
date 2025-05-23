@@ -5,6 +5,7 @@ import { getRandomArrayElement } from '../reuse'
 import { useGlobal } from './GlobalContext';
 import { CloseIcon, ReplyIcon } from './FontAwesome';
 import styles from '../styles/Magic8Ball.module.css'
+import { useMagic8BallRef } from './Magic8BallRef';
 
 type Props = {
   shownResult?: boolean,
@@ -115,9 +116,11 @@ function Magic8Ball() {
   const fadeInTimeoutRef = useRef(null);
   const questionRef = useRef<HTMLInputElement>(null);
 
+  const magic8BallRef = useMagic8BallRef();
   const { allAnswers } = useGlobal();
   const { answer, setAnswer } = useGlobal();
   const { isShaking, setIsShaking } = useGlobal();
+
   const [shownResult, setShownResult] = useState(false);
   const { setQuestion } = useGlobal();
   const [eightBallDiceStyle, setEightBallDiceStyle] = useState({ opacity: "0", transition: "none" });
@@ -173,9 +176,10 @@ function Magic8Ball() {
         id="eightBallWrapper"
         onClick={shakeEightBall}
         className={`${styles.eightBall} ${isShaking ? styles.shake : ''}`}
+        ref={magic8BallRef}
       >
         <SvgMagic8Ball shownResult={shownResult} diceStyle={eightBallDiceStyle} />
-        <p id="eightBallText" className={styles.eightBallText} style={eightBallDiceStyle}>{answer}</p>
+        <p className={styles.eightBallText} style={eightBallDiceStyle}>{answer}</p>
       </div>
 
       <div className={styles.askQuestion}>
