@@ -71,27 +71,7 @@
 }
 
 .eightBall:hover {
-  transform: scale(1.03);
-}
-
-.eightBallText {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  text-align: center;
-  font-size: 1em;
-  font-weight: normal;
-  color: white;
-  margin: 0;
-  padding: 0;
-  cursor: text;
-
-  max-width: 125px;
-  word-wrap: break-word;
-
-  transition: opacity 0.75s ease;
+  transform: scale(1.05);
 }
 
 .askQuestion {
@@ -138,11 +118,6 @@
 }
 
 @media screen and (max-width: 800px), (max-height: 1000px) {
-  .eightBallText {
-    font-size: 0.8em;
-    max-width: 100px;
-  }
-
   .askQuestion {
     height: 3rem;
   }
@@ -154,10 +129,6 @@
   }
 
   @media screen and (max-width: 500px), (max-height: 700px) {
-    .eightBallText {
-      font-size: 0.6em;
-    }
-
     .askQuestion {
       flex-direction: column;
     }

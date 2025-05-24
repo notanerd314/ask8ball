@@ -4,16 +4,15 @@ import React, { useState, useEffect, useRef } from 'react'
 import { getRandomArrayElement } from '../reuse'
 import { useGlobal } from './GlobalContext';
 import { CloseIcon, ReplyIcon } from './FontAwesome';
+import EightBallText from './EightBallText';
 import styles from '../styles/Magic8Ball.module.css'
-import { useMagic8BallRef } from './Magic8BallRef';
-import Modal from './default/Modal';
 
 type Props = {
-  shownResult?: boolean,
+  isShaking?: boolean,
   diceStyle?: React.CSSProperties
 };
 
-const SvgMagic8Ball: React.FC<Props> = ({ shownResult, diceStyle }) => {
+const SvgMagic8Ball: React.FC<Props> = ({ isShaking, diceStyle }) => {
   return (
     <svg
       className={styles.eightBallSVG}
@@ -64,7 +63,7 @@ const SvgMagic8Ball: React.FC<Props> = ({ shownResult, diceStyle }) => {
           />
           <path
             id="svg_23"
-            fill={shownResult ? "none" : "#fff"}
+            fill={isShaking ? "none" : "#fff"}
             stroke="#141919"
             strokeMiterlimit="10"
             d="m677.94281,454.38533c1.47968,-58.55669 -48.82943,-106.91931 -109.7429,-105.49688c-60.91348,-1.42243 -111.22258,46.94018 -109.7429,105.49688c-1.47968,58.55669 48.82943,106.91931 109.7429,105.49688c60.91348,1.42243 111.22258,-46.70311 109.7429,-105.49688z"
@@ -75,14 +74,14 @@ const SvgMagic8Ball: React.FC<Props> = ({ shownResult, diceStyle }) => {
             d="m568.1999,331.81929c-71.27123,-3.319 -130.95165,54.05233 -127.49906,122.56603c-3.45259,68.5137 56.22783,125.88504 127.49906,122.56603c71.27123,3.319 130.95165,-54.05233 127.49906,-122.56603c3.45259,-68.5137 -56.22783,-125.88504 -127.49906,-122.56603zm0,237.78285c-66.8322,2.13364 -122.07357,-50.9704 -119.60743,-114.97974c-2.21952,-64.24641 53.02185,-117.35046 119.60743,-114.97974c66.8322,-2.13364 122.07357,50.9704 119.60743,114.97974c2.46613,64.00934 -52.77524,117.11339 -119.60743,114.97974z"
           />
           {
-            shownResult
-            ? <path
-              id="eightBallDice"
-              style={diceStyle}
-              fill="#303084"
-              d="m485.09123,402.70371c-3.20597,-5.68972 0.24661,-10.43115 8.13824,-10.66822c50.55572,-1.6595 107.52338,-1.6595 157.33926,0.23707c7.64501,0.23707 11.0976,5.21558 7.89162,10.66822c-23.67487,41.48754 -52.28201,89.61308 -79.9027,131.10061c-3.6992,5.68972 -9.61792,5.68972 -13.31712,0c-27.12746,-41.25046 -56.22783,-89.61308 -80.14931,-131.33768z"
-            />
-            : <>
+            isShaking
+              ? <path
+                id="eightBallDice"
+                style={diceStyle}
+                fill="#303084"
+                d="m485.09123,402.70371c-3.20597,-5.68972 0.24661,-10.43115 8.13824,-10.66822c50.55572,-1.6595 107.52338,-1.6595 157.33926,0.23707c7.64501,0.23707 11.0976,5.21558 7.89162,10.66822c-23.67487,41.48754 -52.28201,89.61308 -79.9027,131.10061c-3.6992,5.68972 -9.61792,5.68972 -13.31712,0c-27.12746,-41.25046 -56.22783,-89.61308 -80.14931,-131.33768z"
+              />
+              : <>
                 <ellipse
                   ry="34.5"
                   rx="36"
@@ -117,12 +116,8 @@ function Magic8Ball() {
   const fadeInTimeoutRef = useRef(null);
   const questionRef = useRef<HTMLInputElement>(null);
 
-  const magic8BallRef = useMagic8BallRef();
-  const { allAnswers } = useGlobal();
-  const { answer, setAnswer } = useGlobal();
-  const { isShaking, setIsShaking } = useGlobal();
+  const { allAnswers, answer, setAnswer, isShaking, setIsShaking, shownResult, setShownResult } = useGlobal();
 
-  const [shownResult, setShownResult] = useState(false);
   const { setQuestion } = useGlobal();
   const [eightBallDiceStyle, setEightBallDiceStyle] = useState({ opacity: "0", transition: "none" });
 
@@ -155,11 +150,13 @@ function Magic8Ball() {
       }
 
       setTimeout(() => {
-        setShownResult(true);
         setIsShaking(false);
         setTimeout(() => {
           setEightBallDiceStyle({ transition: "opacity 0.75s ease", opacity: "1" });
-          console.log("Shown result, and you're a ni-")
+          setTimeout(() => {
+            setShownResult(true);
+          }, 750)
+          console.log("Shown result")
         }, 750)
       }, 2000);
     }
@@ -177,10 +174,9 @@ function Magic8Ball() {
         id="eightBallWrapper"
         onClick={shakeEightBall}
         className={`${styles.eightBall} ${isShaking ? styles.shake : ''}`}
-        ref={magic8BallRef}
       >
-        <SvgMagic8Ball shownResult={shownResult} diceStyle={eightBallDiceStyle} />
-        <p className={styles.eightBallText} style={eightBallDiceStyle}>{answer}</p>
+        <SvgMagic8Ball isShaking={!isShaking} diceStyle={eightBallDiceStyle} />
+        <EightBallText maxWidth={135} maxHeight={125} minFontSize={10} initialFontSize={30} eightBallDiceStyle={eightBallDiceStyle}>{answer}</EightBallText>
       </div>
 
       <div className={styles.askQuestion}>

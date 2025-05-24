@@ -1,11 +1,8 @@
-import { forwardRef, useRef, useImperativeHandle, useState, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { useGlobal } from '../GlobalContext';
 import { TwitterIcon } from '../FontAwesome';
-import { useMagic8BallRef } from '../Magic8BallRef';
 import Modal from '../default/Modal';
 import '../../styles/globals.css'
-
-import { toPng } from 'html-to-image';
 
 type ModalProps = {
   isOpen: boolean;
@@ -15,22 +12,31 @@ type ModalProps = {
 function ShareDialog({ isOpen, onClose }: ModalProps) {
   const { answer } = useGlobal();
   const { question } = useGlobal();
-  const magic8BallRef = useMagic8BallRef();
-
-  const [imageSrc, setImageSrc] = useState<string>();
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const createImage = () => {
-    console.log("Opening share dialog");
-    toPng(magic8BallRef.current, {
-      cacheBust: true,
-      skipFonts: true
-    })
-      .then(function (dataUrl: string) {
-        setImageSrc(dataUrl);
-      })
-      .catch(function (error: Error) {
-        console.error('Error generating image:', error);
-      });
+    console.log("Drawing canvas...");
+
+    if (canvasRef.current) {
+      const canvas = canvasRef.current;
+      const context = canvas.getContext('2d');
+
+      context?.clearRect(0, 0, canvas.width, canvas.height);
+
+      const eightBallImg = new Image();
+      eightBallImg.src = '/images/eightball.png';
+
+      eightBallImg.onload = () => {
+        context?.drawImage(eightBallImg, 0, 0, canvas.width, canvas.height);
+
+        // context?.font = '24px Arial'; 
+        context?.fillText("weiuhdweudihewiudiuewhdewhdiuhewdi", canvas.width / 2, canvas.height / 2, canvas.width);
+      }
+
+      console.log("Drawing canvas done");
+    } else {
+      throw new Error("Canvas not found");
+    }
   }
 
   return (
@@ -41,7 +47,7 @@ function ShareDialog({ isOpen, onClose }: ModalProps) {
       <button className='buttonBlack'>
         <TwitterIcon /> Share on X
       </button>
-      <img width={300} height={300} src={imageSrc} alt="Magic 8 Ball Picture" />
+      <canvas width={500} height={500} ref={canvasRef}></canvas>
     </Modal>
   )
 }
