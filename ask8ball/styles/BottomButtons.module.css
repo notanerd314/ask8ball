@@ -1,12 +1,10 @@
 .bottomButtons {
   gap: 10px;
-  position: absolute;
   display: flex;
 
-  transform: translate(-50%, -100%);
-  top: calc(100% - 10px);
-  left: 50%;
   height: 3rem;
+
+  z-index: 99;
 } 
 
 .bottomButtons > button {

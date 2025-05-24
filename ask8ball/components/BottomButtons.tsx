@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import styles from '../styles/BottomButtons.module.css'
 import '../styles/globals.css'
 import CustomizeDialog from './dialog/CustomizeDialog';
@@ -10,7 +10,7 @@ import { BrushIcon, ShareIcon } from './FontAwesome';
 
 function BottomButtons() {
   const customizeDialogRef = useRef<HTMLDialogElement>(null);
-  const shareDialogRef = useRef<HTMLDialogElement>(null);
+  const [openedShareDialog, setOpenedShareDialog] = useState(false);
   const { isShaking } = useGlobal();
 
   return (
@@ -19,12 +19,12 @@ function BottomButtons() {
         <BrushIcon />
         customize
       </button>
-      <button onClick={() => shareDialogRef.current?.showModal()} disabled={isShaking} className='buttonGreen'>
+      <button onClick={() => setOpenedShareDialog(!openedShareDialog)} disabled={isShaking} className='buttonGreen'>
         <ShareIcon />
         share
       </button>
       <CustomizeDialog ref={customizeDialogRef} />
-      <ShareDialog ref={shareDialogRef} />
+      <ShareDialog isOpen={openedShareDialog} onClose={() => setOpenedShareDialog(false)} />
     </div>
   )
 }

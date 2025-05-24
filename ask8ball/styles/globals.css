@@ -12,12 +12,10 @@ body {
 }
 
 .eightBallMain {
-  position: relative;
+  position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%);
-
-  margin: 0;
-  padding: 0;
+  transform: translate(-50%, -50%);
 
   display: flex;
   flex-direction: column;
@@ -46,29 +44,6 @@ dialog {
     width: 100vw;
     height: 100vh;
   }
-}
-
-.dialogClose {
-  font-size: var(--font-size-small);
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.2em 0.5em;
-  font-weight: bold;
-  border: 3px solid transparent;
-  background-color: red;
-  border-radius: 0.3em;
-  color: white;
-  transition: background-color 0.2s ease;
-  cursor: pointer;
-}
-
-.dialogClose:hover {
-  background-color: crimson;
-}
-
-.dialogClose:active {
-  border: 3px solid rgb(255, 140, 140);
 }
 
 /* elements */

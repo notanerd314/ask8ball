@@ -6,6 +6,7 @@ import { useGlobal } from './GlobalContext';
 import { CloseIcon, ReplyIcon } from './FontAwesome';
 import styles from '../styles/Magic8Ball.module.css'
 import { useMagic8BallRef } from './Magic8BallRef';
+import Modal from './default/Modal';
 
 type Props = {
   shownResult?: boolean,

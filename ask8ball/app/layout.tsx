@@ -1,4 +1,5 @@
 import Head from "next/head"
+import 'normalize.css';
 
 export default function RootLayout({
   children,
@@ -14,7 +15,8 @@ export default function RootLayout({
         <meta name="description" content="Ask the 8 Ball" />
         <meta name="keywords" content="fortune, magic 8 ball, eight ball" />
       </Head>
-      <body>{children}</body>
+      <body>{children}
+      </body>
     </html>
   )
 }
