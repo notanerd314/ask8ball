@@ -10,7 +10,7 @@ type ModalProps = {
 };
 
 function ShareDialog({ isOpen, onClose }: ModalProps) {
-  const { answer } = useGlobal();
+  const { answer }: { answer: string } = useGlobal();
   const { question } = useGlobal();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -29,14 +29,52 @@ function ShareDialog({ isOpen, onClose }: ModalProps) {
       eightBallImg.onload = () => {
         context?.drawImage(eightBallImg, 0, 0, canvas.width, canvas.height);
 
-        // context?.font = '24px Arial'; 
-        context?.fillText("weiuhdweudihewiudiuewhdewhdiuhewdi", canvas.width / 2, canvas.height / 2, canvas.width);
-      }
+        context!.font = '16px Arial';
+        context!.fillStyle = 'white';
+        context!.textAlign = 'center';
+        context!.textBaseline = 'middle';
+
+        let textList: string[] = [];
+        let tempTextList: string[] = [];
+
+        // Split the answer into lines based on width > 100
+        Array.from(answer).forEach((char, index, arr) => {
+          tempTextList.push(char);
+          const textWidth = context!.measureText(tempTextList.join('')).width;
+
+          if (textWidth > 100) {
+            // Remove the last char that caused overflow, push previous line
+            tempTextList.pop();
+            textList.push(tempTextList.join(''));
+            // Start new line with current char
+            tempTextList = [char];
+          }
+
+          // On last char, push whatever is left
+          if (index === arr.length - 1 && tempTextList.length > 0) {
+            textList.push(tempTextList.join(''));
+          }
+        });
+
+        const lineHeight = 20; // Adjust as needed for spacing
+
+        // Total height of all lines combined
+        const totalTextHeight = textList.length * lineHeight;
+
+        // Starting Y so block is vertically centered
+        const startY = (canvas.height / 2) - (totalTextHeight / 2) + (lineHeight / 2);
+
+        // Draw each line centered horizontally and vertically spaced
+        textList.forEach((text, index) => {
+          context!.fillText(text, canvas.width / 2, startY + index * lineHeight);
+        });
+      };
 
       console.log("Drawing canvas done");
     } else {
       throw new Error("Canvas not found");
     }
+
   }
 
   return (

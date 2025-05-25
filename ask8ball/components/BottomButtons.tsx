@@ -11,7 +11,7 @@ import { BrushIcon, ShareIcon } from './FontAwesome';
 function BottomButtons() {
   const customizeDialogRef = useRef<HTMLDialogElement>(null);
   const [openedShareDialog, setOpenedShareDialog] = useState(false);
-  const { isShaking, shownResult } = useGlobal();
+  const { isShaking } = useGlobal();
 
   return (
     <div className={styles.bottomButtons}>
@@ -19,7 +19,7 @@ function BottomButtons() {
         <BrushIcon />
         customize
       </button>
-      <button onClick={() => setOpenedShareDialog(!openedShareDialog)} disabled={isShaking || !shownResult} className='buttonGreen'>
+      <button onClick={() => setOpenedShareDialog(!openedShareDialog)} disabled={isShaking} className='buttonGreen'>
         <ShareIcon />
         share
       </button>

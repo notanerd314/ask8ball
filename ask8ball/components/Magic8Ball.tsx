@@ -151,13 +151,11 @@ function Magic8Ball() {
 
       setTimeout(() => {
         setIsShaking(false);
+        setShownResult(true);
         setTimeout(() => {
           setEightBallDiceStyle({ transition: "opacity 0.75s ease", opacity: "1" });
-          setTimeout(() => {
-            setShownResult(true);
-          }, 750)
           console.log("Shown result")
-        }, 750)
+        }, 500)
       }, 2000);
     }
   }
@@ -175,7 +173,7 @@ function Magic8Ball() {
         onClick={shakeEightBall}
         className={`${styles.eightBall} ${isShaking ? styles.shake : ''}`}
       >
-        <SvgMagic8Ball isShaking={!isShaking} diceStyle={eightBallDiceStyle} />
+        <SvgMagic8Ball isShaking={shownResult} diceStyle={eightBallDiceStyle} />
         <EightBallText maxWidth={135} maxHeight={125} minFontSize={10} initialFontSize={30} eightBallDiceStyle={eightBallDiceStyle}>{answer}</EightBallText>
       </div>
 
@@ -206,3 +204,4 @@ function Magic8Ball() {
 }
 
 export default Magic8Ball
+
