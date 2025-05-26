@@ -1,6 +1,7 @@
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import styles from "../styles/EightBallText.module.css"
+import { useState, useEffect, useRef } from 'react';
+import styles from '../styles/EightBallText.module.css';
 
 type ShrinkProps = {
   children: React.ReactNode;
@@ -8,41 +9,76 @@ type ShrinkProps = {
   maxHeight: number;
   minFontSize: number;
   initialFontSize: number;
-  eightBallDiceStyle: { opacity: string; transition: string };
+  eightBallDiceStyle?: { opacity: string; transition: string };
 };
 
-const EightBallText = ({ children, maxWidth, maxHeight, minFontSize, initialFontSize, eightBallDiceStyle }: ShrinkProps) => {
-  const containerRef = useRef(null);
+const EightBallText = ({
+  children,
+  maxWidth,       // in vw units
+  maxHeight,      // in vh units
+  minFontSize,
+  initialFontSize,
+  eightBallDiceStyle,
+}: ShrinkProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
+
+  const [maxWidthPx, setMaxWidthPx] = useState(0);
+  const [maxHeightPx, setMaxHeightPx] = useState(0);
   const [fontSize, setFontSize] = useState(initialFontSize);
+
+  useEffect(() => {
+    function updateSizes() {
+      // const multiplier = (window.innerWidth < 800 || window.innerHeight < 800) ? 2 : 1;
+      const multiplier =1;
+      setMaxWidthPx(window.innerWidth * (maxWidth * multiplier / 100));
+      setMaxHeightPx(window.innerHeight * (maxHeight * multiplier / 100));
+    }
+
+    updateSizes();
+
+    window.addEventListener('resize', updateSizes);
+    return () => window.removeEventListener('resize', updateSizes);
+  }, [maxWidth, maxHeight]);
 
   useEffect(() => {
     if (!textRef.current) return;
 
     let currentFontSize = initialFontSize;
-
-    // Reset font size before measuring
     textRef.current.style.fontSize = currentFontSize + 'px';
 
-    // Shrink font size until fits or hits minFontSize
-    while (textRef.current.scrollHeight > maxHeight && currentFontSize > minFontSize) {
+    while (textRef.current.scrollHeight > maxHeightPx && currentFontSize > minFontSize) {
       currentFontSize -= 1;
       textRef.current.style.fontSize = currentFontSize + 'px';
+      console.log("qwidjkqwpdjkqwopkdqwd")
     }
 
     setFontSize(currentFontSize);
-  }, [children, maxHeight, minFontSize, initialFontSize]);
+  }, [children, maxHeightPx, minFontSize, initialFontSize]);
+
+  // Render nothing until sizes are known (optional)
+  if (maxWidthPx === 0 || maxHeightPx === 0) {
+    return null;
+  }
 
   return (
     <div
       ref={containerRef}
       style={{
-        maxHeight: maxHeight + 'px',
+        maxHeight: maxHeightPx + 'px',
         overflow: 'hidden',
       }}
-      className="text-container"
+      className={styles.eightBallText}
     >
-      <p className={styles.eightBallText} ref={textRef} style={{ fontSize: fontSize + 'px', margin: 0, maxWidth: maxWidth, ...eightBallDiceStyle }}>
+      <p
+        ref={textRef}
+        style={{
+          fontSize: fontSize + 'px',
+          margin: 0,
+          maxWidth: maxWidthPx + 'px',
+          ...eightBallDiceStyle,
+        }}
+      >
         {children}
       </p>
     </div>
