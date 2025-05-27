@@ -72,7 +72,7 @@ function Magic8Ball() {
         className={`${styles.eightBall} ${isShaking ? styles.shake : ''}`}
       >
         <EightBallSvg isShaking={shownResult} diceStyle={eightBallDiceStyle} />
-        <EightBallText maxWidth={12} maxHeight={12} minFontSize={10} initialFontSize={30} eightBallDiceStyle={eightBallDiceStyle}>{answer}</EightBallText>
+        <EightBallText maxWidth={11} maxHeight={11} minFontSize={5} initialFontSize={30} eightBallDiceStyle={eightBallDiceStyle}>{answer}</EightBallText>
       </div>
 
       <div className={styles.askQuestion}>

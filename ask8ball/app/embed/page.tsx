@@ -1,13 +1,27 @@
+"use client"
+
 import '../../styles/globals.css'
 import Magic8BallEmbed from '../../components/Magic8BallEmbed'
 
+import { useEffect, useState } from 'react';
+
 export default function Page() {
+  const [answer, setAnswer] = useState<string | null>(null);
+  const [question, setQuestion] = useState<string | null>(null);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    setAnswer(urlParams.get('answer'));
+    setQuestion(urlParams.get('question'));
+  }, []);
+
   return (
     <>
       <Magic8BallEmbed
-        answer='I am a placeholderaipdwaipdwaiojdwioajdwioajdijawijodawijodwioajdiojawiodawjiodioajwdoj'
-        question='I am a placeholder'
+        answer={answer ? answer : '[No answer defined]'}
+        question={question ? question : '[No question defined]'}
       />
     </>
-  )
+  );
 }
+

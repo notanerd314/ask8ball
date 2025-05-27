@@ -1,4 +1,6 @@
-import { useState, useRef } from 'react';
+"use client"
+
+import { useRef } from 'react';
 import { useGlobal } from '../common/GlobalContext';
 import { TwitterIcon } from '../common/FontAwesome';
 import Modal from '../base/Modal';
@@ -84,6 +86,7 @@ function ShareDialog({ isOpen, onClose }: ModalProps) {
       <button className='buttonBlack'>
         <TwitterIcon /> Share on X
       </button>
+      <iframe width={500} height={500} src={`/embed?question=${encodeURIComponent(question)}&answer=${encodeURIComponent(answer)}`}></iframe>
       {/* <canvas width={500} height={500} ref={canvasRef}></canvas> */}
     </Modal>
   )
