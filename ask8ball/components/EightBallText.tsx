@@ -30,7 +30,7 @@ const EightBallText = ({
   useEffect(() => {
     function updateSizes() {
       // const multiplier = (window.innerWidth < 800 || window.innerHeight < 800) ? 2 : 1;
-      const multiplier =1;
+      const multiplier = 1;
       setMaxWidthPx(window.innerWidth * (maxWidth * multiplier / 100));
       setMaxHeightPx(window.innerHeight * (maxHeight * multiplier / 100));
     }
@@ -50,7 +50,6 @@ const EightBallText = ({
     while (textRef.current.scrollHeight > maxHeightPx && currentFontSize > minFontSize) {
       currentFontSize -= 1;
       textRef.current.style.fontSize = currentFontSize + 'px';
-      console.log("qwidjkqwpdjkqwopkdqwd")
     }
 
     setFontSize(currentFontSize);

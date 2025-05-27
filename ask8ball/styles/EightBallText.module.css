@@ -18,8 +18,6 @@
   word-wrap: break-word;
 
   transition: opacity 0.75s ease;
-
-  font-size: clamp(0.5rem, 2vw, 3rem);
 }
 
 .eightBallText::-webkit-scrollbar { 

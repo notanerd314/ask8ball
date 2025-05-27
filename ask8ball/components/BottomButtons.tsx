@@ -5,8 +5,8 @@ import styles from '../styles/BottomButtons.module.css'
 import '../styles/globals.css'
 import CustomizeDialog from './dialog/CustomizeDialog';
 import ShareDialog from './dialog/ShareDialog';
-import { useGlobal } from './GlobalContext';
-import { BrushIcon, ShareIcon } from './FontAwesome';
+import { useGlobal } from './common/GlobalContext';
+import { BrushIcon, ShareIcon } from './common/FontAwesome';
 
 function BottomButtons() {
   const customizeDialogRef = useRef<HTMLDialogElement>(null);

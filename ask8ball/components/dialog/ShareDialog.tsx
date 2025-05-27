@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
-import { useGlobal } from '../GlobalContext';
-import { TwitterIcon } from '../FontAwesome';
-import Modal from '../default/Modal';
+import { useGlobal } from '../common/GlobalContext';
+import { TwitterIcon } from '../common/FontAwesome';
+import Modal from '../base/Modal';
 import '../../styles/globals.css'
 
 type ModalProps = {

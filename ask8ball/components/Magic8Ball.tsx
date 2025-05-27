@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import { getRandomArrayElement } from '../reuse'
-import { useGlobal } from './GlobalContext';
-import { CloseIcon, ReplyIcon } from './FontAwesome';
+import { useGlobal } from './common/GlobalContext';
+import { CloseIcon, ReplyIcon } from './common/FontAwesome';
 import EightBallText from './EightBallText';
 import EightBallSvg from './EightBallSvg';
 import styles from '../styles/Magic8Ball.module.css'
@@ -72,7 +72,7 @@ function Magic8Ball() {
         className={`${styles.eightBall} ${isShaking ? styles.shake : ''}`}
       >
         <EightBallSvg isShaking={shownResult} diceStyle={eightBallDiceStyle} />
-        <EightBallText maxWidth={10} maxHeight={10} minFontSize={10} initialFontSize={30} eightBallDiceStyle={eightBallDiceStyle}>{answer}</EightBallText>
+        <EightBallText maxWidth={12} maxHeight={12} minFontSize={10} initialFontSize={30} eightBallDiceStyle={eightBallDiceStyle}>{answer}</EightBallText>
       </div>
 
       <div className={styles.askQuestion}>

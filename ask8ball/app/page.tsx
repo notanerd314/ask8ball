@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import Magic8Ball from '../components/Magic8Ball'
 import BottomButtons from '../components/BottomButtons'
-import { GlobalProvider } from '../components/GlobalContext'
+import { GlobalProvider } from '../components/common/GlobalContext'
 
 export default function Page() {
   return (
