@@ -1,8 +1,7 @@
 import EightBallSvg from "./EightBallSvg"
 import EightBallText from "./EightBallText"
 import styles from "../styles/Magic8BallEmbed.module.css"
-
-import { AutoTextSize } from 'auto-text-size';
+import { useGlobal } from "./common/GlobalContext"
 
 type Props = {
   answer?: string;
@@ -10,14 +9,12 @@ type Props = {
 }
 
 const Magic8BallEmbed: React.FC<Props> = ({ answer, question }: Props) => {
+  const { diceSize } = useGlobal();
   return (
     <>
-      <div className={styles.questionTextContainer}>
-        <AutoTextSize mode="box" className={styles.questionText}>{question}</AutoTextSize>
-      </div>
       <div className={styles.eightBall}>
         <EightBallSvg isShaking={true} />
-        <EightBallText maxWidth={15} maxHeight={15} minFontSize={5} initialFontSize={30}>{answer}</EightBallText>
+        <EightBallText maxWidth={diceSize.width} maxHeight={diceSize.height} minFontSize={1} initialFontSize={30}>{answer}</EightBallText>
       </div>
     </>
   )

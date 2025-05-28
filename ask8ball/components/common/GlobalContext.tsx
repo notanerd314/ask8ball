@@ -36,9 +36,10 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   const [question, setQuestion] = useState("[No question]");
   const [shownResult, setShownResult] = useState(false);
   const [answer, setAnswer] = useState("[No answer]");
+  const [diceSize, setDiceSize] = useState({ width: 0, height: 0 });
   
   return (
-    <GlobalContext.Provider value={{ allAnswers, setAllAnswers, isShaking, setIsShaking, question, setQuestion, answer, setAnswer, shownResult, setShownResult }}>
+    <GlobalContext.Provider value={{ allAnswers, setAllAnswers, isShaking, setIsShaking, question, setQuestion, answer, setAnswer, shownResult, setShownResult, diceSize, setDiceSize }}>
       {children}
     </GlobalContext.Provider>
   );

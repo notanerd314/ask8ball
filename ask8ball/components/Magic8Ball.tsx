@@ -4,9 +4,10 @@ import React, { useState, useEffect, useRef } from 'react'
 import { getRandomArrayElement } from '../reuse'
 import { useGlobal } from './common/GlobalContext';
 import { CloseIcon, ReplyIcon } from './common/FontAwesome';
-import EightBallText from './EightBallText';
+import ResizableText from './base/ResizeableText';
 import EightBallSvg from './EightBallSvg';
 import styles from '../styles/Magic8Ball.module.css'
+import textStyles from '../styles/EightBallText.module.css'
 
 function Magic8Ball() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -14,7 +15,7 @@ function Magic8Ball() {
   const fadeInTimeoutRef = useRef(null);
   const questionRef = useRef<HTMLInputElement>(null);
 
-  const { allAnswers, answer, setAnswer, isShaking, setIsShaking, shownResult, setShownResult } = useGlobal();
+  const { allAnswers, answer, setAnswer, isShaking, setIsShaking, shownResult, setShownResult, diceSize } = useGlobal();
 
   const { setQuestion } = useGlobal();
   const [eightBallDiceStyle, setEightBallDiceStyle] = useState({ opacity: "0", transition: "none" });
@@ -72,7 +73,16 @@ function Magic8Ball() {
         className={`${styles.eightBall} ${isShaking ? styles.shake : ''}`}
       >
         <EightBallSvg isShaking={shownResult} diceStyle={eightBallDiceStyle} />
-        <EightBallText maxWidth={11} maxHeight={11} minFontSize={5} initialFontSize={30} eightBallDiceStyle={eightBallDiceStyle}>{answer}</EightBallText>
+        <ResizableText
+          minFontSize={1}
+          initialFontSize={30}
+          maxWidth={diceSize.width} 
+          maxHeight={diceSize.height} 
+          extraStyle={eightBallDiceStyle}
+          className={textStyles.eightBallText}
+        >
+          {answer}
+        </ResizableText>
       </div>
 
       <div className={styles.askQuestion}>

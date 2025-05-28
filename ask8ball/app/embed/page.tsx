@@ -2,6 +2,7 @@
 
 import '../../styles/globals.css'
 import Magic8BallEmbed from '../../components/Magic8BallEmbed'
+import { GlobalProvider } from '../../components/common/GlobalContext';
 
 import { useEffect, useState } from 'react';
 
@@ -17,10 +18,12 @@ export default function Page() {
 
   return (
     <>
-      <Magic8BallEmbed
-        answer={answer ? answer : '[No answer defined]'}
-        question={question ? question : '[No question defined]'}
-      />
+      <GlobalProvider>
+        <Magic8BallEmbed
+          answer={answer ? answer : '[No answer defined]'}
+          question={question ? question : '[No question defined]'}
+        />
+      </GlobalProvider>
     </>
   );
 }
