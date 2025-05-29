@@ -55,6 +55,7 @@ const ResizableText = ({
         margin: 0,
         maxWidth: maxWidth + 'px',
         overflow: 'hidden',
+        wordWrap: 'normal',
         ...extraStyle
       }}
       className={className}

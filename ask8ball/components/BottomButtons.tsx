@@ -9,13 +9,13 @@ import { useGlobal } from './common/GlobalContext';
 import { BrushIcon, ShareIcon } from './common/FontAwesome';
 
 function BottomButtons() {
-  const customizeDialogRef = useRef<HTMLDialogElement>(null);
+  const [openedCustomizeDialog, setOpenedCustomizeDialog] = useState(false);
   const [openedShareDialog, setOpenedShareDialog] = useState(false);
   const { isShaking } = useGlobal();
 
   return (
     <div className={styles.bottomButtons}>
-      <button onClick={() => customizeDialogRef.current?.showModal()} disabled={isShaking} className='buttonBlue'>
+      <button onClick={() => setOpenedCustomizeDialog(!openedCustomizeDialog)} disabled={isShaking} className='buttonBlue'>
         <BrushIcon />
         customize
       </button>
@@ -23,7 +23,7 @@ function BottomButtons() {
         <ShareIcon />
         share
       </button>
-      <CustomizeDialog ref={customizeDialogRef} />
+      <CustomizeDialog isOpen={openedCustomizeDialog} onClose={() => setOpenedCustomizeDialog(false)} />
       <ShareDialog isOpen={openedShareDialog} onClose={() => setOpenedShareDialog(false)} />
     </div>
   )

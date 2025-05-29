@@ -1,0 +1,2 @@
+1. Finish and improve the options menu
+2. Finish the share result menu

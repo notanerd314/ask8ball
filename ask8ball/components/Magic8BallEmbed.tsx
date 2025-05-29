@@ -1,6 +1,7 @@
 import EightBallSvg from "./EightBallSvg"
-import EightBallText from "./EightBallText"
+import ResizableText from "./base/ResizeableText"
 import styles from "../styles/Magic8BallEmbed.module.css"
+import textStyles from '../styles/EightBallText.module.css'
 import { useGlobal } from "./common/GlobalContext"
 
 type Props = {
@@ -14,7 +15,7 @@ const Magic8BallEmbed: React.FC<Props> = ({ answer, question }: Props) => {
     <>
       <div className={styles.eightBall}>
         <EightBallSvg isShaking={true} />
-        <EightBallText maxWidth={diceSize.width} maxHeight={diceSize.height} minFontSize={1} initialFontSize={30}>{answer}</EightBallText>
+        <ResizableText maxWidth={diceSize.width} maxHeight={diceSize.height} minFontSize={1} initialFontSize={30} className={textStyles.eightBallText}>{answer}</ResizableText>
       </div>
     </>
   )

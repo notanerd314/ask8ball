@@ -14,7 +14,6 @@ type ModalProps = {
 function ShareDialog({ isOpen, onClose }: ModalProps) {
   const { answer }: { answer: string } = useGlobal();
   const { question } = useGlobal();
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // const createImage = () => {
   //   console.log("Drawing canvas...");

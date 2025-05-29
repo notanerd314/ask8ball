@@ -3,12 +3,20 @@ import styles from '../../styles/Modal.module.css'
 
 type ModalProps = {
   isOpen: boolean;
-  onOpen: () => void;
-  onClose: () => void;
+  onOpen?: () => void;
+  onClose?: () => void;
   children: React.ReactNode;
 };
 
 export default function Modal({ isOpen, onOpen, onClose, children }: ModalProps) {
+  if (!onOpen) {
+    onOpen = () => {};
+  }
+
+  if (!onClose) {
+    onClose = () => {};
+  }
+
   React.useEffect(() => {
     if (isOpen) {
       onOpen();

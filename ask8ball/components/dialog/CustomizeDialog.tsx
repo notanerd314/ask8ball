@@ -1,10 +1,16 @@
 "use client";
 
-import { useRef, forwardRef, useImperativeHandle } from 'react';
+import { useRef, forwardRef } from 'react';
+import Modal from '../base/Modal';
 import { useGlobal } from '../common/GlobalContext';
 import '../../styles/globals.css'
 
-const CustomizeDialog = forwardRef<HTMLDialogElement, React.HTMLAttributes<HTMLDialogElement>>((props, ref) => {
+type ModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+function CustomizeDialog({ isOpen, onClose }: ModalProps) {
   const { setAllAnswers } = useGlobal();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -30,31 +36,26 @@ My sources say no
 Outlook not so good
 Very doubtful`;
 
-  useImperativeHandle(ref, () => dialogRef.current as HTMLDialogElement);
-
-  function onClose() {
+  function onCloseSave() {
     const listAnswers = textareaRef.current?.value.split('\n')
       .map(line => line.trim())
       .filter(line => line);
     setAllAnswers(listAnswers);
-    dialogRef.current?.close();
   }
 
   return (
-    <dialog ref={dialogRef} onClose={onClose} {...props}>
+    <Modal isOpen={isOpen} onClose={() => { onCloseSave(); onClose() }}>
       <h1>Options</h1>
-      <p>Name of the custom magic 8 ball:</p>
-      <input id="title-textarea" placeholder="Magic 8 Ball"></input>
       <p>All possible responses:</p>
+      
       <textarea
         ref={textareaRef}
         id="options-textarea"
         placeholder="Click enter for next response..."
         defaultValue={plainTextResponses}
       ></textarea>
-      <button className="dialogClose" onClick={onClose}>x</button>
-    </dialog>
+    </Modal>
   )
-})
+}
 
 export default CustomizeDialog
