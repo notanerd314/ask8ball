@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react'
-import { getRandomArrayElement } from '../reuse'
-import { useGlobal } from './common/GlobalContext';
-import { CloseIcon, ReplyIcon } from './common/FontAwesome';
-import ResizableText from './base/ResizeableText';
+import { getRandomArrayElement } from '../../reuse'
+import { useGlobal } from '../common/GlobalContext';
+import { CloseIcon, ReplyIcon } from '../common/FontAwesome';
+import ResizableText from '../base/ResizeableText';
 import EightBallSvg from './EightBallSvg';
-import styles from '../styles/Magic8Ball.module.css'
-import textStyles from '../styles/EightBallText.module.css'
+import styles from '../../styles/Magic8Ball.module.css'
+import textStyles from '../../styles/EightBallText.module.css'
 
 function Magic8Ball() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -59,12 +59,6 @@ function Magic8Ball() {
     }
   }
 
-  const resetQuestion = () => {
-    if (questionRef.current) {
-      questionRef.current.value = "";
-    }
-  }
-
   return (
     <>
       <div
@@ -83,29 +77,6 @@ function Magic8Ball() {
         >
           {answer}
         </ResizableText>
-      </div>
-
-      <div className={styles.askQuestion}>
-        <div className={styles.askQuestionInput}>
-          <input
-            type='text'
-            ref={questionRef}
-            placeholder='Ask a question...'
-            disabled={isShaking}
-            onKeyDown={(evt: React.KeyboardEvent<HTMLInputElement>) => {
-              if (evt.key === "Enter") {
-                evt.preventDefault();
-                shakeEightBall();
-              }
-            }}
-          />
-          <button type="reset" disabled={isShaking} onClick={resetQuestion} title='Reset question'>
-            <CloseIcon />
-          </button>
-        </div>
-        <button type="button" className={`${styles.askQuestionButton} buttonBlue`} disabled={isShaking} onClick={shakeEightBall} title="Shake it!">
-          <ReplyIcon />
-        </button>
       </div>
     </>
   )

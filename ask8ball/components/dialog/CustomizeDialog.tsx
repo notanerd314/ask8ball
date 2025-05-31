@@ -1,18 +1,11 @@
 "use client";
 
-import { useRef, forwardRef } from 'react';
-import Modal from '../base/Modal';
+import { useRef } from 'react';
 import { useGlobal } from '../common/GlobalContext';
 import '../../styles/globals.css'
 
-type ModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
-};
-
-function CustomizeDialog({ isOpen, onClose }: ModalProps) {
+function Customization() {
   const { setAllAnswers } = useGlobal();
-  const dialogRef = useRef<HTMLDialogElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const plainTextResponses = `It is certain
@@ -44,7 +37,7 @@ Very doubtful`;
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={() => { onCloseSave(); onClose() }}>
+    <div>
       <h1>Options</h1>
       <p>All possible responses:</p>
       
@@ -54,8 +47,8 @@ Very doubtful`;
         placeholder="Click enter for next response..."
         defaultValue={plainTextResponses}
       ></textarea>
-    </Modal>
+    </div>
   )
 }
 
-export default CustomizeDialog
+export default Customization

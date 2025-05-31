@@ -1,4 +1,4 @@
-import { useGlobal } from "./common/GlobalContext";
+import { useGlobal } from "../common/GlobalContext";
 import { useRef, useEffect } from "react";
 
 type Props = {
@@ -7,15 +7,15 @@ type Props = {
 };
 
 export const EightBallSvg: React.FC<Props> = ({ isShaking, diceStyle }) => {
-  const { diceSize, setDiceSize } = useGlobal();
+  const { setDiceSize } = useGlobal();
   const diceRef = useRef<SVGPathElement>(null);
 
   const updateSize = () => {
+    console.log("Changed size")
     if (setDiceSize) {
       if (!diceRef.current) return;
       const diceSize = diceRef.current?.getBoundingClientRect();
       setDiceSize({ width: diceSize?.width! - (diceSize?.width / 3.5), height: diceSize?.height });
-      console.log(diceSize)
     }
   };
 
@@ -27,6 +27,7 @@ export const EightBallSvg: React.FC<Props> = ({ isShaking, diceStyle }) => {
       window.removeEventListener("resize", updateSize);
     };
   }, [])
+
 
   return (
     <svg
@@ -88,12 +89,13 @@ export const EightBallSvg: React.FC<Props> = ({ isShaking, diceStyle }) => {
             d="m568.1999,331.81929c-71.27123,-3.319 -130.95165,54.05233 -127.49906,122.56603c-3.45259,68.5137 56.22783,125.88504 127.49906,122.56603c71.27123,3.319 130.95165,-54.05233 127.49906,-122.56603c3.45259,-68.5137 -56.22783,-125.88504 -127.49906,-122.56603zm0,237.78285c-66.8322,2.13364 -122.07357,-50.9704 -119.60743,-114.97974c-2.21952,-64.24641 53.02185,-117.35046 119.60743,-114.97974c66.8322,-2.13364 122.07357,50.9704 119.60743,114.97974c2.46613,64.00934 -52.77524,117.11339 -119.60743,114.97974z"
           />
           <path
-                id="eightBallDice"
-                style={diceStyle}
-                fill={!isShaking ? "none" : "#303084"}
-                ref={diceRef}
-                d="m485.09123,402.70371c-3.20597,-5.68972 0.24661,-10.43115 8.13824,-10.66822c50.55572,-1.6595 107.52338,-1.6595 157.33926,0.23707c7.64501,0.23707 11.0976,5.21558 7.89162,10.66822c-23.67487,41.48754 -52.28201,89.61308 -79.9027,131.10061c-3.6992,5.68972 -9.61792,5.68972 -13.31712,0c-27.12746,-41.25046 -56.22783,-89.61308 -80.14931,-131.33768z"
-              />
+            id="eightBallDice"
+            style={diceStyle}
+            stroke="#303084"
+            fill={!isShaking ? "none" : "#303084"}
+            ref={diceRef}
+            d="m485.09123,402.70371c-3.20597,-5.68972 0.24661,-10.43115 8.13824,-10.66822c50.55572,-1.6595 107.52338,-1.6595 157.33926,0.23707c7.64501,0.23707 11.0976,5.21558 7.89162,10.66822c-23.67487,41.48754 -52.28201,89.61308 -79.9027,131.10061c-3.6992,5.68972 -9.61792,5.68972 -13.31712,0c-27.12746,-41.25046 -56.22783,-89.61308 -80.14931,-131.33768z"
+          />
           <ellipse
             ry="34.5"
             rx="36"

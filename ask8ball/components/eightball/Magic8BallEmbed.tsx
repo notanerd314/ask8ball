@@ -1,8 +1,8 @@
 import EightBallSvg from "./EightBallSvg"
-import ResizableText from "./base/ResizeableText"
-import styles from "../styles/Magic8BallEmbed.module.css"
-import textStyles from '../styles/EightBallText.module.css'
-import { useGlobal } from "./common/GlobalContext"
+import ResizableText from "../base/ResizeableText"
+import styles from "../../styles/Magic8BallEmbed.module.css"
+import textStyles from '../../styles/EightBallText.module.css'
+import { useGlobal } from "../common/GlobalContext"
 
 type Props = {
   answer?: string;

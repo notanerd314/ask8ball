@@ -1,7 +1,7 @@
 "use client"
 
 import '../../styles/globals.css'
-import Magic8BallEmbed from '../../components/Magic8BallEmbed'
+import Magic8BallEmbed from '../../components/eightball/Magic8BallEmbed'
 import { GlobalProvider } from '../../components/common/GlobalContext';
 
 import { useEffect, useState } from 'react';

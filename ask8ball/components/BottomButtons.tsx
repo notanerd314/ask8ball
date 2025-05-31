@@ -3,7 +3,6 @@
 import { useRef, useState } from 'react';
 import styles from '../styles/BottomButtons.module.css'
 import '../styles/globals.css'
-import CustomizeDialog from './dialog/CustomizeDialog';
 import ShareDialog from './dialog/ShareDialog';
 import { useGlobal } from './common/GlobalContext';
 import { BrushIcon, ShareIcon } from './common/FontAwesome';
@@ -23,8 +22,7 @@ function BottomButtons() {
         <ShareIcon />
         share
       </button>
-      <CustomizeDialog isOpen={openedCustomizeDialog} onClose={() => setOpenedCustomizeDialog(false)} />
-      <ShareDialog isOpen={openedShareDialog} onClose={() => setOpenedShareDialog(false)} />
+       <ShareDialog isOpen={openedShareDialog} onClose={() => setOpenedShareDialog(false)} />
     </div>
   )
 }
