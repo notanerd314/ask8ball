@@ -24,7 +24,7 @@ function Magic8BallQuestion() {
   return (
     <div onChange={onChange} className={styles.askQuestionInput}>
       <input
-        type='text'
+        type='search'
         ref={questionRef}
         placeholder='Ask a question...'
         disabled={isShaking}

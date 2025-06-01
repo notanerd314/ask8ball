@@ -1,3 +1,5 @@
+/* Animations */
+
 @keyframes shake8Ball {
   0% {
     transform: translate(5px, 5px) rotate(0deg);
@@ -49,10 +51,7 @@
   }
 }
 
-.eightBall.shake {
-  animation: shake8Ball 0.5s infinite linear;
-  cursor: default;
-}
+/* Classes */
 
 .eightBall {
   position: relative;
@@ -61,7 +60,7 @@
   box-shadow: 0 0 40px #000;
   overflow: hidden;
 
-  width: min(60vw, 60vh);
+  width: min(70%, 70%);
   aspect-ratio: 1 / 1;
   max-width: 900px;
   max-height: 900px;
@@ -72,6 +71,21 @@
 
 .eightBall:hover {
   transform: scale(1.05);
+}
+
+.eightBall.shake {
+  animation: shake8Ball 0.5s infinite linear;
+  cursor: default;
+}
+
+.eightBallWrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  overflow: hidden;
+  height: 100%;
 }
 
 .askQuestion {
@@ -89,8 +103,8 @@
   font-weight: normal;
 
   margin: 0;
+  padding: 0.6rem;
   width: 27rem;
-  padding: 0.5em 3rem 0.5em 0.5em;
 
   border-radius: 18px;
 
@@ -99,8 +113,9 @@
 
 .askQuestionInput button {
   position: absolute;
-  top: 0;
+  top: 50%;
   right: 0;
+  transform: translateY(-50%);
   border: none;
   background-color: transparent;
 }
@@ -111,13 +126,13 @@
   border-radius: 18px;
 }
 
-@media screen and (max-width: 800px) {
-  .eightBall {
-    width: min(80vw, 80vh);
-  }
-}
+/* Media Queries */
 
-@media screen and (max-width: 800px), (max-height: 1000px) {
+@media screen and (max-width: 600px) {
+  .eightBall {
+    width: min(80%, 80%);
+  }
+
   .askQuestionInput input {
     width: 20rem;
   }

@@ -61,22 +61,24 @@ function Magic8Ball() {
 
   return (
     <>
-      <div
-        id="eightBallWrapper"
-        onClick={shakeEightBall}
-        className={`${styles.eightBall} ${isShaking ? styles.shake : ''}`}
-      >
-        <EightBallSvg isShaking={shownResult} diceStyle={eightBallDiceStyle} />
-        <ResizableText
-          minFontSize={1}
-          initialFontSize={30}
-          maxWidth={diceSize.width} 
-          maxHeight={diceSize.height} 
-          extraStyle={eightBallDiceStyle}
-          className={textStyles.eightBallText}
+      <div className={styles.eightBallWrapper}>
+        <div
+          id="eightBallWrapper"
+          onClick={shakeEightBall}
+          className={`${styles.eightBall} ${isShaking ? styles.shake : ''}`}
         >
-          {answer}
-        </ResizableText>
+          <EightBallSvg isShaking={shownResult} diceStyle={eightBallDiceStyle} />
+          <ResizableText
+            minFontSize={1}
+            initialFontSize={30}
+            maxWidth={diceSize.width}
+            maxHeight={diceSize.height}
+            extraStyle={eightBallDiceStyle}
+            className={textStyles.eightBallText}
+          >
+            {answer}
+          </ResizableText>
+        </div>
       </div>
     </>
   )

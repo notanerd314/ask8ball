@@ -14,15 +14,11 @@ function BottomButtons() {
 
   return (
     <div className={styles.bottomButtons}>
-      <button onClick={() => setOpenedCustomizeDialog(!openedCustomizeDialog)} disabled={isShaking} className='buttonBlue'>
-        <BrushIcon />
-        customize
-      </button>
       <button onClick={() => setOpenedShareDialog(!openedShareDialog)} disabled={isShaking} className='buttonGreen'>
         <ShareIcon />
         share
       </button>
-       <ShareDialog isOpen={openedShareDialog} onClose={() => setOpenedShareDialog(false)} />
+      <ShareDialog isOpen={openedShareDialog} onClose={() => setOpenedShareDialog(false)} />
     </div>
   )
 }
