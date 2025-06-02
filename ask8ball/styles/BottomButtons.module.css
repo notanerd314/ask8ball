@@ -1,9 +1,7 @@
 .bottomButtons {
   gap: 10px;
   display: flex;
-
   height: 3rem;
-
   z-index: 99;
 } 
 
@@ -14,10 +12,8 @@
   gap: 10px;
   padding: 0.5em 1.5em;
   margin: 0;
-
   border: none;
   border-radius: 1.5rem;
-
   font-size: 1.5rem;
 }
 
