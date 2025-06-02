@@ -1,11 +1,18 @@
 .sidebar {
   width: 25%;
-  height: 95%;
+  height: 95vh;
+  margin-right: 1vh;
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
   max-height: 100vh;
   overflow: auto;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
+  border: 2px fill #000000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .sidebarHidden {
@@ -14,9 +21,16 @@
 
 @media screen and (max-width: 1000px) {
   .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-    margin: 0;
+    width: 90%;
+    margin: 2%;
+    border-radius: var(--radius-md);
+    overflow: auto;
+    height: 40vh;
+  }
+
+  .sidebarHidden {
+    display: block;
+    opacity: 0;
+    pointer-events: none;
   }
 }

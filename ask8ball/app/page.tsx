@@ -13,7 +13,6 @@ export default function Page() {
           <Magic8Ball />
           <CustomizationSidebar />
         </div>
-        <h1>ijrajeiowdfjeioawdjioawdijoqawdjioawjiodajiowdaijopwdijoawdijoawjiodaijowdioajwdjioawdijo</h1>
       </GlobalProvider>
     </>
   )
