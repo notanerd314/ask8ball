@@ -13,12 +13,8 @@ export default function Page() {
           <Magic8Ball />
           <CustomizationSidebar />
         </div>
-        <Magic8BallQuestion />
-          <BottomButtons />
+        <h1>ijrajeiowdfjeioawdjioawdijoqawdjioawjiodajiowdaijopwdijoawdijoawjiodaijowdioajwdjioawdijo</h1>
       </GlobalProvider>
-      <main>
-        <h1>gay</h1>
-      </main>
     </>
   )
 }
