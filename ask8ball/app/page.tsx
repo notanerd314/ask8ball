@@ -1,8 +1,9 @@
 import '../styles/globals.css'
 import Magic8Ball from '../components/eightball/Magic8Ball'
-import BottomButtons from '../components/BottomButtons'
 import CustomizationSidebar from '../components/CustomizationSidebar'
-import { GlobalProvider } from '../components/common/GlobalContext'
+import UserReview from '../components/UserReviews'
+
+import { GlobalProvider } from '../components/context/GlobalContext'
 
 export default function Page() {
   return (
@@ -13,6 +14,11 @@ export default function Page() {
           <CustomizationSidebar />
         </div>
       </GlobalProvider>
+      <section>
+        <div className='userReviews'>
+          <UserReview quote='I am a quote' author='John Doe' stars={4} />
+        </div>
+      </section>
     </>
   )
 }

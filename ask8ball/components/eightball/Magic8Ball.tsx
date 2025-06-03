@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import { getRandomArrayElement } from '../../reuse'
-import { useGlobal } from '../common/GlobalContext';
+import { useGlobal } from '../context/GlobalContext';
 import { CloseIcon, ReplyIcon } from '../common/FontAwesome';
 import ResizableText from '../base/ResizeableText';
 import EightBallSvg from './EightBallSvg';

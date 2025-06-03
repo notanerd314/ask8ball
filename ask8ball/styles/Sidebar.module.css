@@ -27,10 +27,4 @@
     overflow: auto;
     height: 40vh;
   }
-
-  .sidebarHidden {
-    display: block;
-    opacity: 0;
-    pointer-events: none;
-  }
 }

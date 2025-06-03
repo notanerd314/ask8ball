@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from 'react';
-import { useGlobal } from './common/GlobalContext';
+import { useGlobal } from './context/GlobalContext';
 import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon, ChevronUpIcon } from './common/FontAwesome';
 import { useMediaQuery } from 'react-responsive';
 

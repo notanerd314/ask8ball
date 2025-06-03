@@ -58,6 +58,16 @@ h1, h2, h3, h4, h5, h6, p {
   overflow: hidden;
 }
 
+.userReviews {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+
+  width: 100vw;
+  gap: 20px;
+  padding: 1vw;
+}
+
 /* Form Elements */
 input, textarea {
   font-family: var(--font-family);
@@ -150,7 +160,6 @@ dialog {
   .main {
     flex-direction: column;
     height: auto;
-    min-height: 90vh;
   }
 }
 

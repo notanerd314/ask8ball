@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from 'react';
-import { useGlobal } from '../common/GlobalContext';
+import { useGlobal } from '../context/GlobalContext';
 import { TwitterIcon } from '../common/FontAwesome';
 import Modal from '../base/Modal';
 import '../../styles/globals.css'

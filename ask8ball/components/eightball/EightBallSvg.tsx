@@ -1,4 +1,4 @@
-import { useGlobal } from "../common/GlobalContext";
+import { useGlobal } from "../context/GlobalContext";
 import { useRef, useEffect } from "react";
 
 type Props = {

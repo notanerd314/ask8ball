@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import styles from '../styles/BottomButtons.module.css'
 import '../styles/globals.css'
 import ShareDialog from './dialog/ShareDialog';
-import { useGlobal } from './common/GlobalContext';
+import { useGlobal } from './context/GlobalContext';
 import { BrushIcon, ShareIcon } from './common/FontAwesome';
 
 function BottomButtons() {
