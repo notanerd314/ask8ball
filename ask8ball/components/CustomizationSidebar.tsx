@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useGlobal } from './context/GlobalContext';
 import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon, ChevronUpIcon } from './common/FontAwesome';
 import { useMediaQuery } from 'react-responsive';
@@ -13,7 +13,13 @@ export default function CustomizationSidebar() {
   const sidebarRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isOpen, setisOpen] = useState(true);
+
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const isCompacted = useMediaQuery({ maxWidth: 1000 });
+
+  if (!mounted) return null;
 
   const plainTextResponses = `It is certain
   It is decidedly so
@@ -45,22 +51,22 @@ export default function CustomizationSidebar() {
 
   function toggleSidebar() {
     setisOpen(prev => {
-    const next = !prev;
-    if (next) {
-      setTimeout(() => {
-        sidebarRef.current?.scrollIntoView({ behavior: 'smooth' });
-      }, 1);
-    }
-    return next;
-  });
+      const next = !prev;
+      if (next && isCompacted) {
+        setTimeout(() => {
+          sidebarRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }, 1);
+      }
+      return next;
+    });
   }
 
   return (
     <>
       <button className={styles.sidebarToggle + ' buttonTransparent'} onClick={toggleSidebar} title='Toggle sidebar'>
-        {!isOpen ? 
-          isCompacted ? <ChevronDownIcon /> : <ChevronLeftIcon /> 
-          : 
+        {!isOpen ?
+          isCompacted ? <ChevronDownIcon /> : <ChevronLeftIcon />
+          :
           isCompacted ? <ChevronUpIcon /> : <ChevronRightIcon />
         }
         &nbsp;

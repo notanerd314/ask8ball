@@ -69,7 +69,7 @@ function Magic8Ball() {
         >
           <EightBallSvg isShaking={shownResult} diceStyle={eightBallDiceStyle} />
           <ResizableText
-            minFontSize={1}
+            minFontSize={10}
             initialFontSize={30}
             maxWidth={diceSize.width}
             maxHeight={diceSize.height}

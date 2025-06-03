@@ -1,4 +1,6 @@
 import styles from '../styles/UserReviews.module.css'
+
+import ResizableText from './base/ResizeableText';
 import { StarIcon } from './common/FontAwesome'
 
 type Props = {
@@ -9,11 +11,12 @@ type Props = {
 
 type StarProps = {
   stars: number;
+  className?: string
 }
 
-export function StarRating({ stars }: StarProps) {
+export function StarRating({ stars, className }: StarProps) {
   return (
-    <div className={styles.stars}>
+    <div className={styles.stars + ' ' + className}>
       {Array.from({ length: stars }).map((_, i) => (
         <StarIcon key={`filled-${i}`} color="#fcba03" />
       ))}
@@ -26,10 +29,10 @@ export function StarRating({ stars }: StarProps) {
 
 export default function UserReview({ quote, author, stars }: Props) {
   return (
-    <div className={styles.userReviews}>
-      <p>{quote}</p>
-      <p>{author}</p>
-      <StarRating stars={stars} />
-    </div>
+    <article className={styles.userReviews}>
+      <p>"{quote}"</p>
+      <p className={styles.userReviewsAuthor}>- {author}</p>
+      <StarRating className={styles.userReviewsStars} stars={stars} />
+    </article>
   )
 }

@@ -1,13 +1,47 @@
-.userReviews {
-    display: block;
-    padding: 1rem;
-    flex: 1;
 
-    background-color: rgb(255, 255, 255);
-    border: 2px solid #000000;
-    border-radius: 0.5rem;
+
+.userReviews {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  flex: 1;
+
+  background-color: rgb(255, 255, 255);
+  border: 2px solid #000000;
+  border-radius: 0.5rem;
+
+  min-width: 400px;
+  max-width: 400px;
+  min-height: 100px;
+  max-height: 100px;
+
+  gap: 5px;
+
+  text-align: center;
+}
+
+.userReviewsAuthor {
+  font-style: italic;
+  font-size: 0.75em;
+  color: gray;
+}
+
+.userReviewsStars {
+  position: absolute;
+  top: 100%;
+  transform: translateY(calc(-100% - 15px));
 }
 
 .stars {
-    display: flex;
+  display: flex;
+}
+
+@media screen and (max-width: 1000px) {
+  .userReviews {
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 75px;
+    max-height: 75px;
+  }
 }
