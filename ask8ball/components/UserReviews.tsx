@@ -1,7 +1,7 @@
 import styles from '../styles/UserReviews.module.css'
 
 import ResizableText from './base/ResizeableText';
-import { StarIcon } from './common/FontAwesome'
+import { StarIcon, HalfStarIcon } from './common/FontAwesome'
 
 type Props = {
   quote: string;
@@ -9,23 +9,40 @@ type Props = {
   stars: number;
 }
 
-type StarProps = {
-  stars: number;
-  className?: string
+interface StarProps {
+  stars: number; // Can be 0 to 5, including halves like 3.5
+  className?: string;
 }
 
-export function StarRating({ stars, className }: StarProps) {
+export function StarRating({ stars, className = "" }: StarProps) {
+  const fullStars = Math.floor(stars);
+  const hasHalfStar = stars % 1 >= 0.5;
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
   return (
-    <div className={styles.stars + ' ' + className}>
-      {Array.from({ length: stars }).map((_, i) => (
+    <div className={`${styles.stars} ${className}`}>
+      {/* Filled stars */}
+      {Array.from({ length: fullStars }).map((_, i) => (
         <StarIcon key={`filled-${i}`} color="#fcba03" />
       ))}
-      {Array.from({ length: 5 - stars }).map((_, i) => (
+
+      {/* Half star */}
+      {hasHalfStar && (
+        <HalfStarIcon
+          key="half"
+          leftColor="#fcba03"
+          rightColor="#000000"
+        />
+      )}
+
+      {/* Empty stars */}
+      {Array.from({ length: emptyStars }).map((_, i) => (
         <StarIcon key={`empty-${i}`} color="#000000" />
       ))}
     </div>
-  )
+  );
 }
+
 
 export default function UserReview({ quote, author, stars }: Props) {
   return (

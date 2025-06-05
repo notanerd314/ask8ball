@@ -62,7 +62,7 @@ function Magic8Ball() {
   return (
     <>
       <div className={styles.eightBallWrapper}>
-        <div
+        <button
           id="eightBallWrapper"
           onClick={shakeEightBall}
           className={`${styles.eightBall} ${isShaking ? styles.shake : ''}`}
@@ -78,7 +78,7 @@ function Magic8Ball() {
           >
             {answer}
           </ResizableText>
-        </div>
+        </button>
       </div>
     </>
   )

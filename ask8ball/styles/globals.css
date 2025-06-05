@@ -32,9 +32,10 @@
   --transition-normal: 0.2s ease;
 }
 
+input, button, textarea, select { font-family: inherit; }
+
 /* Reset */
 body {
-  font-family: var(--font-family);
   font-size: var(--font-size-base);
   margin: 0;
   color: var(--color-text);
@@ -63,6 +64,7 @@ p {
   height: 100%;
   padding: 0;
   margin: 0;
+  margin-bottom: 20px;
   overflow: hidden;
 }
 
@@ -70,18 +72,29 @@ main {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  max-width: 1000px;
+  min-width: none;
+  max-width: 1200px;
 }
 
-.userReviews {
+/* .userReviews {
   display: flex;
   flex-direction: row;
-
-  overflow: auto;
+  flex-wrap: wrap;
 
   padding: 15px;
-  width: calc(100% - 30px);
   gap: 15px;
+} */
+
+.userReviews {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+  gap: 15px;
+  padding: 15px;
+}
+
+.userReviews > article {
+  height: 150px;
 }
 
 .headers {
@@ -91,12 +104,10 @@ main {
 /* Form Elements */
 input,
 textarea {
-  font-family: var(--font-family);
   font-size: var(--font-size-small);
-  padding: var(--spacing-xs);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background-color: rgb(248, 248, 248);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  background-color: rgb(251, 251, 251);
 }
 
 textarea {
@@ -106,7 +117,6 @@ textarea {
 
 /* Buttons */
 button {
-  font-family: var(--font-family);
   font-size: var(--font-size-small);
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
@@ -191,13 +201,8 @@ dialog {
   }
 }
 
-@media screen and (max-width: 700px) {
-  .notanerd {
-    left: 50%;
-    transform: translate(-50%, 0);
-  }
-
-  .notanerd:hover {
-    transform: translate(-50%, 0) scale(1.1);
+@media screen and (max-width: 675px) {
+  .userReviews > article {
+    height: 100px;
   }
 }

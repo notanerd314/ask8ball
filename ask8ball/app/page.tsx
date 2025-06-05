@@ -15,46 +15,46 @@ export default function Page() {
         </div>
       </GlobalProvider>
 
-      {/* Reviews */}
-      <section>
-        <header>
-          <h1 className='headers'>Our Loyal Users Reviews</h1>
-        </header>
-        <div className='userReviews'>
-          <UserReview
-            quote="This app ruined my career and I'm now out here selling popsicles!"
-            author='John Doe'
-            stars={4}
-          />
-
-          <UserReview
-            quote="Got hospitalized with this one, it was not a fun experience."
-            author='Saul Shepard'
-            stars={1}
-          />
-
-          <UserReview
-            quote="Whoever created this, never code again."
-            author="angry twitter user"
-            stars={0}
-          />
-
-          <UserReview
-            quote="meow meow meow meow meow meow meow meow meow"
-            author='my cat'
-            stars={5}
-          />
-
-          <UserReview
-            quote="IT CAN'T STOP SAYING I'M UGLY, YOU SAID IT'S RANDOMIZED!!!!!"
-            author='Jake Miller'
-            stars={3}
-          />
-        </div>
-      </section>
-
       {/* Article for SEO shit */}
-      <main></main>
+      <main>
+        <section>
+          <header className='headers'>
+            <h1>What Our Users Say</h1>
+            <p><i>(They are VERY happy!)</i></p>
+          </header>
+          <div className='userReviews'>
+            <UserReview
+              quote="It says I'm the most handsome guy ever, but I'm not."
+              author='Jake Miller'
+              stars={5}
+            />
+
+            <UserReview
+              quote="I used this to perform my patient's surgery."
+              author="Mollie Dotson"
+              stars={5}
+            />
+
+            <UserReview
+              quote="It predicted our divorce, wasn't surprising though."
+              author='Christine Page'
+              stars={4}
+            />
+
+            <UserReview
+              quote="Wow! My review is in the website!"
+              author='John Doe'
+              stars={3.5}
+            />
+
+            <UserReview
+              quote="Whoever made this app, you should never touch programming again."
+              author="twitter degenerate"
+              stars={0}
+            />
+          </div>
+        </section>
+      </main>
     </>
   )
 }
