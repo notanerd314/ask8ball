@@ -6,35 +6,11 @@ import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon, ChevronUpIcon, Plus
 import { useMediaQuery } from 'react-responsive';
 import { TrashCanIcon } from './common/FontAwesome';
 
-import { getRandomItem } from '../extensions/random';
-
 import styles from '../styles/Sidebar.module.css'
 import '../styles/globals.css'
 
-export function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
-  const defaultResponses = [
-    "It is certain",
-    "It is decidedly so",
-    "Without a doubt",
-    "Yes definitely",
-    "You may rely on it",
-    "As I see it yes",
-    "Most likely",
-    "Outlook good",
-    "Yes",
-    "Signs point to yes",
-    "Reply hazy try again",
-    "Ask again later",
-    "Better not tell you now",
-    "Cannot predict now",
-    "Concentrate and ask again",
-    "Don't count on it",
-    "My reply is no",
-    "My sources say no",
-    "Outlook not so good",
-    "Very doubtful"
-  ];
 
+export function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
   const { allAnswers, setAllAnswers } = useGlobal();
   const inputRef = useRef<HTMLInputElement[]>([]);
 
@@ -72,10 +48,14 @@ export function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
   }
 
   return (
-    <>
+    <div className={styles.editor}>
       <div className={styles.editorHeader}>
         <button className='buttonGreen' onClick={addAnswer}>
-          <PlusIcon size={20} /> Add a response
+          <PlusIcon size={16} /> Add a response
+        </button>
+
+        <button className='buttonRed' onClick={() => setAllAnswers([])}>
+          <TrashCanIcon size={16} /> Delete all responses
         </button>
       </div>
 
@@ -99,13 +79,15 @@ export function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
               className="buttonRed"
               onClick={() => deleteAnswer(index)}
             >
-              <TrashCanIcon color='#ffffff' />
+              <TrashCanIcon size={20} color='#ffffff' />
               {!isCompacted ? '' : 'Delete'}
             </button>
           </div>
         ))}
       </div>
-    </>
+      <p style={{ textAlign: 'center', fontSize: '0.7em' }}>{allAnswers.length} response{allAnswers.length === 1 ? '' : 's'} - Version 1 (Alpha)</p>
+
+    </div>
   )
 }
 

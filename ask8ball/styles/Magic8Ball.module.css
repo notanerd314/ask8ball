@@ -35,7 +35,7 @@
 }
 
 /* Eight Ball */
-.eightBall {
+.eightBall {  
   position: relative;
   width: var(--ball-size-desktop);
   aspect-ratio: 1 / 1;
@@ -46,10 +46,14 @@
   overflow: hidden;
   background-color: black;
   transition: transform var(--transition-normal);
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .eightBall:hover {
-  transform: scale(1.05);
+  transform: translate(-50%, -50%) scale(1.05);
 }
 
 .eightBall.shake {
@@ -59,9 +63,6 @@
 
 .eightBallWrapper {
   flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
   height: 100vh;
 }
