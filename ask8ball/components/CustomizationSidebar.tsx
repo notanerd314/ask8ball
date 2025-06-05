@@ -2,36 +2,41 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { useGlobal } from './context/GlobalContext';
-import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon, ChevronUpIcon } from './common/FontAwesome';
+import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon, ChevronUpIcon, PlusIcon } from './common/FontAwesome';
 import { useMediaQuery } from 'react-responsive';
 import { TrashCanIcon } from './common/FontAwesome';
+
+import { getRandomItem } from '../extensions/random';
 
 import styles from '../styles/Sidebar.module.css'
 import '../styles/globals.css'
 
-export function SidebarEditor({isCompacted}: {isCompacted: boolean}) {
-  const plainTextResponses = `It is certain
-It is decidedly so
-Without a doubt
-Yes definitely
-You may rely on it
-As I see it yes
-Most likely
-Outlook good
-Yes
-Signs point to yes
-Reply hazy try again
-Ask again later
-Better not tell you now
-Cannot predict now
-Concentrate and ask again
-Don't count on it
-My reply is no
-My sources say no
-Outlook not so good
-Very doubtful`;
+export function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
+  const defaultResponses = [
+    "It is certain",
+    "It is decidedly so",
+    "Without a doubt",
+    "Yes definitely",
+    "You may rely on it",
+    "As I see it yes",
+    "Most likely",
+    "Outlook good",
+    "Yes",
+    "Signs point to yes",
+    "Reply hazy try again",
+    "Ask again later",
+    "Better not tell you now",
+    "Cannot predict now",
+    "Concentrate and ask again",
+    "Don't count on it",
+    "My reply is no",
+    "My sources say no",
+    "Outlook not so good",
+    "Very doubtful"
+  ];
 
   const { allAnswers, setAllAnswers } = useGlobal();
+  const inputRef = useRef<HTMLInputElement[]>([]);
 
   function updateAnswer(index: number, value: string) {
     const next = [...allAnswers];
@@ -43,12 +48,18 @@ Very doubtful`;
     const next = [...allAnswers];
     next.splice(index, 1);
     setAllAnswers(next);
+    setTimeout(() => {
+      inputRef.current.splice(index, 1);
+    }, 1)
   }
 
   function addAnswer() {
     const next = [...allAnswers];
     next.push("");
     setAllAnswers(next);
+    setTimeout(() => {
+      inputRef.current[inputRef.current.length - 1].focus();
+    }, 1)
   }
 
   function checkKeyThenAction(event: React.KeyboardEvent<HTMLInputElement>, index: number) {
@@ -62,14 +73,27 @@ Very doubtful`;
 
   return (
     <>
+      <div className={styles.editorHeader}>
+        <button className='buttonGreen' onClick={addAnswer}>
+          <PlusIcon size={20} /> Add a response
+        </button>
+      </div>
+
       <div className={styles.editorContent}>
         {allAnswers.map((answer: string, index: number) => (
           <div key={index} className={styles.editorItem}>
             <input
               value={answer}
               style={{ flex: 1 }}
+              ref={(el) => {
+                if (el) {
+                  inputRef.current[index] = el;
+                  console.log(inputRef.current[index])
+                }
+              }}
               onChange={e => updateAnswer(index, e.target.value)}
-              onKeyDown={e => {checkKeyThenAction(e, index)}}
+              onKeyDown={e => { checkKeyThenAction(e, index) }}
+              placeholder={"Add something quirky..."}
             />
             <button
               className="buttonRed"
@@ -92,7 +116,7 @@ export default function CustomizationSidebar() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  const isCompacted = useMediaQuery({ maxWidth: 1000 });
+  const isCompacted = useMediaQuery({ maxWidth: 1400 });
 
   if (!mounted) return null;
 

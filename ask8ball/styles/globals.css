@@ -107,6 +107,7 @@ textarea {
   font-size: var(--font-size-small);
   padding: var(--spacing-sm);
   border-radius: var(--radius-md);
+  min-width: none;
   background-color: rgb(251, 251, 251);
 }
 
@@ -187,7 +188,7 @@ dialog {
 }
 
 /* Media Queries */
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1400px) {
   .main {
     flex-direction: column;
     height: auto;

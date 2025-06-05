@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react'
-import { getRandomArrayElement } from '../../reuse'
 import { useGlobal } from '../context/GlobalContext';
 import { CloseIcon, ReplyIcon } from '../common/FontAwesome';
 import ResizableText from '../base/ResizeableText';
 import EightBallSvg from './EightBallSvg';
 import styles from '../../styles/Magic8Ball.module.css'
 import textStyles from '../../styles/EightBallText.module.css'
+
+import { getRandomItem } from '../../extensions/random';
 
 function Magic8Ball() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -39,7 +40,7 @@ function Magic8Ball() {
       audioRef!.current!.play();
       setIsShaking(true);
       setShownResult(false);
-      setAnswer(getRandomArrayElement(allAnswers));
+      setAnswer(getRandomItem(allAnswers));
       setEightBallDiceStyle({ opacity: "0", transition: "none" });
 
       if (questionRef.current?.value.replace(" ", "")) {
