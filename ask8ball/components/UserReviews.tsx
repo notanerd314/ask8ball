@@ -1,6 +1,5 @@
 import styles from '../styles/UserReviews.module.css'
 
-import ResizableText from './base/ResizeableText';
 import { StarIcon, HalfStarIcon } from './common/FontAwesome'
 
 type Props = {
@@ -47,7 +46,7 @@ export function StarRating({ stars, className = "" }: StarProps) {
 export default function UserReview({ quote, author, stars }: Props) {
   return (
     <article className={styles.userReviews}>
-      <p>"{quote}"</p>
+      <p>&quot;{quote}&quot;</p>
       <p className={styles.userReviewsAuthor}>- {author}</p>
       <StarRating className={styles.userReviewsStars} stars={stars} />
     </article>

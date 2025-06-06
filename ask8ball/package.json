@@ -6,9 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "cross-env ANALYZE=1 next build"
   },
   "dependencies": {
+    "critters": "^0.0.23",
     "next": "^15.3.2",
     "normalize.css": "^8.0.1",
     "react": "^19.0.0",
@@ -19,11 +21,15 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.3.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "typescript": "^5"
-  }
+  },
+  "browserslist": [
+    "defaults and supports es6-module"
+  ]
 }

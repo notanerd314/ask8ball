@@ -1,6 +1,5 @@
 "use client"
 
-import { useRef } from 'react';
 import { useGlobal } from '../context/GlobalContext';
 import { TwitterIcon } from '../common/FontAwesome';
 import Modal from '../base/Modal';

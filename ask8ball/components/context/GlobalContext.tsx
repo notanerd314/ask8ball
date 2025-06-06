@@ -2,7 +2,34 @@
 
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-const GlobalContext = createContext<any>({});
+const GlobalContext = createContext<{
+  allAnswers: string[];
+  setAllAnswers: (answers: string[]) => void;
+  answer: string;
+  setAnswer: (answer: string) => void;
+  isShaking: boolean;
+  setIsShaking: (isShaking: boolean) => void;
+  shownResult: boolean;
+  setShownResult: (shown: boolean) => void;
+  question: string;
+  setQuestion: (question: string) => void;
+  diceSize: { width: number; height: number };
+  setDiceSize: (diceSize: { width: number; height: number }) => void;
+}>({
+  allAnswers: [],
+  setAllAnswers: () => {},
+  answer: '',
+  setAnswer: () => {},
+  isShaking: false,
+  setIsShaking: () => {},
+  shownResult: false,
+  setShownResult: () => {},
+  question: '',
+  setQuestion: () => {},
+  diceSize: { width: 0, height: 0 },
+  setDiceSize: () => {},
+});
+
 
 type GlobalProviderProps = {
   children: ReactNode;

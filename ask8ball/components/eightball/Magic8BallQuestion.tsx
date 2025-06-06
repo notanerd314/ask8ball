@@ -2,7 +2,7 @@
 
 import { useGlobal } from "../context/GlobalContext";
 import styles from "../../styles/Magic8Ball.module.css"
-import { CloseIcon, ReplyIcon } from "../common/FontAwesome";
+import { CloseIcon } from "../common/FontAwesome";
 import { useRef } from "react";
 
 function Magic8BallQuestion() {

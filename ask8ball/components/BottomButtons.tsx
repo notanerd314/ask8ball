@@ -1,14 +1,13 @@
 "use client";
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import styles from '../styles/BottomButtons.module.css'
 import '../styles/globals.css'
 import ShareDialog from './dialog/ShareDialog';
 import { useGlobal } from './context/GlobalContext';
-import { BrushIcon, ShareIcon } from './common/FontAwesome';
+import { ShareIcon } from './common/FontAwesome';
 
 function BottomButtons() {
-  const [openedCustomizeDialog, setOpenedCustomizeDialog] = useState(false);
   const [openedShareDialog, setOpenedShareDialog] = useState(false);
   const { isShaking } = useGlobal();
 

@@ -1,4 +1,6 @@
 .userReviews {
+  font-size: large;
+
   position: relative;
   display: flex;
   flex-direction: column;

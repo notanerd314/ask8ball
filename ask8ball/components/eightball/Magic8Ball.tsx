@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import { useGlobal } from '../context/GlobalContext';
-import { CloseIcon, ReplyIcon } from '../common/FontAwesome';
 import ResizableText from '../base/ResizeableText';
 import EightBallSvg from './EightBallSvg';
 import styles from '../../styles/Magic8Ball.module.css'
@@ -12,20 +11,32 @@ import { getRandomItem } from '../../extensions/random';
 
 function Magic8Ball() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const shakeTimeoutRef = useRef(null);
-  const fadeInTimeoutRef = useRef(null);
+  const shakeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const fadeInTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const questionRef = useRef<HTMLInputElement>(null);
 
-  const { allAnswers, answer, setAnswer, isShaking, setIsShaking, shownResult, setShownResult, diceSize } = useGlobal();
+  const {
+    allAnswers,
+    answer,
+    setAnswer,
+    isShaking,
+    setIsShaking,
+    shownResult,
+    setShownResult,
+    diceSize,
+    setQuestion,
+  } = useGlobal();
 
-  const { setQuestion } = useGlobal();
   const [eightBallDiceStyle, setEightBallDiceStyle] = useState({ opacity: "0", transition: "none" });
 
   useEffect(() => {
     audioRef.current = new Audio('/sounds/shaking.mp3');
+
+    const shakeTimeout = shakeTimeoutRef.current;
+    const fadeInTimeout = fadeInTimeoutRef.current;
     return () => {
-      clearTimeout(shakeTimeoutRef.current ?? undefined);
-      clearTimeout(fadeInTimeoutRef.current ?? undefined);
+      if (shakeTimeout) clearTimeout(shakeTimeout);
+      if (fadeInTimeout) clearTimeout(fadeInTimeout);
     };
   }, [])
 

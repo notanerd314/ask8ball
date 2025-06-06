@@ -1,13 +1,4 @@
 /* Variables */
-:root {
-  --ball-shadow-color: #000;
-  --ball-glow-color: var(--color-primary);
-  --ball-size-desktop: min(65%, 65vh);
-  --ball-size-mobile: min(80%, 80vh);
-  --input-width-desktop: 27rem;
-  --input-width-mobile: 20rem;
-}
-
 /* Animations */
 @keyframes shake8Ball {
   0% { transform: translate(5px, 5px) rotate(0deg); }
@@ -24,13 +15,13 @@
 @keyframes glow8Ball {
   from {
     box-shadow: 
-      0 0 20px var(--ball-glow-color),
-      0 0 30px var(--ball-glow-color);
+      0 0 20px #5c5cff,
+      0 0 30px #5c5cff;
   }
   to {
     box-shadow: 
-      0 0 25px var(--ball-glow-color),
-      0 0 35px var(--ball-glow-color);
+      0 0 25px #5c5cff,
+      0 0 35px #5c5cff;
   }
 }
 
@@ -38,12 +29,12 @@
 .eightBall {  
   position: relative;
 
-  width: var(--ball-size-desktop);
+  width: 65%;
   aspect-ratio: 1 / 1;
   max-width: 900px;
   cursor: pointer;
   border-radius: 50%;
-  box-shadow: 0 0 40px var(--ball-shadow-color);
+  box-shadow: 0 0 40px #000;
   overflow: hidden;
   background-color: black;
   transition: transform var(--transition-normal);
@@ -78,7 +69,7 @@
 
 .askQuestionInput input {
   font-size: 1em;
-  width: var(--input-width-desktop);
+  width: 27rem;
   padding: 0.6rem;
   border-radius: var(--radius-lg);
   margin: 0;
@@ -97,11 +88,11 @@
 /* Media Queries */
 @media screen and (max-width: 1400px), (max-height: 1400px) {
   .eightBall {
-    width: var(--ball-size-mobile);
+    width: 80%;
   }
 
   .askQuestionInput input {
-    width: var(--input-width-mobile);
+    width: 20rem;
   }
 }
 
