@@ -9,6 +9,7 @@ import { TrashCanIcon } from './common/FontAwesome';
 import styles from '../styles/Sidebar.module.css'
 import '../styles/globals.css'
 
+import { toast } from 'react-toastify';
 
 export function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
   const { allAnswers, setAllAnswers } = useGlobal();
@@ -38,6 +39,14 @@ export function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
     }, 1)
   }
 
+  function deleteAllAnswers() {
+    setAllAnswers([]);
+    toast.success("All responses deleted");
+    setTimeout(() => {
+      inputRef.current = [];
+    }, 1)
+  }
+
   function checkKeyThenAction(event: React.KeyboardEvent<HTMLInputElement>, index: number) {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -54,7 +63,7 @@ export function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
           <PlusIcon size={16} /> Add a response
         </button>
 
-        <button className='buttonRed' onClick={() => setAllAnswers([])}>
+        <button className='buttonRed' onClick={deleteAllAnswers}>
           <TrashCanIcon size={16} /> Delete all responses
         </button>
       </div>

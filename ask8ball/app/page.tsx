@@ -5,6 +5,8 @@ import UserReview from '../components/UserReviews'
 
 import { GlobalProvider } from '../components/context/GlobalContext'
 
+import { ToastContainer, Slide } from 'react-toastify'
+
 export default function Page() {
   return (
     <>
@@ -55,6 +57,20 @@ export default function Page() {
           </div>
         </section>
       </main>
+
+      <ToastContainer 
+        position='top-center'
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        transition={Slide}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        toastClassName={'toast'}
+      />
     </>
   )
 }

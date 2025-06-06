@@ -9,6 +9,8 @@ import textStyles from '../../styles/EightBallText.module.css'
 
 import { getRandomItem } from '../../extensions/random';
 
+import { toast } from 'react-toastify';
+
 function Magic8Ball() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const shakeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -43,7 +45,10 @@ function Magic8Ball() {
   const shakeEightBall = () => {
     if (!isShaking) {
       if (allAnswers.length < 1) {
-        alert("No responses are provided, how am I supposed to answer your questions??????")
+        toast.error(
+          "No responses are provided",
+          {toastId: "no-responses"}
+        );
         return
       }
 

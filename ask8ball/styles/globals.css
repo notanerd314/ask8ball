@@ -11,7 +11,7 @@
   --color-danger-hover: rgb(181, 33, 0);
 
   /* Typography */
-  --font-family: 'Host Grotesk', Arial, sans-serif;
+  --font-family: Arial, sans-serif;
   --font-size-base: clamp(14px, 2.5vw, 20px);
   --font-size-small: 1rem;
   --font-size-large: 1.2rem;
@@ -32,7 +32,7 @@
   --transition-normal: 0.2s ease;
 }
 
-input, button, textarea, select { font-family: inherit; }
+input, button, textarea, select, .toast { font-family: inherit; }
 
 /* Reset */
 body {
@@ -194,6 +194,11 @@ button:disabled {
 
 .buttonTransparent:hover:not(:disabled) {
   background-color: transparent;
+}
+
+/* Toast */
+.toast {
+  font-size: 1rem;
 }
 
 /* Dialog */
