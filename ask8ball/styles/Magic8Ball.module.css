@@ -37,6 +37,7 @@
 /* Eight Ball */
 .eightBall {  
   position: relative;
+
   width: var(--ball-size-desktop);
   aspect-ratio: 1 / 1;
   max-width: 900px;
@@ -46,14 +47,10 @@
   overflow: hidden;
   background-color: black;
   transition: transform var(--transition-normal);
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .eightBall:hover {
-  transform: translate(-50%, -50%) scale(1.05);
+  transform: scale(1.05);
 }
 
 .eightBall.shake {
@@ -62,9 +59,15 @@
 }
 
 .eightBallWrapper {
+  display: flex;
   flex: 1;
   overflow: hidden;
   height: 100vh;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
 }
 
 /* Question Input */

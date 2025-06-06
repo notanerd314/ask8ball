@@ -9,13 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "fitty": "^2.4.2",
     "next": "^15.3.2",
     "normalize.css": "^8.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-resizable-panels": "^3.0.2",
-    "react-responsive": "^10.0.1"
+    "react-responsive": "^10.0.1",
+    "react-toastify": "^11.0.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -86,7 +86,6 @@ export function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
         ))}
       </div>
       <p style={{ textAlign: 'center', fontSize: '0.7em' }}>{allAnswers.length} response{allAnswers.length === 1 ? '' : 's'} - Version 1 (Alpha)</p>
-
     </div>
   )
 }
