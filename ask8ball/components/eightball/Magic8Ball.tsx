@@ -22,7 +22,9 @@ import { toast } from 'react-toastify';
  */
 function Magic8Ball() {
   // References to the audio element and the input field
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const shakeSoundRef = useRef<HTMLAudioElement | null>(null);
+  const errorRef = useRef<HTMLAudioElement | null>(null);
+
   const shakeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const fadeInTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const questionRef = useRef<HTMLInputElement>(null);
@@ -42,8 +44,9 @@ function Magic8Ball() {
   const [eightBallDiceStyle, setEightBallDiceStyle] = useState({ opacity: "0", transition: "none" });
 
   useEffect(() => {
-    // Create an audio element for the shaking sound
-    audioRef.current = new Audio('/sounds/shaking.mp3');
+    // Create audio elements
+    shakeSoundRef.current = new Audio('/sounds/shaking.mp3');
+    errorRef.current = new Audio('/sounds/error.mp3');
 
     // Clean up the timeouts when the component is unmounted
     const shakeTimeout = shakeTimeoutRef.current;
@@ -63,6 +66,7 @@ function Magic8Ball() {
   const shakeEightBall = () => {
     if (ballCurrentState === "shaking") {
       // If the 8 ball is already shaking, don't do anything
+      errorRef.current?.play();
       toast.info("I am already shaking. Be patient!", { toastId: "already-shaking" });
       return;
     }
@@ -72,6 +76,7 @@ function Magic8Ball() {
     if (allAnswers.length < 1) {
       // If there are no responses, show an error message
       setBallCurrentState("error");
+      errorRef.current?.play();
       setEightBallDiceStyle({ opacity: "1", transition: "none" });
       toast.error(
         "How am I supposed to work if I have no answers to choose from?",
@@ -82,7 +87,7 @@ function Magic8Ball() {
 
     console.log("Shook eight ball like your balls");
     // Play the shaking sound
-    audioRef!.current!.play();
+    shakeSoundRef.current?.play();
     // Set the state of the 8 ball to "shaking"
     setBallCurrentState("shaking");
     // Generate a random answer from the list of responses
