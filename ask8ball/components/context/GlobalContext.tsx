@@ -7,10 +7,8 @@ const GlobalContext = createContext<{
   setAllAnswers: (answers: string[]) => void;
   answer: string;
   setAnswer: (answer: string) => void;
-  isShaking: boolean;
-  setIsShaking: (isShaking: boolean) => void;
-  shownResult: boolean;
-  setShownResult: (shown: boolean) => void;
+  ballCurrentState: BallStateType;
+  setBallCurrentState: (state: BallStateType) => void;
   question: string;
   setQuestion: (question: string) => void;
   diceSize: { width: number; height: number };
@@ -20,16 +18,15 @@ const GlobalContext = createContext<{
   setAllAnswers: () => {},
   answer: '',
   setAnswer: () => {},
-  isShaking: false,
-  setIsShaking: () => {},
-  shownResult: false,
-  setShownResult: () => {},
+  ballCurrentState: 'normal',
+  setBallCurrentState: () => {},
   question: '',
   setQuestion: () => {},
   diceSize: { width: 0, height: 0 },
   setDiceSize: () => {},
 });
 
+export type BallStateType = "normal" | "shaking" | "result" | "error";
 
 type GlobalProviderProps = {
   children: ReactNode;
@@ -59,14 +56,13 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     'Very doubtful'
   ]);
 
-  const [isShaking, setIsShaking] = useState(false);
-  const [question, setQuestion] = useState("[No question]");
-  const [shownResult, setShownResult] = useState(false);
   const [answer, setAnswer] = useState("[No answer]");
+  const [question, setQuestion] = useState("[No question]");
+  const [ballCurrentState, setBallCurrentState] = useState<BallStateType>("normal");
   const [diceSize, setDiceSize] = useState({ width: 0, height: 0 });
   
   return (
-    <GlobalContext.Provider value={{ allAnswers, setAllAnswers, isShaking, setIsShaking, question, setQuestion, answer, setAnswer, shownResult, setShownResult, diceSize, setDiceSize }}>
+    <GlobalContext.Provider value={{ allAnswers, setAllAnswers, ballCurrentState, setBallCurrentState, question, setQuestion, answer, setAnswer, diceSize, setDiceSize }}>
       {children}
     </GlobalContext.Provider>
   );

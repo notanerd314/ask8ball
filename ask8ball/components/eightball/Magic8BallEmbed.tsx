@@ -23,7 +23,7 @@ export default function Magic8BallEmbed() {
   return (
     <div className={styles.eightBall}>
       <h1>{question}</h1>
-      <EightBallSvg isShaking={true} />
+      <EightBallSvg currentState="result" />
       <ResizableText
         maxWidth={diceSize.width}
         maxHeight={diceSize.height}

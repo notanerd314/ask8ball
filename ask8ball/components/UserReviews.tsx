@@ -42,7 +42,13 @@ export function StarRating({ stars, className = "" }: StarProps) {
   );
 }
 
-
+/*
+  * Best component ever.
+  * @param quote
+  * @param author
+  * @param stars
+  * @returns [JSX.Element, actualFun]
+*/
 export default function UserReview({ quote, author, stars }: Props) {
   return (
     <article className={styles.userReviews}>

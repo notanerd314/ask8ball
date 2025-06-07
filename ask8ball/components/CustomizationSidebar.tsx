@@ -11,6 +11,12 @@ import '../styles/globals.css'
 
 import { toast } from 'react-toastify';
 
+/*
+ * Sidebar for customizing the magic 8 ball
+ * To let users have the "freedom"
+ * 
+ * @param {HumanSoul} yourSoul
+*/
 export function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
   const { allAnswers, setAllAnswers } = useGlobal();
   const inputRef = useRef<HTMLInputElement[]>([]);

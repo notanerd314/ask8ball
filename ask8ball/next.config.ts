@@ -4,7 +4,11 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: true,
   },
-  // other config options
+  images: {
+    loader: 'default',
+    path: '/_next/image',
+    disableStaticImages: true,
+  }
 };
 
 export default nextConfig;
