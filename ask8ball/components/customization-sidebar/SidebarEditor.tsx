@@ -39,8 +39,13 @@ export default function SidebarEditor({ isCompacted }: { isCompacted: boolean })
   }
 
   function deleteAllAnswers() {
+    if (allAnswers.length < 1) {
+      toast.info("There are already no responses!", { toastId: "no-responses-deleted" });
+      return;
+    }
+
     setAllAnswers([]);
-    toast.success("All responses deleted");
+    toast.success("All responses deleted", { toastId: "all-responses-deleted" });
     setTimeout(() => {
       inputRef.current = [];
     }, 1)

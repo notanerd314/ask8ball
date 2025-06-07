@@ -1,4 +1,4 @@
-import styles from '../styles/UserReviews.module.css'
+import styles from '../../styles/UserReviews.module.css'
 
 import { StarIcon } from '../utils/FontAwesome'
 
