@@ -22,7 +22,6 @@ export default function Page() {
         <section>
           <header className='headers'>
             <h1>What Our Users Say</h1>
-            <p><i>(They are VERY happy!)</i></p>
           </header>
           <div className='userReviews'>
             <UserReview
@@ -44,15 +43,15 @@ export default function Page() {
             />
 
             <UserReview
-              quote="Wow! My review is in the website!"
+              quote="This app found my lost brother, I haven't seen him in 20 years..."
               author='John Doe'
-              stars={3.5}
+              stars={4}
             />
 
             <UserReview
-              quote="Whoever made this app, you should never touch programming again."
-              author="twitter degenerate"
-              stars={0}
+              quote="It's actually better than using my friends' decisions."
+              author="Sarah Smith"
+              stars={4}
             />
           </div>
         </section>
