@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import Magic8Ball from '../components/eightball/Magic8Ball'
-import CustomizationSidebar from '../components/CustomizationSidebar'
-import UserReview from '../components/UserReviews'
+import CustomizationSidebar from '../components/customization-sidebar/CustomizationSidebar'
+import UserReview from '../components/common/UserReviews'
 
 import { GlobalProvider } from '../components/context/GlobalContext'
 

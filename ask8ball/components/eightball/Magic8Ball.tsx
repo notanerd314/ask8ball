@@ -2,12 +2,12 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import { useGlobal } from '../context/GlobalContext';
-import ResizableText from '../base/ResizeableText';
+import ResizableText from '../common/ResizeableText';
 import EightBallSvg from './EightBallSvg';
 import styles from '../../styles/Magic8Ball.module.css'
 import textStyles from '../../styles/EightBallText.module.css'
 
-import { getRandomItem } from '../../extensions/random';
+import { getRandomItem } from '../../lib/rng';
 
 import { toast } from 'react-toastify';
 
@@ -61,11 +61,13 @@ function Magic8Ball() {
    * @returns void
    */
   const shakeEightBall = () => {
-    if (ballCurrentState !== "shaking") {
+    if (ballCurrentState === "shaking") {
       // If the 8 ball is already shaking, don't do anything
       toast.info("I am already shaking. Be patient!", { toastId: "already-shaking" });
       return;
     }
+
+    setEightBallDiceStyle({ opacity: "0", transition: "none" });
 
     if (allAnswers.length < 1) {
       // If there are no responses, show an error message

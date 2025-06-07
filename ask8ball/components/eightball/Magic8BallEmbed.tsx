@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 
 import EightBallSvg from "./EightBallSvg"
-import ResizableText from "../base/ResizeableText"
+import ResizableText from "../common/ResizeableText"
 import styles from "../../styles/Magic8BallEmbed.module.css"
 import textStyles from '../../styles/EightBallText.module.css'
 import { useGlobal } from "../context/GlobalContext"

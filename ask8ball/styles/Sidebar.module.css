@@ -1,60 +1,90 @@
+/* Sidebar styles */
+
 .sidebar {
+  /* Size and position */
   width: 25%;
   height: 95vh;
   margin-right: 1vh;
+
+  /* Padding and border */
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
   max-height: 100vh;
   overflow: auto;
+
+  /* Background and border */
   background-color: #ffffff;
   border: 2px fill #000000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.editor {
+/* Sidebar content styles */
+
+.sidebarContent {
+  /* Layout */
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  /* Max height */
   max-height: 100%;
 }
 
+/* Editor content styles */
+
 .editorContent {
+  /* Layout */
   display: flex;
   flex: 1;
   flex-direction: column;
   gap: 5px;
-  
+
+  /* Size and overflow */
   width: 100%;
   height: auto;
   max-height: 100%;
   overflow: auto;
 }
 
+/* Editor header styles */
+
 .editorHeader {
+  /* Layout */
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
+
+  /* Button styles */
+  > button {
+    font-size: 0.7em;
+    padding: var(--spacing-sm);
+  }
 }
 
-.editorHeader > button {
-  font-size: 0.7em;
-  padding: var(--spacing-sm);
-}
+/* Editor item styles */
 
 .editorItem {
+  /* Layout */
   display: flex;
   gap: 5px;
 }
+
+/* Hide scrollbar */
 
 .sidebar::-webkit-scrollbar {
   display: none;
 }
 
+/* Hide sidebar on small screens */
+
 .sidebarHidden {
   display: none;
 }
 
+/* Media query for small screens */
+
 @media screen and (max-width: 1400px) {
+  /* Resize sidebar */
   .sidebar {
     width: 90%;
     margin: 2%;
@@ -63,6 +93,7 @@
     height: 42vh;
   }
 
+  /* Resize editor header buttons */
   .editorHeader > button {
     font-size: 0.8em;
     padding: var(--spacing-md);

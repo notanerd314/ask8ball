@@ -1,15 +1,8 @@
-"use client";
-
-import React, { useRef, useState, useEffect } from 'react';
-import { useGlobal } from './context/GlobalContext';
-import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon, ChevronUpIcon, PlusIcon } from './common/FontAwesome';
-import { useMediaQuery } from 'react-responsive';
-import { TrashCanIcon } from './common/FontAwesome';
-
-import styles from '../styles/Sidebar.module.css'
-import '../styles/globals.css'
-
+import { useRef } from 'react';
+import styles from '../../styles/Sidebar.module.css'
+import { useGlobal } from '../context/GlobalContext';
 import { toast } from 'react-toastify';
+import { PlusIcon, TrashCanIcon } from '../utils/FontAwesome';
 
 /*
  * Sidebar for customizing the magic 8 ball
@@ -17,7 +10,7 @@ import { toast } from 'react-toastify';
  * 
  * @param {HumanSoul} yourSoul
 */
-export function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
+export default function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
   const { allAnswers, setAllAnswers } = useGlobal();
   const inputRef = useRef<HTMLInputElement[]>([]);
 
@@ -63,7 +56,7 @@ export function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
   }
 
   return (
-    <div className={styles.editor}>
+    <>
       <div className={styles.editorHeader}>
         <button className='buttonGreen' onClick={addAnswer}>
           <PlusIcon size={16} /> Add a response
@@ -100,48 +93,6 @@ export function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
           </div>
         ))}
       </div>
-      <p style={{ textAlign: 'center', fontSize: '0.7em' }}>{allAnswers.length} response{allAnswers.length === 1 ? '' : 's'} - Version 1 (Alpha)</p>
-    </div>
-  )
-}
-
-export default function CustomizationSidebar() {
-  const sidebarRef = useRef<HTMLDivElement>(null);
-  const [isOpen, setisOpen] = useState(true);
-
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
-  const isCompacted = useMediaQuery({ maxWidth: 1400 });
-
-  if (!mounted) return null;
-
-  function toggleSidebar() {
-    setisOpen(prev => {
-      const next = !prev;
-      if (next && isCompacted) {
-        setTimeout(() => {
-          sidebarRef.current?.scrollIntoView({ behavior: 'smooth' });
-        }, 1);
-      }
-      return next;
-    });
-  }
-
-  return (
-    <>
-      <button className={styles.sidebarToggle + ' buttonTransparent'} onClick={toggleSidebar} title='Toggle sidebar'>
-        {!isOpen ?
-          isCompacted ? <ChevronDownIcon /> : <ChevronLeftIcon />
-          :
-          isCompacted ? <ChevronUpIcon /> : <ChevronRightIcon />
-        }
-        &nbsp;
-        {isCompacted ? 'Customize' : ''}
-      </button>
-      <aside ref={sidebarRef} className={styles.sidebar + " " + (!isOpen ? styles.sidebarHidden : "")}>
-        <SidebarEditor isCompacted={isCompacted} />
-      </aside>
     </>
   )
 }
