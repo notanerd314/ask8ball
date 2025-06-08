@@ -69,6 +69,10 @@
   gap: 5px;
 }
 
+.editorItem > button {
+  padding: var(--spacing-sm);
+}
+
 /* Hide scrollbar */
 
 .sidebar::-webkit-scrollbar {
@@ -93,8 +97,9 @@
     height: 42vh;
   }
 
-  /* Resize editor header buttons */
-  .editorHeader > button {
+  /* Resize editor buttons */
+  .editorHeader > button,
+  .editorItem > button {
     font-size: 0.8em;
     padding: var(--spacing-md);
   }
