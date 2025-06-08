@@ -11,7 +11,7 @@ import { PlusIcon, TrashCanIcon } from '../utils/FontAwesome';
  * @param {HumanSoul} yourSoul
 */
 export default function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
-  const { allAnswers, setAllAnswers } = useGlobal();
+  const { allAnswers, setAllAnswers, ballCurrentState } = useGlobal();
   const inputRef = useRef<HTMLInputElement[]>([]);
 
   function updateAnswer(index: number, value: string) {
@@ -63,11 +63,11 @@ export default function SidebarEditor({ isCompacted }: { isCompacted: boolean })
   return (
     <>
       <div className={styles.editorHeader}>
-        <button className='buttonGreen' onClick={addAnswer}>
+        <button className='buttonGreen' onClick={addAnswer} disabled={ballCurrentState === "shaking"}>
           <PlusIcon size={16} /> Add a response
         </button>
 
-        <button className='buttonRed' onClick={deleteAllAnswers}>
+        <button className='buttonRed' onClick={deleteAllAnswers} disabled={ballCurrentState === "shaking"}>
           <TrashCanIcon size={16} /> Delete all responses
         </button>
       </div>
@@ -86,10 +86,12 @@ export default function SidebarEditor({ isCompacted }: { isCompacted: boolean })
               }}
               onChange={e => updateAnswer(index, e.target.value)}
               onKeyDown={e => { checkKeyThenAction(e, index) }}
+              disabled={ballCurrentState === "shaking"}
               placeholder={"Add something quirky..."}
             />
             <button
               className="buttonRed"
+              disabled={ballCurrentState === "shaking"}
               onClick={() => deleteAnswer(index)}
             >
               <TrashCanIcon size={20} color='#ffffff' />
