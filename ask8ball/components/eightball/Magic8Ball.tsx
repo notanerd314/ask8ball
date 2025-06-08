@@ -7,7 +7,8 @@ import EightBallSvg from './EightBallSvg';
 import styles from '../../styles/Magic8Ball.module.css'
 import textStyles from '../../styles/EightBallText.module.css'
 
-import { getRandomItem } from '../../lib/rng';
+import { getRandomItem, getRandomInt } from '../../lib/rng';
+import { EightBallThoughts } from '../../lib/thoughts';
 
 import { toast } from 'react-toastify';
 
@@ -27,6 +28,8 @@ function Magic8Ball() {
 
   const shakeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const fadeInTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const thoughtsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const questionRef = useRef<HTMLInputElement>(null);
 
   // The current state of the 8 ball
@@ -42,6 +45,7 @@ function Magic8Ball() {
 
   // The style of the 8 ball
   const [eightBallDiceStyle, setEightBallDiceStyle] = useState({ opacity: "0", transition: "none" });
+  const [shakeCount, setShakeCount] = useState(0);
 
   useEffect(() => {
     // Create audio elements
@@ -57,6 +61,21 @@ function Magic8Ball() {
     };
   }, [])
 
+  useEffect(() => {
+    const thoughtsLoop = () => {
+      thoughtsTimeoutRef.current = setTimeout(() => {
+        toast(getRandomItem(EightBallThoughts), { autoClose: 4500, toastId: "thoughts" });
+        thoughtsLoop(); // loop again
+      }, getRandomInt(10000, 17000));
+    };
+
+    thoughtsLoop();
+ 
+    return () => {
+      if (thoughtsTimeoutRef.current) clearTimeout(thoughtsTimeoutRef.current);
+    };
+  }, [shakeCount]);
+
   /**
    * Function to shake the fucking eight ball.
    * If the ball is already shaking or there are no responses, you're fucked.
@@ -64,6 +83,8 @@ function Magic8Ball() {
    * @returns void
    */
   const shakeEightBall = () => {
+    setShakeCount(shakeCount + 1);
+
     if (ballCurrentState === "shaking") {
       // If the 8 ball is already shaking, don't do anything
       errorRef.current?.play();
@@ -131,6 +152,7 @@ function Magic8Ball() {
             {ballCurrentState !== "error" ? answer : ">:("}
           </ResizableText>
         </button>
+        {shakeCount === 0 && <h1>Tap me to shake!</h1>}
       </div>
     </>
   )
