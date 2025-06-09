@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   /* Colors */
   --color-primary: #5c5cff;
@@ -37,7 +41,6 @@ input, button, textarea, select, .toast { font-family: inherit; }
 /* Reset */
 body {
   font-size: var(--font-size-base);
-  margin: 0;
   color: var(--color-text);
   background: var(--color-background);
 }
@@ -53,54 +56,10 @@ p {
   text-wrap: wrap;
 }
 
-/* Animation */
-
-/* Layout */
-.main {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  margin-bottom: 20px;
-  overflow: hidden;
-}
-
 main {
-  position: relative;
-  left: 50%;
   transform: translateX(-50%);
-  min-width: none;
   max-width: 1200px;
 }
-
-/* .userReviews {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  padding: 15px;
-  gap: 15px;
-} */
-
-.userReviews {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-
-  gap: 15px;
-  padding: 15px;
-}
-
-.userReviews > article {
-  height: 150px;
-}
-
-.headers {
-  text-align: center;
-}
-
 /* Form Elements */
 input,
 textarea {
@@ -196,6 +155,21 @@ button:disabled {
   background-color: transparent;
 }
 
+.buttonNav {
+  background-color: transparent;
+  border-bottom: 3px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm);
+}
+
+.buttonNav:hover:not(:disabled) {
+  background-color: rgba(174, 174, 174, 0.07);;
+}
+
+.buttonNav.active {
+  border-bottom: 3px solid var(--color-primary);
+}
+
 /* Toast */
 .toast {
   font-size: 1rem;
@@ -211,20 +185,6 @@ dialog {
 }
 
 /* Media Queries */
-@media screen and (max-width: 1400px) {
-  .main {
-    flex-direction: column;
-    height: auto;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  dialog {
-    width: 100vw;
-    height: 100vh;
-  }
-}
-
 @media screen and (max-width: 675px) {
   .userReviews > article {
     height: 100px;

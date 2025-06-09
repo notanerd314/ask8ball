@@ -15,7 +15,7 @@ interface StarProps {
 
 export function StarRating({ stars, className = "" }: StarProps) {
   return (
-    <div className={styles.stars + ' ' + className}>
+    <div className={'flex' + ' ' + className}>
       {Array.from({ length: stars }).map((_, i) => (
         <StarIcon key={`filled-${i}`} color="#fcba03" />
       ))}
@@ -35,10 +35,10 @@ export function StarRating({ stars, className = "" }: StarProps) {
 */
 export default function UserReview({ quote, author, stars }: Props) {
   return (
-    <article className={styles.userReviews}>
+    <article className="bg-white border-black border-2 rounded-lg text-center relative p-3 flex flex-col gap-2">
+      <StarRating stars={stars} />
       <p>&quot;{quote}&quot;</p>
-      <p className={styles.userReviewsAuthor}>- {author}</p>
-      <StarRating className={styles.userReviewsStars} stars={stars} />
+      <p className='italic text-gray-500 text-sm'>- {author}</p>
     </article>
   )
 }

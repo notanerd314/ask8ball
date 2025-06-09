@@ -61,6 +61,13 @@
   }
 }
 
+.sidebarNavigation {
+  /* Layout */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
 /* Editor item styles */
 
 .editorItem {
@@ -94,7 +101,7 @@
     margin: 2%;
     border-radius: var(--radius-md);
     overflow: auto;
-    height: 42vh;
+    height: 48vh;
   }
 
   /* Resize editor buttons */

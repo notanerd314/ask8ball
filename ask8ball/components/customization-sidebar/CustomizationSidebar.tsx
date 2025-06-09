@@ -6,11 +6,13 @@ import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon, ChevronUpIcon } fro
 import { useMediaQuery } from 'react-responsive';
 
 import SidebarEditor from './SidebarEditor';
+import SidebarNavigation from './SidebarNav';
 import styles from '../../styles/Sidebar.module.css'
 
 export default function CustomizationSidebar() {
-  const { allAnswers } = useGlobal();
   const sidebarRef = useRef<HTMLDivElement>(null);
+
+  const [page, setPage] = useState(0);
   const [isOpen, setisOpen] = useState(true);
 
   const [mounted, setMounted] = useState(false);
@@ -45,8 +47,8 @@ export default function CustomizationSidebar() {
       </button>
       <aside ref={sidebarRef} className={styles.sidebar + " " + (!isOpen ? styles.sidebarHidden : "")}>
         <div className={styles.sidebarContent}>
-          <SidebarEditor isCompacted={isCompacted} />
-          <p style={{ textAlign: 'center', fontSize: '0.8em' }}>{allAnswers.length} response{allAnswers.length === 1 ? '' : 's'} - Version 1 (Alpha)</p>
+          <SidebarNavigation currentPage={page} pages={['Customize', 'About']} setPage={setPage} />
+          {page === 0 && <SidebarEditor isCompacted={isCompacted} />}
         </div>
       </aside>
     </>

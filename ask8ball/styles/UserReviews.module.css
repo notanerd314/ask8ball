@@ -16,12 +16,6 @@
   text-align: center;
 }
 
-.userReviewsAuthor {
-  font-style: italic;
-  font-size: 0.75em;
-  color: gray;
-}
-
 .userReviewsStars {
   position: absolute;
   top: 100%;

@@ -6,24 +6,26 @@ import UserReview from '../components/common/UserReviews'
 import { GlobalProvider } from '../components/context/GlobalContext'
 
 import { ToastContainer, Slide } from 'react-toastify'
+import { transform } from 'next/dist/build/swc/generated-native'
 
 export default function Page() {
   return (
     <>
       <GlobalProvider>
-        <div className='main'>
+        <div className="flex flex-row items-center w-full h-full mb-5 overflow-hidden max-xl:flex-col max-xl:h-auto">
           <Magic8Ball />
           <CustomizationSidebar />
         </div>
+
       </GlobalProvider>
 
       {/* Article for SEO shit */}
-      <main>
+      <main className="relative left-1/2 min-w-0">
         <section>
-          <header className='headers'>
-            <h1>What Our Users Say</h1>
+          <header>
+            <h1 className='text-center font-bold text-5xl'>What Our Users Say</h1>
           </header>
-          <div className='userReviews'>
+          <div className='grid gap-4 p-4' style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
             <UserReview
               quote="It says I'm the most handsome guy ever, but I'm not."
               author='Jake Miller'
@@ -49,7 +51,7 @@ export default function Page() {
             />
 
             <UserReview
-              quote="It's actually better than using my friends' decisions."
+              quote="It's actually better than my friends' decisions."
               author="Sarah Smith"
               stars={4}
             />
@@ -57,7 +59,7 @@ export default function Page() {
         </section>
       </main>
 
-      <ToastContainer 
+      <ToastContainer
         position='top-center'
         autoClose={3000}
         hideProgressBar={false}

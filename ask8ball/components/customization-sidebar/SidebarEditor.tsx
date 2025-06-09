@@ -1,25 +1,128 @@
-import { useRef } from 'react';
+import { useRef, forwardRef } from 'react';
 import styles from '../../styles/Sidebar.module.css'
 import { useGlobal } from '../context/GlobalContext';
 import { toast } from 'react-toastify';
 import { PlusIcon, TrashCanIcon } from '../utils/FontAwesome';
 
-/*
- * Sidebar for customizing the magic 8 ball
- * To let users have the "freedom"
+type SidebarEditorItemProps = {
+  /**
+   * The answer to be displayed in the item
+   */
+  answer: string;
+  /**
+   * The index of the item in the list of answers
+   */
+  index: number;
+  /**
+   * A function to update the answer with a new value
+   */
+  updateAnswer: (index: number, value: string) => void;
+  /**
+   * A function to delete the answer at the given index
+   */
+  deleteAnswer: (index: number) => void;
+  /**
+   * A function to add a new answer to the list
+   */
+  addAnswer: () => void;
+  /**
+   * A boolean indicating whether the sidebar is compacted
+   */
+  isCompacted: boolean;
+  /**
+   * The current state of the 8 ball
+   */
+  ballCurrentState: string;
+}
+
+/**
+ * The footer of the sidebar editor
  * 
- * @param {HumanSoul} yourSoul
-*/
+ * @param {string[]} allAnswers - the list of answers
+ * @returns {JSX.Element} - the footer of the sidebar editor
+ */
+export function SidebarEditorFooter({ allAnswers }: { allAnswers: string[] }) {
+  return (
+    <p
+      style={{ textAlign: 'center', fontSize: '0.8em' }}
+    >
+      {allAnswers.length} response{allAnswers.length === 1 ? '' : 's'} - Version 1 (Alpha)
+    </p>
+  )
+}
+
+/**
+ * A single item in the sidebar editor
+ * 
+ * @param {SidebarEditorItemProps} props - the props for the item
+ * @returns {JSX.Element} - the sidebar editor item
+ */
+export const SidebarEditorItem = forwardRef<HTMLInputElement, SidebarEditorItemProps>(
+  ({ answer, index, updateAnswer, deleteAnswer, addAnswer, isCompacted, ballCurrentState }, ref) => {
+
+    /**
+     * Checks if the key pressed is Enter or Delete and performs the corresponding action
+     * @param {React.KeyboardEvent<HTMLInputElement>} event - the keyboard event
+     * @param {number} index - the index of the item
+     */
+    function checkKeyThenAction(event: React.KeyboardEvent<HTMLInputElement>, index: number) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        addAnswer();
+      } else if (event.key === "Delete") {
+        deleteAnswer(index);
+      }
+    }
+
+    return (
+      <div className={styles.editorItem}>
+        <input
+          value={answer}
+          style={{ flex: 1 }}
+          ref={ref}  // just assign the forwarded ref here
+          onChange={e => updateAnswer(index, e.target.value)}
+          onKeyDown={e => checkKeyThenAction(e, index)}
+          disabled={ballCurrentState === "shaking"}
+          placeholder="Add something quirky..."
+        />
+        <button
+          className="buttonRed"
+          disabled={ballCurrentState === "shaking"}
+          onClick={() => deleteAnswer(index)}
+        >
+          <TrashCanIcon size={20} color='#ffffff' />
+          {!isCompacted ? '' : 'Delete'}
+        </button>
+      </div>
+    )
+  }
+);
+
+/**
+ * The main component for the sidebar editor
+ * 
+ * @param {boolean} isCompacted - a boolean indicating whether the sidebar is compacted
+ * @returns {JSX.Element} - the sidebar editor
+ */
 export default function SidebarEditor({ isCompacted }: { isCompacted: boolean }) {
   const { allAnswers, setAllAnswers, ballCurrentState } = useGlobal();
   const inputRef = useRef<HTMLInputElement[]>([]);
 
+  /**
+   * Updates the answer at the given index with a new value
+   * @param {number} index - the index of the answer to be updated
+   * @param {string} value - the new value for the answer
+   */
   function updateAnswer(index: number, value: string) {
     const next = [...allAnswers];
     next[index] = value;
     setAllAnswers(next);
   }
 
+  /**
+   * Deletes the answer at the given index
+   * @param {number} index - the index of the answer to be deleted
+   */
   function deleteAnswer(index: number) {
     const next = [...allAnswers];
     next.splice(index, 1);
@@ -29,6 +132,9 @@ export default function SidebarEditor({ isCompacted }: { isCompacted: boolean })
     }, 1)
   }
 
+  /**
+   * Adds a new answer to the list
+   */
   function addAnswer() {
     const next = [...allAnswers];
     next.push("");
@@ -38,6 +144,9 @@ export default function SidebarEditor({ isCompacted }: { isCompacted: boolean })
     }, 1)
   }
 
+  /**
+   * Deletes all answers
+   */
   function deleteAllAnswers() {
     if (allAnswers.length < 1) {
       toast.info("There are already no responses!", { toastId: "no-responses-deleted" });
@@ -49,15 +158,6 @@ export default function SidebarEditor({ isCompacted }: { isCompacted: boolean })
     setTimeout(() => {
       inputRef.current = [];
     }, 1)
-  }
-
-  function checkKeyThenAction(event: React.KeyboardEvent<HTMLInputElement>, index: number) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      addAnswer();
-    } else if (event.key === "Delete") {
-      deleteAnswer(index);
-    }
   }
 
   return (
@@ -74,32 +174,24 @@ export default function SidebarEditor({ isCompacted }: { isCompacted: boolean })
 
       <div className={styles.editorContent}>
         {allAnswers.map((answer: string, index: number) => (
-          <div key={index} className={styles.editorItem}>
-            <input
-              value={answer}
-              style={{ flex: 1 }}
-              ref={(el) => {
-                if (el) {
-                  inputRef.current[index] = el;
-                  console.log(inputRef.current[index])
-                }
-              }}
-              onChange={e => updateAnswer(index, e.target.value)}
-              onKeyDown={e => { checkKeyThenAction(e, index) }}
-              disabled={ballCurrentState === "shaking"}
-              placeholder={"Add something quirky..."}
-            />
-            <button
-              className="buttonRed"
-              disabled={ballCurrentState === "shaking"}
-              onClick={() => deleteAnswer(index)}
-            >
-              <TrashCanIcon size={20} color='#ffffff' />
-              {!isCompacted ? '' : 'Delete'}
-            </button>
-          </div>
+          <SidebarEditorItem
+            key={index}
+            answer={answer}
+            index={index}
+            updateAnswer={updateAnswer}
+            deleteAnswer={deleteAnswer}
+            addAnswer={addAnswer}
+            isCompacted={isCompacted}
+            ballCurrentState={ballCurrentState}
+            ref={el => {
+              if (el) inputRef.current[index] = el;
+            }}
+          />
         ))}
       </div>
+
+      <SidebarEditorFooter allAnswers={allAnswers} />
     </>
   )
 }
+
