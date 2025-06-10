@@ -1,6 +1,9 @@
 import 'normalize.css';
 
 import { DM_Sans } from 'next/font/google';
+import '../styles/globals.css'
+
+
 
 const dmSans = DM_Sans({
   subsets: ['latin'],

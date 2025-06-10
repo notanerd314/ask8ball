@@ -16,9 +16,9 @@
 .eightBall {  
   position: relative;
 
-  width: 65%;
+  width: min(70vw, 70vh);
   aspect-ratio: 1 / 1;
-  max-width: 900px;
+
   cursor: pointer;
   border-radius: 50%;
   box-shadow: 0 0 40px #000;
@@ -76,16 +76,16 @@
 
 /* Media Queries */
 @media screen and (max-width: 1400px), (max-height: 1400px) {
-  .eightBall {
-    width: 80%;
-  }
-
   .askQuestionInput input {
     width: 20rem;
   }
 }
 
 @media screen and (max-width: 1400px) {
+  .eightBall {
+    width: min(75vw, 75vh);
+  }
+
   .eightBallWrapper {
     width: 100%;
     min-height: 80vh;

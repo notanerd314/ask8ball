@@ -36,7 +36,7 @@ export default function CustomizationSidebar() {
 
   return (
     <>
-      <button className={styles.sidebarToggle + ' buttonTransparent'} onClick={toggleSidebar} title='Toggle sidebar'>
+      <button className='buttonTransparent' onClick={toggleSidebar} title='Toggle sidebar'>
         {!isOpen ?
           isCompacted ? <ChevronDownIcon /> : <ChevronLeftIcon />
           :
@@ -45,7 +45,7 @@ export default function CustomizationSidebar() {
         &nbsp;
         {isCompacted ? 'Customize' : ''}
       </button>
-      <aside ref={sidebarRef} className={styles.sidebar + " " + (!isOpen ? styles.sidebarHidden : "")}>
+  <aside ref={sidebarRef} className="w-1/4 h-[98vh] mr-3 overflow-x-hidden overflow-y-auto bg-white p-3 rounded-md shadow-xl text max-xl:w-[98%] max-xl:m-[2%] max-xl:h-[48vh] max-xl-height:h-[100vh] bg-gra" hidden={!isOpen}>
         <div className={styles.sidebarContent}>
           <SidebarNavigation currentPage={page} pages={['Customize', 'About']} setPage={setPage} />
           {page === 0 && <SidebarEditor isCompacted={isCompacted} />}

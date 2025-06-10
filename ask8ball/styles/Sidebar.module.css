@@ -1,23 +1,5 @@
 /* Sidebar styles */
 
-.sidebar {
-  /* Size and position */
-  width: 25%;
-  height: 95vh;
-  margin-right: 1vh;
-
-  /* Padding and border */
-  padding: var(--spacing-md);
-  border-radius: var(--radius-md);
-  max-height: 100vh;
-  overflow: auto;
-
-  /* Background and border */
-  background-color: #ffffff;
-  border: 2px fill #000000;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
 /* Sidebar content styles */
 
 .sidebarContent {
@@ -80,29 +62,11 @@
   padding: var(--spacing-sm);
 }
 
-/* Hide scrollbar */
-
-.sidebar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide sidebar on small screens */
-
-.sidebarHidden {
-  display: none;
-}
 
 /* Media query for small screens */
 
 @media screen and (max-width: 1400px) {
   /* Resize sidebar */
-  .sidebar {
-    width: 90%;
-    margin: 2%;
-    border-radius: var(--radius-md);
-    overflow: auto;
-    height: 48vh;
-  }
 
   /* Resize editor buttons */
   .editorHeader > button,

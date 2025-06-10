@@ -64,7 +64,7 @@ function Magic8Ball() {
   useEffect(() => {
     const thoughtsLoop = () => {
       thoughtsTimeoutRef.current = setTimeout(() => {
-        toast(getRandomItem(EightBallThoughts), { autoClose: 4500, toastId: "thoughts" });
+        console.log(getRandomItem(EightBallThoughts));
         thoughtsLoop(); // loop again
       }, getRandomInt(10000, 17000));
     };
@@ -152,7 +152,7 @@ function Magic8Ball() {
             {ballCurrentState !== "error" ? answer : ">:("}
           </ResizableText>
         </button>
-        {shakeCount === 0 && <h1>Tap me to shake!</h1>}
+        {shakeCount === 0 && <p className='p-2 px-4 text-3xl font-bold text-center text-white bg-indigo-500 rounded-md wiggle'>Tap me to shake!</p>}
       </div>
     </>
   )

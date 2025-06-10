@@ -2,11 +2,12 @@ import '../styles/globals.css'
 import Magic8Ball from '../components/eightball/Magic8Ball'
 import CustomizationSidebar from '../components/customization-sidebar/CustomizationSidebar'
 import UserReview from '../components/common/UserReviews'
+import { ExternalLinkIcon } from '../components/utils/FontAwesome'
 
 import { GlobalProvider } from '../components/context/GlobalContext'
 
 import { ToastContainer, Slide } from 'react-toastify'
-import { transform } from 'next/dist/build/swc/generated-native'
+
 
 export default function Page() {
   return (
@@ -20,10 +21,11 @@ export default function Page() {
       </GlobalProvider>
 
       {/* Article for SEO shit */}
-      <main className="relative left-1/2 min-w-0">
+      <main className="relative min-w-0 left-1/2">
         <section>
-          <header>
-            <h1 className='text-center font-bold text-5xl'>What Our Users Say</h1>
+          <header className='flex flex-col items-center justify-center gap-4'>
+            <h1 className='text-5xl font-bold'>What Our Users Say</h1>
+            <a className='flex text-indigo-500 rounded-md text-md' href='https://google.com'><ExternalLinkIcon />&nbsp;See more reviews</a>
           </header>
           <div className='grid gap-4 p-4' style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
             <UserReview

@@ -1,6 +1,20 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@keyframes wigglePause {
+  5% { transform: rotate(4deg); }
+  10% { transform: rotate(-4deg); }
+  15% { transform: rotate(4deg); }
+  20% { transform: rotate(-4deg); }
+  25% { transform: rotate(4deg); }
+  30% { transform: rotate(0deg); }
+  30.01% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); } /* stay still for the rest */
+}
+
+.wiggle {
+  animation: wigglePause 3.5s ease-in-out infinite;
+  animation-delay: 3s;
+}
 
 :root {
   /* Colors */
