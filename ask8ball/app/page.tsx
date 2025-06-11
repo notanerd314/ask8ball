@@ -13,7 +13,7 @@ export default function Page() {
   return (
     <>
       <GlobalProvider>
-        <div className="flex flex-row items-center w-full h-full mb-5 overflow-hidden max-xl:flex-col max-xl:h-auto">
+        <div className="flex flex-col items-center w-full h-auto mb-5 overflow-hidden xl:flex-row xl:h-full">
           <Magic8Ball />
           <CustomizationSidebar />
         </div>
@@ -25,7 +25,7 @@ export default function Page() {
         <section>
           <header className='flex flex-col items-center justify-center gap-4'>
             <h1 className='text-5xl font-bold'>What Our Users Say</h1>
-            <a className='flex text-indigo-500 rounded-md text-md' href='https://google.com'><ExternalLinkIcon />&nbsp;See more reviews</a>
+            <a className='flex gap-3 text-indigo-500 rounded-md text-md hover:text-indigo-700' href='/reviews'><ExternalLinkIcon />See more reviews</a>
           </header>
           <div className='grid gap-4 p-4' style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
             <UserReview

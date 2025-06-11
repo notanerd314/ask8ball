@@ -33,7 +33,7 @@ export function StarRating({ stars, className = "" }: StarProps) {
 */
 export default function UserReview({ quote, author, stars }: Props) {
   return (
-    <article className="relative flex flex-col gap-2 p-3 text-center transition duration-300 ease-in-out bg-white border-2 border-transparent rounded-md shadow-lg hover:border-indigo-500 hover:-translate-y-1">
+    <article className="relative flex flex-col p-3 text-center bg-white border-2 border-transparent shadow-lg gap-2 transition duration-300 ease-in-out rounded-md hover:border-indigo-500 hover:-translate-y-1">
       <StarRating stars={stars} />
       <p>&quot;{quote}&quot;</p>
       <p className='text-sm italic text-gray-500'>- {author}</p>
