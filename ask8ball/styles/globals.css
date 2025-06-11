@@ -13,7 +13,7 @@
 
 .wiggle {
   animation: wigglePause 3.5s ease-in-out infinite;
-  animation-delay: 3s;
+  animation-delay: 5s;
 }
 
 :root {
@@ -54,7 +54,7 @@ input, button, textarea, select, .toast { font-family: inherit; }
 
 /* Reset */
 body {
-  font-size: var(--font-size-base);
+  font-size: 18px;
   color: var(--color-text);
   background: var(--color-background);
 }
