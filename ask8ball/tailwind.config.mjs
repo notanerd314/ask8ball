@@ -3,7 +3,7 @@ export default {
   theme: {
     extend: {
       maxWidth: {
-        'max-xl': '1400px',
+        'max-xl': '1280px',
       },
       maxHeight: {
         'max-xl-height': '600px',
