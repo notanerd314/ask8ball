@@ -6,11 +6,11 @@ import { useMediaQuery } from 'react-responsive'
 // Do I even use these components?
 
 const Desktop = ({ children }: { children: React.ReactNode }) => {
-  const isDesktop = useMediaQuery({ minWidth: 992 })
+  const isDesktop = useMediaQuery({ minWidth: 1200 })
   return isDesktop ? children : null
 }
 const Tablet = ({ children }: { children: React.ReactNode }) => {
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 })
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1200 })
   return isTablet ? children : null
 }
 const Mobile = ({ children }: { children: React.ReactNode }) => {

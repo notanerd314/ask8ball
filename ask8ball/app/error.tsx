@@ -8,7 +8,7 @@ export default function GlobalError({ error, reset }: { error: Error, reset: () 
     <>
       <div className="absolute p-8 transform -translate-x-1/2 -translate-y-1/2 bg-white top-1/2 left-1/2 md:w-[700px] md:rounded-md w-screen">
         <div className="flex flex-row items-center gap-4">
-            <Image src="/favicon500.svg" alt="500" width={100} height={100}></Image>
+            <Image src="/favicon500.min.svg" alt="500" width={100} height={100}></Image>
           <p className="text-6xl font-bold">Something broke</p>
         </div>
         <br />
@@ -19,6 +19,16 @@ export default function GlobalError({ error, reset }: { error: Error, reset: () 
           Refresh
         </button>
       </div>
+
+      <picture>
+        <source media="(min-width: 1200px)" srcSet="/images/backgrounds/PC.jpg" />
+        <source media="(min-width: 768px)" srcSet="/images/backgrounds/iPad.jpg" />
+        <img
+          className="fixed object-cover w-screen h-screen pointer-events-none -z-1"
+          src="/images/backgrounds/Phone.jpg"
+          alt="Background"
+        />
+      </picture>
     </>
   );
 }

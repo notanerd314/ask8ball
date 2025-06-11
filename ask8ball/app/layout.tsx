@@ -16,7 +16,7 @@ export const metadata = {
   description: 'Ask the 8 Ball',
   keywords: 'fortune, magic 8 ball, eight ball',
   icons: {
-    icon: '/favicon.svg',
+    icon: '/favicon.min.svg',
   },
 };
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import Image from "next/image";
+import { Mobile, Desktop, Tablet } from "../components/utils/Responsive";
 
 import notFoundMessages from "../lib/404error"
 import { getRandomItem } from "../lib/rng"
@@ -18,16 +18,28 @@ export default function NotFound() {
 
   return (
     <>
-      <div className="absolute p-8 transform -translate-x-1/2 -translate-y-1/2 bg-white top-1/2 left-1/2 md:w-[700px] md:rounded-md w-screen">
+      <div className="absolute p-8 transform -translate-x-1/2 -translate-y-1/2 bg-white top-1/2 left-1/2 md:w-[700px] md:rounded-md w-screen shadow-xl">
         <div className="flex flex-row items-center gap-4">
-          <Image src="/favicon404.svg" alt="404" width={100} height={100}></Image>
+          <img src="/favicon404.min.svg" alt="404" width={100} height={100}></img>
           <p className="text-6xl font-bold">Not Found</p>
         </div>
+
         <br />
         <h1>{message}</h1>
         <br />
-        <button className="p-4 mx-[50%] text-white bg-indigo-500 hover:bg-indigo-600" onClick={() => window.location.replace("/")}>Go Back <ChevronRightIcon /></button>      </div>
-      <img className="fixed object-cover w-screen h-screen pointer-events-none -z-1" src="https://picsum.photos/1000/2000" alt="Background" />
+
+        <button className="p-4 mx-[50%] text-white bg-indigo-500 hover:bg-indigo-600" onClick={() => window.location.replace("/")}>Go Back <ChevronRightIcon /></button>
+      </div>
+
+      <picture>
+        <source media="(min-width: 1200px)" srcSet="/images/backgrounds/PC.jpg" />
+        <source media="(min-width: 768px)" srcSet="/images/backgrounds/iPad.jpg" />
+        <img
+          className="fixed object-cover w-screen h-screen pointer-events-none -z-1"
+          src="/images/backgrounds/Phone.jpg"
+          alt="Background"
+        />
+      </picture>
     </>
   )
 }
