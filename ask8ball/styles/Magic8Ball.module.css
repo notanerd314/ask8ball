@@ -16,7 +16,7 @@
 .eightBall {  
   position: relative;
 
-  width: min(70vw, 70vh);
+  width: min(65vw, 65vh);
   aspect-ratio: 1 / 1;
 
   cursor: pointer;
@@ -75,19 +75,19 @@
 }
 
 /* Media Queries */
-@media screen and (max-width: 1400px), (max-height: 1400px) {
+@media screen and (max-width: 1279px), (max-height: 1400px) {
   .askQuestionInput input {
     width: 20rem;
   }
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1279px) {
   .eightBall {
     width: min(75vw, 75vh);
   }
 
   .eightBallWrapper {
     width: 100%;
-    min-height: 80vh;
+    min-height: 92vh;
   }
 }

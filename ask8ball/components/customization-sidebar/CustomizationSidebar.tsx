@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from 'react';
-import { useGlobal } from '../context/GlobalContext';
 import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon, ChevronUpIcon } from '../utils/FontAwesome';
 import { useMediaQuery } from 'react-responsive';
 
@@ -18,7 +17,7 @@ export default function CustomizationSidebar() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  const isCompacted = useMediaQuery({ maxWidth: 1400 });
+  const isCompacted = useMediaQuery({ maxWidth: 1279 });
 
   if (!mounted) return null;
 
@@ -45,7 +44,7 @@ export default function CustomizationSidebar() {
         &nbsp;
         {isCompacted ? 'Customize' : ''}
       </button>
-  <aside ref={sidebarRef} className="w-1/4 h-[98vh] mr-3 overflow-x-hidden overflow-y-auto bg-white p-3 rounded-md shadow-xl text max-xl:w-[98%] max-xl:m-[2%] max-xl:h-[48vh] max-xl-height:h-[100vh] bg-gra" hidden={!isOpen}>
+      <aside ref={sidebarRef} className="w-1/4 h-[98vh] mr-3 overflow-x-hidden overflow-y-auto bg-white p-3 rounded-md shadow-xl text max-xl:w-[98%] max-xl:m-[2%] max-xl:h-[500px] max-xl-height:h-[100vh]" hidden={!isOpen}>
         <div className={styles.sidebarContent}>
           <SidebarNavigation currentPage={page} pages={['Customize', 'About']} setPage={setPage} />
           {page === 0 && <SidebarEditor isCompacted={isCompacted} />}
