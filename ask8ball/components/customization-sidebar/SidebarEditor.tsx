@@ -5,33 +5,12 @@ import { toast } from 'react-toastify';
 import { PlusIcon, TrashCanIcon } from '../utils/FontAwesome';
 
 type SidebarEditorItemProps = {
-  /**
-   * The answer to be displayed in the item
-   */
   answer: string;
-  /**
-   * The index of the item in the list of answers
-   */
   index: number;
-  /**
-   * A function to update the answer with a new value
-   */
   updateAnswer: (index: number, value: string) => void;
-  /**
-   * A function to delete the answer at the given index
-   */
   deleteAnswer: (index: number) => void;
-  /**
-   * A function to add a new answer to the list
-   */
   addAnswer: () => void;
-  /**
-   * A boolean indicating whether the sidebar is compacted
-   */
   isCompacted: boolean;
-  /**
-   * The current state of the 8 ball
-   */
   ballCurrentState: string;
 }
 
@@ -75,7 +54,7 @@ export const SidebarEditorItem = forwardRef<HTMLInputElement, SidebarEditorItemP
     }
 
     return (
-      <div className={styles.editorItem}>
+      <div className="flex gap-2">
         <input
           value={answer}
           style={{ flex: 1 }}
