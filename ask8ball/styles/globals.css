@@ -59,6 +59,11 @@ body {
   background: var(--color-background);
 }
 
+.eightBallMain {
+  background-image: radial-gradient(#9c9c9c 1px, transparent 1px);
+  background-size: 15px 15px;
+}
+
 h1,
 h2,
 h3,
@@ -70,10 +75,6 @@ p {
   text-wrap: wrap;
 }
 
-main {
-  transform: translateX(-50%);
-  max-width: 1200px;
-}
 /* Form Elements */
 input,
 textarea {

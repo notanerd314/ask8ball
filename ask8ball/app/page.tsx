@@ -12,8 +12,11 @@ import { ToastContainer, Slide } from 'react-toastify'
 export default function Page() {
   return (
     <>
+      <div className='flex flex-row items-center p-4 w-full h-16 bg-indigo-500 z-50'>
+        <h1>balls</h1>
+      </div>
       <GlobalProvider>
-        <div className="flex flex-col items-center w-full h-auto mb-5 overflow-hidden xl:flex-row xl:h-full">
+        <div className="flex flex-col items-center w-full h-auto mb-10 overflow-hidden xl:flex-row xl:h-full eightBallMain">
           <Magic8Ball />
           <CustomizationSidebar />
         </div>
@@ -21,13 +24,10 @@ export default function Page() {
       </GlobalProvider>
 
       {/* Article for SEO shit */}
-      <main className="relative min-w-0 left-1/2">
+      <main className="w-full p-0">
         <section>
-          <header className='flex flex-col items-center justify-center gap-4'>
-            <h1 className='text-5xl font-bold'>What Our Users Say</h1>
-            <a className='flex gap-3 text-indigo-500 rounded-md text-md hover:text-indigo-700' href='/reviews'><ExternalLinkIcon />See more reviews</a>
-          </header>
-          <div className='grid gap-4 p-4' style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
+          <h1 className='text-5xl font-bold text-center'>What Our Users Say</h1>
+          <div className='grid gap-4 p-4 justify-center' style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 300px))' }}>
             <UserReview
               quote="It says I'm the most handsome guy ever, but I'm not."
               author='Jake Miller'
