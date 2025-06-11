@@ -12,6 +12,14 @@ import { EightBallThoughts } from '../../lib/thoughts';
 
 import { toast } from 'react-toastify';
 
+function TapToShake({shakeCount}: {shakeCount: number}) {
+  return (
+    <>
+      {shakeCount === 0 && <p className='p-3 px-6 text-3xl font-bold text-center text-white bg-indigo-500 rounded-md wiggle'>Tap me to shake!</p>}
+    </>
+  );
+}
+
 /**
  * The main final boss
  * 
@@ -70,7 +78,7 @@ function Magic8Ball() {
     };
 
     thoughtsLoop();
- 
+
     return () => {
       if (thoughtsTimeoutRef.current) clearTimeout(thoughtsTimeoutRef.current);
     };
@@ -152,7 +160,8 @@ function Magic8Ball() {
             {ballCurrentState !== "error" ? answer : ">:("}
           </ResizableText>
         </button>
-        {shakeCount === 0 && <p className='p-2 px-4 text-3xl font-bold text-center text-white bg-indigo-500 rounded-md wiggle'>Tap me to shake!</p>}
+
+        <TapToShake shakeCount={shakeCount} />
       </div>
     </>
   )
