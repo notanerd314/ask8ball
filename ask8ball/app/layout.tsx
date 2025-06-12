@@ -3,8 +3,6 @@ import 'normalize.css';
 import { DM_Sans } from 'next/font/google';
 import '../styles/globals.css'
 
-
-
 const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800'],
@@ -32,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={dmSans.style}>
+      <body style={dmSans.style} className="bg-slate-50 text-slate-900 dark:bg-slate-800 dark:text-slate-100">
         {children}
       </body>
     </html>

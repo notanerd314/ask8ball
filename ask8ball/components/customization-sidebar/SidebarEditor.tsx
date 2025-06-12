@@ -57,7 +57,7 @@ export const SidebarEditorItem = forwardRef<HTMLInputElement, SidebarEditorItemP
       <div className="flex gap-2">
         <input
           value={answer}
-          style={{ flex: 1 }}
+          className='flex-1 dark:bg-slate-700'
           ref={ref}  // just assign the forwarded ref here
           onChange={e => updateAnswer(index, e.target.value)}
           onKeyDown={e => checkKeyThenAction(e, index)}
@@ -142,11 +142,7 @@ export default function SidebarEditor({ isCompacted }: { isCompacted: boolean })
   return (
     <>
       <div className={styles.editorHeader}>
-        <button className='buttonGreen' onClick={addAnswer} disabled={ballCurrentState === "shaking"}>
-          <PlusIcon size={16} /> Add a response
-        </button>
-
-        <button className='buttonRed' onClick={deleteAllAnswers} disabled={ballCurrentState === "shaking"}>
+        <button className='buttonNormal' onClick={deleteAllAnswers} disabled={ballCurrentState === "shaking" || allAnswers.length < 1}>
           <TrashCanIcon size={16} /> Delete all responses
         </button>
       </div>
@@ -168,7 +164,9 @@ export default function SidebarEditor({ isCompacted }: { isCompacted: boolean })
           />
         ))}
       </div>
-
+        <button className='buttonGreen' onClick={addAnswer} disabled={ballCurrentState === "shaking"}>
+          <PlusIcon size={16} /> Add a response
+        </button>
       <SidebarEditorFooter allAnswers={allAnswers} />
     </>
   )
