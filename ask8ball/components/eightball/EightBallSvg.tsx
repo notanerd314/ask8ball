@@ -66,8 +66,8 @@ export const EightBallSvg: React.FC<Props> = ({ currentState, diceStyle }) => {
       <path fill="#262D2D" d="M568.2 331.8c-71.3-3.3-131 54-127.5 122.6-3.5 68.5 56.2 125.9 127.5 122.6 71.3 3.3 131-54.1 127.5-122.6 3.5-68.5-56.2-125.9-127.5-122.6zm0 237.8c-66.8 2.1-122-51-119.6-115-2.2-64.2 53-117.3 119.6-115 66.8-2 122 51 119.6 115 2.5 64-52.8 117.1-119.6 115z" />
       <path fill={canShowResult ? "#303084" : canShowError ? "#FF0000" : "none"} style={diceStyle} ref={diceRef} stroke="transparent" d="M481.3 402.7c-3.1-5.7.3-10.4 8.2-10.7 50.6-1.6 107.6-1.6 157.4.3 7.6.2 11 5.2 7.9 10.6a2332.4 2332.4 0 0 1-80 131.1c-3.6 5.7-9.6 5.7-13.3 0a2645.3 2645.3 0 0 1-80.1-131.3z" />
 
-      <ellipse cx="570" cy="420.4" fill="#fff" stroke="#141919" strokeWidth="15" rx="36" ry="34.5" opacity={canShowDefault ? "1" : "0"} />
-      <ellipse cx="570" cy="489.4" fill="#fff" stroke="#141919" strokeWidth="15" rx="36" ry="34.5" opacity={canShowDefault ? "1" : "0"} />
+      <ellipse cx="570" cy="425.4" fill="none" stroke="#141919" strokeWidth="20" rx="30" ry="30" opacity={canShowDefault ? "1" : "0"} />
+      <ellipse cx="570" cy="485.4" fill="none" stroke="#141919" strokeWidth="20" rx="30" ry="30" opacity={canShowDefault ? "1" : "0"} />
     </svg>
   )
 }
