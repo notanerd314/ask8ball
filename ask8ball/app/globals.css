@@ -52,7 +52,7 @@ input, button, textarea, select, .toast { font-family: inherit; }
 
 /* Reset */
 body {
-  font-size: 18px;
+  font-size: clamp(15px, 2.5vw, 20px);
 }
 
 .eightBallMain {
@@ -85,7 +85,7 @@ p {
 /* Form Elements */
 input,
 textarea {
-  @apply p-2 border-2 rounded-md bg-slate-200 dark:bg-slate-800 dark:border-slate-600 border-slate-300;
+  @apply p-3 border-2 rounded-md bg-slate-200 dark:bg-slate-800 dark:border-slate-600 border-slate-300;
 }
 
 input:focus,

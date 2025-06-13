@@ -10,9 +10,11 @@ import textStyles from '../../styles/EightBallText.module.css'
 import { getRandomItem, getRandomInt } from '../../lib/rng';
 import { EightBallThoughts } from '../../lib/thoughts';
 
+import { ReplyIcon } from '../utils/FontAwesome';
+
 import { toast } from 'react-toastify';
 
-function TapToShake({shakeCount}: {shakeCount: number}) {
+function TapToShake({ shakeCount }: { shakeCount: number }) {
   return (
     <>
       {shakeCount === 0 && <p className='p-3 px-6 text-3xl font-bold text-center text-white bg-indigo-500 rounded-md wiggle'>Tap me to shake!</p>}
@@ -92,14 +94,6 @@ function Magic8Ball() {
    */
   const shakeEightBall = () => {
     setShakeCount(shakeCount + 1);
-
-    if (ballCurrentState === "shaking") {
-      // If the 8 ball is already shaking, don't do anything
-      errorRef.current?.play();
-      toast.info("I am already shaking. Be patient!", { toastId: "already-shaking" });
-      return;
-    }
-
     setEightBallDiceStyle({ opacity: "0", transition: "none" });
 
     if (allAnswers.length < 1) {
@@ -139,11 +133,14 @@ function Magic8Ball() {
     <>
       {/* The 8 ball wrapper */}
       <div className={styles.eightBallWrapper}>
+        <TapToShake shakeCount={shakeCount} />
+
         {/* The 8 ball button */}
         <button
           id="eightBallWrapper"
           onClick={shakeEightBall}
           className={`${styles.eightBall} ${ballCurrentState === "shaking" ? styles.shake : ''}`}
+          disabled={ballCurrentState === "shaking"}
         >
           {/* The 8 ball SVG */}
           <EightBallSvg currentState={ballCurrentState} diceStyle={eightBallDiceStyle} />
@@ -160,8 +157,13 @@ function Magic8Ball() {
             {ballCurrentState !== "error" ? answer : ">:("}
           </ResizableText>
         </button>
-
-        <TapToShake shakeCount={shakeCount} />
+        <div className='flex flex-row gap-1'>
+          <input className='!text-[1.5rem] w-[70vw] lg:w-[30rem]' ref={questionRef} type='text' placeholder='Ask a question...' disabled={ballCurrentState === "shaking"}></input>
+          <button className='!text-2xl buttonBlue' disabled={ballCurrentState === "shaking"} onClick={shakeEightBall}>
+            <ReplyIcon />
+          </button>
+        </div>
+        <button className='buttonGreen'>Share this result!</button>
       </div>
     </>
   )

@@ -69,8 +69,7 @@ export const SidebarEditorItem = forwardRef<HTMLInputElement, SidebarEditorItemP
           disabled={ballCurrentState === "shaking"}
           onClick={() => deleteAnswer(index)}
         >
-          <TrashCanIcon size={20} color='#ffffff' />
-          {!isCompacted ? '' : 'Delete'}
+          <TrashCanIcon size={24} color='#ffffff' />
         </button>
       </div>
     )

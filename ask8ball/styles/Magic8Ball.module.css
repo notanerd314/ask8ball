@@ -16,7 +16,7 @@
 .eightBall {  
   position: relative;
 
-  width: min(65vw, 65vh);
+  width: min(60vw, 60vh);
   aspect-ratio: 1 / 1;
 
   cursor: pointer;
@@ -83,11 +83,17 @@
 
 @media screen and (max-width: 1279px) {
   .eightBall {
-    width: min(75vw, 75vh);
+    width: min(67vw, 67vh);
   }
 
   .eightBallWrapper {
     width: 100%;
     min-height: 92vh;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .eightBall {
+    width: min(80vw, 80vh);
   }
 }

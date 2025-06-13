@@ -44,7 +44,7 @@ export default function CustomizationSidebar() {
 
         {isCompacted ? 'Customize' : ''}
       </button>
-      <aside ref={sidebarRef} className="w-1/4 h-[98vh] mr-3 overflow-x-hidden overflow-y-auto bg-slate-100 p-4 rounded-md shadow-xl text max-xl:w-[98%] max-xl:m-[2%] max-xl:h-[500px] max-xl-height:h-[100vh] dark:bg-slate-900" hidden={!isOpen}>
+      <aside ref={sidebarRef} className="xl:w-1/4 xl:h-[98vh] xl:mr-3 overflow-x-hidden overflow-y-auto bg-slate-100 p-4 rounded-md shadow-xl w-[98%] m-[2%] xl:ml-0 h-[500px] dark:bg-slate-900" hidden={!isOpen}>
         <div className={styles.sidebarContent}>
           <SidebarNavigation currentPage={page} pages={['Entries', 'Results']} setPage={setPage} />
           {page === 0 && <SidebarEditor isCompacted={isCompacted} />}

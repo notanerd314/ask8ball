@@ -1,4 +1,3 @@
-import '../styles/globals.css'
 import Magic8Ball from '../components/eightball/Magic8Ball'
 import CustomizationSidebar from '../components/customization-sidebar/CustomizationSidebar'
 import UserReview from '../components/common/UserReviews'
@@ -13,7 +12,7 @@ export default function Page() {
   return (
     <>
       <GlobalProvider>
-        <div className="flex flex-col items-center w-full h-auto mb-10 overflow-hidden xl:flex-row xl:h-full eightBallMain">
+        <div className="flex flex-col items-center w-full h-auto mb-10 overflow-hidden xl:flex-row xl:h-full gap-0 eightBallMain">
           <Magic8Ball />
           <CustomizationSidebar />
         </div>
