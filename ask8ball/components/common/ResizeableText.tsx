@@ -50,7 +50,7 @@ const ResizableText = ({
   return (
     <p
       ref={textRef}
-      className={"overflow-hidden " + className}
+      className={"overflow-hidden text-wrap " + className}
       style={{
         fontSize: fontSize + 'px',
         maxWidth: maxWidth + 'px',

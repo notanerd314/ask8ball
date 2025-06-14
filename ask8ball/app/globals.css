@@ -95,7 +95,7 @@ textarea:focus {
 
 /* Buttons */
 button {
-  @apply flex items-center justify-center gap-2 p-3 px-4 rounded-md cursor-pointer;
+  @apply flex items-center justify-center gap-2 py-3 px-4 rounded-md cursor-pointer;
 }
 
 button:disabled {
@@ -126,6 +126,10 @@ button:disabled {
 
 .buttonNav.active {
   @apply border-indigo-500;
+}
+
+.buttonPaddingSmall {
+  @apply px-3 py-2;
 }
 
 /* Toast */

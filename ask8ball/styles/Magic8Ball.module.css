@@ -23,12 +23,23 @@
   border-radius: 50%;
   box-shadow: 0 0 40px #000;
   overflow: hidden;
-  background-color: black;
+  background-size: 100% 100%;
+  background: radial-gradient(
+  circle at 5% 5%,
+  rgb(59, 59, 59),
+  rgba(0, 0, 0),
+  #000
+);
+
   transition: transform var(--transition-normal);
 }
 
 .eightBall:hover {
   transform: scale(1.05);
+}
+
+.eightBall:active {
+  transform: scale(.95);
 }
 
 .eightBall.shake {

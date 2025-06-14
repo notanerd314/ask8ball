@@ -10,16 +10,25 @@ import textStyles from '../../styles/EightBallText.module.css'
 import { getRandomItem, getRandomInt } from '../../lib/rng';
 import { EightBallThoughts } from '../../lib/thoughts';
 
-import { ReplyIcon } from '../utils/FontAwesome';
+import { CloseIcon } from '../utils/FontAwesome';
 
-import { toast } from 'react-toastify';
+async function getAnswer(question: string) {
+  const res = await fetch("/api/ask-ai", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ question: question }),
+  });
+
+
+  const data = await res.json();
+  console.log(data);
+  return data.response;
+}
 
 function TapToShake({ shakeCount }: { shakeCount: number }) {
-  return (
-    <>
-      {shakeCount === 0 && <p className='p-3 px-6 text-3xl font-bold text-center text-white bg-indigo-500 rounded-md wiggle'>Tap me to shake!</p>}
-    </>
-  );
+  return <p className='p-3 px-6 text-3xl font-bold text-center text-white bg-indigo-500 rounded-md wiggle' hidden={shakeCount > 0}>Click me to reveal your destiny.</p>
 }
 
 /**
@@ -44,12 +53,12 @@ function Magic8Ball() {
 
   // The current state of the 8 ball
   const {
-    allAnswers,
     answer,
     setAnswer,
     ballCurrentState,
     setBallCurrentState,
     diceSize,
+    question,
     setQuestion,
   } = useGlobal();
 
@@ -92,31 +101,17 @@ function Magic8Ball() {
    * 
    * @returns void
    */
-  const shakeEightBall = () => {
-    setShakeCount(shakeCount + 1);
+  const shakeEightBall = async () => {
+    const currentQuestion = questionRef.current?.value || "[No question]";
+
+    setQuestion(currentQuestion);
     setEightBallDiceStyle({ opacity: "0", transition: "none" });
-
-    if (allAnswers.length < 1) {
-      // If there are no responses, show an error message
-      setBallCurrentState("error");
-      errorRef.current?.play();
-      setEightBallDiceStyle({ opacity: "1", transition: "none" });
-      toast.error(
-        "How am I supposed to work if I have no answers to choose from?",
-        { toastId: "no-responses", autoClose: 4500 }
-      );
-      return;
-    }
-
-    console.log("Shook eight ball like your balls");
-    // Play the shaking sound
-    shakeSoundRef.current?.play();
-    // Set the state of the 8 ball to "shaking"
     setBallCurrentState("shaking");
-    // Generate a random answer from the list of responses
-    setAnswer(getRandomItem(allAnswers));
-    // Set the question to the value of the input field
-    setQuestion(questionRef.current?.value || "No question");
+
+    setAnswer(await getAnswer(currentQuestion));
+
+    setShakeCount(shakeCount + 1);
+    shakeSoundRef.current?.play();
 
     // After 2 seconds, set the state of the 8 ball to "result"
     setTimeout(() => {
@@ -127,6 +122,22 @@ function Magic8Ball() {
         console.log("Shown result")
       }, 500)
     }, 2000);
+  }
+
+  const deleteAnswer = () => {
+    if (questionRef.current) {
+      questionRef.current.value = "";
+    }
+
+    setAnswer("");
+  }
+
+  const checkKeys = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      shakeEightBall();
+    } else if (e.key === 'Delete') {
+      deleteAnswer();
+    }
   }
 
   return (
@@ -140,13 +151,14 @@ function Magic8Ball() {
           id="eightBallWrapper"
           onClick={shakeEightBall}
           className={`${styles.eightBall} ${ballCurrentState === "shaking" ? styles.shake : ''}`}
+          title='Click me to reveal your destiny.'
           disabled={ballCurrentState === "shaking"}
         >
           {/* The 8 ball SVG */}
           <EightBallSvg currentState={ballCurrentState} diceStyle={eightBallDiceStyle} />
           {/* The text inside the 8 ball */}
           <ResizableText
-            minFontSize={10}
+            minFontSize={18}
             initialFontSize={40}
             maxWidth={diceSize.width}
             maxHeight={diceSize.height}
@@ -157,13 +169,13 @@ function Magic8Ball() {
             {ballCurrentState !== "error" ? answer : ">:("}
           </ResizableText>
         </button>
-        <div className='flex flex-row gap-1'>
-          <input className='!text-[1.5rem] w-[70vw] lg:w-[30rem]' ref={questionRef} type='text' placeholder='Ask a question...' disabled={ballCurrentState === "shaking"}></input>
-          <button className='!text-2xl buttonBlue' disabled={ballCurrentState === "shaking"} onClick={shakeEightBall}>
-            <ReplyIcon />
+
+        <div className='flex flex-row gap-1 mt-2.5'>
+          <input className='!text-[1.5rem] w-[70vw] lg:w-[30rem]' ref={questionRef} type='text' placeholder='Ask a question...' onKeyDown={(e) => checkKeys(e)} disabled={ballCurrentState === "shaking"}></input>
+          <button className='!text-2xl buttonRed' disabled={ballCurrentState === "shaking"} onClick={deleteAnswer}>
+            <CloseIcon />
           </button>
         </div>
-        <button className='buttonGreen'>Share this result!</button>
       </div>
     </>
   )

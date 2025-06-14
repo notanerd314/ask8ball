@@ -140,8 +140,8 @@ export default function SidebarEditor({ isCompacted }: { isCompacted: boolean })
 
   return (
     <>
-      <div className={styles.editorHeader}>
-        <button className='buttonNormal' onClick={deleteAllAnswers} disabled={ballCurrentState === "shaking" || allAnswers.length < 1}>
+      <div className="flex flex-wrap gap-2 text-[0.7em]">
+        <button className='buttonNormal buttonPaddingSmall' onClick={deleteAllAnswers} disabled={ballCurrentState === "shaking" || allAnswers.length < 1}>
           <TrashCanIcon size={16} /> Delete all responses
         </button>
       </div>

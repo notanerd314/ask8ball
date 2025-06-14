@@ -1,12 +1,9 @@
 import Magic8Ball from '../components/eightball/Magic8Ball'
-import CustomizationSidebar from '../components/customization-sidebar/CustomizationSidebar'
 import UserReview from '../components/common/UserReviews'
-import { ExternalLinkIcon } from '../components/utils/FontAwesome'
 
 import { GlobalProvider } from '../components/context/GlobalContext'
 
 import { ToastContainer, Slide } from 'react-toastify'
-
 
 export default function Page() {
   return (
@@ -14,9 +11,8 @@ export default function Page() {
       <GlobalProvider>
         <div className="flex flex-col items-center w-full h-auto mb-10 overflow-hidden xl:flex-row xl:h-full gap-0 eightBallMain">
           <Magic8Ball />
-          <CustomizationSidebar />
+          {/* <CustomizationSidebar /> */}
         </div>
-
       </GlobalProvider>
 
       {/* Article for SEO shit */}
