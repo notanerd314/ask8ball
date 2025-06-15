@@ -31,6 +31,40 @@ function TapToShake({ shakeCount }: { shakeCount: number }) {
   return <p className='p-3 px-6 text-3xl font-bold text-center text-white bg-indigo-500 rounded-md wiggle' hidden={shakeCount > 0}>Click me to reveal your destiny.</p>
 }
 
+function QuestionInput({ ballCurrentState, shakeEightBall }: { ballCurrentState: string, shakeEightBall: () => void }) {
+  const questionRef = useRef<HTMLInputElement>(null);
+  const { setQuestion } = useGlobal();
+
+  const checkKeys = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      shakeEightBall();
+    } else if (e.key === 'Delete') {
+      deleteQuestion();
+    }
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value; // ✅ No error now
+    setQuestion(value);
+  };
+
+  const deleteQuestion = () => {
+    if (questionRef.current) {
+      questionRef.current.value = "";
+    }
+    setQuestion("");
+  }
+
+  return (
+    <div className='flex flex-row gap-1 mt-2.5'>
+      <input className='!text-[1.5rem] w-[70vw] lg:w-[30rem]' ref={questionRef} type='text' placeholder='Ask a question...' onChange={(e) => handleChange(e)} onKeyDown={(e) => checkKeys(e)} disabled={ballCurrentState === "shaking"}></input>
+      <button className='!text-2xl buttonRed' disabled={ballCurrentState === "shaking"} onClick={deleteQuestion} title='Clear question'>
+        <CloseIcon />
+      </button>
+    </div>
+  )
+}
+
 /**
  * The main final boss
  * 
@@ -59,7 +93,6 @@ function Magic8Ball() {
     setBallCurrentState,
     diceSize,
     question,
-    setQuestion,
   } = useGlobal();
 
   // The style of the 8 ball
@@ -102,13 +135,10 @@ function Magic8Ball() {
    * @returns void
    */
   const shakeEightBall = async () => {
-    const currentQuestion = questionRef.current?.value || "[No question]";
-
-    setQuestion(currentQuestion);
     setEightBallDiceStyle({ opacity: "0", transition: "none" });
     setBallCurrentState("shaking");
 
-    setAnswer(await getAnswer(currentQuestion));
+    setAnswer(await getAnswer(question));
 
     setShakeCount(shakeCount + 1);
     shakeSoundRef.current?.play();
@@ -122,22 +152,6 @@ function Magic8Ball() {
         console.log("Shown result")
       }, 500)
     }, 2000);
-  }
-
-  const deleteAnswer = () => {
-    if (questionRef.current) {
-      questionRef.current.value = "";
-    }
-
-    setAnswer("");
-  }
-
-  const checkKeys = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      shakeEightBall();
-    } else if (e.key === 'Delete') {
-      deleteAnswer();
-    }
   }
 
   return (
@@ -170,12 +184,8 @@ function Magic8Ball() {
           </ResizableText>
         </button>
 
-        <div className='flex flex-row gap-1 mt-2.5'>
-          <input className='!text-[1.5rem] w-[70vw] lg:w-[30rem]' ref={questionRef} type='text' placeholder='Ask a question...' onKeyDown={(e) => checkKeys(e)} disabled={ballCurrentState === "shaking"}></input>
-          <button className='!text-2xl buttonRed' disabled={ballCurrentState === "shaking"} onClick={deleteAnswer}>
-            <CloseIcon />
-          </button>
-        </div>
+        {/* The input field */}
+        <QuestionInput ballCurrentState={ballCurrentState} shakeEightBall={shakeEightBall} />
       </div>
     </>
   )
