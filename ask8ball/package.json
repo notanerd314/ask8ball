@@ -18,7 +18,8 @@
     "react-dom": "^19.0.0",
     "react-resizable-panels": "^3.0.2",
     "react-responsive": "^10.0.1",
-    "react-toastify": "^11.0.5"
+    "react-toastify": "^11.0.5",
+    "use-sound": "^5.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

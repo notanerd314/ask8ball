@@ -51,6 +51,10 @@ export default function Page() {
             />
           </div>
         </section>
+
+        <section>
+          <h1 className='text-5xl font-bold text-center'>Frequently Asked Questions</h1>
+        </section>
       </main>
 
       <ToastContainer

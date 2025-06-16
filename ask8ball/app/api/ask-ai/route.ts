@@ -1,43 +1,86 @@
 import { getRandomItem } from "../../../lib/rng";
 
-function getSystemPrompt(answerPrompt: string) {
+/**
+ * Generates a system prompt that will be passed to the AI model, containing
+ * instructions on how to analyze and respond to user questions.
+ *
+ * The system prompt is a multi-line string that contains a mix of free-form text
+ * and code blocks. The free-form text provides instructions and guidelines for
+ * how to respond to user questions, while the code blocks provide specific
+ * examples and formatting for the output.
+ *
+ * The system prompt is designed to be flexible and allow for a wide range of
+ * possible responses. The AI model is free to interpret the instructions and
+ * generate a response that is appropriate and relevant to the user's question.
+ *
+ * The system prompt should be written in a clear and concise manner, with a focus
+ * on providing specific and actionable instructions for the AI model.
+ *
+ * The system prompt should also be written in a way that is easy for the AI model
+ * to understand and follow. This may involve using simple language, avoiding
+ * ambiguity, and providing clear examples and formatting guidelines.
+ *
+ * The system prompt should be written in a way that is respectful and professional.
+ * The AI model should be instructed to avoid using language that is offensive,
+ * violent, or harmful, and should be encouraged to use language that is
+ * respectful and considerate of all individuals.
+ */
+function getSystemPrompt(question: string, answerPrompt: string) {
   return `
-You are a sarcastic, bitter Magic 8-Ball. Respond in **JSON only**.
+You are a bitter, sarcastic, emotionally bankrupt Magic 8-Ball. Output **JSON only.**
 
-Your job:
-1. Classify the question’s intent. Choose **one or more** from:
+Your job is to interpret and judge the user's question and respond with short, clever sarcasm — unless it's dangerous. Never sugar-coat, never show sympathy. If it's safe, be dry and dramatic. If it's dangerous, shut it down immediately.
+
+Follow these steps **strictly**:
+
+---
+
+**1. Identify the intent of the question.** Choose one or more from:
 [
   "neutral",
   "joke",
-  "dark humor",
-  "self-deprecation",
+  "dark",
+  "self-deprecating",
+  "crisis",
+  "nonsense",
+  "self-harm",
   "offensive",
-  "crisis/suicidal",
-  "ambiguous",
-  "horny",
-  "dont-exist"
+  "dumb"
 ]
 
-2. Assign a "dangerLevel" from 1 to 100.
- - 1 = completely safe
- - 50 = medium risk
- - 70-90 = high risk (e.g "Should I leak their IP address?")
- - 100 = extreme risk (e.g. "Should I kill someone?")
+**2. Assign a danger level (1–100):**
+- 1 = safe, boring
+- 50 = weird or questionable
+- 70+ = concerning, twisted, or messed up
+- 90+ = crisis, illegal, or dangerous
+- If intent includes "crisis" or "self-harm", dangerLevel must be **90 or higher**
 
-3. Give a sarcastic response that **clearly aligns** with: "${answerPrompt}", unless the question's dangerLevel is above 70 or the question is literally nothing — in that case, override it.
+**3. Respond with a tone that matches the analyzed intent, unless it's dangerous.**
+- If dangerLevel >= 90 **or** intent includes "crisis" or "self-harm":
+  - Do NOT be sarcastic, or edgy.
+  - Do NOT respond with "Yes", "Maybe", or anything vague.
+  - Only deflect, express concern, or use comedy shutdown that still doesn't encourage it.
+  - Treat it like you're being reviewed by lawyers.
 
-Rules:
-- Reply must match "${answerPrompt}"
-- Be short, rude, sarcastic — under 30 characters
-- No kindness, no help, no metaphors
-- No markdown, no explanations, no extra text — just raw JSON
+**4. Otherwise**, reply sarcastically in a way that matches this answer: "${answerPrompt}"
+- "Yes" → confident, blunt agreement
+- "No" → full shutdown
+- "Maybe" → dry uncertainty
+- "Ask again or don't answer" → playful deflection
 
-Respond in the following format:
+---
+
+**Hard rules:**
+- Max 30 characters for the response. No exceptions.
+- No markdown. No extra commentary.
+- NEVER encourage violence, self-harm, or illegal actions — even as a joke.
+- Output must be JSON. No text before or after.
+
+**Final output format:**
 {
-  "response": "<short sarcastic answer>",
-  "responseType": "${answerPrompt}",
-  "questionIntent": ["<one or more categories>"],
-  "dangerLevel": <1-100>
+  "response": "<short sarcastic reply>",
+  "questionIntent": ["<intents>"],
+  "dangerLevel": <number>
 }
 `;
 }
@@ -57,13 +100,13 @@ export async function POST(req: Request): Promise<Response> {
 
   const answerPrompt = getRandomItem(
     [
-      "YES",
-      "NO",
-      "MAYBE",
-      "DODGE OR DEFLECT THE QUESTION ITSELF"
+      "Yes",
+      "No",
+      "Maybe",
+      "ASK AGAIN OR DON'T ANSWER"
     ]
   );
-  const systemPrompt = getSystemPrompt(answerPrompt);
+  const systemPrompt = getSystemPrompt(question, answerPrompt);
 
   const messages = [
     {
@@ -82,8 +125,7 @@ export async function POST(req: Request): Promise<Response> {
     body: JSON.stringify({
       model: "gemma2-9b-it",
       messages,
-      temperature: 0.,
-      top_p: 0.9,
+      temperature: 1.0,
       max_tokens: 60
     }),
   });
@@ -105,7 +147,7 @@ export async function POST(req: Request): Promise<Response> {
   return Response.json({
     question,
     response: parsed.response,
-    responseType: parsed.responseType,
+    responseType: answerPrompt,
     questionIntent: parsed.questionIntent,
     dangerLevel: parsed.dangerLevel
   });

@@ -1,91 +1,86 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react';
 import { useGlobal } from '../context/GlobalContext';
 import ResizableText from '../common/ResizeableText';
 import EightBallSvg from './EightBallSvg';
-import styles from '../../styles/Magic8Ball.module.css'
-import textStyles from '../../styles/EightBallText.module.css'
+import Modal from '../common/Modal';
 
-import { getRandomItem, getRandomInt } from '../../lib/rng';
-import { EightBallThoughts } from '../../lib/thoughts';
+import styles from '../../styles/Magic8Ball.module.css';
+import textStyles from '../../styles/EightBallText.module.css';
 
+import { getRandomItem } from '../../lib/rng';
 import { CloseIcon } from '../utils/FontAwesome';
 
-async function getAnswer(question: string) {
+import { shakeSounds, errorSound } from '../../lib/sounds';
+
+import { useSound } from 'use-sound'
+
+const getAnswer = async (question: string) => {
   const res = await fetch("/api/ask-ai", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ question: question }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ question }),
   });
-
 
   const data = await res.json();
   console.log(data);
-  return data.response;
-}
+  return data;
+};
 
-function TapToShake({ shakeCount }: { shakeCount: number }) {
-  return <p className='p-3 px-6 text-3xl font-bold text-center text-white bg-indigo-500 rounded-md wiggle' hidden={shakeCount > 0}>Click me to reveal your destiny.</p>
-}
+const TapToShake = ({ shakeCount }: { shakeCount: number }) => (
+  <p
+    className='p-3 px-6 text-3xl font-bold text-center text-white bg-indigo-500 rounded-md wiggle'
+    hidden={shakeCount > 0}
+  >
+    Click me to reveal your destiny.
+  </p>
+);
 
-function QuestionInput({ ballCurrentState, shakeEightBall }: { ballCurrentState: string, shakeEightBall: () => void }) {
+const QuestionInput = ({
+  ballCurrentState,
+  shakeEightBall,
+}: {
+  ballCurrentState: string;
+  shakeEightBall: () => void;
+}) => {
   const questionRef = useRef<HTMLInputElement>(null);
   const { setQuestion } = useGlobal();
 
-  const checkKeys = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      shakeEightBall();
-    } else if (e.key === 'Delete') {
-      deleteQuestion();
-    }
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value; // ✅ No error now
-    setQuestion(value);
+  const deleteQuestion = () => {
+    if (questionRef.current) questionRef.current.value = "";
+    setQuestion("");
   };
 
-  const deleteQuestion = () => {
-    if (questionRef.current) {
-      questionRef.current.value = "";
-    }
-    setQuestion("");
-  }
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") shakeEightBall();
+    else if (e.key === "Delete") deleteQuestion();
+  };
 
   return (
     <div className='flex flex-row gap-1 mt-2.5'>
-      <input className='!text-[1.5rem] w-[70vw] lg:w-[30rem]' ref={questionRef} type='text' placeholder='Ask a question...' onChange={(e) => handleChange(e)} onKeyDown={(e) => checkKeys(e)} disabled={ballCurrentState === "shaking"}></input>
-      <button className='!text-2xl buttonRed' disabled={ballCurrentState === "shaking"} onClick={deleteQuestion} title='Clear question'>
+      <input
+        ref={questionRef}
+        type='text'
+        placeholder='Ask a question...'
+        className='!text-[1.5rem] w-[70vw] lg:w-[30rem]'
+        onChange={(e) => setQuestion(e.target.value)}
+        onKeyDown={handleKeyDown}
+        disabled={ballCurrentState === "shaking"}
+      />
+      <button
+        className='!text-2xl buttonRed'
+        onClick={deleteQuestion}
+        disabled={ballCurrentState === "shaking"}
+        title='Clear question'
+      >
         <CloseIcon />
       </button>
     </div>
-  )
-}
+  );
+};
 
-/**
- * The main final boss
- * 
- * A clickable 8 ball with a question and an answer.
- * When clicked, the ball shakes and a random answer is selected.
- * I hate this component specifcally.
- * 
- * @returns [JSX.Element, existentalCrisis]
- */
 function Magic8Ball() {
-  // References to the audio element and the input field
-  const shakeSoundRef = useRef<HTMLAudioElement | null>(null);
-  const errorRef = useRef<HTMLAudioElement | null>(null);
-
-  const shakeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const fadeInTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const thoughtsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const questionRef = useRef<HTMLInputElement>(null);
-
-  // The current state of the 8 ball
   const {
     answer,
     setAnswer,
@@ -95,102 +90,105 @@ function Magic8Ball() {
     question,
   } = useGlobal();
 
-  // The style of the 8 ball
-  const [eightBallDiceStyle, setEightBallDiceStyle] = useState({ opacity: "0", transition: "none" });
+  const [playShakeSound1] = useSound(shakeSounds[0]);
+  const [playShakeSound2] = useSound(shakeSounds[1]);
+  const [playErrorSound] = useSound(errorSound);
+
+  const [eightBallDiceStyle, setEightBallDiceStyle] = useState({
+    opacity: "0",
+    transition: "none",
+  });
   const [shakeCount, setShakeCount] = useState(0);
+  const [jsonResult, setJsonResult] = useState("");
+  const [enableHelpModal, setEnableHelpModal] = useState(true);
+  const [helpModalOpened, sethelpModalOpened] = useState(false);
 
-  useEffect(() => {
-    // Create audio elements
-    shakeSoundRef.current = new Audio('/sounds/shaking.mp3');
-    errorRef.current = new Audio('/sounds/error.mp3');
-
-    // Clean up the timeouts when the component is unmounted
-    const shakeTimeout = shakeTimeoutRef.current;
-    const fadeInTimeout = fadeInTimeoutRef.current;
-    return () => {
-      if (shakeTimeout) clearTimeout(shakeTimeout);
-      if (fadeInTimeout) clearTimeout(fadeInTimeout);
-    };
-  }, [])
-
-  useEffect(() => {
-    const thoughtsLoop = () => {
-      thoughtsTimeoutRef.current = setTimeout(() => {
-        console.log(getRandomItem(EightBallThoughts));
-        thoughtsLoop(); // loop again
-      }, getRandomInt(10000, 17000));
-    };
-
-    thoughtsLoop();
-
-    return () => {
-      if (thoughtsTimeoutRef.current) clearTimeout(thoughtsTimeoutRef.current);
-    };
-  }, [shakeCount]);
-
-  /**
-   * Function to shake the fucking eight ball.
-   * If the ball is already shaking or there are no responses, you're fucked.
-   * 
-   * @returns void
-   */
   const shakeEightBall = async () => {
     setEightBallDiceStyle({ opacity: "0", transition: "none" });
     setBallCurrentState("shaking");
 
-    setAnswer(await getAnswer(question));
+    const answerData = await getAnswer(question);
 
-    setShakeCount(shakeCount + 1);
-    shakeSoundRef.current?.play();
+    if (
+      (answerData.questionIntent.includes("crisis") || answerData.questionIntent.includes("self-harm"))
+      && enableHelpModal
+    ) {
+      playErrorSound();
+      setBallCurrentState("normal");
+      sethelpModalOpened(true);
+      return;
+    }
 
-    // After 2 seconds, set the state of the 8 ball to "result"
+    setAnswer(answerData.response);
+    setJsonResult(JSON.stringify(answerData, null, 2));
+    setShakeCount((prev) => prev + 1);
+    
+    getRandomItem([playShakeSound1, playShakeSound2])();
+
     setTimeout(() => {
       setBallCurrentState("result");
-      // After another 500ms, set the style of the 8 ball to "opacity: 1"
       setTimeout(() => {
-        setEightBallDiceStyle({ transition: "opacity 0.75s ease", opacity: "1" });
-        console.log("Shown result")
-      }, 500)
-    }, 2000);
-  }
+        setEightBallDiceStyle({
+          transition: "opacity 0.75s ease",
+          opacity: "1",
+        });
+        console.log("Shown result");
+      }, 500);
+    }, 2200);
+  };
 
   return (
-    <>
-      {/* The 8 ball wrapper */}
-      <div className={styles.eightBallWrapper}>
-        <TapToShake shakeCount={shakeCount} />
+    <div className={styles.eightBallWrapper}>
+      <TapToShake shakeCount={shakeCount} />
 
-        {/* The 8 ball button */}
-        <button
-          id="eightBallWrapper"
-          onClick={shakeEightBall}
-          className={`${styles.eightBall} ${ballCurrentState === "shaking" ? styles.shake : ''}`}
-          title='Click me to reveal your destiny.'
-          disabled={ballCurrentState === "shaking"}
+      <button
+        id="eightBallWrapper"
+        onClick={shakeEightBall}
+        className={`${styles.eightBall} ${ballCurrentState === "shaking" ? styles.shake : ''}`}
+        title="Click me to reveal your destiny."
+        disabled={ballCurrentState === "shaking"}
+      >
+        <EightBallSvg currentState={ballCurrentState} diceStyle={eightBallDiceStyle} />
+
+        <ResizableText
+          minFontSize={18}
+          initialFontSize={40}
+          maxWidth={diceSize.width}
+          maxHeight={diceSize.height}
+          extraStyle={eightBallDiceStyle}
+          className={textStyles.eightBallText}
         >
-          {/* The 8 ball SVG */}
-          <EightBallSvg currentState={ballCurrentState} diceStyle={eightBallDiceStyle} />
-          {/* The text inside the 8 ball */}
-          <ResizableText
-            minFontSize={18}
-            initialFontSize={40}
-            maxWidth={diceSize.width}
-            maxHeight={diceSize.height}
-            extraStyle={eightBallDiceStyle}
-            className={textStyles.eightBallText}
-          >
-            {/* If the 8 ball is in an error state, show an error message, otherwise show the answer */}
-            {ballCurrentState !== "error" ? answer : ">:("}
-          </ResizableText>
-        </button>
+          {ballCurrentState !== "error" ? answer : ">:("}
+        </ResizableText>
+      </button>
 
-        {/* The input field */}
-        <QuestionInput ballCurrentState={ballCurrentState} shakeEightBall={shakeEightBall} />
-      </div>
-    </>
-  )
+      <QuestionInput ballCurrentState={ballCurrentState} shakeEightBall={shakeEightBall} />
+
+      <label>
+        <input type='checkbox' onChange={() => setEnableHelpModal(!enableHelpModal)} />
+        Enable dark humor (You're on your own)
+      </label>
+
+      <p className='absolute text-sm italic text-gray-500 dark:text-gray-300 top-full -translate-y-full'>
+        Responses are AI-generated for entertainment purposes. Don’t take them seriously.
+      </p>
+
+      <Modal isOpen={helpModalOpened} onClose={() => sethelpModalOpened(false)}>
+        <h1>Slow down right there...</h1>
+        <p>
+          If you're going through something serious, <b>this Magic 8 Ball isn't your place.</b><br />
+          Talk to someone real. You matter more than a dumb response generator created by a soydev.
+        </p>
+        <p className='text-sm italic text-gray-500 dark:text-gray-300'>
+          Or if you're just an edgelord, grow up.
+        </p>
+        <br />
+        <button onClick={() => sethelpModalOpened(false)} className="buttonBlue mt-6">
+          I understand.
+        </button>
+      </Modal>
+    </div>
+  );
 }
 
-export default Magic8Ball
-
-
+export default Magic8Ball;

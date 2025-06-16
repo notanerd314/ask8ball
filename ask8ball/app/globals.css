@@ -93,6 +93,14 @@ textarea:focus {
   @apply border-indigo-500 outline-none;
 }
 
+input[type="checkbox"] {
+  @apply appearance-none p-1.5 mr-2 border-2 bg-slate-200 dark:bg-slate-800 border-slate-300 dark:border-slate-600 checked:bg-green-500 text-white after:content-['✔'];
+}
+
+code {
+  @apply p-3 text-sm rounded-md shadow-md bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 border-2 border-slate-200 dark:border-slate-900;
+}
+
 /* Buttons */
 button {
   @apply flex items-center justify-center gap-2 py-3 px-4 rounded-md cursor-pointer;
