@@ -53,6 +53,8 @@ export const EightBallSvg: React.FC<Props> = ({ currentState, diceStyle }) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="348 234 440 440"
+      width="100%"
+      height="100%"
     >
       <defs>
         <linearGradient id="innerDiceBackgroundGrad" x1="100%" y1="100%" x2="0%" y2="0%">
