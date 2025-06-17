@@ -109,16 +109,6 @@ function Magic8Ball() {
 
     const answerData = await getAnswer(question);
 
-    if (
-      (answerData.questionIntent.includes("crisis") || answerData.questionIntent.includes("self-harm"))
-      && enableHelpModal
-    ) {
-      playErrorSound();
-      setBallCurrentState("normal");
-      sethelpModalOpened(true);
-      return;
-    }
-
     setAnswer(answerData.response);
     setJsonResult(JSON.stringify(answerData, null, 2));
     setShakeCount((prev) => prev + 1);
@@ -139,6 +129,8 @@ function Magic8Ball() {
 
   return (
     <div className={styles.eightBallWrapper}>
+      <code>{jsonResult}</code>
+
       <TapToShake shakeCount={shakeCount} />
 
       <button
@@ -151,7 +143,7 @@ function Magic8Ball() {
         <EightBallSvg currentState={ballCurrentState} diceStyle={eightBallDiceStyle} />
 
         <ResizableText
-          minFontSize={18}
+          minFontSize={10}
           initialFontSize={40}
           maxWidth={diceSize.width}
           maxHeight={diceSize.height}
@@ -164,14 +156,10 @@ function Magic8Ball() {
 
       <QuestionInput ballCurrentState={ballCurrentState} shakeEightBall={shakeEightBall} />
 
-      <label>
+      {/* <label>
         <input type='checkbox' onChange={() => setEnableHelpModal(!enableHelpModal)} />
         Enable dark humor (You're on your own)
-      </label>
-
-      <p className='absolute text-sm italic text-gray-500 dark:text-gray-300 top-full -translate-y-full'>
-        Responses are AI-generated for entertainment purposes. Don’t take them seriously.
-      </p>
+      </label> */}
 
       <Modal isOpen={helpModalOpened} onClose={() => sethelpModalOpened(false)}>
         <h1>Slow down right there...</h1>

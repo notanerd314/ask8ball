@@ -9,15 +9,17 @@ export default function Page() {
   return (
     <>
       <GlobalProvider>
-        <div className="flex flex-col items-center w-full h-auto mb-10 overflow-hidden xl:flex-row xl:h-full gap-0 eightBallMain">
+        <div className="flex flex-col items-center w-full h-screen mb-10 overflow-hidden gap-0 bg-gray-950 pb-1.5">
           <Magic8Ball />
-          {/* <CustomizationSidebar /> */}
+          <p className='text-sm text-gray-400'>
+            The responses is AI-generated for entertainment purposes only. Do not take this seriously.
+          </p>
         </div>
       </GlobalProvider>
 
       {/* Article for SEO shit */}
       <main className="w-full p-0">
-        <section>
+        <section aria-details=''>
           <h1 className='text-5xl font-bold text-center'>What Our Users Say</h1>
           <div className='justify-center p-4 grid gap-4' style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 300px))' }}>
             <UserReview
@@ -54,6 +56,10 @@ export default function Page() {
 
         <section>
           <h1 className='text-5xl font-bold text-center'>Frequently Asked Questions</h1>
+
+          <div className='flex flex-col items-center justify-center p-4 gap-4'>
+            <h2 className='text-2xl font-bold text-center'>How does this work?</h2>
+          </div>
         </section>
       </main>
 
