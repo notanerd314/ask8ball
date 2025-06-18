@@ -1,6 +1,6 @@
 import '../../styles/globals.css'
-import Magic8BallEmbed from '../../components/eightball/Magic8BallEmbed'
-import { GlobalProvider } from '../../components/context/GlobalContext';
+import Magic8BallEmbed from '../../ask8ball/components/eightball/Magic8BallEmbed'
+import { GlobalProvider } from '../../ask8ball/components/context/GlobalContext';
 
 export default function Page() {
   return (

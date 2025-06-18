@@ -18,7 +18,7 @@ export default function Page() {
       </GlobalProvider>
 
       {/* Article for SEO shit */}
-      <main className="w-full p-0">
+      {/* <main className="w-full p-0">
         <section aria-details=''>
           <h1 className='text-5xl font-bold text-center'>What Our Users Say</h1>
           <div className='justify-center p-4 grid gap-4' style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 300px))' }}>
@@ -61,7 +61,7 @@ export default function Page() {
             <h2 className='text-2xl font-bold text-center'>How does this work?</h2>
           </div>
         </section>
-      </main>
+      </main> */}
 
       <ToastContainer
         position='top-center'
