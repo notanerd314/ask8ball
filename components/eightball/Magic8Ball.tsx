@@ -4,7 +4,6 @@ import React, { useState, useRef } from 'react';
 import { useGlobal } from '../context/GlobalContext';
 import ResizableText from '../common/ResizeableText';
 import EightBallSvg from './EightBallSvg';
-import Modal from '../common/Modal';
 
 import styles from '../../styles/Magic8Ball.module.css';
 import textStyles from '../../styles/EightBallText.module.css';
@@ -15,6 +14,7 @@ import { CloseIcon } from '../utils/FontAwesome';
 import { shakeSounds, errorSound } from '../../lib/sounds';
 
 import { useSound } from 'use-sound'
+import { toast } from 'react-toastify';
 
 const getAnswer = async (question: string) => {
   const res = await fetch("/api/ask-ai", {
@@ -64,7 +64,6 @@ const QuestionInput = ({
         type='text'
         placeholder='Ask a question...'
         className='!text-[1.5rem] w-[70vw] lg:w-[30rem]'
-        onChange={(e) => setQuestion(e.target.value)}
         onKeyDown={handleKeyDown}
         disabled={ballCurrentState === "shaking"}
       />
@@ -100,10 +99,15 @@ function Magic8Ball() {
   });
   const [shakeCount, setShakeCount] = useState(0);
   const [jsonResult, setJsonResult] = useState("");
-  const [enableHelpModal, setEnableHelpModal] = useState(true);
-  const [helpModalOpened, sethelpModalOpened] = useState(false);
+  const [shareModalOpened, setShareModalOpened] = useState(false);
 
   const shakeEightBall = async () => {
+    if (question.length > 30) {
+      playErrorSound();
+      toast("Your question is too long.", { type: "error" });
+      return;
+    }
+
     setEightBallDiceStyle({ opacity: "0", transition: "none" });
     setBallCurrentState("shaking");
 
@@ -129,8 +133,6 @@ function Magic8Ball() {
 
   return (
     <div className={styles.eightBallWrapper}>
-      <code>{jsonResult}</code>
-
       <TapToShake shakeCount={shakeCount} />
 
       <button
@@ -155,26 +157,6 @@ function Magic8Ball() {
       </button>
 
       <QuestionInput ballCurrentState={ballCurrentState} shakeEightBall={shakeEightBall} />
-
-      {/* <label>
-        <input type='checkbox' onChange={() => setEnableHelpModal(!enableHelpModal)} />
-        Enable dark humor (You're on your own)
-      </label> */}
-
-      <Modal isOpen={helpModalOpened} onClose={() => sethelpModalOpened(false)}>
-        <h1>Slow down right there...</h1>
-        <p>
-          If you're going through something serious, <b>this Magic 8 Ball isn't your place.</b><br />
-          Talk to someone real. You matter more than a dumb response generator created by a soydev.
-        </p>
-        <p className='text-sm italic text-gray-500 dark:text-gray-300'>
-          Or if you're just an edgelord, grow up.
-        </p>
-        <br />
-        <button onClick={() => sethelpModalOpened(false)} className="buttonBlue mt-6">
-          I understand.
-        </button>
-      </Modal>
     </div>
   );
 }

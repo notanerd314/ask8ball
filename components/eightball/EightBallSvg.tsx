@@ -71,7 +71,13 @@ export const EightBallSvg: React.FC<Props> = ({ currentState, diceStyle }) => {
           <stop offset="0%" stopColor="#DBDBDB" />
           <stop offset="100%" stopColor="white" />
         </linearGradient>
+
+        <radialGradient id="bgGrad" cx="10%" cy="10%" r="70%">
+          <stop offset="0%" stopColor="rgb(59, 59, 59)" />
+          <stop offset="50%" stopColor="rgba(0, 0, 0, 1)" /> <stop offset="100%" stopColor="#000" />
+        </radialGradient>
       </defs>
+      <ellipse cx="568" cy="454" fill="url(#bgGrad)" rx="229" ry="229" />
 
       <ellipse cx="568" cy="454" fill={canShowResult ? "url(#borderGrad)" : "white"} rx="115" ry="113" />
       <path fill={canShowDefault ? "url(#innerBackgroundGrad)" : "url(#innerDiceBackgroundGrad)"} stroke="transparent" strokeMiterlimit="10" d="M678 454.4c1.4-58.6-48.9-107-109.8-105.5-61-1.4-111.2 47-109.7 105.5-1.5 58.5 48.8 106.9 109.7 105.5 61 1.4 111.2-46.7 109.7-105.5z" />

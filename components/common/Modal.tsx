@@ -38,6 +38,7 @@ export default function Modal({ isOpen, onOpen, onClose, children }: ModalProps)
             console.log('Modal onClose:', onClose);
             e.stopPropagation();
             onClose();
+            isOpen = false;
           }}
         >
           <CloseIcon size={20} />
