@@ -52,7 +52,7 @@ input, button, textarea, select, .toast { font-family: inherit; }
 
 /* Reset */
 body {
-  font-size: clamp(15px, 2.5vw, 20px);
+  font-size: 18px;
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -72,10 +72,14 @@ p {
   text-wrap: wrap;
 }
 
+a {
+  @apply cursor-pointer text-indigo-500 hover:text-indigo-400 hover:bg-white/15 bg-transparent p-2.5 py-1.5 rounded-sm
+}
+
 /* Form Elements */
 input,
 textarea {
-  @apply p-3 border-2 rounded-md bg-slate-200 dark:bg-slate-800 dark:border-slate-600 border-slate-300;
+  @apply p-3 border-1 rounded-md backdrop-blur-md bg-white/30 dark:bg-black/30 dark:border-slate-800;
 }
 
 input:focus,

@@ -53,8 +53,9 @@ export const EightBallSvg: React.FC<Props> = ({ currentState, diceStyle }) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="348 234 440 440"
+      className="absolute"
       width="100%"
-      height="100%"
+      height="110%"
     >
       <defs>
         <linearGradient id="innerDiceBackgroundGrad" x1="100%" y1="100%" x2="0%" y2="0%">
@@ -76,8 +77,14 @@ export const EightBallSvg: React.FC<Props> = ({ currentState, diceStyle }) => {
           <stop offset="0%" stopColor="rgb(59, 59, 59)" />
           <stop offset="50%" stopColor="rgba(0, 0, 0, 1)" /> <stop offset="100%" stopColor="#000" />
         </radialGradient>
+
+        <radialGradient id="shadowGrad">
+          <stop offset="93%" stopColor="oklch(62.7% 0.265 303.9)" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="rgba(0, 0, 0, 0)" />
+        </radialGradient>
       </defs>
-      <ellipse cx="568" cy="454" fill="url(#bgGrad)" rx="229" ry="229" />
+      <ellipse cx="568" cy="454" fill="url(#shadowGrad)" rx="220" ry="220" />
+      <ellipse cx="568" cy="454" fill="url(#bgGrad)" rx="203" ry="203" />
 
       <ellipse cx="568" cy="454" fill={canShowResult ? "url(#borderGrad)" : "white"} rx="115" ry="113" />
       <path fill={canShowDefault ? "url(#innerBackgroundGrad)" : "url(#innerDiceBackgroundGrad)"} stroke="transparent" strokeMiterlimit="10" d="M678 454.4c1.4-58.6-48.9-107-109.8-105.5-61-1.4-111.2 47-109.7 105.5-1.5 58.5 48.8 106.9 109.7 105.5 61 1.4 111.2-46.7 109.7-105.5z" />

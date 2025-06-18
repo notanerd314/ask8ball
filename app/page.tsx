@@ -8,10 +8,17 @@ import { ToastContainer, Slide } from 'react-toastify'
 export default function Page() {
   return (
     <>
+      <div className='fixed flex backdrop-blur-md bg-white/5 p-3.5 left-2.5 right-2.5 top-2.5 rounded-md gap-1.5 items-center border-2 border-white/10 text-[1.25rem]'>
+        <img src="/favicon.min.svg" alt="Logo" width={30} height={30}></img>
+        <p>ask8ball</p>
+        <div className='h-5 mx-1 border-l-2 border-white/10' />
+        <a href="/about">about</a>
+      </div>
+
       <GlobalProvider>
-        <div className="flex flex-col items-center w-full h-screen mb-10 overflow-hidden gap-0 bg-gray-950 pb-1.5">
+        <div className="flex flex-col items-center w-full h-screen mb-10 overflow-hidden gap-0 bg-linear-150 from-gray-950 from-40% to-purple-900 to-100% pb-1.5">
           <Magic8Ball />
-          <p className='text-sm text-gray-400'>
+          <p className='text-sm text-center text-gray-400'>
             The responses is AI-generated for entertainment purposes only. Do not take this seriously.
           </p>
         </div>
@@ -21,7 +28,7 @@ export default function Page() {
       {/* <main className="w-full p-0">
         <section aria-details=''>
           <h1 className='text-5xl font-bold text-center'>What Our Users Say</h1>
-          <div className='justify-center p-4 grid gap-4' style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 300px))' }}>
+          <div className='grid justify-center gap-4 p-4' style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 300px))' }}>
             <UserReview
               quote="It says I'm the most handsome guy ever, but I'm not."
               author='Jake Miller'
@@ -57,7 +64,7 @@ export default function Page() {
         <section>
           <h1 className='text-5xl font-bold text-center'>Frequently Asked Questions</h1>
 
-          <div className='flex flex-col items-center justify-center p-4 gap-4'>
+          <div className='flex flex-col items-center justify-center gap-4 p-4'>
             <h2 className='text-2xl font-bold text-center'>How does this work?</h2>
           </div>
         </section>

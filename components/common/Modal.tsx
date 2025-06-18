@@ -29,8 +29,8 @@ export default function Modal({ isOpen, onOpen, onClose, children }: ModalProps)
   }
 
   return (
-    <div className="fixed inset-0 w-screen h-screen overflow-hidden z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <div className="absolute overflow-auto bg-slate-100 dark:bg-slate-700 rounded-md p-6 w-2xl leading-relaxed shadow-xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center w-screen h-screen overflow-hidden bg-black/50 backdrop-blur-sm">
+      <div className="absolute p-6 overflow-auto leading-relaxed shadow-xl bg-slate-100 dark:bg-slate-700 rounded-md w-2xl">
         {children}
         <button
           className="absolute top-5 right-5 !p-2.5 buttonRed"

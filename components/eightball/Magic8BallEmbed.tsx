@@ -21,7 +21,7 @@ export default function Magic8BallEmbed() {
   }, []);
 
   return (
-    <div className="bg-white flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center h-screen bg-white">
       <h1 className="text-center font-bold m-5 text-black !text-6xl">{question}</h1>
 
       <div className="flex flex-col items-center relative rounded-full overflow-hidden my-10 w-[90%]">

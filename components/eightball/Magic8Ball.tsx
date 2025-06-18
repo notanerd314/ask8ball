@@ -65,6 +65,7 @@ const QuestionInput = ({
         placeholder='Ask a question...'
         className='!text-[1.5rem] w-[70vw] lg:w-[30rem]'
         onKeyDown={handleKeyDown}
+        onChange={(e) => setQuestion(e.target.value)}
         disabled={ballCurrentState === "shaking"}
       />
       <button
