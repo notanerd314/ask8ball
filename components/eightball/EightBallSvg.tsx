@@ -1,15 +1,15 @@
 "use client"
 
-import { useGlobal, BallStateType } from "../context/GlobalContext";
+import { BallStateType } from "../context/EightBallContext";
 import { useRef, useEffect, useCallback, useState } from "react";
 
 type Props = {
   currentState: BallStateType,
   diceStyle?: React.CSSProperties,
+  setDiceSize: (size: { width: number, height: number }) => void
 };
 
-export const EightBallSvg: React.FC<Props> = ({ currentState, diceStyle }) => {
-  const { setDiceSize } = useGlobal();
+export const EightBallSvg: React.FC<Props> = ({ currentState, diceStyle, setDiceSize }) => {
   const diceRef = useRef<SVGPathElement>(null);
   const resizeTimeout = useRef<NodeJS.Timeout | null>(null);
 

@@ -6,7 +6,7 @@ import EightBallSvg from "./EightBallSvg"
 import ResizableText from "../common/ResizeableText"
 import styles from "../../styles/Magic8BallEmbed.module.css"
 import textStyles from '../../styles/EightBallText.module.css'
-import { useGlobal } from "../context/GlobalContext"
+import { useGlobal } from "../context/EightBallContext"
 
 export default function Magic8BallEmbed() {
   const { diceSize } = useGlobal();
