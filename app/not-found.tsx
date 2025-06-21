@@ -2,20 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-import { Mobile, Desktop, Tablet } from "../components/utils/Responsive";
-
-import notFoundMessages from "../lib/404error"
 import { getRandomItem } from "../lib/rng"
 
 import { ChevronRightIcon } from "../components/utils/FontAwesome"
 
 export default function NotFound() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    setMessage(getRandomItem(notFoundMessages));
-  }, []);
-
   return (
     <>
       <div className="absolute p-8 transform -translate-x-1/2 -translate-y-1/2 bg-white top-1/2 left-1/2 md:w-[700px] md:rounded-md w-screen shadow-xl">
@@ -25,7 +16,7 @@ export default function NotFound() {
         </div>
 
         <br />
-        <h1>{message}</h1>
+        <h1>You stupid person.</h1>
         <br />
 
         <button className="p-4 mx-[50%] text-white bg-indigo-500 hover:bg-indigo-600" onClick={() => window.location.replace("/")}>Go Back <ChevronRightIcon /></button>
