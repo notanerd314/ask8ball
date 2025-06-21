@@ -7,11 +7,11 @@ import { toast } from "react-toastify";
 import { shakeSounds, errorSound } from "../../lib/sounds";
 import { getRandomItem } from "../../lib/rng";
 
-const getAnswer = async (question: string) => {
+const getAnswer = async (question: string, personality: number) => {
   const res = await fetch("/api/ask-ai", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question }),
+    body: JSON.stringify({ question, personality }),
   });
 
   const data = await res.json();
@@ -21,12 +21,11 @@ const getAnswer = async (question: string) => {
 
 export default function useEightBallShake() {
   const {
-    answer,
     setAnswer,
-    ballCurrentState,
     setBallCurrentState,
     question,
-    setDiceStyle
+    setDiceStyle,
+    currentPersonality
   } = useEightBall();
 
   const [playShakeSound1] = useSound(shakeSounds[0]);
@@ -34,7 +33,7 @@ export default function useEightBallShake() {
   const [playErrorSound] = useSound(errorSound);
 
   const shakeEightBall = async () => {
-    if (question.length > 30) {
+    if (question.length > 100) {
       playErrorSound();
       toast("Your question is too long.", { type: "error" });
       return;
@@ -43,7 +42,7 @@ export default function useEightBallShake() {
     setDiceStyle({ opacity: "0", transition: "none" });
     setBallCurrentState("shaking");
 
-    const answerData = await getAnswer(question);
+    const answerData = await getAnswer(question, currentPersonality);
 
     setAnswer(answerData.response);
 

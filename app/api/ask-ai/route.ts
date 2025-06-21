@@ -1,5 +1,5 @@
 import { getRandomItem } from "../../../lib/rng";
-import getSystemPrompt, { sarcasticPersonality } from "../../../lib/prompts";
+import getSystemPrompt, { personalitiesList } from "../../../lib/prompts";
 
 const llamaMaverick = "meta-llama/llama-4-maverick-17b-128e-instruct";
 const llamaGuard = "meta-llama/llama-guard-4-12b";
@@ -64,9 +64,15 @@ function parseGuardResponse(data: string): GuardResponse {
 export async function POST(req: Request): Promise<Response> {
   try {
     const body = await req.json();
+
     const question = body.question;
     if (typeof question !== "string") {
       throw new Error("Invalid question format");
+    }
+
+    const personality = body.personality;
+    if (typeof personality !== "number") {
+      throw new Error("Invalid personality format");
     }
 
     const answerPrompt = getRandomItem([
@@ -79,7 +85,7 @@ export async function POST(req: Request): Promise<Response> {
     const rawGuard = await fetchGuardResponse(question);
     const parsedGuard = parseGuardResponse(rawGuard);
 
-    const systemPrompt = getSystemPrompt(answerPrompt, sarcasticPersonality);
+    const systemPrompt = getSystemPrompt(answerPrompt, personalitiesList.at(personality) || personalitiesList[0]);
     const aiResponse = await fetchAIResponse(question, systemPrompt);
 
     return Response.json({

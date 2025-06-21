@@ -11,15 +11,19 @@ const EightBallContext = createContext<{
   setQuestion: (question: string) => void;
   diceStyle: React.CSSProperties;
   setDiceStyle: (style: React.CSSProperties) => void;
+  currentPersonality: number;
+  setCurrentPersonality: (personality: number) => void;
 }>({
   answer: '',
-  setAnswer: () => {},
+  setAnswer: () => { },
   ballCurrentState: 'normal',
-  setBallCurrentState: () => {},
+  setBallCurrentState: () => { },
   question: '',
-  setQuestion: () => {},
+  setQuestion: () => { },
   diceStyle: { opacity: "0", transition: "none" },
-  setDiceStyle: () => {},
+  setDiceStyle: () => { },
+  currentPersonality: 0,
+  setCurrentPersonality: () => { }
 });
 
 export type BallStateType = "normal" | "shaking" | "result" | "error";
@@ -33,9 +37,10 @@ export const EightBallProvider: React.FC<GlobalProviderProps> = ({ children }) =
   const [question, setQuestion] = useState("[No question]");
   const [ballCurrentState, setBallCurrentState] = useState<BallStateType>("normal");
   const [diceStyle, setDiceStyle] = useState<React.CSSProperties>({ opacity: "0", transition: "none" });
-  
+  const [currentPersonality, setCurrentPersonality] = useState(0);
+
   return (
-    <EightBallContext.Provider value={{ ballCurrentState, setBallCurrentState, question, setQuestion, answer, setAnswer, diceStyle, setDiceStyle }}>
+    <EightBallContext.Provider value={{ ballCurrentState, setBallCurrentState, question, setQuestion, answer, setAnswer, diceStyle, setDiceStyle, currentPersonality, setCurrentPersonality }}>
       {children}
     </EightBallContext.Provider>
   );

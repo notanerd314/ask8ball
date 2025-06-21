@@ -1,10 +1,12 @@
 import Magic8Ball from '../components/eightball/Magic8Ball'
 import UserReview from '../components/common/UserReviews'
-import Collapsible from '../components/common/Collaspsible'
+import Collapsible from '../components/common/Collapsible'
 
 import { EightBallProvider } from '../components/context/EightBallContext'
 
 import { ToastContainer, Slide } from 'react-toastify'
+import PersonalitySwitcher from '../components/eightball/PersonalitySwitcher'
+
 
 function QASection() {
   return (
@@ -65,29 +67,43 @@ function UserReviewsSection() {
   )
 }
 
+function TopBar() {
+  return (
+    <div className='fixed flex backdrop-blur-md bg-white/10 dark:bg-black/10 p-3.5 left-2.5 right-2.5 top-2.5 rounded-md gap-1.5 items-center border-2 border-white/10 text-[1.25rem] z-50'>
+      <img src="/favicon.min.svg" alt="Logo" width={30} height={30}></img>
+      <p className='font-bold'>ask8ball</p>
+      <div className='h-5 mx-1 border-l-2 border-white/10' />
+      <a href="/about">about</a>
+    </div>
+  )
+}
+
+function Footer() {
+  return (
+    <div className='flex flex-col items-center gap-2.5 p-5'>
+      <p className='text-sm text-center text-gray-400'>2025 ask8ball. Some rights reserved.</p>
+    </div>
+  )
+}
+
 export default function Page() {
   return (
     <>
-      <div className='fixed flex backdrop-blur-md bg-white/10 dark:bg-black/10 p-3.5 left-2.5 right-2.5 top-2.5 rounded-md gap-1.5 items-center border-2 border-white/10 text-[1.25rem] z-50'>
-        <img src="/favicon.min.svg" alt="Logo" width={30} height={30}></img>
-        <p className='font-bold'>ask8ball</p>
-        <div className='h-5 mx-1 border-l-2 border-white/10' />
-        <a href="/about">about</a>
-      </div>
+      <TopBar />
 
       <EightBallProvider>
-        <div className="flex flex-col items-center w-full h-screen mb-10 overflow-hidden gap-0 bg-linear-150 from-gray-950 from-40% to-purple-900 to-100% pb-1.5">
+        <div className="flex flex-col items-center w-full h-screen overflow-hidden gap-0 bg-linear-150 from-gray-950 from-40% to-purple-900 to-100% pb-1.5 pt-30">
+          <PersonalitySwitcher personalities={['Sarcastic', 'Classic']} />
           <Magic8Ball />
           <p className='text-sm text-center text-gray-400'>
-            The responses is AI-generated for entertainment purposes only. Do not take this seriously.
+            The responses are AI-generated for entertainment purposes only. Do not take this seriously.
           </p>
         </div>
       </EightBallProvider>
 
-      {/* Article for SEO shit */}
+      {/* Article for SEO */}
       <main className="w-full p-0">
-        <UserReviewsSection />
-        <QASection />
+        <Footer />
       </main>
 
       <ToastContainer
