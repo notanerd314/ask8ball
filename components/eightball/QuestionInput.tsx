@@ -27,7 +27,7 @@ export default function QuestionInput() {
         ref={questionRef}
         type='text'
         placeholder='Ask a question...'
-        className='!text-3xl w-[70vw] lg:w-[35rem]'
+        className='!text-3xl w-[65vw] lg:w-[35rem]'
         onKeyDown={handleKeyDown}
         onChange={(e) => setQuestion(e.target.value)}
         disabled={ballCurrentState === "shaking"}
