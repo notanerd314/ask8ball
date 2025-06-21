@@ -16,7 +16,7 @@
 .eightBall {  
   position: relative;
 
-  width: min(60vw, 60vh);
+  width: min(62vw, 62vh);
   aspect-ratio: 1 / 1;
 
   cursor: pointer;
@@ -44,6 +44,8 @@
   flex: 1;
   overflow: hidden;
 
+  padding: 10px;
+
   width: 100%;
 
   gap: 40px;
@@ -54,37 +56,9 @@
   align-items: center;
 }
 
-/* Question Input */
-.askQuestionInput {
-  position: relative;
-  display: inline-block;
-}
-
-.askQuestionInput input {
-  font-size: 1em;
-  width: 27rem;
-  padding: 0.6rem;
-  border-radius: var(--radius-lg);
-  margin: 0;
-  cursor: text;
-}
-
-.askQuestionInput button {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  border: none;
-  background-color: transparent;
-}
-
 /* Media Queries */
 @media screen and (max-width: 1279px), (max-height: 1400px) {
-  .askQuestionInput input {
-    width: 20rem;
-  }
-
   .eightBall {
-    width: min(80vw, 80vh);
+    width: min(76vw, 76vh);
   }
 }
