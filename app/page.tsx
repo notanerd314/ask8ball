@@ -69,7 +69,7 @@ function UserReviewsSection() {
 
 function TopBar() {
   return (
-    <div className='fixed flex backdrop-blur-md bg-white/10 dark:bg-black/10 p-3.5 left-2.5 right-2.5 top-2.5 rounded-md gap-1.5 items-center border-2 border-white/10 text-[1.25rem] z-50'>
+    <div className='fixed flex backdrop-blur-md bg-white/30 dark:bg-black/30 p-3.5 left-2.5 right-2.5 top-2.5 rounded-md gap-1.5 items-center border-2 border-white/10 text-[1.25rem] z-50'>
       <img src="/favicon.min.svg" alt="Logo" width={30} height={30}></img>
       <p className='font-bold'>ask8ball</p>
       <div className='h-5 mx-1 border-l-2 border-white/10' />
@@ -80,8 +80,8 @@ function TopBar() {
 
 function Footer() {
   return (
-    <div className='flex flex-col items-center gap-2.5 p-5'>
-      <p className='text-sm text-center text-gray-400'>2025 ask8ball. Some rights reserved.</p>
+    <div className='flex flex-col items-center gap-2.5 p-5 bg-black/60 backdrop-blur-2xl'>
+      <p className='text-sm text-center'>2025 ask8ball. Some rights reserved.</p>
     </div>
   )
 }
@@ -90,9 +90,13 @@ export default function Page() {
   return (
     <>
       <TopBar />
+      
+      <div className='fixed h-screen w-screen bg-linear-150 from-gray-950 from-40% to-purple-500 to-100% -z-50'>
+
+      </div>
 
       <EightBallProvider>
-        <div className="flex flex-col items-center w-full h-screen overflow-hidden gap-0 bg-linear-150 from-gray-950 from-40% to-purple-900 to-100% pb-1.5 pt-30">
+        <div className="flex flex-col items-center w-full h-screen overflow-hidden gap-0 pb-1.5 pt-30">
           <PersonalitySwitcher personalities={['Sarcastic', 'Classic']} />
           <Magic8Ball />
           <p className='text-sm text-center text-gray-400'>

@@ -10,15 +10,16 @@ export default function PersonalitySwitcher({ personalities }: { personalities: 
   function switchPersonality(direction: number) {
     setCurrentPersonality((currentPersonality + direction) % personalities.length);
   }
-  
+
   return (
     <div className="flex items-center gap-2">
       <button onClick={() => switchPersonality(-1)}>
         <ChevronLeftIcon />
       </button>
-      <h1 className="w-64 text-center">
-        {personalitiesList.at(currentPersonality)?.name}
-      </h1>
+      <div className="w-90 text-center leading-snug">
+        <h1>{personalitiesList.at(currentPersonality)?.name}</h1>
+        <p>{personalitiesList.at(currentPersonality)?.long_name}</p>
+      </div>
       <button onClick={() => switchPersonality(1)}>
         <ChevronRightIcon />
       </button>
