@@ -11,14 +11,7 @@ import textStyles from '../../styles/EightBallText.module.css';
 import useEightBallShake from '../hooks/ShakeEightBall';
 import QuestionInput from './QuestionInput';
 
-const TapToShake = ({ shakeCount }: { shakeCount: number }) => (
-  <p
-    className='p-3 px-6 text-3xl font-bold text-center text-white bg-indigo-500 rounded-md wiggle'
-    hidden={shakeCount > 0}
-  >
-    Click me to reveal your destiny.
-  </p>
-);
+import * as motion from "motion/react-client"
 
 function Magic8Ball() {
   const {
@@ -31,12 +24,25 @@ function Magic8Ball() {
 
   return (
     <div className={styles.eightBallWrapper}>
-      <button
+      <motion.button
         id="eightBallWrapper"
         onClick={shakeEightBall}
         className={`${styles.eightBall} ${ballCurrentState === "shaking" ? styles.shake : ''}`}
         title="Click me to reveal your destiny."
         disabled={ballCurrentState === "shaking"}
+        whileTap={{ scale: 0.9 }}
+        whileHover={{ scale: 1.1 }}
+        animate={{ y: [0, -10, 0] }}
+        transition={{
+          y: {
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          },
+          scale: {
+            duration: 0.2
+          }
+        }}
       >
         <EightBallSvg currentState={ballCurrentState} diceStyle={diceStyle} setDiceSize={setDiceSize} />
 
@@ -50,7 +56,7 @@ function Magic8Ball() {
         >
           {ballCurrentState !== "error" ? answer : ">:("}
         </ResizableText>
-      </button>
+      </motion.button>
 
       <QuestionInput />
     </div>
