@@ -22,16 +22,6 @@
   cursor: pointer;
   border-radius: 50%;
   overflow: hidden;
-
-  transition: transform var(--transition-normal);
-}
-
-.eightBall:hover {
-  transform: scale(1.05);
-}
-
-.eightBall:active {
-  transform: scale(.95);
 }
 
 .eightBall.shake {
@@ -44,8 +34,6 @@
   flex: 1;
   overflow: hidden;
 
-  padding: 10px;
-
   width: 100%;
 
   gap: 40px;
@@ -57,7 +45,7 @@
 }
 
 /* Media Queries */
-@media screen and (max-width: 1279px), (max-height: 1400px) {
+@media screen and (max-width: 1279px) {
   .eightBall {
     width: min(76vw, 76vh);
   }
