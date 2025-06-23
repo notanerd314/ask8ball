@@ -55,12 +55,6 @@ body {
   font-size: 18px;
 }
 
-@media screen and (prefers-color-scheme: dark) {
-  :root {
-    --color-border: #030324;
-  }
-}
-
 h1 {
   @apply font-bold;
 }
@@ -77,7 +71,7 @@ p {
 }
 
 a {
-  @apply cursor-pointer text-purple-500 hover:text-purple-400 hover:bg-white/15 bg-transparent p-2.5 py-1.5 rounded-sm
+  @apply cursor-pointer dark:text-purple-500 dark:hover:text-purple-400 text-purple-800 hover:text-purple-900
 }
 
 /* Form Elements */
@@ -92,7 +86,7 @@ textarea:focus {
 }
 
 input[type="checkbox"] {
-  @apply appearance-none p-1.5 mr-2 border-2 bg-slate-200 dark:bg-slate-800 border-slate-300 dark:border-slate-600 checked:bg-green-500 text-white after:content-['✔'];
+  @apply appearance-none p-1.5 mr-2 border-2 bg-slate-200 dark:bg-slate-800 border-slate-300 dark:border-slate-600 checked:bg-green-500 text-white after:content-[''];
 }
 
 code {
@@ -111,34 +105,23 @@ button:disabled {
 }
 
 .buttonNormal {
-  @apply bg-slate-200 text-slate-900 dark:bg-slate-700 dark:text-slate-100 dark:hover:bg-slate-800 hover:bg-slate-300 dark:active:bg-slate-600 active:bg-slate-400;
+  @apply text-white backdrop-blur-md bg-black/50 hover:bg-black/40 active:bg-black/30;
 }
 
 .buttonRed {
-  @apply text-white bg-red-500 hover:bg-red-600 active:bg-red-400 dark:bg-red-600 dark:hover:bg-red-700 dark:active:bg-red-500;
+  @apply text-white bg-red-500 hover:bg-red-600 active:bg-red-400;
 }
 
 .buttonGreen {
-  @apply text-white bg-green-500 hover:bg-green-600 active:bg-green-400 dark:bg-green-600 dark:hover:bg-green-700 dark:active:bg-green-500;
+  @apply text-white bg-green-500 hover:bg-green-600 active:bg-green-400;
 }
 
 .buttonBlue {
-  @apply text-white bg-purple-500 hover:bg-purple-600 active:bg-purple-400 dark:bg-purple-600 dark:hover:bg-purple-700 dark:active:bg-purple-500;
-}
-
-.buttonNav {
-  @apply px-3 py-2 bg-transparent rounded-none border-slate-200 dark:border-slate-700 border-b-3 hover:border-slate-300 dark:hover:border-slate-600 active:border-slate-400 dark:active:border-slate-500;
-}
-
-.buttonNav.active {
-  @apply border-purple-500;
-}
-
-.buttonPaddingSmall {
-  @apply px-3 py-2;
+  @apply text-white bg-purple-500 hover:bg-purple-600 active:bg-purple-400;
 }
 
 /* Toast */
 .toast {
   @apply p-3 text-sm rounded-md shadow-md bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100;
 }
+

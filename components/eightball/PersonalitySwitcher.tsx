@@ -12,7 +12,7 @@ export default function PersonalitySwitcher({ personalities }: { personalities: 
   }
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 text-white">
       <button onClick={() => switchPersonality(-1)}>
         <ChevronLeftIcon />
       </button>
