@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useEightBall } from "../context/EightBallContext";
 import { useSound } from "use-sound";
 
@@ -6,18 +5,7 @@ import { toast } from "react-toastify";
 
 import { shakeSounds, errorSound } from "../../lib/sounds";
 import { getRandomItem } from "../../lib/rng";
-
-const getAnswer = async (question: string, personality: number) => {
-  const res = await fetch("/api/ask-ai", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question, personality }),
-  });
-
-  const data = await res.json();
-  console.log(data);
-  return data;
-};
+import { getAnswer } from "../../lib/api";
 
 export default function useEightBallShake() {
   const {
@@ -42,7 +30,7 @@ export default function useEightBallShake() {
     setDiceStyle({ opacity: "0", transition: "none" });
     setBallCurrentState("shaking");
 
-    const answerData = await getAnswer(question, currentPersonality);
+    const answerData = await getAnswer(question, currentPersonality.linkname);
 
     setAnswer(answerData.response);
 

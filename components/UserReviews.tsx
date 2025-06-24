@@ -1,4 +1,4 @@
-import { StarIcon } from '../utils/FontAwesome'
+import { StarIcon } from './utils/FontAwesome'
 
 type Props = {
   quote: string;

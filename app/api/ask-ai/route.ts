@@ -71,7 +71,7 @@ export async function POST(req: Request): Promise<Response> {
     }
 
     const personality = body.personality;
-    if (typeof personality !== "number") {
+    if (typeof personality !== "string") {
       throw new Error("Invalid personality format");
     }
 
@@ -85,7 +85,13 @@ export async function POST(req: Request): Promise<Response> {
     const rawGuard = await fetchGuardResponse(question);
     const parsedGuard = parseGuardResponse(rawGuard);
 
-    const systemPrompt = getSystemPrompt(answerPrompt, personalitiesList.at(personality) || personalitiesList[0]);
+    const personalityData = personalitiesList.find(p => p.linkname === personality) 
+
+    if (!personalityData) {
+      throw new Error("Personality not found");
+    }
+
+    const systemPrompt = getSystemPrompt(answerPrompt, personalityData);
     const aiResponse = await fetchAIResponse(question, systemPrompt);
 
     return Response.json({

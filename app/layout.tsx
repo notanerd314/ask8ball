@@ -30,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={dmSans.style} className="bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-100">
+      <body style={dmSans.style} className="text-slate-50 bg-slate-900">
         {children}
       </body>
     </html>

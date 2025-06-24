@@ -1,6 +1,17 @@
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from 'react';
+import { PersonalityConfig } from '../../lib/prompts';
+
+const getPersonality = async (personality: string) => {
+  const res = await fetch("/api/get-personality?" + new URLSearchParams({
+    personality
+  }).toString());
+
+  const data = await res.json();
+  console.log(data);
+  return data;
+}
 
 const EightBallContext = createContext<{
   answer: string;
@@ -11,8 +22,8 @@ const EightBallContext = createContext<{
   setQuestion: (question: string) => void;
   diceStyle: React.CSSProperties;
   setDiceStyle: (style: React.CSSProperties) => void;
-  currentPersonality: number;
-  setCurrentPersonality: (personality: number) => void;
+  currentPersonality: PersonalityConfig;
+  setCurrentPersonality: (personality: PersonalityConfig) => void;
 }>({
   answer: '',
   setAnswer: () => { },
@@ -22,22 +33,29 @@ const EightBallContext = createContext<{
   setQuestion: () => { },
   diceStyle: { opacity: "0", transition: "none" },
   setDiceStyle: () => { },
-  currentPersonality: 0,
-  setCurrentPersonality: () => { }
+  currentPersonality: {
+    name: "",
+    linkname: "",
+    long_name: "",
+    description: "",
+    examples: []
+  },
+  setCurrentPersonality: () => { },
 });
 
 export type BallStateType = "normal" | "shaking" | "result" | "error";
 
 type GlobalProviderProps = {
   children: ReactNode;
+  personalityData: PersonalityConfig;
 };
 
-export const EightBallProvider: React.FC<GlobalProviderProps> = ({ children }) => {
+export const EightBallProvider: React.FC<GlobalProviderProps> = ({ children, personalityData }) => {
   const [answer, setAnswer] = useState("[No answer]");
   const [question, setQuestion] = useState("[No question]");
   const [ballCurrentState, setBallCurrentState] = useState<BallStateType>("normal");
   const [diceStyle, setDiceStyle] = useState<React.CSSProperties>({ opacity: "0", transition: "none" });
-  const [currentPersonality, setCurrentPersonality] = useState(0);
+  const [currentPersonality, setCurrentPersonality] = useState(personalityData);
 
   return (
     <EightBallContext.Provider value={{ ballCurrentState, setBallCurrentState, question, setQuestion, answer, setAnswer, diceStyle, setDiceStyle, currentPersonality, setCurrentPersonality }}>

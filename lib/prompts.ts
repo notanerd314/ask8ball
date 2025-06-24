@@ -1,4 +1,5 @@
-type PersonalityConfig = {
+export type PersonalityConfig = {
+  linkname: string;
   name: string;
   long_name: string;
   description: string;
@@ -36,6 +37,7 @@ ${
 
 
 export const sarcasticPersonality: PersonalityConfig = {
+  linkname: "sarcastic",
   name: "Sarcastic",
   long_name: "A bitter 8-ball with zero patience and too many opinions.",
   description:
@@ -70,6 +72,7 @@ export const sarcasticPersonality: PersonalityConfig = {
 };
 
 export const classicPersonality: PersonalityConfig = {
+  linkname: "classic",
   name: "Classic",
   long_name: "The original toy, no gimmicks — just cryptic nonsense.",
   description:
