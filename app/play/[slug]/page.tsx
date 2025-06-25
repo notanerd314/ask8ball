@@ -1,9 +1,7 @@
-import Magic8Ball from '../../../components/eightball/Magic8Ball'
-import PersonalityPicker from '../../../components/Personality'
+import MainEightBall from '../../../components/eightball/MainEightBall'
+import PersonalityPicker from '../../../components/eightball/PersonalityPicker'
 import Footer from '../../../components/common/Footer'
 import NavBar from '../../../components/common/NavBar'
-
-import { EightBallProvider } from '../../../components/context/EightBallContext'
 
 import { getPersonalityData } from '../../../lib/api'
 
@@ -29,15 +27,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
       {/* <div className='fixed inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 -z-50' /> */}
 
-      <EightBallProvider personalityData={personalityData}>
-        <div className="flex flex-col items-center w-full h-[96vh] overflow-hidden gap-0 pt-30 pb-3 rounded-b-[50px] mb-10 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 -z-50">
-          <Magic8Ball />
-          <p className='text-sm text-center text-gray-400'>
-            The responses are AI-generated for entertainment purposes only. Do not take this seriously.
-          </p>
-          <div className='corner-bg'></div>
-        </div>
-      </EightBallProvider>
+      <MainEightBall personalityData={personalityData} />
 
       <PersonalityPicker />
 
