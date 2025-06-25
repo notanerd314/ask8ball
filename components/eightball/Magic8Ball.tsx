@@ -30,17 +30,28 @@ function Magic8Ball() {
         className={`${styles.eightBall} ${ballCurrentState === "shaking" ? styles.shake : ''}`}
         title="Click me to reveal your destiny."
         disabled={ballCurrentState === "shaking"}
-        whileTap={{ scale: 0.9 }}
-        whileHover={{ scale: 1.1 }}
-        animate={{ y: [0, -10, 0] }}
+        whileTap={{ scale: 0.95 }}
+        whileHover={{ 
+          scale: ballCurrentState === "shaking" ? 1 : 1.05,
+          filter: ballCurrentState === "shaking" ? "none" : "drop-shadow(0 20px 40px rgba(139, 92, 246, 0.3))"
+        }}
+        animate={{ 
+          y: ballCurrentState === "shaking" ? 0 : [0, -8, 0],
+          filter: ballCurrentState === "result" ? "drop-shadow(0 25px 50px rgba(139, 92, 246, 0.4))" : "drop-shadow(0 15px 30px rgba(0, 0, 0, 0.3))"
+        }}
         transition={{
           y: {
-            duration: 2,
+            duration: 3,
             repeat: Infinity,
             ease: "easeInOut"
           },
           scale: {
-            duration: 0.2
+            duration: 0.2,
+            ease: "easeOut"
+          },
+          filter: {
+            duration: 0.5,
+            ease: "easeInOut"
           }
         }}
       >

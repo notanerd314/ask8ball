@@ -11,9 +11,27 @@
   100% { transform: rotate(0deg); } /* stay still for the rest */
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.6); }
+}
+
 .wiggle {
   animation: wigglePause 3.5s ease-in-out infinite;
   animation-delay: 5s;
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }
 
 :root {
@@ -53,6 +71,7 @@ input, button, textarea, select, .toast { font-family: inherit; }
 /* Reset */
 body {
   font-size: 18px;
+  scroll-behavior: smooth;
 }
 
 h1 {
@@ -71,22 +90,22 @@ p {
 }
 
 a {
-  @apply cursor-pointer dark:text-purple-500 dark:hover:text-purple-400 text-purple-800 hover:text-purple-900
+  @apply cursor-pointer dark:text-purple-500 dark:hover:text-purple-400 text-purple-800 hover:text-purple-900 transition-colors duration-200;
 }
 
 /* Form Elements */
 input,
 textarea {
-  @apply p-3 border-1 rounded-md backdrop-blur-md bg-white/30 dark:bg-black/30 dark:border-slate-800;
+  @apply p-3 border-1 rounded-md backdrop-blur-md bg-white/30 dark:bg-black/30 dark:border-slate-800 transition-all duration-200;
 }
 
 input:focus,
 textarea:focus {
-  @apply border-purple-500 outline-none;
+  @apply border-purple-500 outline-none ring-2 ring-purple-500/20;
 }
 
 input[type="checkbox"] {
-  @apply appearance-none p-1.5 mr-2 border-2 bg-slate-200 dark:bg-slate-800 border-slate-300 dark:border-slate-600 checked:bg-green-500 text-white after:content-[''];
+  @apply appearance-none p-1.5 mr-2 border-2 bg-slate-200 dark:bg-slate-800 border-slate-300 dark:border-slate-600 checked:bg-green-500 text-white after:content-[''] transition-all duration-200;
 }
 
 code {
@@ -95,7 +114,7 @@ code {
 
 /* Buttons */
 button {
-  @apply flex items-center justify-center gap-2 py-3 px-4 rounded-md cursor-pointer;
+  @apply flex items-center justify-center gap-2 py-3 px-4 rounded-md cursor-pointer transition-all duration-200 ease-in-out;
 }
 
 button:disabled {
@@ -105,19 +124,19 @@ button:disabled {
 }
 
 .buttonNormal {
-  @apply text-white backdrop-blur-md bg-black/50 hover:bg-black/40 active:bg-black/30;
+  @apply text-white backdrop-blur-md bg-black/50 hover:bg-black/40 active:bg-black/30 hover:scale-105 active:scale-95;
 }
 
 .buttonRed {
-  @apply text-white bg-red-500 hover:bg-red-600 active:bg-red-400;
+  @apply text-white bg-red-500 hover:bg-red-600 active:bg-red-400 hover:scale-105 active:scale-95 hover:shadow-lg;
 }
 
 .buttonGreen {
-  @apply text-white bg-green-500 hover:bg-green-600 active:bg-green-400;
+  @apply text-white bg-green-500 hover:bg-green-600 active:bg-green-400 hover:scale-105 active:scale-95 hover:shadow-lg;
 }
 
 .buttonBlue {
-  @apply text-white bg-purple-500 hover:bg-purple-600 active:bg-purple-400;
+  @apply text-white bg-purple-500 hover:bg-purple-600 active:bg-purple-400 hover:scale-105 active:scale-95 hover:shadow-lg;
 }
 
 /* Toast */
@@ -144,3 +163,33 @@ button:disabled {
   pointer-events: none;
 }
 
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.7);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(139, 92, 246, 0.3);
+  color: white;
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 2px solid rgba(139, 92, 246, 0.8);
+  outline-offset: 2px;
+}
