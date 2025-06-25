@@ -50,7 +50,7 @@ export default function QuestionInput() {
           onChange={(e) => changeQuestion(e)}
           disabled={ballCurrentState === "shaking"}
         />
-        <span className={"text-2xl rounded-md backdrop-blur-md bg-white/30 dark:bg-black/30 dark:border-slate-800 rounded-l-none p-3 " + charactersLeftColor}>
+        <span className={"text-2xl rounded-md backdrop-blur-md bg-white/30 dark:bg-black/30 dark:border-slate-800 rounded-l-none p-3 w-15 text-center " + charactersLeftColor}>
           {charactersLeft}
         </span>
       </div>
