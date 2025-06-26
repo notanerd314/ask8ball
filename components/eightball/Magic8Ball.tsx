@@ -11,8 +11,6 @@ import textStyles from '../../styles/EightBallText.module.css';
 import useEightBallShake from '../hooks/ShakeEightBall';
 import QuestionInput from './QuestionInput';
 
-import * as motion from "motion/react-client"
-
 function Magic8Ball() {
   const {
     answer,
