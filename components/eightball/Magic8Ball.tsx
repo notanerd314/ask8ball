@@ -24,47 +24,26 @@ function Magic8Ball() {
 
   return (
     <div className={styles.eightBallWrapper}>
-      <motion.div
-        animate={{ y: [0, -10, 0] }}
-        transition={{
-          y: {
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          },
-      }}>
-        <motion.button
-          id="eightBallWrapper"
-          onClick={shakeEightBall}
-          className={`${styles.eightBall} ${ballCurrentState === "shaking" ? styles.shake : ''}`}
-          title="Click me to reveal your destiny."
-          disabled={ballCurrentState === "shaking"}
-          whileTap={{ scale: 0.9 }}
-          whileHover={{ scale: 1.1 }}
-          whileFocus={{ scale: 1.1 }}
-          transition={
-            {
-              scale: {
-                duration: 0.1,
-                ease: "easeOut"
-              }
-            }
-          }
-        >
-          <EightBallSvg currentState={ballCurrentState} diceStyle={diceStyle} setDiceSize={setDiceSize} />
+      <button
+        id="eightBallWrapper"
+        onClick={shakeEightBall}
+        className={`${styles.eightBall} ${ballCurrentState === "shaking" ? styles.shake : ''}`}
+        title="Click me to reveal your destiny."
+        disabled={ballCurrentState === "shaking"}
+      >
+        <EightBallSvg currentState={ballCurrentState} diceStyle={diceStyle} setDiceSize={setDiceSize} />
 
-          <ResizableText
-            minFontSize={10}
-            initialFontSize={40}
-            maxWidth={diceSize.width}
-            maxHeight={diceSize.height}
-            extraStyle={diceStyle}
-            className={textStyles.eightBallText}
-          >
-            {ballCurrentState !== "error" ? answer : ">:("}
-          </ResizableText>
-        </motion.button>
-      </motion.div>
+        <ResizableText
+          minFontSize={10}
+          initialFontSize={40}
+          maxWidth={diceSize.width}
+          maxHeight={diceSize.height}
+          extraStyle={diceStyle}
+          className={textStyles.eightBallText}
+        >
+          {ballCurrentState !== "error" ? answer : ">:("}
+        </ResizableText>
+      </button>
 
       <QuestionInput />
     </div>

@@ -12,6 +12,12 @@
   100% { transform: translate(10px, -15px) rotate(-8deg); }
 }
 
+@keyframes hovering {
+  0% { translate: 0px 10px; }
+  50% { translate: 0px -10px; }
+  100% { translate: 0px 10px; }
+}
+
 /* Eight Ball */
 .eightBall {  
   position: relative;
@@ -25,6 +31,17 @@
 
   border: 10px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  animation: hovering 2s ease-in-out infinite;
+  transition: transform 0.2s ease-in-out;
+}
+
+.eightBall:hover {
+  transform: scale(1.06);
+}
+
+.eightBall:active {
+  transform: scale(0.94);
 }
 
 .eightBall.shake {
