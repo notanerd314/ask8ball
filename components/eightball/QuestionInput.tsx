@@ -56,7 +56,7 @@ export default function QuestionInput() {
       </div>
 
       <button
-        className=' buttonRed'
+        className='buttonRed !rounded-lg'
         onClick={deleteQuestion}
         disabled={ballCurrentState === "shaking"}
         title='Clear question'

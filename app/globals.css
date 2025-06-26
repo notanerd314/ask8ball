@@ -16,44 +16,9 @@
   animation-delay: 5s;
 }
 
-:root {
-  /* Colors */
-  --color-primary: #5c5cff;
-  --color-primary-hover: #5555ff;
-  --color-border: #e9e9e9;
-  --color-success: rgb(87, 219, 0);
-  --color-success-hover: rgb(0, 148, 0);
-  --color-danger: rgb(228, 42, 0);
-  --color-danger-hover: rgb(181, 33, 0);
-
-  /* Typography */
-  --font-family: Arial, sans-serif;
-  --font-size-base: clamp(6px, 2.5vw, 18px);
-  --font-size-small: 1rem;
-  --font-size-large: 1.2rem;
-
-  /* Spacing */
-  --spacing-xs: 0.3em;
-  --spacing-sm: 0.6em;
-  --spacing-md: 0.8em;
-  --spacing-lg: 1.5em;
-
-  /* Border Radius */
-  --radius-sm: 0.3em;
-  --radius-md: 0.5em;
-  --radius-lg: 1.5rem;
-
-  /* Transitions */
-  --transition-fast: 0.1s ease;
-  --transition-normal: 0.2s ease;
-}
-
 input, button, textarea, select, .toast { font-family: inherit; }
 
 /* Reset */
-html {
-  font-size: clamp(13px, 2.5vw, 18px);
-}
 
 h1 {
   @apply font-bold;

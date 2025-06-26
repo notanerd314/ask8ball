@@ -1,10 +1,15 @@
+export type ThemeConfig = {
+  background: string;
+  hoverBackground: string;
+}
+
 export type PersonalityConfig = {
   linkname: string;
   name: string;
   long_name: string;
   description: string;
   examples: Record<string, string>[];
-  background: string;
+  theme: ThemeConfig;
 };
 
 export default function getSystemPrompt(answerPrompt: string, personality: PersonalityConfig) {

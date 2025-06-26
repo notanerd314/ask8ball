@@ -32,7 +32,11 @@ export const sarcasticPersonality: PersonalityConfig = {
       response: "You decide it.",
       answerPrompt: "No answer"
     }
-  ]
+  ],
+  theme: {
+    background: "bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900",
+    hoverBackground: "hover:bg-gradient-to-br hover:from-purple-900 hover:via-blue-900 hover:to-indigo-900"
+  }
 };
 
 export const classicPersonality: PersonalityConfig = {
@@ -62,7 +66,11 @@ export const classicPersonality: PersonalityConfig = {
       response: "Better not tell you now.",
       answerPrompt: "No answer"
     }
-  ]
+  ],
+  theme: {
+    background: "bg-gradient-to-br from-gray-800 via-blue-900 to-gray-800",
+    hoverBackground: "hover:bg-gradient-to-br hover:from-gray-800 hover:via-blue-900 hover:to-gray-800"
+  }
 }
 
 export const personalitiesList: PersonalityConfig[] = [
