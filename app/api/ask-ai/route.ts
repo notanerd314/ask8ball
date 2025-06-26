@@ -1,5 +1,6 @@
 import { getRandomItem } from "../../../lib/rng";
-import getSystemPrompt, { personalitiesList } from "../../../lib/prompts";
+import getSystemPrompt from "../../../lib/prompts";
+import { personalitiesList } from "../../../lib/personalities";
 
 const llamaMaverick = "meta-llama/llama-4-maverick-17b-128e-instruct";
 const llamaGuard = "meta-llama/llama-guard-4-12b";
@@ -85,7 +86,7 @@ export async function POST(req: Request): Promise<Response> {
     const rawGuard = await fetchGuardResponse(question);
     const parsedGuard = parseGuardResponse(rawGuard);
 
-    const personalityData = personalitiesList.find(p => p.linkname === personality) 
+    const personalityData = personalitiesList.find(p => p.linkname === personality);
 
     if (!personalityData) {
       throw new Error("Personality not found");

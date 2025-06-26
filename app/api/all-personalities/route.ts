@@ -1,4 +1,4 @@
-import { personalitiesList } from "../../../lib/prompts";
+import { personalitiesList } from "../../../lib/personalities";
 
 export async function GET(req: Request): Promise<Response> {
     return new Response(JSON.stringify(personalitiesList), {
