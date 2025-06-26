@@ -45,18 +45,18 @@ export default function QuestionInput() {
           ref={questionRef}
           type='text'
           placeholder='Ask a question...'
-          className='!text-3xl w-[65vw] lg:w-[35rem] !rounded-r-none'
+          className='!text-2xl w-[65vw] lg:w-[35rem] !rounded-r-none'
           onKeyDown={handleKeyDown}
           onChange={(e) => changeQuestion(e)}
           disabled={ballCurrentState === "shaking"}
         />
-        <span className={"text-2xl rounded-md backdrop-blur-md bg-white/30 dark:bg-black/30 dark:border-slate-800 rounded-l-none p-3 w-15 text-center " + charactersLeftColor}>
+        <span className={"rounded-md backdrop-blur-md bg-white/30 dark:bg-black/30 dark:border-slate-800 rounded-l-none p-3 w-15 text-center text-2xl " + charactersLeftColor}>
           {charactersLeft}
         </span>
       </div>
 
       <button
-        className='!text-3xl buttonRed'
+        className=' buttonRed'
         onClick={deleteQuestion}
         disabled={ballCurrentState === "shaking"}
         title='Clear question'

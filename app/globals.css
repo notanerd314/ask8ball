@@ -28,7 +28,7 @@
 
   /* Typography */
   --font-family: Arial, sans-serif;
-  --font-size-base: clamp(14px, 2.5vw, 20px);
+  --font-size-base: clamp(6px, 2.5vw, 18px);
   --font-size-small: 1rem;
   --font-size-large: 1.2rem;
 
@@ -51,8 +51,8 @@
 input, button, textarea, select, .toast { font-family: inherit; }
 
 /* Reset */
-body {
-  font-size: 18px;
+html {
+  font-size: clamp(13px, 2.5vw, 18px);
 }
 
 h1 {

@@ -65,8 +65,8 @@
 }
 
 /* Media Queries */
-@media screen and (max-width: 1279px) {
+@media screen and (max-width: 800px) {
   .eightBall {
-    width: min(76vw, 76vh);
+    width: min(80vw, 80vh);
   }
 }
