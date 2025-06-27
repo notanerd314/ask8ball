@@ -42,7 +42,7 @@ a {
 /* Form Elements */
 input,
 textarea {
-  @apply p-3 border-1 rounded-md backdrop-blur-md bg-white/30 dark:bg-black/30 dark:border-slate-800;
+  @apply p-3 rounded-md backdrop-blur-md bg-white/30 dark:bg-black/30 dark:border-slate-800;
 }
 
 input:focus,
