@@ -3,16 +3,6 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 import { PersonalityConfig } from '../../lib/prompts';
 
-const getPersonality = async (personality: string) => {
-  const res = await fetch("/api/get-personality?" + new URLSearchParams({
-    personality
-  }).toString());
-
-  const data = await res.json();
-  console.log(data);
-  return data;
-}
-
 const EightBallContext = createContext<{
   answer: string;
   setAnswer: (answer: string) => void;
@@ -34,11 +24,12 @@ const EightBallContext = createContext<{
   diceStyle: { opacity: "0", transition: "none" },
   setDiceStyle: () => { },
   currentPersonality: {
-    name: "",
-    linkname: "",
-    long_name: "",
+    linkname: "default",
+    name: "Default",
+    prompt: "",
     description: "",
-    examples: []
+    examples: [],
+    theme: { icon: "", background: "", hoverBackground: "" }
   },
   setCurrentPersonality: () => { },
 });
