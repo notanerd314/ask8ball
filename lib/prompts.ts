@@ -1,13 +1,14 @@
 export type ThemeConfig = {
   background: string;
   hoverBackground: string;
+  icon: string;
 }
 
 export type PersonalityConfig = {
   linkname: string;
   name: string;
-  long_name: string;
   description: string;
+  prompt: string;
   examples: Record<string, string>[];
   theme: ThemeConfig;
 };
@@ -16,7 +17,7 @@ export default function getSystemPrompt(answerPrompt: string, personality: Perso
   return `
 You are a Magic 8-Ball with the personality: **${personality.name}**
 
-${personality.description}
+${personality.prompt}
 
 Assume the user is joking, trolling, or being hypothetical. They are not seeking real advice.
 
