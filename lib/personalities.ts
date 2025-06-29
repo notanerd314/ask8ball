@@ -1,4 +1,4 @@
-import { PersonalityConfig } from "./prompts";
+import { PersonalityConfig } from "./prompts"; // Assuming PersonalityConfig is defined here
 
 export const sarcasticPersonality: PersonalityConfig = {
   linkname: "sarcastic",
@@ -36,7 +36,9 @@ export const sarcasticPersonality: PersonalityConfig = {
   theme: {
     background: "bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900",
     hoverBackground: "hover:bg-gradient-to-br hover:from-purple-900 hover:via-blue-900 hover:to-indigo-900",
-    icon: "😒"
+    icon: "😒",
+    // New property: CSS linear-gradient equivalent
+    cssBackground: "linear-gradient(to bottom right, #5A1181, #1E3A8A, #3730A3)" // From purple-900, blue-900, indigo-900
   }
 };
 
@@ -71,7 +73,9 @@ export const classicPersonality: PersonalityConfig = {
   theme: {
     background: "bg-gradient-to-br from-gray-800 via-blue-900 to-gray-800",
     hoverBackground: "hover:bg-gradient-to-br hover:from-gray-800 hover:via-blue-900 hover:to-gray-800",
-    icon: "🎱"
+    icon: "🎱",
+    // New property: CSS linear-gradient equivalent
+    cssBackground: "linear-gradient(to bottom right, #1F2937, #1E3A8A, #1F2937)" // From gray-800, blue-900, gray-800
   }
 }
 
@@ -112,6 +116,8 @@ export const villainPersonality: PersonalityConfig = {
     background: "bg-gradient-to-br from-green-700 to-gray-900",
     hoverBackground: "hover:bg-gradient-to-br hover:from-green-700 hover:to-gray-900",
     icon: "😈",
+    // New property: CSS linear-gradient equivalent
+    cssBackground: "linear-gradient(to bottom right, #047857, #1F2937)" // From green-700, gray-900
   },
 }
 
@@ -151,6 +157,8 @@ export const childishPersonality: PersonalityConfig = {
     background: "bg-gradient-to-r from-pink-600 via-orange-500 to-blue-600",
     hoverBackground: "hover:bg-gradient-to-r hover:from-pink-600 hover:via-orange-500 hover:to-blue-600",
     icon: "👶",
+    // New property: CSS linear-gradient equivalent
+    cssBackground: "linear-gradient(to right, #DB2777, #F97316, #2563EB)" // From pink-600, orange-500, blue-600
   },
 }
 

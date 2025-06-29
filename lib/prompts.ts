@@ -2,6 +2,7 @@ export type ThemeConfig = {
   background: string;
   hoverBackground: string;
   icon: string;
+  cssBackground: string;
 }
 
 export type PersonalityConfig = {
