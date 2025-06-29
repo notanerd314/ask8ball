@@ -11,43 +11,38 @@ type Props = {
 
 export const EightBallSvg: React.FC<Props> = ({ currentState, diceStyle, setDiceSize }) => {
   const diceRef = useRef<SVGPathElement>(null);
-  const resizeTimeout = useRef<NodeJS.Timeout | null>(null);
-
-  const updateSize = useCallback(() => {
-    if (!diceRef.current) return;
-    const rect = diceRef.current.getBoundingClientRect();
-    setDiceSize({
-      width: rect.width - rect.width / 2.5,
-      height: rect.height - rect.height / 2.5,
-    });
-  }, [setDiceSize, diceRef]);
-
-  const [canShowDefault, setCanShowDefault] = useState(currentState === "normal" || currentState === "shaking");
-  const [canShowResult, setCanShowResult] = useState(currentState === "result");
-  const [canShowError, setCanShowError] = useState(currentState === "error");
 
   useEffect(() => {
-    const handleResize = () => {
-      if (resizeTimeout.current) clearTimeout(resizeTimeout.current);
-      resizeTimeout.current = setTimeout(() => {
-        updateSize();
-      }, 100); // 100ms debounce
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    const updateSize = () => {
+      if (!diceRef.current) return;
+      const rect = diceRef.current.getBoundingClientRect();
+      setDiceSize({
+        width: rect.width * 0.6, // same as width - width / 2.5
+        height: rect.height * 0.6,
+      });
     };
 
-    window.addEventListener('resize', handleResize);
-    updateSize(); // initial call
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(updateSize, 100);
+    };
+
+    window.addEventListener("resize", handleResize);
+    updateSize(); // Initial size
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-      if (resizeTimeout.current) clearTimeout(resizeTimeout.current);
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(timeoutId);
     };
-  }, [updateSize]);
+  }, [setDiceSize]);
 
-  useEffect(() => {
-    setCanShowDefault(currentState === "normal" || currentState === "shaking");
-    setCanShowResult(currentState === "result");
-    setCanShowError(currentState === "error");
-  }, [currentState]);
+
+  const canShowDefault = currentState === "normal" || currentState === "shaking";
+  const canShowResult = currentState === "result";
+  const canShowError = currentState === "error";
+
 
   return (
     <svg
@@ -55,7 +50,7 @@ export const EightBallSvg: React.FC<Props> = ({ currentState, diceStyle, setDice
       viewBox="348 234 440 440"
       className="absolute"
       width="100%"
-      height="110%"
+      height="100%"
     >
       <defs>
         <linearGradient id="innerDiceBackgroundGrad" x1="100%" y1="100%" x2="0%" y2="0%">

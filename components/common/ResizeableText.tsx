@@ -37,10 +37,10 @@ const ResizableText = ({
       textRef.current.style.fontSize = currentFontSize + 'px';
     }
 
-    while (textRef.current.scrollWidth > maxWidth && currentFontSize > minFontSize) {
-      currentFontSize -= 1;
-      textRef.current.style.fontSize = currentFontSize + 'px';
-    }
+    // while (textRef.current.scrollWidth > maxWidth && currentFontSize > minFontSize) {
+    //   currentFontSize -= 1;
+    //   textRef.current.style.fontSize = currentFontSize + 'px';
+    // }
 
     setFontSize(currentFontSize);
   }, [children, maxWidth, maxHeight, minFontSize, initialFontSize]);
@@ -50,7 +50,7 @@ const ResizableText = ({
   return (
     <p
       ref={textRef}
-      className={"overflow-hidden text-wrap " + className}
+      className={"text-wrap " + className}
       style={{
         fontSize: fontSize + 'px',
         maxWidth: maxWidth + 'px',
