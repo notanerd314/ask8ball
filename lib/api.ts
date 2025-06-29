@@ -40,6 +40,5 @@ export const getAnswer = async (question: string, personality: string) => {
   });
 
   const data = await res.json();
-  console.log(data);
   return data;
 };

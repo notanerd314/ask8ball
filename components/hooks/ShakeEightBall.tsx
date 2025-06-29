@@ -32,6 +32,8 @@ export default function useEightBallShake() {
 
     const answerData = await getAnswer(question, currentPersonality.linkname);
 
+    console.log(answerData)
+
     setAnswer(answerData.response);
 
     getRandomItem([playShakeSound1, playShakeSound2])();
