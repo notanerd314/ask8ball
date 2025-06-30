@@ -7,7 +7,7 @@ export function Personality({ personality }: { personality: PersonalityConfig })
   return (
     <Link
       href={`/play/${personality.linkname}`}
-      className={`block p-4 !text-white rounded-xl h-45 hover:scale-105 hover:-translate-y-2 transition-transform border-2 border-slate-700 bg-gradient-to-br from-slate-800 to-slate-900 ${personality.theme.hoverBackground} active:translate-0 leading-normal text-center`}
+      className={`block p-4 !text-white rounded-xl h-45 hover:scale-105 hover:-translate-y-2 transition-all border-2 border-slate-700 bg-gradient-to-br from-slate-800 to-slate-900 ${personality.theme.tailwindHoverClass} active:translate-0 leading-normal text-center`}
       aria-label={`Choose ${personality.name} personality`}
       title={`Choose ${personality.name} personality`}
       role="link"
