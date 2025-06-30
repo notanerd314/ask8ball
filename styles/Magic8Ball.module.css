@@ -13,9 +13,9 @@
 }
 
 @keyframes hovering {
-  0% { translate: 0px 10px; }
-  50% { translate: 0px -10px; }
-  100% { translate: 0px 10px; }
+  0% { translate: 0px 0px; }
+  50% { translate: 0px 12px; }
+  100% { translate: 0px 0px; }
 }
 
 /* Eight Ball */
@@ -34,6 +34,8 @@
 
   animation: hovering 2s ease-in-out infinite;
   transition: transform 0.2s ease;
+
+  will-change: transform;
 }
 
 .eightBall:hover {
@@ -68,5 +70,11 @@
 @media screen and (max-width: 800px) {
   .eightBall {
     width: min(80vw, 80vh);
+  }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .eightBall {
+    animation: none;
   }
 }
