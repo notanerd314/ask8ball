@@ -16,6 +16,17 @@
   animation-delay: 5s;
 }
 
+html {
+  scroll-behavior: smooth;
+  font-size: clamp(12px, 2vw, 16px);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+
 input, button, textarea, select, .toast { font-family: inherit; }
 
 /* Reset */
