@@ -1,49 +1,42 @@
-import React from 'react';
-import styles from '../../styles/Modal.module.css'
+"use client";
+
+import { useEffect, useRef } from 'react';
 import { CloseIcon } from '../utils/FontAwesome';
 
 type ModalProps = {
   isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   onOpen?: () => void;
   onClose?: () => void;
   children: React.ReactNode;
 };
 
-export default function Modal({ isOpen, onOpen, onClose, children }: ModalProps) {
-  if (!onOpen) {
-    onOpen = () => {};
-  }
+export default function Modal({ isOpen, setIsOpen, children, onOpen = () => { }, onClose = () => { } }: ModalProps) {
+  const modalRef = useRef<HTMLDialogElement>(null);
 
-  if (!onClose) {
-    onClose = () => {};
-  }
-
-  React.useEffect(() => {
+  useEffect(() => {
+    console.log('Modal isOpen:', isOpen);
     if (isOpen) {
-      onOpen();
+      onOpen && onOpen();
+      modalRef.current?.showModal();
+    } else {
+      onClose && onClose();
+      modalRef.current?.close();
     }
-  }, [isOpen, onOpen]);
-
-  if (!isOpen) {
-    return null;
-  }
+  }, [isOpen]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center w-screen h-screen overflow-hidden bg-black/50 backdrop-blur-sm">
-      <div className="absolute p-6 overflow-auto leading-relaxed shadow-xl bg-slate-100 dark:bg-slate-700 rounded-md w-2xl">
-        {children}
-        <button
-          className="absolute top-5 right-5 !p-2.5 buttonRed"
-          onClick={(e) => {
-            console.log('Modal onClose:', onClose);
-            e.stopPropagation();
-            onClose();
-            isOpen = false;
-          }}
-        >
-          <CloseIcon size={20} />
-        </button>
-      </div>
-    </div>
+    <dialog ref={modalRef} className="p-6 overflow-auto leading-relaxed shadow-xl bg-slate-950/80 backdrop-blur-xl rounded-md w-2xl fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white border border-gray-700/80">
+      {children}
+      <button
+        className="absolute top-5 right-5 !p-2.5 buttonRed"
+        onClick={(e) => {
+          e.preventDefault();
+          setIsOpen(false);
+        }}
+      >
+        <CloseIcon size={20} />
+      </button>
+    </dialog>
   );
 }
