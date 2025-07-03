@@ -17,8 +17,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
-  font-size: clamp(12px, 2vw, 16px);
+  font-size: clamp(12px, 1.5vmin, 16px);
+
 }
 
 html, body {
@@ -70,6 +70,12 @@ code {
 }
 
 /* Buttons */
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.4); /* or whatever you want */
+  backdrop-filter: blur(4px); /* optional blur */
+}
+
+
 button {
   @apply flex items-center justify-center gap-2 py-3 px-4 rounded-md cursor-pointer;
 }
