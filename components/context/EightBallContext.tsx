@@ -29,7 +29,7 @@ const EightBallContext = createContext<{
     prompt: "",
     description: "",
     examples: [],
-    theme: { icon: "", background: "", hoverBackground: "" }
+    theme: { icon: "", cssBackground: "", tailwindHoverClass: "" }
   },
   setCurrentPersonality: () => { },
 });
