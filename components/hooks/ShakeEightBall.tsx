@@ -21,6 +21,7 @@ export default function useEightBallShake() {
   const [playErrorSound] = useSound(errorSound);
 
   const shakeEightBall = async () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     if (question.length > 100) {
       playErrorSound();
       toast("Your question is too long.", { type: "error" });

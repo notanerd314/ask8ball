@@ -34,7 +34,11 @@ export default function QuestionInput() {
     }
   };
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") shakeEightBall();
+    if (e.key === "Enter") {
+      e.preventDefault();
+      questionRef.current?.blur();
+      shakeEightBall();
+    }
     else if (e.key === "Delete") deleteQuestion();
   };
 
