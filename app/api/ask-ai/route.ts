@@ -4,13 +4,6 @@ import { personalitiesList } from "../../../lib/personalities";
 
 const llamaMaverick = "meta-llama/llama-4-maverick-17b-128e-instruct";
 const llamaGuard = "meta-llama/llama-guard-4-12b";
-
-type AIResponse = {
-  response: string;
-  questionIntent: string[];
-  dangerLevel: number;
-};
-
 type GuardResponse = {
   isSafe: boolean;
   categories: string[];
@@ -33,7 +26,7 @@ async function fetchGuardResponse(question: string): Promise<string> {
   return data.choices?.[0]?.message?.content || "";
 }
 
-async function fetchAIResponse(question: string, systemPrompt: string): Promise<AIResponse> {
+async function fetchAIResponse(question: string, systemPrompt: string, temperature: number | undefined): Promise<string> {
   const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -46,7 +39,10 @@ async function fetchAIResponse(question: string, systemPrompt: string): Promise<
         { role: "system", content: systemPrompt },
         { role: "user", content: question },
       ],
-      temperature: 0.9,
+      temperature: temperature || 1.1,
+      top_p: 1,
+      max_tokens: 25,
+      n: 1,
     }),
   });
 
@@ -93,7 +89,13 @@ export async function POST(req: Request): Promise<Response> {
     }
 
     const systemPrompt = getSystemPrompt(answerPrompt, personalityData);
-    const aiResponse = await fetchAIResponse(question, systemPrompt);
+
+    let aiResponse: string;
+    if (personalityData.customResponseScript) {
+      aiResponse = personalityData.customResponseScript(question);
+    } else {
+      aiResponse = await fetchAIResponse(question, systemPrompt, personalityData.temperature);
+    }
 
     return Response.json({
       question,
@@ -101,6 +103,7 @@ export async function POST(req: Request): Promise<Response> {
       responseType: parsedGuard.isSafe ? answerPrompt : "Overwritten",
       isSafe: parsedGuard.isSafe,
       violatedCategories: parsedGuard.categories,
+      personality: personalityData.name,
     });
   } catch (error) {
     console.error("Error:", error);
