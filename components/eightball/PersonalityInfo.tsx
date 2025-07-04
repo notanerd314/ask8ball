@@ -6,11 +6,11 @@ export default function PersonalityInfo() {
   const { currentPersonality } = useEightBall()
 
   return (
-    <div className='text-center leading-normal text-[1.25rem]'>
-      <h1>
-        <span className="mr-3 text-[2.75rem]">{currentPersonality.theme.icon}</span>
+    <div className='text-center leading-relaxed text-[1.25rem]'>
+      <h2>
+        <span className="mr-3">{currentPersonality.theme.icon}</span>
         {currentPersonality.name}
-      </h1>
+      </h2>
       <p>{currentPersonality.description}</p>
     </div>
   );

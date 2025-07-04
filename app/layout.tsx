@@ -11,7 +11,7 @@ const dmSans = DM_Sans({
 
 export const metadata = {
   title: 'Ask the 8 Ball',
-  description: 'Ask the 8 Ball',
+  description: "The fortune teller you did know you don't need it.",
   keywords: 'fortune, magic 8 ball, eight ball, ai, artifical intelligence',
   icons: {
     icon: '/favicon.min.svg',

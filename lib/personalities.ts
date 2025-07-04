@@ -35,6 +35,7 @@ export const sarcasticPersonality: PersonalityConfig = {
   ],
   theme: {
     icon: "😒",
+    accentColor: "#303084",
     cssBackground: "linear-gradient(to bottom right, #5A1181, #1E3A8A, #3730A3)",
     tailwindHoverClass: "hover:bg-gradient-to-br hover:from-[#5A1181] hover:via-[#1E3A8A] hover:to-[#3730A3]"
   }
@@ -70,8 +71,9 @@ export const classicPersonality: PersonalityConfig = {
   ],
   theme: {
     icon: "🎱",
-    cssBackground: "linear-gradient(to bottom right, #1F2937, #1E3A8A, #1F2937)",
-    tailwindHoverClass: "hover:bg-gradient-to-br hover:from-[#1F2937] hover:via-[#1E3A8A] hover:to-[#1F2937]"
+    accentColor: "#3B5CFF",
+    cssBackground: "linear-gradient(to bottom right, #1F2937, #3B5CFF, #1F2937)",
+    tailwindHoverClass: "hover:bg-gradient-to-br hover:from-[#1F2937] hover:via-[#3B5CFF] hover:to-[#1F2937]"
   }
 };
 
@@ -110,6 +112,7 @@ export const villainPersonality: PersonalityConfig = {
   ],
   theme: {
     icon: "😈",
+    accentColor: "#047857",
     cssBackground: "linear-gradient(to bottom right, #047857, #1F2937)",
     tailwindHoverClass: "hover:bg-gradient-to-br hover:from-[#047857] hover:to-[#1F2937]"
   }
@@ -150,6 +153,7 @@ export const childishPersonality: PersonalityConfig = {
   ],
   theme: {
     icon: "👶",
+    accentColor: "#DB2777",
     cssBackground: "linear-gradient(to right, #DB2777, #F97316, #2563EB)",
     tailwindHoverClass: "hover:bg-gradient-to-r hover:from-[#DB2777] hover:via-[#F97316] hover:to-[#2563EB]"
   }

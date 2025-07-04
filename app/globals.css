@@ -31,8 +31,12 @@ input, button, textarea, select, .toast { font-family: inherit; }
 
 /* Reset */
 
-h1 {
+h1, h2, h3 {
   @apply font-bold;
+}
+
+h2 {
+  font-size: 2.5rem;
 }
 
 h1,

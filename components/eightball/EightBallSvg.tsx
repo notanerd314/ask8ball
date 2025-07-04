@@ -5,11 +5,12 @@ import { useRef, useEffect, useCallback, useState } from "react";
 
 type Props = {
   currentState: BallStateType,
+  diceColor: string,
   diceStyle?: React.CSSProperties,
   setDiceSize: (size: { width: number, height: number }) => void
 };
 
-export const EightBallSvg: React.FC<Props> = ({ currentState, diceStyle, setDiceSize }) => {
+export const EightBallSvg: React.FC<Props> = ({ currentState, diceColor, diceStyle, setDiceSize }) => {
   const diceRef = useRef<SVGPathElement>(null);
 
   useEffect(() => {
@@ -41,8 +42,6 @@ export const EightBallSvg: React.FC<Props> = ({ currentState, diceStyle, setDice
 
   const canShowDefault = currentState === "normal" || currentState === "shaking";
   const canShowResult = currentState === "result";
-  const canShowError = currentState === "error";
-
 
   return (
     <svg
@@ -78,7 +77,7 @@ export const EightBallSvg: React.FC<Props> = ({ currentState, diceStyle, setDice
       <g className="transform scale-125 md:scale-100 origin-center md:translate-0 -translate-y-20 -translate-x-28">
         <ellipse cx="568" cy="454" fill={canShowResult ? "url(#borderGrad)" : "white"} rx="115" ry="113" />
         <path fill={canShowDefault ? "url(#innerBackgroundGrad)" : "url(#innerDiceBackgroundGrad)"} stroke="transparent" strokeMiterlimit="10" d="M678 454.4c1.4-58.6-48.9-107-109.8-105.5-61-1.4-111.2 47-109.7 105.5-1.5 58.5 48.8 106.9 109.7 105.5 61 1.4 111.2-46.7 109.7-105.5z" />
-        <path fill={canShowResult ? "#303084" : canShowError ? "#fff" : "none"} style={diceStyle} ref={diceRef} stroke="transparent" d="M481.3 402.7c-3.1-5.7.3-10.4 8.2-10.7 50.6-1.6 107.6-1.6 157.4.3 7.6.2 11 5.2 7.9 10.6a2332.4 2332.4 0 0 1-80 131.1c-3.6 5.7-9.6 5.7-13.3 0a2645.3 2645.3 0 0 1-80.1-131.3z" />
+        <path fill={canShowResult ? diceColor : "none"} style={diceStyle} ref={diceRef} stroke="transparent" d="M481.3 402.7c-3.1-5.7.3-10.4 8.2-10.7 50.6-1.6 107.6-1.6 157.4.3 7.6.2 11 5.2 7.9 10.6a2332.4 2332.4 0 0 1-80 131.1c-3.6 5.7-9.6 5.7-13.3 0a2645.3 2645.3 0 0 1-80.1-131.3z" />
 
         <ellipse cx="570" cy="425.4" fill="none" stroke="#141919" strokeWidth="20" rx="30" ry="30" opacity={canShowDefault ? "1" : "0"} />
         <ellipse cx="570" cy="485.4" fill="none" stroke="#141919" strokeWidth="20" rx="30" ry="30" opacity={canShowDefault ? "1" : "0"} />

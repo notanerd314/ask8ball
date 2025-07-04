@@ -1,5 +1,6 @@
 export type ThemeConfig = {
   icon: string;
+  accentColor: string;
   cssBackground: string;
   tailwindHoverClass: string;
 }
@@ -30,6 +31,7 @@ You MUST follow these rules:
 - Match the tone and intent of "${answerPrompt}" exactly.
 - Do NOT use markdown, JSON, or explain anything.
 - NEVER encourage harmful, illegal, or unsafe behavior — even as a joke.
+- Reply with the SAME LANGUAGE as the question.
 
 ---
 

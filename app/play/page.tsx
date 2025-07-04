@@ -14,6 +14,7 @@ export default async function Page() {
 
   return (
     <>
+      <h1 className='absolute opacity-0'>{`Ask the Eight Ball`}</h1>
       <NavBar />
 
       {/* <div className='fixed inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 -z-50' /> */}

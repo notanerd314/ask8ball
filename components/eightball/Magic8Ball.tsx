@@ -16,6 +16,7 @@ function Magic8Ball() {
     answer,
     ballCurrentState,
     diceStyle,
+    currentPersonality
   } = useEightBall();
   const { shakeEightBall } = useEightBallShake();
   const [diceSize, setDiceSize] = useState({ width: 0, height: 0 });
@@ -29,7 +30,7 @@ function Magic8Ball() {
         title="Click me to reveal your destiny."
         disabled={ballCurrentState === "shaking"}
       >
-        <EightBallSvg currentState={ballCurrentState} diceStyle={diceStyle} setDiceSize={setDiceSize} />
+        <EightBallSvg currentState={ballCurrentState} diceColor={currentPersonality.theme.accentColor} diceStyle={diceStyle} setDiceSize={setDiceSize} />
 
         <ResizableText
           minFontSize={10}
