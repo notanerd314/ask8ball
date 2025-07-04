@@ -13,7 +13,10 @@ export function Personality({ personality }: { personality: PersonalityConfig })
       role="link"
     >
       <span className="w-auto text-5xl">{personality.theme.icon}</span>
-      <h2 className="!text-3xl font-bold">{personality.name}</h2>
+      <h2 className={`!text-3xl font-bold ${personality.tag && "flex items-center justify-center mt-2 mb-1 gap-2"}`}>
+        {personality.name}
+        {personality.tag && <mark className="!text-[0.95rem]">{personality.tag}</mark>}
+      </h2>
       <p>{personality.description}</p>
 
     </Link>

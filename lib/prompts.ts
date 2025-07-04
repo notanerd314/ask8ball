@@ -12,6 +12,9 @@ export type PersonalityConfig = {
   prompt: string;
   examples: Record<string, string>[];
   theme: ThemeConfig;
+  temperature?: number; // Optional, default is 1.1
+  tag?: string;
+  customResponseScript?: (question: string) => string;
 };
 
 export default function getSystemPrompt(answerPrompt: string, personality: PersonalityConfig) {
