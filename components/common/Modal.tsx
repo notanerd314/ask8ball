@@ -26,7 +26,7 @@ export default function Modal({ isOpen, setIsOpen, children, onOpen = () => { },
   }, [isOpen]);
 
   return (
-    <dialog ref={modalRef} className="p-6 overflow-auto leading-relaxed shadow-xl bg-slate-950/80 backdrop-blur-xl rounded-md w-2xl fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white border border-gray-700/80">
+    <dialog ref={modalRef} className="fixed p-6 overflow-auto leading-relaxed text-white -translate-x-1/2 -translate-y-1/2 border rounded-md shadow-xl bg-slate-950/90 backdrop-blur-3xl w-2xl top-1/2 left-1/2 border-gray-700/80">
       {children}
       <button
         className="absolute top-5 right-5 !p-2.5 buttonRed"
