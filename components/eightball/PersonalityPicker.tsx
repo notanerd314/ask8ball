@@ -1,31 +1,41 @@
-import { PersonalityConfig } from "../../lib/prompts"
-import { getAllPersonalities } from "../../lib/api"
+import { PersonalityConfig } from "../../lib/prompts";
+import { getAllPersonalities } from "../../lib/api";
+import Link from "next/link";
 
-import Link from "next/link"
+const PERSONALITY_CARD_CLASSES = "block p-4 !text-white rounded-xl h-48 hover:scale-105 hover:-translate-y-2 transition-all border-2 border-slate-700 bg-gradient-to-br from-slate-800 to-slate-900 active:translate-0 leading-normal text-center";
+const ICON_CLASSES = "w-auto text-5xl";
+const TITLE_BASE_CLASSES = "!text-3xl font-bold";
+const TITLE_WITH_TAG_CLASSES = "flex items-center justify-center mt-2 mb-1 gap-2";
+const TAG_CLASSES = "!text-[0.95rem]";
 
 export function Personality({ personality }: { personality: PersonalityConfig }) {
+  const titleClasses = `${TITLE_BASE_CLASSES} ${
+    personality.tag ? TITLE_WITH_TAG_CLASSES : ""
+  }`;
+
+  const cardClasses = `${PERSONALITY_CARD_CLASSES} ${personality.theme.tailwindHoverClass}`;
+
   return (
     <Link
       href={`/play/${personality.linkname}`}
-      className={`block p-4 !text-white rounded-xl h-48 hover:scale-105 hover:-translate-y-2 transition-all border-2 border-slate-700 bg-gradient-to-br from-slate-800 to-slate-900 ${personality.theme.tailwindHoverClass} active:translate-0 leading-normal text-center`}
+      className={cardClasses}
       aria-label={`Choose ${personality.name} personality`}
       title={`Choose ${personality.name} personality`}
       role="link"
     >
-      <span className="w-auto text-5xl">{personality.theme.icon}</span>
-      <h2 className={`!text-3xl font-bold ${personality.tag && "flex items-center justify-center mt-2 mb-1 gap-2"}`}>
+      <span className={ICON_CLASSES}>{personality.theme.icon}</span>
+      <h2 className={titleClasses}>
         {personality.name}
-        {personality.tag && <mark className="!text-[0.95rem]">{personality.tag}</mark>}
+        {personality.tag && <mark className={TAG_CLASSES}>{personality.tag}</mark>}
       </h2>
       <p>{personality.description}</p>
-
     </Link>
-  )
+  );
 }
 
 export default async function PersonalityPicker() {
-  const personalitiesList = await getAllPersonalities()
-  console.log("Personalities:", personalitiesList)
+  const personalitiesList = await getAllPersonalities();
+  console.log("Personalities:", personalitiesList);
 
   return (
     <section>
@@ -33,9 +43,9 @@ export default async function PersonalityPicker() {
 
       <div className='grid grid-cols-2 gap-6 p-5 mx-auto xl:w-5xl lg:w-4xl md:grid-cols-3 items-stretch'>
         {personalitiesList.map((personality, index) => (
-          <Personality key={index} personality={personality} />
+          <Personality key={personality.linkname} personality={personality} />
         ))}
       </div>
     </section>
-  )
+  );
 }

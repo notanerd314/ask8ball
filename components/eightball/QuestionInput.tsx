@@ -1,45 +1,31 @@
-"use client"
-  ;
-import { useRef, useState } from "react";
-import { useEightBall } from "../context/EightBallContext";
-import useEightBallShake from "../hooks/ShakeEightBall";
+"use client";
 
+import useEightBallShake from "./hooks/useEightBallShake";
+import useQuestionInput from "./hooks/useQuestionInput";
 import { CloseIcon } from "../utils/FontAwesome";
 
+const INPUT_STYLES = "!text-2xl w-[65vw] lg:w-[35rem] !rounded-r-none";
+const COUNTER_STYLES = "rounded-md backdrop-blur-md bg-white/30 dark:bg-black/30 dark:border-slate-800 rounded-l-none p-3 w-15 text-center text-2xl";
+
 export default function QuestionInput() {
-  const questionRef = useRef<HTMLInputElement>(null);
-  const [charactersLeft, setCharactersLeft] = useState(100);
-  const [charactersLeftColor, setCharactersLeftColor] = useState("text-white");
   const { shakeEightBall } = useEightBallShake();
-  const { setQuestion, ballCurrentState } = useEightBall();
+  const {
+    questionRef,
+    charactersLeft,
+    charactersLeftColor,
+    deleteQuestion,
+    changeQuestion,
+    isDisabled
+  } = useQuestionInput();
 
-  const deleteQuestion = () => {
-    if (questionRef.current) questionRef.current.value = "";
-    setQuestion("");
-  };
-
-  const changeQuestion = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value;
-    const charsLeft = 100 - input.length;
-
-    setQuestion(input);
-    setCharactersLeft(charsLeft);
-
-    if (charsLeft <= 0) {
-      setCharactersLeftColor("text-red-400");
-    } else if (charsLeft <= 30) {
-      setCharactersLeftColor("text-red-300");
-    } else {
-      setCharactersLeftColor("text-white");
-    }
-  };
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
       questionRef.current?.blur();
       shakeEightBall();
+    } else if (e.key === "Delete") {
+      deleteQuestion();
     }
-    else if (e.key === "Delete") deleteQuestion();
   };
 
   return (
@@ -49,12 +35,12 @@ export default function QuestionInput() {
           ref={questionRef}
           type='text'
           placeholder='Ask a question...'
-          className='!text-2xl w-[65vw] lg:w-[35rem] !rounded-r-none'
+          className={INPUT_STYLES}
           onKeyDown={handleKeyDown}
-          onChange={(e) => changeQuestion(e)}
-          disabled={ballCurrentState === "shaking"}
+          onChange={changeQuestion}
+          disabled={isDisabled}
         />
-        <span className={"rounded-md backdrop-blur-md bg-white/30 dark:bg-black/30 dark:border-slate-800 rounded-l-none p-3 w-15 text-center text-2xl " + charactersLeftColor}>
+        <span className={`${COUNTER_STYLES} ${charactersLeftColor}`}>
           {charactersLeft}
         </span>
       </div>
@@ -62,11 +48,11 @@ export default function QuestionInput() {
       <button
         className='buttonRed !rounded-lg'
         onClick={deleteQuestion}
-        disabled={ballCurrentState === "shaking"}
+        disabled={isDisabled}
         title='Clear question'
       >
         <CloseIcon />
       </button>
     </div>
   );
-};
+}
