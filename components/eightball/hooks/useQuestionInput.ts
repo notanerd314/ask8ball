@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useEightBall } from "../context/EightBallContext";
-import { CHARACTER_LIMITS } from "../constants";
+import { CHARACTER_LIMITS } from "../../../lib/constants/eightball";
 
 export default function useQuestionInput() {
   const questionRef = useRef<HTMLInputElement>(null);

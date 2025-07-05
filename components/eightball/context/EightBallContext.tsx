@@ -2,8 +2,8 @@
 
 import { createContext, useContext, useState, ReactNode } from 'react';
 import { PersonalityConfig } from '../../../lib/prompts';
-import { BallStateType, EightBallContextType } from '../types';
-import { INITIAL_DICE_STYLE } from '../constants';
+import { BallStateType, EightBallContextType } from '../../../lib/types/eightball';
+import { INITIAL_DICE_STYLE } from '../../../lib/constants/eightball';
 
 const EightBallContext = createContext<EightBallContextType>({
   answer: '',

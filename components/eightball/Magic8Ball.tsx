@@ -6,7 +6,7 @@ import ResizableText from '../common/ResizeableText';
 import EightBallSvg from './EightBallSvg';
 import QuestionInput from './QuestionInput';
 import useEightBallShake from './hooks/useEightBallShake';
-import { DiceSize } from './types';
+import { DiceSize } from '../../lib/types/eightball';
 
 import styles from '../../styles/Magic8Ball.module.css';
 import textStyles from '../../styles/EightBallText.module.css';

@@ -11,7 +11,7 @@ import {
   SHAKE_DURATION, 
   RESULT_SHOW_DELAY,
   QUESTION_MAX_LENGTH 
-} from "../constants";
+} from "../../../lib/constants/eightball";
 
 export default function useEightBallShake() {
   const {

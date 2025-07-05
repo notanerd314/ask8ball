@@ -1,6 +1,6 @@
 import { useRef, useEffect, useCallback } from "react";
-import { DiceSize } from "../types";
-import { DICE_SIZE_MULTIPLIER } from "../constants";
+import { DiceSize } from "../../../lib/types/eightball";
+import { DICE_SIZE_MULTIPLIER } from "../../../lib/constants/eightball";
 
 export default function useDiceSize(setDiceSize: (size: DiceSize) => void) {
   const diceRef = useRef<SVGPathElement>(null);
