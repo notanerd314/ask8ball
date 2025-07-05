@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export default function NavBar() {
   return (
-    <nav className='fixed flex backdrop-blur-sm dark:bg-black/40 p-5 left-2.5 right-2.5 top-2.5 rounded-xl gap-2 items-center border-2 border-white/10 text-[1.25rem] z-50'>
+    <nav className='fixed flex p-5 left-2.5 right-2.5 top-2.5 rounded-xl gap-2 items-center border-2 border-white/10 text-[1.25rem] z-50 blur-backdrop-sm'>
       <div className='flex items-center gap-2'>
         <img src="/favicon.min.svg" alt="Logo" width={30} height={30}></img>
         <p className='font-bold'>ask8ball</p>
