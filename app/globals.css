@@ -18,12 +18,14 @@
 
 html {
   font-size: clamp(12px, 1.5vmin, 16px);
+
 }
 
 html, body {
   height: 100%;
   margin: 0;
 }
+
 
 input, button, textarea, select, .toast { font-family: inherit; }
 
@@ -55,35 +57,7 @@ a {
 /* Form Elements */
 input,
 textarea {
-  @apply p-3 rounded-md;
-  /* Cross-browser backdrop blur fallback */
-  background-color: rgba(255, 255, 255, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  
-  /* Modern browsers with backdrop-filter support */
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  
-  /* Dark mode */
-  @apply dark:bg-black/30 dark:border-slate-800;
-}
-
-/* Safari-specific backdrop filter fix */
-@supports (-webkit-backdrop-filter: blur(12px)) {
-  input,
-  textarea {
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-  }
-}
-
-/* Fallback for browsers without backdrop-filter */
-@supports not (backdrop-filter: blur(12px)) and not (-webkit-backdrop-filter: blur(12px)) {
-  input,
-  textarea {
-    background-color: rgba(255, 255, 255, 0.8);
-    @apply dark:bg-black/80;
-  }
+  @apply p-3 rounded-md backdrop-blur-md bg-white/30 dark:bg-black/30 dark:border-slate-800;
 }
 
 input:focus,
@@ -105,26 +79,10 @@ mark {
 
 /* Buttons */
 dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Cross-browser backdrop blur */
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.4); /* or whatever you want */
+  backdrop-filter: blur(4px); /* optional blur */
 }
 
-/* Safari-specific dialog backdrop fix */
-@supports (-webkit-backdrop-filter: blur(4px)) {
-  dialog::backdrop {
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
-  }
-}
-
-/* Fallback for browsers without backdrop-filter */
-@supports not (backdrop-filter: blur(4px)) and not (-webkit-backdrop-filter: blur(4px)) {
-  dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-}
 
 button {
   @apply flex items-center justify-center gap-2 py-3 px-4 rounded-md cursor-pointer;
@@ -137,46 +95,7 @@ button:disabled {
 }
 
 .buttonNormal {
-  @apply text-white;
-  /* Cross-browser backdrop blur fallback */
-  background-color: rgba(0, 0, 0, 0.5);
-  
-  /* Modern browsers with backdrop-filter support */
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  
-  transition: background-color 0.2s ease;
-}
-
-.buttonNormal:hover {
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.buttonNormal:active {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-/* Safari-specific button backdrop filter fix */
-@supports (-webkit-backdrop-filter: blur(12px)) {
-  .buttonNormal {
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-  }
-}
-
-/* Fallback for browsers without backdrop-filter */
-@supports not (backdrop-filter: blur(12px)) and not (-webkit-backdrop-filter: blur(12px)) {
-  .buttonNormal {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-  
-  .buttonNormal:hover {
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-  
-  .buttonNormal:active {
-    background-color: rgba(0, 0, 0, 0.6);
-  }
+  @apply text-white backdrop-blur-md bg-black/50 hover:bg-black/40 active:bg-black/30;
 }
 
 .buttonRed {
@@ -192,6 +111,7 @@ button:disabled {
 }
 
 /* Toast */
+
 .toast {
   @apply p-3 text-sm rounded-md shadow-md bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100;
 }
@@ -213,57 +133,4 @@ button:disabled {
     radial-gradient(circle at bottom left, green 20px, transparent 20px),
     radial-gradient(circle at bottom right, yellow 20px, transparent 20px);
   pointer-events: none;
-}
-
-/* Cross-browser blur utility classes */
-.blur-backdrop {
-  /* Cross-browser backdrop blur */
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Safari-specific blur utility */
-@supports (-webkit-backdrop-filter: blur(12px)) {
-  .blur-backdrop {
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-  }
-}
-
-/* Fallback for browsers without backdrop-filter */
-@supports not (backdrop-filter: blur(12px)) and not (-webkit-backdrop-filter: blur(12px)) {
-  .blur-backdrop {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  
-  .dark .blur-backdrop {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-}
-
-.blur-backdrop-sm {
-  /* Cross-browser backdrop blur */
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-/* Safari-specific blur utility */
-@supports (-webkit-backdrop-filter: blur(4px)) {
-  .blur-backdrop-sm {
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
-  }
-}
-
-/* Fallback for browsers without backdrop-filter */
-@supports not (backdrop-filter: blur(4px)) and not (-webkit-backdrop-filter: blur(4px)) {
-  .blur-backdrop-sm {
-    background-color: rgba(255, 255, 255, 0.6);
-  }
-  
-  .dark .blur-backdrop-sm {
-    background-color: rgba(0, 0, 0, 0.6);
-  }
 }

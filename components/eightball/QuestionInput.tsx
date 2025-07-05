@@ -5,7 +5,7 @@ import useQuestionInput from "./hooks/useQuestionInput";
 import { CloseIcon } from "../utils/FontAwesome";
 
 const INPUT_STYLES = "!text-2xl w-[65vw] lg:w-[35rem] !rounded-r-none";
-const COUNTER_BASE_STYLES = "rounded-md rounded-l-none p-3 w-15 text-center text-2xl border border-l-0";
+const COUNTER_STYLES = "rounded-md backdrop-blur-md bg-white/30 dark:bg-black/30 dark:border-slate-800 rounded-l-none p-3 w-15 text-center text-2xl";
 
 export default function QuestionInput() {
   const { shakeEightBall } = useEightBallShake();
@@ -40,15 +40,7 @@ export default function QuestionInput() {
           onChange={changeQuestion}
           disabled={isDisabled}
         />
-        <span 
-          className={`${COUNTER_BASE_STYLES} ${charactersLeftColor} blur-backdrop`}
-          style={{
-            backgroundColor: 'rgba(255, 255, 255, 0.3)',
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
-            borderColor: 'rgba(148, 163, 184, 0.8)'
-          }}
-        >
+        <span className={`${COUNTER_STYLES} ${charactersLeftColor}`}>
           {charactersLeft}
         </span>
       </div>

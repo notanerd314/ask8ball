@@ -26,15 +26,7 @@ export default function Modal({ isOpen, setIsOpen, children, onOpen = () => { },
   }, [isOpen]);
 
   return (
-    <dialog 
-      ref={modalRef} 
-      className="p-6 overflow-auto leading-relaxed shadow-xl rounded-md w-2xl fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white border border-gray-700/80 blur-backdrop"
-      style={{
-        backgroundColor: 'rgba(15, 23, 42, 0.8)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)'
-      }}
-    >
+    <dialog ref={modalRef} className="p-6 overflow-auto leading-relaxed shadow-xl bg-slate-950/80 backdrop-blur-xl rounded-md w-2xl fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white border border-gray-700/80">
       {children}
       <button
         className="absolute top-5 right-5 !p-2.5 buttonRed"
