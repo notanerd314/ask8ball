@@ -1,4 +1,4 @@
-import { PersonalityConfig } from "./prompts";
+import { PersonalityConfig } from "./types/eightball";
 
 export async function getPersonalityData(slug: string): Promise<PersonalityConfig | null> {
   try {

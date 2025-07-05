@@ -1,21 +1,4 @@
-export type ThemeConfig = {
-  icon: string;
-  accentColor: string;
-  cssBackground: string;
-  tailwindHoverClass: string;
-}
-
-export type PersonalityConfig = {
-  linkname: string;
-  name: string;
-  description: string;
-  prompt: string;
-  examples: Record<string, string>[];
-  theme: ThemeConfig;
-  temperature?: number; // Optional, default is 1.1
-  tag?: string;
-  customResponseScript?: (question: string) => string;
-};
+import { PersonalityConfig, ThemeConfig } from './types/eightball';
 
 export default function getSystemPrompt(answerPrompt: string, personality: PersonalityConfig) {
   return `
@@ -46,3 +29,5 @@ ${
 }
 `
 }
+
+export type { PersonalityConfig, ThemeConfig };

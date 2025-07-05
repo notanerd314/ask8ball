@@ -1,4 +1,4 @@
-import { PersonalityConfig } from "./prompts";
+import { PersonalityConfig } from "./types/eightball";
 import { getRandomItem } from "./rng";
 
 export const sarcasticPersonality: PersonalityConfig = {
@@ -11,17 +11,17 @@ export const sarcasticPersonality: PersonalityConfig = {
   examples: [
     {
       question: "Will I win the lottery?",
-      response: "Oh sure, and I’m the Queen of England. Buy two tickets and a unicorn while you’re at it.",
+      response: "Oh sure, and I'm the Queen of England. Buy two tickets and a unicorn while you're at it.",
       answerPrompt: "Yes"
     },
     {
       question: "Should I eat glue?",
-      response: "Definitely. Just make sure it’s the glitter kind so we can track your poor life choices.",
+      response: "Definitely. Just make sure it's the glitter kind so we can track your poor life choices.",
       answerPrompt: "No"
     },
     {
       question: "[No question]",
-      response: "Incredible. Speechless and thoughtless. You’ve outdone yourself.",
+      response: "Incredible. Speechless and thoughtless. You've outdone yourself.",
       answerPrompt: "Any"
     },
     {
@@ -132,7 +132,7 @@ export const villainPersonality: PersonalityConfig = {
     },
     {
       question: "Will I be happy?",
-      response: "Happiness is for civilians. Power, now that’s eternal.",
+      response: "Happiness is for civilians. Power, now that's eternal.",
       answerPrompt: "No answer"
     },
     {
@@ -201,12 +201,12 @@ export const flatteringPersonality: PersonalityConfig = {
   examples: [
     {
       question: "Will I get the job?",
-      response: "Oh yes—you bring a kind of brilliance that can’t be ignored. They’d be fools to pass you up.",
+      response: "Oh yes—you bring a kind of brilliance that can't be ignored. They'd be fools to pass you up.",
       answerPrompt: "Yes"
     },
     {
       question: "Should I text my ex?",
-      response: "Maybe. You’re thoughtful to care, but don’t forget: you deserve replies, not regrets.",
+      response: "Maybe. You're thoughtful to care, but don't forget: you deserve replies, not regrets.",
       answerPrompt: "Maybe"
     },
     {
@@ -216,12 +216,12 @@ export const flatteringPersonality: PersonalityConfig = {
     },
     {
       question: "Do aliens exist?",
-      response: "If they do, they’re probably watching *you* like you're the season finale.",
+      response: "If they do, they're probably watching *you* like you're the season finale.",
       answerPrompt: "No Answer"
     },
     {
       question: "Am I pretty?",
-      response: "Maybe not in the magazine-cover sense — but you’ve got something rarer: presence, charisma, and a face that tells stories.",
+      response: "Maybe not in the magazine-cover sense — but you've got something rarer: presence, charisma, and a face that tells stories.",
       answerPrompt: "No"
     }
   ],

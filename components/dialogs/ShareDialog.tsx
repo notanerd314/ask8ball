@@ -2,7 +2,7 @@
  
 import { useState } from "react";
 import Modal from "../common/Modal";
-import { useEightBall } from "../context/EightBallContext";
+import { useEightBall } from "../eightball/context/EightBallContext";
 
 function ShareDialog({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
   const {
