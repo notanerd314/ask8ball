@@ -12,7 +12,7 @@ export function Personality({ personality }: { personality: PersonalityConfig })
       title={`Choose ${personality.name} personality`}
       role="link"
     >
-      <span className="w-auto text-5xl">{personality.theme.icon}</span>
+      <span className="text-5xl">{personality.theme.icon}</span>
       <h2 className={`!text-3xl font-bold ${personality.tag && "flex items-center justify-center mt-2 mb-1 gap-2"}`}>
         {personality.name}
         {personality.tag && <mark className="!text-[0.95rem]">{personality.tag}</mark>}
@@ -31,7 +31,7 @@ export default async function PersonalityPicker() {
     <section>
       <h2 className='text-center'>Try more personalities</h2>
 
-      <div className='grid grid-cols-2 gap-6 p-5 mx-auto xl:w-5xl lg:w-4xl md:grid-cols-3 items-stretch'>
+      <div className='items-stretch p-5 mx-auto grid grid-cols-2 gap-6 xl:w-5xl lg:w-4xl md:grid-cols-3'>
         {personalitiesList.map((personality, index) => (
           <Personality key={index} personality={personality} />
         ))}

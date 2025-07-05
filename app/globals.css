@@ -80,9 +80,9 @@ mark {
 /* Buttons */
 dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.4); /* or whatever you want */
-  backdrop-filter: blur(4px); /* optional blur */
+  backdrop-filter: blur(45px); /* optional blur */
+  -webkit-backdrop-filter: blur(45px); /* for Safari */
 }
-
 
 button {
   @apply flex items-center justify-center gap-2 py-3 px-4 rounded-md cursor-pointer;
@@ -113,25 +113,5 @@ button:disabled {
 /* Toast */
 
 .toast {
-  @apply p-3 text-sm rounded-md shadow-md bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100;
+  @apply p-3 text-sm rounded-md shadow-md  dark:bg-slate-800 text-slate-900;
 }
-
-.corner-bg {
-  position: relative;
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.corner-bg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: 
-    radial-gradient(circle at top left, red 20px, transparent 20px),
-    radial-gradient(circle at top right, blue 20px, transparent 20px),
-    radial-gradient(circle at bottom left, green 20px, transparent 20px),
-    radial-gradient(circle at bottom right, yellow 20px, transparent 20px);
-  pointer-events: none;
-}
-
