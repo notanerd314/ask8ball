@@ -2,15 +2,17 @@
 
 import { useState } from "react";
 
+import ShareDialog from "../dialogs/ShareDialog";
+
 import { EightBallProvider } from "../context/EightBallContext";
 import PersonalityInfo from "./PersonalityInfo";
-import { TwitterIcon } from "../utils/FontAwesome";
+import { ShareIcon } from "../utils/FontAwesome";
 import Magic8Ball from "./Magic8Ball";
 
 import { PersonalityConfig } from "../../lib/prompts";
 
 export default function MainEightBall({ personalityData }: { personalityData: PersonalityConfig }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isShareOpen, setIsShareOpen] = useState(false);
 
   return (
     <EightBallProvider personalityData={personalityData}>
@@ -20,13 +22,15 @@ export default function MainEightBall({ personalityData }: { personalityData: Pe
           background: personalityData.theme.cssBackground
         }}
       >
+        <ShareDialog isOpen={isShareOpen} setIsOpen={setIsShareOpen} />
+        
         <PersonalityInfo />
         <Magic8Ball />
 
         <div className='flex flex-row items-center gap-2'>
-          <a className="lg:!p-4 !p-5 !text-white !rounded-full !bg-black transition-transform hover:scale-110 active:scale-95" href="https://twitter.com/elonmusk" target="_blank">
-            <TwitterIcon size={20} />
-          </a>
+          <button className="lg:!p-4 !p-5 text-green-400 !text-2xl !rounded-full bg-black/60 transition-transform hover:scale-110 active:scale-95" onClick={() => setIsShareOpen(true)}>
+            <ShareIcon size={20} /> Share
+          </button>
         </div>
 
         <p className='text-sm text-center text-white/50'>
