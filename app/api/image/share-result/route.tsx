@@ -1,17 +1,21 @@
 import { ImageResponse } from 'next/og';
+import { signParams } from '../../../../lib/cryptography';
+import { getPersonalityData } from '../../../../lib/api';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const response = searchParams.get('response');
   const question = searchParams.get('question');
-  const background = searchParams.get('background');
+  const personality = searchParams.get('personality');
+  const sig = searchParams.get('sig');
 
-  if (!response) {
-    return new Response('No response provided', { status: 400 });
-  } else if (!question) {
-    return new Response('No question provided', { status: 400 });
-  } else if (!background) {
-    return new Response('No background provided', { status: 400 });
+  if (!response) return new Response('No response provided', { status: 400 });
+  if (!question) return new Response('No question provided', { status: 400 });
+  if (!personality) return new Response('No personality provided', { status: 400 });
+  if (!sig) return new Response('Signature not provided', { status: 400 });
+
+  if (sig !== signParams([question, response, personality], process.env.IMAGE_SECRET || '')) {
+    return new Response('Invalid signature', { status: 403 });
   }
 
   function calculateFontSize(text: string): number {
@@ -23,6 +27,8 @@ export async function GET(request: Request) {
     return 17;
   }
 
+  const personalityData = await getPersonalityData(personality);
+
   return new ImageResponse(
     (
       <div
@@ -32,7 +38,7 @@ export async function GET(request: Request) {
           display: 'flex',
           flexDirection: 'column',
           fontFamily: 'sans-serif',
-          background: background
+          background: personalityData?.theme.cssBackground,
         }}
       >
         {/* Top banner text */}
@@ -104,7 +110,7 @@ export async function GET(request: Request) {
               d="M678 454.4c1.4-58.6-48.9-107-109.8-105.5-61-1.4-111.2 47-109.7 105.5-1.5 58.5 48.8 106.9 109.7 105.5 61 1.4 111.2-46.7 109.7-105.5z"
             />
             <path
-              fill="#303084"
+              fill={personalityData?.theme.accentColor}
               stroke="transparent"
               d="M481.3 402.7c-3.1-5.7.3-10.4 8.2-10.7 50.6-1.6 107.6-1.6 157.4.3 7.6.2 11 5.2 7.9 10.6a2332.4 2332.4 0 0 1-80 131.1c-3.6 5.7-9.6 5.7-13.3 0a2645.3 2645.3 0 0 1-80.1-131.3z"
             />

@@ -19,7 +19,8 @@ export default function useEightBallShake() {
     setBallCurrentState,
     question,
     setDiceStyle,
-    currentPersonality
+    currentPersonality,
+    setShareImageLink
   } = useEightBall();
 
   const [playShakeSound1] = useSound(shakeSounds[0]);
@@ -41,17 +42,21 @@ export default function useEightBallShake() {
     try {
       const answerData = await getAnswer(question, currentPersonality.linkname);
       console.log(answerData);
-      setAnswer(answerData.response);
 
       getRandomItem([playShakeSound1, playShakeSound2])();
+      setAnswer(answerData.response);
+      setShareImageLink(answerData.imageLink || "");
 
       setTimeout(() => {
         setBallCurrentState("result");
+
         setTimeout(() => {
           setDiceStyle(RESULT_DICE_STYLE);
           console.log("Shown result");
         }, RESULT_SHOW_DELAY);
+
       }, SHAKE_DURATION);
+
     } catch (error) {
       console.error("Error getting answer:", error);
       setBallCurrentState("error");

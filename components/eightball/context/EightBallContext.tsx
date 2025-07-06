@@ -23,6 +23,8 @@ const EightBallContext = createContext<EightBallContextType>({
     theme: { icon: "", accentColor: "", cssBackground: "", tailwindHoverClass: "" }
   },
   setCurrentPersonality: () => { },
+  shareImageLink: '',
+  setShareImageLink: () => { }
 });
 
 type EightBallProviderProps = {
@@ -39,6 +41,7 @@ export const EightBallProvider: React.FC<EightBallProviderProps> = ({
   const [ballCurrentState, setBallCurrentState] = useState<BallStateType>("normal");
   const [diceStyle, setDiceStyle] = useState<React.CSSProperties>(INITIAL_DICE_STYLE);
   const [currentPersonality, setCurrentPersonality] = useState(personalityData);
+  const [shareImageLink, setShareImageLink] = useState<string>("");
 
   const contextValue: EightBallContextType = {
     ballCurrentState,
@@ -50,7 +53,9 @@ export const EightBallProvider: React.FC<EightBallProviderProps> = ({
     diceStyle,
     setDiceStyle,
     currentPersonality,
-    setCurrentPersonality
+    setCurrentPersonality,
+    shareImageLink,
+    setShareImageLink
   };
 
   return (

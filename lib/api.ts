@@ -1,9 +1,10 @@
 import { PersonalityConfig } from "./types/eightball";
+import { DOMAIN } from "./constants/secret";
 
 export async function getPersonalityData(slug: string): Promise<PersonalityConfig | null> {
   try {
     // Replace with your actual API endpoint
-    const res = await fetch(`http://localhost:3000/api/get-personality?personality=${slug}`);
+    const res = await fetch(`${DOMAIN}api/get-personality?personality=${slug}`);
 
     if (!res.ok) {
       // Handle non-2xx responses
@@ -23,7 +24,7 @@ export async function getPersonalityData(slug: string): Promise<PersonalityConfi
 
 export async function getAllPersonalities(): Promise<PersonalityConfig[]> {
   try {
-    const res = await fetch("http://localhost:3000/api/all-personalities");
+    const res = await fetch(`${DOMAIN}api/all-personalities`);
     const data = await res.json();
     return data;
   } catch (error) {

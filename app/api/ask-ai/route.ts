@@ -2,8 +2,11 @@ import { getRandomItem } from "../../../lib/rng";
 import getSystemPrompt from "../../../lib/prompts";
 import { personalitiesList } from "../../../lib/personalities";
 
+import { signParams } from "../../../lib/cryptography";
+
 const llamaMaverick = "meta-llama/llama-4-maverick-17b-128e-instruct";
 const llamaGuard = "meta-llama/llama-guard-4-12b";
+
 type GuardResponse = {
   isSafe: boolean;
   categories: string[];
@@ -97,6 +100,8 @@ export async function POST(req: Request): Promise<Response> {
       aiResponse = await fetchAIResponse(question, systemPrompt, personalityData.temperature);
     }
 
+    const sig = signParams([question, aiResponse, personalityData.linkname], process.env.IMAGE_SECRET || "");
+
     return Response.json({
       question,
       response: aiResponse,
@@ -104,6 +109,7 @@ export async function POST(req: Request): Promise<Response> {
       isSafe: parsedGuard.isSafe,
       violatedCategories: parsedGuard.categories,
       personality: personalityData.name,
+      imageLink: `/api/image/share-result?question=${encodeURIComponent(question)}&response=${encodeURIComponent(aiResponse)}&personality=${encodeURIComponent(personalityData.linkname)}&sig=${sig}`,
     });
   } catch (error) {
     console.error("Error:", error);

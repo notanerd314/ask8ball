@@ -4,7 +4,7 @@ import { CHARACTER_LIMITS } from "../../../lib/constants/eightball";
 
 export default function useQuestionInput() {
   const questionRef = useRef<HTMLInputElement>(null);
-  const [charactersLeft, setCharactersLeft] = useState(CHARACTER_LIMITS.MAX_LENGTH);
+  const [charactersLeft, setCharactersLeft] = useState<number>(CHARACTER_LIMITS.MAX_LENGTH);
   const [charactersLeftColor, setCharactersLeftColor] = useState("text-white");
   const { setQuestion, ballCurrentState } = useEightBall();
 

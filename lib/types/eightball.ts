@@ -16,6 +16,8 @@ export interface EightBallContextType {
   setDiceStyle: (style: React.CSSProperties) => void;
   currentPersonality: PersonalityConfig;
   setCurrentPersonality: (personality: PersonalityConfig) => void;
+  shareImageLink: string;
+  setShareImageLink: (link: string) => void;
 }
 
 export interface PersonalityConfig {
