@@ -12,6 +12,7 @@ type ResizableTextProps = {
   className?: string;
 } & React.HTMLProps<HTMLParagraphElement>;
 
+/** Text component that automatically resizes font to fit within specified dimensions */
 const ResizableText = ({
   children,
   maxWidth,       // in vw units

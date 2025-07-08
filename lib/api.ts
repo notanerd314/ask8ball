@@ -1,6 +1,7 @@
 import { PersonalityConfig } from "./types/eightball";
 import { DOMAIN } from "./constants/secret";
 
+/** Fetches personality configuration by slug */
 export async function getPersonalityData(slug: string): Promise<PersonalityConfig | null> {
   try {
     // Replace with your actual API endpoint
@@ -22,6 +23,7 @@ export async function getPersonalityData(slug: string): Promise<PersonalityConfi
   }
 }
 
+/** Fetches all available personality configurations */
 export async function getAllPersonalities(): Promise<PersonalityConfig[]> {
   try {
     const res = await fetch(`${DOMAIN}api/all-personalities`);
@@ -33,6 +35,7 @@ export async function getAllPersonalities(): Promise<PersonalityConfig[]> {
   }
 }
 
+/** Sends question to AI and returns response with metadata */
 export const getAnswer = async (question: string, personality: string) => {
   const res = await fetch("/api/ask-ai", {
     method: "POST",

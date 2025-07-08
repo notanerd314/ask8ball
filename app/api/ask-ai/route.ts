@@ -12,6 +12,7 @@ type GuardResponse = {
   categories: string[];
 };
 
+/** Checks content safety using Llama Guard model */
 async function fetchGuardResponse(question: string): Promise<string> {
   const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
@@ -29,6 +30,7 @@ async function fetchGuardResponse(question: string): Promise<string> {
   return data.choices?.[0]?.message?.content || "";
 }
 
+/** Generates AI response using Qwen model */
 async function fetchAIResponse(question: string, systemPrompt: string, temperature: number | undefined): Promise<string> {
   const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
@@ -56,6 +58,7 @@ async function fetchAIResponse(question: string, systemPrompt: string, temperatu
   return data.choices?.[0]?.message?.content;
 }
 
+/** Parses guard response into structured format */
 function parseGuardResponse(data: string): GuardResponse {
   const lines = data.trim().split("\n");
   const isSafe = lines[0]?.toLowerCase() === "safe";

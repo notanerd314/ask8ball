@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useEightBall } from "../context/EightBallContext";
 import { CHARACTER_LIMITS } from "../../../lib/constants/eightball";
 
+/** Hook for managing question input state and character counting */
 export default function useQuestionInput() {
   const questionRef = useRef<HTMLInputElement>(null);
   const [charactersLeft, setCharactersLeft] = useState<number>(CHARACTER_LIMITS.MAX_LENGTH);

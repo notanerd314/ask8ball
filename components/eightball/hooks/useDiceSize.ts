@@ -2,6 +2,7 @@ import { useRef, useEffect, useCallback } from "react";
 import { DiceSize } from "../../../lib/types/eightball";
 import { DICE_SIZE_MULTIPLIER } from "../../../lib/constants/eightball";
 
+/** Hook to track and update dice element size with resize handling */
 export default function useDiceSize(setDiceSize: (size: DiceSize) => void) {
   const diceRef = useRef<SVGPathElement>(null);
 

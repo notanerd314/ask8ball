@@ -18,6 +18,7 @@ export async function GET(request: Request) {
     return new Response('Invalid signature', { status: 403 });
   }
 
+  /** Calculates optimal font size based on text length */
   function calculateFontSize(text: string): number {
     if (text.length < 6) return 50;
     if (text.length < 20) return 37;
