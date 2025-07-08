@@ -7,6 +7,10 @@ import { getPersonalityData } from '../../lib/api'
 import { ToastContainer, Slide } from 'react-toastify'
 import MainEightBall from '../../components/eightball/MainEightBall'
 
+/** 
+ * Default play page component with sarcastic personality
+ * @returns Promise resolving to JSX element for default eight ball page
+ */
 export default async function Page() {
   const personalityData = await getPersonalityData("sarcastic")
   if (!personalityData) { return; }

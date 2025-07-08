@@ -1,3 +1,7 @@
+/** 
+ * Site footer component
+ * @returns JSX element displaying footer content
+ */
 export default function Footer() {
   return (
     <footer className='flex flex-col items-center gap-2.5 p-5'>

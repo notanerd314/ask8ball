@@ -4,6 +4,12 @@ import { useState } from "react";
 import Modal from "../common/Modal";
 import { useEightBall } from "../eightball/context/EightBallContext";
 
+/** 
+ * Dialog for sharing eight ball results as images
+ * @param isOpen - Whether the dialog is currently open
+ * @param setIsOpen - Function to control dialog open state
+ * @returns JSX element with share dialog functionality
+ */
 function ShareDialog({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
   const {
     shareImageLink

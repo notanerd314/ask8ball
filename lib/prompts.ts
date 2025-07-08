@@ -1,6 +1,11 @@
 import { PersonalityConfig, ThemeConfig } from './types/eightball';
 
-/** Generates system prompt for AI based on answer type and personality */
+/** 
+ * Generates system prompt for AI based on answer type and personality
+ * @param answerPrompt - Type of answer expected (Yes/No/Maybe/No answer)
+ * @param personality - Personality configuration object
+ * @returns Formatted system prompt string for AI
+ */
 export default function getSystemPrompt(answerPrompt: string, personality: PersonalityConfig) {
   return `
 You are a rogue Magic 8-Ball with the personality: **${personality.name}**

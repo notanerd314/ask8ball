@@ -9,6 +9,10 @@ const NAME_CLASSES = "text-4xl";
 const TAG_CLASSES = "!text-[0.95rem] ml-3";
 const DESCRIPTION_CLASSES = "text-[1.25rem]";
 
+/** 
+ * Component displaying current personality information
+ * @returns JSX element with personality name, icon, and description
+ */
 export default function PersonalityInfo() {
   const { currentPersonality } = useEightBall();
 

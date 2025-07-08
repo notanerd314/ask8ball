@@ -11,6 +11,10 @@ import { DiceSize } from '../../lib/types/eightball';
 import styles from '../../styles/Magic8Ball.module.css';
 import textStyles from '../../styles/EightBallText.module.css';
 
+/** 
+ * Main eight ball component with shake functionality
+ * @returns JSX element with interactive eight ball
+ */
 function Magic8Ball() {
   const {
     answer,

@@ -10,6 +10,14 @@ type Props = {
   setDiceSize: (size: DiceSize) => void;
 };
 
+/** 
+ * SVG component for eight ball visual representation
+ * @param currentState - Current state of the eight ball
+ * @param diceColor - Color for the dice/answer area
+ * @param diceStyle - CSS styles for the dice element
+ * @param setDiceSize - Function to update dice size measurements
+ * @returns JSX element with eight ball SVG
+ */
 export const EightBallSvg: React.FC<Props> = ({ 
   currentState, 
   diceColor, 

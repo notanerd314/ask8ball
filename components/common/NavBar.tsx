@@ -1,5 +1,9 @@
 import Link from "next/link"
 
+/** 
+ * Site navigation bar component
+ * @returns JSX element displaying navigation
+ */
 export default function NavBar() {
   return (
     <nav className='fixed flex dark:bg-black/60 p-5 left-2.5 right-2.5 top-2.5 rounded-xl gap-2 items-center border-2 border-white/10 text-[1.25rem] z-50' style={{ backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)' }}>

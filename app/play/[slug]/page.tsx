@@ -7,6 +7,11 @@ import { getPersonalityData } from '../../../lib/api'
 
 import { ToastContainer, Slide } from 'react-toastify'
 
+/** 
+ * Dynamic personality page component
+ * @param params - Route parameters containing personality slug
+ * @returns Promise resolving to JSX element for personality-specific eight ball page
+ */
 export default async function Page({ params }: { params: { slug: string } }) {
   const slug = params.slug
 

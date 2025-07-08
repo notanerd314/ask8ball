@@ -13,7 +13,10 @@ import {
   QUESTION_MAX_LENGTH 
 } from "../../../lib/constants/eightball";
 
-/** Hook that handles the eight ball shake animation and API call */
+/** 
+ * Hook that handles the eight ball shake animation and API call
+ * @returns Object containing shakeEightBall function
+ */
 export default function useEightBallShake() {
   const {
     setAnswer,

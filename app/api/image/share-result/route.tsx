@@ -2,6 +2,11 @@ import { ImageResponse } from 'next/og';
 import { signParams } from '../../../../lib/cryptography';
 import { getPersonalityData } from '../../../../lib/api';
 
+/** 
+ * Generates shareable image for eight ball results
+ * @param request - HTTP request with query parameters for image generation
+ * @returns Promise resolving to ImageResponse with generated image
+ */
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const response = searchParams.get('response');
@@ -18,7 +23,11 @@ export async function GET(request: Request) {
     return new Response('Invalid signature', { status: 403 });
   }
 
-  /** Calculates optimal font size based on text length */
+  /** 
+   * Calculates optimal font size based on text length
+   * @param text - The text to calculate font size for
+   * @returns Optimal font size in pixels
+   */
   function calculateFontSize(text: string): number {
     if (text.length < 6) return 50;
     if (text.length < 20) return 37;

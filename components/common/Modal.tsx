@@ -11,6 +11,15 @@ type ModalProps = {
   children: React.ReactNode;
 };
 
+/** 
+ * Modal dialog component with backdrop
+ * @param isOpen - Whether the modal is currently open
+ * @param setIsOpen - Function to control modal open state
+ * @param children - Modal content
+ * @param onOpen - Optional callback when modal opens
+ * @param onClose - Optional callback when modal closes
+ * @returns JSX element with modal functionality
+ */
 export default function Modal({ isOpen, setIsOpen, children, onOpen = () => { }, onClose = () => { } }: ModalProps) {
   const modalRef = useRef<HTMLDialogElement>(null);
 

@@ -32,6 +32,12 @@ type EightBallProviderProps = {
   personalityData: PersonalityConfig;
 };
 
+/** 
+ * Context provider for eight ball state management
+ * @param children - Child components
+ * @param personalityData - Initial personality configuration
+ * @returns JSX element providing eight ball context
+ */
 export const EightBallProvider: React.FC<EightBallProviderProps> = ({ 
   children, 
   personalityData 
@@ -65,6 +71,11 @@ export const EightBallProvider: React.FC<EightBallProviderProps> = ({
   );
 };
 
+/** 
+ * Hook to access eight ball context
+ * @returns Eight ball context value with state and setters
+ * @throws Error if used outside EightBallProvider
+ */
 export const useEightBall = () => {
   const context = useContext(EightBallContext);
   if (!context) {

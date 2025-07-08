@@ -1,5 +1,10 @@
 import { personalitiesList } from "../../../lib/personalities";
 
+/** 
+ * Fetches specific personality configuration by linkname
+ * @param req - HTTP request with personality query parameter
+ * @returns Promise resolving to JSON response with personality data or error
+ */
 export async function GET(req: Request): Promise<Response> {
     const {searchParams} = new URL(req.url);
     const personality = searchParams.get("personality");

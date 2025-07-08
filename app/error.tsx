@@ -3,6 +3,12 @@
 import Image from "next/image";
 import { RefreshIcon } from "../components/utils/FontAwesome";
 
+/** 
+ * Global error boundary component
+ * @param error - The error that occurred
+ * @param reset - Function to reset the error boundary
+ * @returns JSX element displaying error UI
+ */
 export default function GlobalError({ error, reset }: { error: Error, reset: () => void }) {
   return (
     <>

@@ -6,6 +6,10 @@ import { getRandomItem } from "../lib/rng"
 
 import { ChevronRightIcon } from "../components/utils/FontAwesome"
 
+/** 
+ * 404 Not Found page component
+ * @returns JSX element displaying 404 error page
+ */
 export default function NotFound() {
   return (
     <>

@@ -12,6 +12,11 @@ const CONTAINER_BASE_CLASSES = "flex flex-col items-center w-full lg:h-[90vh] h-
 const SHARE_BUTTON_CLASSES = "lg:!p-4 !p-5 text-green-400 !text-2xl !rounded-full bg-black/60 transition-transform hover:scale-110 active:scale-95";
 const DISCLAIMER_CLASSES = "text-sm text-center text-white/50";
 
+/** 
+ * Main container component for eight ball experience
+ * @param personalityData - Personality configuration for the eight ball
+ * @returns JSX element with complete eight ball interface
+ */
 export default function MainEightBall({ personalityData }: { personalityData: PersonalityConfig }) {
   const [isShareOpen, setIsShareOpen] = useState(false);
 

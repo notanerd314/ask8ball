@@ -11,7 +11,12 @@ interface StarProps {
   className?: string;
 }
 
-/** Renders star rating display */
+/** 
+ * Renders star rating display
+ * @param stars - Number of stars to display (0-5)
+ * @param className - Additional CSS classes
+ * @returns JSX element with star rating
+ */
 export function StarRating({ stars, className = "" }: StarProps) {
   return (
     <div className={'flex' + ' ' + className}>
@@ -25,7 +30,13 @@ export function StarRating({ stars, className = "" }: StarProps) {
   )
 }
 
-/** User review component with star rating */
+/** 
+ * User review component with star rating
+ * @param quote - Review text content
+ * @param author - Name of the reviewer
+ * @param stars - Star rating (0-5)
+ * @returns JSX element displaying user review
+ */
 export default function UserReview({ quote, author, stars }: Props) {
   return (
     <article className="relative flex flex-col p-3 text-center border-2 border-transparent shadow-lg w-xs gap-2 transition duration-300 ease-in-out rounded-md bg-slate-200 hover:border-indigo-500 hover:-translate-y-1 dark:bg-slate-900">

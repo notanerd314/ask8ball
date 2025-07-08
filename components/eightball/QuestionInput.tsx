@@ -7,6 +7,10 @@ import { CloseIcon } from "../utils/FontAwesome";
 const INPUT_STYLES = "!text-2xl w-[65vw] lg:w-[35rem] !rounded-r-none";
 const COUNTER_STYLES = "rounded-md backdrop-blur-md bg-white/30 dark:bg-black/30 dark:border-slate-800 rounded-l-none p-3 w-15 text-center text-2xl";
 
+/** 
+ * Input component for asking questions to the eight ball
+ * @returns JSX element with question input and character counter
+ */
 export default function QuestionInput() {
   const { shakeEightBall } = useEightBallShake();
   const {

@@ -8,6 +8,11 @@ const TITLE_BASE_CLASSES = "!text-3xl font-bold";
 const TITLE_WITH_TAG_CLASSES = "flex items-center justify-center mt-2 mb-1 gap-2";
 const TAG_CLASSES = "!text-[0.95rem]";
 
+/** 
+ * Individual personality card component
+ * @param personality - Personality configuration to display
+ * @returns JSX element with clickable personality card
+ */
 export function PersonalityCard({ personality }: { personality: PersonalityConfig }) {
   const titleClasses = `${TITLE_BASE_CLASSES} ${
     personality.tag ? TITLE_WITH_TAG_CLASSES : ""
@@ -33,6 +38,10 @@ export function PersonalityCard({ personality }: { personality: PersonalityConfi
   );
 }
 
+/** 
+ * Grid of personality cards for selection
+ * @returns Promise resolving to JSX element with personality selection grid
+ */
 export default async function PersonalityPicker() {
   const personalitiesList = await getAllPersonalities();
   console.log("Personalities:", personalitiesList);
