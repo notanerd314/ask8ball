@@ -70,7 +70,7 @@ export const sarcasticPersonality: PersonalityConfig = {
       answerPrompt: "No answer"
     }
   ],
-  temperature: 1.2,
+  temperature: 1.3,
   theme: {
     icon: "😒",
     accentColor: "#303084",
@@ -147,7 +147,7 @@ export const villainPersonality: PersonalityConfig = {
       answerPrompt: "Maybe"
     }
   ],
-  temperature: 1,
+  temperature: 1.1,
   theme: {
     icon: "😈",
     accentColor: "#047857",
@@ -342,7 +342,7 @@ export const flatteringPersonality: PersonalityConfig = {
       answerPrompt: "Maybe"
     }
   ],
-  temperature: 1.1,
+  temperature: 1.2,
   theme: {
     icon: "😉",
     accentColor: "#DB2777",

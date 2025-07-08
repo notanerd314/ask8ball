@@ -4,7 +4,7 @@ import { personalitiesList } from "../../../lib/personalities";
 
 import { signParams } from "../../../lib/cryptography";
 
-const llamaMaverick = "meta-llama/llama-4-maverick-17b-128e-instruct";
+const qwen3 = "qwen/qwen3-32b";
 const llamaGuard = "meta-llama/llama-guard-4-12b";
 
 type GuardResponse = {
@@ -37,18 +37,21 @@ async function fetchAIResponse(question: string, systemPrompt: string, temperatu
       Authorization: `Bearer ${process.env.LLM_GROQ!}`,
     },
     body: JSON.stringify({
-      model: llamaMaverick,
+      model: qwen3,
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: question },
       ],
       temperature: temperature || 1.1,
       top_p: 1,
-      max_tokens: 25,
-      n: 1,
+      top_k: 50,
+      presence_penalty: 1.0,
+      frequency_penalty: 0.8,
+      max_completion_tokens: 5000,
+      stream: false
     }),
   });
-
+  console.log(response)
   const data = await response.json();
   return data.choices?.[0]?.message?.content;
 }
