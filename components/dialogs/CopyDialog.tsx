@@ -28,7 +28,7 @@ export default function CopyDialog({ isOpen, setIsOpen }: { isOpen: boolean, set
   ) + `\n\n ✨ Try your luck: https://example.com`
 
   function copyText() {
-    navigator.clipboard.writeText(currentResponse.response);
+    navigator.clipboard.writeText(textToCopy);
     setIsCopied(true);
   }
 

@@ -10,7 +10,7 @@ import { PersonalityConfig } from "../../lib/prompts";
 import CopyDialog from "../dialogs/CopyDialog";
 
 const CONTAINER_BASE_CLASSES = "flex flex-col items-center w-full lg:h-[90vh] h-[97vh] overflow-hidden gap-4 pr-5 pl-5 pt-25 pb-6 rounded-b-[40px] mb-10 -z-50";
-const SHARE_BUTTON_CLASSES = "!p-4.5 !text-2xl !rounded-full bg-black/60 transition-transform hover:scale-110 active:scale-95";
+const SHARE_BUTTON_CLASSES = "!p-5 lg:!p-4 !text-2xl !rounded-full bg-black/60 transition-transform hover:scale-110 active:scale-95";
 const DISCLAIMER_CLASSES = "text-sm text-center text-white/50";
 
 /** 
@@ -34,10 +34,10 @@ export default function MainEightBall({ personalityData }: { personalityData: Pe
  * Main container component for eight ball experience
  * @param containerStyle - The background of the personality
  * @returns JSX element of the main content
- */
-function Main8BallContent({ containerStyle }: { containerStyle: React.CSSProperties }) {
+ */ function Main8BallContent({ containerStyle }: { containerStyle: React.CSSProperties }) {
   const {
-    ballCurrentState
+    ballCurrentState,
+    currentResponse
   } = useEightBall();
 
   const [isShareOpen, setIsShareOpen] = useState(false);
@@ -49,6 +49,7 @@ function Main8BallContent({ containerStyle }: { containerStyle: React.CSSPropert
       <CopyDialog isOpen={isCopyOpen} setIsOpen={setIsCopyOpen} />
 
       <PersonalityInfo />
+      <code>{JSON.stringify(currentResponse, null, 2)}</code>
       <Magic8Ball />
 
       <div className='flex flex-row items-center gap-2'>
@@ -57,7 +58,7 @@ function Main8BallContent({ containerStyle }: { containerStyle: React.CSSPropert
           onClick={() => setIsShareOpen(true)}
           disabled={ballCurrentState === "shaking"}
         >
-          <ShareIcon size={18} /> Share
+          <ShareIcon size={20} /> Share
         </button>
 
         <button
@@ -65,7 +66,7 @@ function Main8BallContent({ containerStyle }: { containerStyle: React.CSSPropert
           onClick={() => setIsCopyOpen(true)}
           disabled={ballCurrentState === "shaking"}
         >
-          <CopyIcon size={18} /> Copy
+          <CopyIcon size={20} /> Copy
         </button>
       </div>
 

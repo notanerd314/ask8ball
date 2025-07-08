@@ -58,7 +58,7 @@ async function fetchAIResponse(question: string, systemPrompt: string, temperatu
       top_p: 1,
       presence_penalty: 1.0,
       frequency_penalty: 0.8,
-      max_completion_tokens: 50,
+      max_completion_tokens: 512,
       stream: false
     }),
   });
