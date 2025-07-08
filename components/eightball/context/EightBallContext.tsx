@@ -2,12 +2,20 @@
 
 import { createContext, useContext, useState, ReactNode } from 'react';
 import { PersonalityConfig } from '../../../lib/prompts';
-import { BallStateType, EightBallContextType } from '../../../lib/types/eightball';
+import { BallStateType, EightBallContextType, APIResponse } from '../../../lib/types/eightball';
 import { INITIAL_DICE_STYLE } from '../../../lib/constants/eightball';
 
 const EightBallContext = createContext<EightBallContextType>({
-  answer: '',
-  setAnswer: () => { },
+  currentResponse: {
+    question: "",
+    response: "",
+    responseType: "",
+    isSafe: false,
+    violatedCategories: [],
+    personality: "",
+    imageLink: ""
+  },
+  setCurrentResponse: () => { },
   ballCurrentState: 'normal',
   setBallCurrentState: () => { },
   question: '',
@@ -42,8 +50,16 @@ export const EightBallProvider: React.FC<EightBallProviderProps> = ({
   children, 
   personalityData 
 }) => {
-  const [answer, setAnswer] = useState("[No answer]");
   const [question, setQuestion] = useState("[No question]");
+  const [currentResponse, setCurrentResponse] = useState<APIResponse>({
+    question: "",
+    response: "",
+    responseType: "",
+    isSafe: false,
+    violatedCategories: [],
+    personality: "",
+    imageLink: ""
+  });
   const [ballCurrentState, setBallCurrentState] = useState<BallStateType>("normal");
   const [diceStyle, setDiceStyle] = useState<React.CSSProperties>(INITIAL_DICE_STYLE);
   const [currentPersonality, setCurrentPersonality] = useState(personalityData);
@@ -54,8 +70,8 @@ export const EightBallProvider: React.FC<EightBallProviderProps> = ({
     setBallCurrentState,
     question,
     setQuestion,
-    answer,
-    setAnswer,
+    currentResponse,
+    setCurrentResponse,
     diceStyle,
     setDiceStyle,
     currentPersonality,

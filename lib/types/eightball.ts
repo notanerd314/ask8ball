@@ -1,13 +1,13 @@
 export type BallStateType = "normal" | "shaking" | "result" | "error";
 
-export interface DiceSize {
+export type DiceSize = {
   width: number;
   height: number;
 }
 
-export interface EightBallContextType {
-  answer: string;
-  setAnswer: (answer: string) => void;
+export type EightBallContextType = {
+  currentResponse: APIResponse;
+  setCurrentResponse: (response: APIResponse) => void;
   ballCurrentState: BallStateType;
   setBallCurrentState: (state: BallStateType) => void;
   question: string;
@@ -20,7 +20,7 @@ export interface EightBallContextType {
   setShareImageLink: (link: string) => void;
 }
 
-export interface PersonalityConfig {
+export type PersonalityConfig = {
   linkname: string;
   name: string;
   description: string;
@@ -32,9 +32,19 @@ export interface PersonalityConfig {
   customResponseScript?: (question: string) => string;
 }
 
-export interface ThemeConfig {
+export type ThemeConfig = {
   icon: string;
   accentColor: string;
   cssBackground: string;
   tailwindHoverClass: string;
+}
+
+export type APIResponse = {
+  question: string,
+  response: string,
+  responseType: string,
+  isSafe: boolean,
+  violatedCategories: string[],
+  personality: string,
+  imageLink: string,
 }

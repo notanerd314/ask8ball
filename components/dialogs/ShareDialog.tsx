@@ -12,18 +12,26 @@ import { useEightBall } from "../eightball/context/EightBallContext";
  */
 function ShareDialog({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
   const {
-    shareImageLink
+    currentResponse
   } = useEightBall();
+
+  const [imageLink, setImageLink] = useState<string>("");
+
+  const onOpen = () => {
+    if (currentResponse.imageLink) {
+      setImageLink(currentResponse.imageLink);
+    }
+  };
   
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+    <Modal isOpen={isOpen} setIsOpen={setIsOpen} onOpen={onOpen}>
       <h1>Share Image</h1>
       <br />
-      {shareImageLink ?
+      {imageLink ?
         <>
-          <img src={shareImageLink} className="w-full rounded-2xl" />
+          <img src={imageLink} className="w-full rounded-2xl" />
           <br />
-          <a href={shareImageLink} download={`eightball-${Date.now()}.png`} className="buttonBlue !p-3 rounded-lg !text-white">
+          <a href={imageLink} download={`eightball-${Date.now()}.png`} className="buttonBlue !p-3 rounded-lg !text-white">
             Download Image
           </a>
         </>

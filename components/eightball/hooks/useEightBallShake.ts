@@ -19,12 +19,11 @@ import {
  */
 export default function useEightBallShake() {
   const {
-    setAnswer,
+    setCurrentResponse,
     setBallCurrentState,
     question,
     setDiceStyle,
     currentPersonality,
-    setShareImageLink
   } = useEightBall();
 
   const [playShakeSound1] = useSound(shakeSounds[0]);
@@ -48,8 +47,7 @@ export default function useEightBallShake() {
       console.log(answerData);
 
       getRandomItem([playShakeSound1, playShakeSound2])();
-      setAnswer(answerData.response);
-      setShareImageLink(answerData.imageLink || "");
+      setCurrentResponse(answerData),
 
       setTimeout(() => {
         setBallCurrentState("result");

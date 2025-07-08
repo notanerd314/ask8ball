@@ -1,5 +1,6 @@
 import { PersonalityConfig } from "./types/eightball";
 import { DOMAIN } from "./constants/secret";
+import { APIResponse } from "./types/eightball";
 
 /** 
  * Fetches personality configuration by slug
@@ -48,7 +49,7 @@ export async function getAllPersonalities(): Promise<PersonalityConfig[]> {
  * @param personality - Personality identifier
  * @returns Promise resolving to AI response with metadata
  */
-export const getAnswer = async (question: string, personality: string) => {
+export const getAnswer = async (question: string, personality: string): Promise<APIResponse> => {
   const res = await fetch("/api/ask-ai", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

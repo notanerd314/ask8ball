@@ -44,7 +44,6 @@ export function PersonalityCard({ personality }: { personality: PersonalityConfi
  */
 export default async function PersonalityPicker() {
   const personalitiesList = await getAllPersonalities();
-  console.log("Personalities:", personalitiesList);
 
   return (
     <section>

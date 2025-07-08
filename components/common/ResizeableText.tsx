@@ -38,8 +38,6 @@ const ResizableText = ({
   useEffect(() => {
     if (!textRef.current) return;
 
-    console.log(maxWidth, maxHeight)
-
     let currentFontSize = initialFontSize;
     textRef.current.style.fontSize = currentFontSize + 'px';
 
@@ -47,11 +45,6 @@ const ResizableText = ({
       currentFontSize -= 1;
       textRef.current.style.fontSize = currentFontSize + 'px';
     }
-
-    // while (textRef.current.scrollWidth > maxWidth && currentFontSize > minFontSize) {
-    //   currentFontSize -= 1;
-    //   textRef.current.style.fontSize = currentFontSize + 'px';
-    // }
 
     setFontSize(currentFontSize);
   }, [children, maxWidth, maxHeight, minFontSize, initialFontSize]);

@@ -4,7 +4,7 @@ import { personalitiesList } from "../../../lib/personalities";
 
 import { signParams } from "../../../lib/cryptography";
 
-const qwen3 = "qwen/qwen3-32b";
+const llamaScout = "meta-llama/llama-4-scout-17b-16e-instruct";
 const llamaGuard = "meta-llama/llama-guard-4-12b";
 
 type GuardResponse = {
@@ -49,22 +49,22 @@ async function fetchAIResponse(question: string, systemPrompt: string, temperatu
       Authorization: `Bearer ${process.env.LLM_GROQ!}`,
     },
     body: JSON.stringify({
-      model: qwen3,
+      model: llamaScout,
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: question },
       ],
       temperature: temperature || 1.1,
       top_p: 1,
-      top_k: 50,
       presence_penalty: 1.0,
       frequency_penalty: 0.8,
-      max_completion_tokens: 5000,
+      max_completion_tokens: 50,
       stream: false
     }),
   });
-  console.log(response)
+
   const data = await response.json();
+  console.error(data)
   return data.choices?.[0]?.message?.content;
 }
 
@@ -99,6 +99,8 @@ export async function POST(req: Request): Promise<Response> {
     if (typeof personality !== "string") {
       throw new Error("Invalid personality format");
     }
+
+    const perviousResponse = body.previousResponse;
 
     const answerPrompt = getRandomItem([
       "Yes",

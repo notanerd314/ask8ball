@@ -17,7 +17,7 @@ import textStyles from '../../styles/EightBallText.module.css';
  */
 function Magic8Ball() {
   const {
-    answer,
+    currentResponse,
     ballCurrentState,
     diceStyle,
     currentPersonality
@@ -27,7 +27,7 @@ function Magic8Ball() {
   const [diceSize, setDiceSize] = useState<DiceSize>({ width: 0, height: 0 });
 
   const getDisplayText = () => {
-    return ballCurrentState !== "error" ? answer : ">:(";
+    return ballCurrentState !== "error" ? currentResponse.response : ">:(";
   };
 
   return (

@@ -14,7 +14,6 @@ import MainEightBall from '../../components/eightball/MainEightBall'
 export default async function Page() {
   const personalityData = await getPersonalityData("sarcastic")
   if (!personalityData) { return; }
-  console.log(personalityData)
 
   return (
     <>
