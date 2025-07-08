@@ -7,6 +7,7 @@ import PersonalityInfo from "./PersonalityInfo";
 import { ShareIcon, CopyIcon } from "../utils/FontAwesome";
 import Magic8Ball from "./Magic8Ball";
 import { PersonalityConfig } from "../../lib/prompts";
+import CopyDialog from "../dialogs/CopyDialog";
 
 const CONTAINER_BASE_CLASSES = "flex flex-col items-center w-full lg:h-[90vh] h-[97vh] overflow-hidden gap-4 pr-5 pl-5 pt-25 pb-6 rounded-b-[40px] mb-10 -z-50";
 const SHARE_BUTTON_CLASSES = "!p-4.5 !text-2xl !rounded-full bg-black/60 transition-transform hover:scale-110 active:scale-95";
@@ -40,10 +41,12 @@ function Main8BallContent({ containerStyle }: { containerStyle: React.CSSPropert
   } = useEightBall();
 
   const [isShareOpen, setIsShareOpen] = useState(false);
+  const [isCopyOpen, setIsCopyOpen] = useState(false);
 
   return (
     <div className={CONTAINER_BASE_CLASSES} style={containerStyle}>
       <ShareDialog isOpen={isShareOpen} setIsOpen={setIsShareOpen} />
+      <CopyDialog isOpen={isCopyOpen} setIsOpen={setIsCopyOpen} />
 
       <PersonalityInfo />
       <Magic8Ball />
@@ -59,7 +62,7 @@ function Main8BallContent({ containerStyle }: { containerStyle: React.CSSPropert
 
         <button
           className={SHARE_BUTTON_CLASSES + " text-amber-300"}
-          onClick={() => setIsShareOpen(true)}
+          onClick={() => setIsCopyOpen(true)}
           disabled={ballCurrentState === "shaking"}
         >
           <CopyIcon size={18} /> Copy
