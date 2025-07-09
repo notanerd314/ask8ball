@@ -1,6 +1,7 @@
 import { getRandomItem } from "../../../lib/rng";
 import getSystemPrompt from "../../../lib/prompts";
 import { personalitiesList } from "../../../lib/personalities";
+import { AnswerPrompt } from "../../../lib/types/eightball";
 
 import { signParams } from "../../../lib/cryptography";
 
@@ -100,13 +101,13 @@ export async function POST(req: Request): Promise<Response> {
       throw new Error("Invalid personality format");
     }
 
-    const perviousResponse = body.previousResponse;
+    // const perviousResponse = body.previousResponse;
 
     const answerPrompt = getRandomItem([
-      "Yes",
-      "No",
-      "Maybe",
-      "No answer",
+      AnswerPrompt.Yes,
+      AnswerPrompt.No,
+      AnswerPrompt.Maybe,
+      AnswerPrompt.NoAnswer
     ]);
 
     const rawGuard = await fetchGuardResponse(question);

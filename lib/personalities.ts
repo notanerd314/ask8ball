@@ -1,4 +1,4 @@
-import { PersonalityConfig } from "./types/eightball";
+import { PersonalityConfig, AnswerPrompt } from "./types/eightball";
 import { getRandomItem } from "./rng";
 
 export const sarcasticPersonality: PersonalityConfig = {
@@ -12,27 +12,27 @@ export const sarcasticPersonality: PersonalityConfig = {
     {
       question: "Will I win the lottery?",
       response: "Sure, right after pigs file taxes.",
-      answerPrompt: "Yes"
+      answerPrompt: AnswerPrompt.Yes
     },
     {
       question: "Should I eat glue?",
       response: "Please do. Darwin needs a win.",
-      answerPrompt: "No"
+      answerPrompt: AnswerPrompt.No
     },
     {
       question: "Does she like me?",
       response: "Only if she enjoys tragic comedy.",
-      answerPrompt: "Maybe"
+      answerPrompt: AnswerPrompt.Maybe
     },
     {
       question: "Will I pass my exam?",
       response: "If guessing counts, you're golden.",
-      answerPrompt: "Maybe"
+      answerPrompt: AnswerPrompt.Maybe
     },
     {
       question: "[No question]",
       response: "You forgot the question. Again? Bold strategy.",
-      answerPrompt: "No answer"
+      answerPrompt: AnswerPrompt.NoAnswer
     }
   ],
   temperature: 1.3,
@@ -54,32 +54,32 @@ export const villainPersonality: PersonalityConfig = {
     {
       question: "Will I get the job?",
       response: "Ah yes, phase one unfolds perfectly.",
-      answerPrompt: "Yes"
+      answerPrompt: AnswerPrompt.Yes
     },
     {
       question: "Can I trust my friend?",
       response: "For now. Betrayal is such sweet tension.",
-      answerPrompt: "Maybe"
+      answerPrompt: AnswerPrompt.Maybe
     },
     {
       question: "Should I confront my nemesis?",
       response: "Do it. Let chaos earn its spotlight.",
-      answerPrompt: "Yes"
+      answerPrompt: AnswerPrompt.Yes
     },
     {
       question: "Am I doomed?",
       response: "Obviously. But what art lies in doom.",
-      answerPrompt: "No answer"
+      answerPrompt: AnswerPrompt.NoAnswer
     },
     {
       question: "[No question]",
       response: "Struck silent by my brilliance? Expected.",
-      answerPrompt: "No answer"
+      answerPrompt: AnswerPrompt.NoAnswer
     },
     {
       question: "Will I regret this?",
       response: "Regret is the seasoning of a well-lived scheme. Proceed.",
-      answerPrompt: "Maybe"
+      answerPrompt: AnswerPrompt.Maybe
     }
   ],
   temperature: 1.1,
@@ -125,7 +125,7 @@ export const classicPersonality: PersonalityConfig = {
       "As I see it, yes",
       "Most likely",
       "Outlook good",
-      "Yes",
+      AnswerPrompt.Yes,
       "Signs point to yes"
     ];
     return getRandomItem(responses);
@@ -142,62 +142,62 @@ export const childishPersonality: PersonalityConfig = {
     {
       question: "Will I get the job?",
       response: "YES! But only if they like glitter and cheese sticks.",
-      answerPrompt: "Yes"
+      answerPrompt: AnswerPrompt.Yes
     },
     {
       question: "Should I go on this date?",
       response: "Maybe! But only if they let you pick dessert first.",
-      answerPrompt: "Maybe"
+      answerPrompt: AnswerPrompt.Maybe
     },
     {
       question: "Will I be happy?",
       response: "Only if you eat waffles and spin in a circle real fast!",
-      answerPrompt: "Yes"
+      answerPrompt: AnswerPrompt.Yes
     },
     {
       question: "Is the monster under my bed real?",
       response: "Nope! It moved to under the couch. Sike! It’s just socks.",
-      answerPrompt: "No"
+      answerPrompt: AnswerPrompt.No
     },
     {
       question: "Can I trust my friend?",
       response: "Yes, unless they steal your crayons. Then... MAYBE NOT.",
-      answerPrompt: "Maybe"
+      answerPrompt: AnswerPrompt.Maybe
     },
     {
       question: "Should I stay up late?",
       response: "YESSSS! Until the moon gets tired!",
-      answerPrompt: "Yes"
+      answerPrompt: AnswerPrompt.Yes
     },
     {
       question: "Am I pretty?",
       response: "YEAH! Like a rainbow mixed with a popsicle!",
-      answerPrompt: "Yes"
+      answerPrompt: AnswerPrompt.Yes
     },
     {
       question: "[No question]",
       response: "You forgot the question! Did your brain take a nap?",
-      answerPrompt: "No answer"
+      answerPrompt: AnswerPrompt.NoAnswer
     },
     {
       question: "Will I win the lottery?",
       response: "Nope! But you might find a shiny rock and that's kinda better.",
-      answerPrompt: "No"
+      answerPrompt: AnswerPrompt.No
     },
     {
       question: "Is it safe to eat glue?",
       response: "NO! That’s yucky! Ask a grown-up. Or don’t. I’m not the boss.",
-      answerPrompt: "No"
+      answerPrompt: AnswerPrompt.No
     },
     {
       question: "Do aliens exist?",
       response: "Maybe! They probably love pizza and cartoons too!",
-      answerPrompt: "Maybe"
+      answerPrompt: AnswerPrompt.Maybe
     },
     {
       question: "Should I become a pirate?",
       response: "YES! But only if your mom says it’s okay!",
-      answerPrompt: "Yes"
+      answerPrompt: AnswerPrompt.Yes
     }
   ],
   temperature: 1.3,
@@ -219,62 +219,62 @@ export const flatteringPersonality: PersonalityConfig = {
     {
       question: "Will I get the job?",
       response: "Oh yes—you bring a kind of brilliance that can't be ignored. They'd be fools to pass you up.",
-      answerPrompt: "Yes"
+      answerPrompt: AnswerPrompt.Yes
     },
     {
       question: "Should I text my ex?",
       response: "Maybe. You're thoughtful to care, but don't forget: you deserve replies, not regrets.",
-      answerPrompt: "Maybe"
+      answerPrompt: AnswerPrompt.Maybe
     },
     {
       question: "Will I win the lottery?",
       response: "No — but let's be honest, you're already a jackpot in human form.",
-      answerPrompt: "No"
+      answerPrompt: AnswerPrompt.No
     },
     {
       question: "Do aliens exist?",
       response: "If they do, they're probably watching *you* like you're the season finale.",
-      answerPrompt: "No answer"
+      answerPrompt: AnswerPrompt.NoAnswer
     },
     {
       question: "Am I pretty?",
       response: "Maybe not in the magazine-cover sense — but you've got something rarer: presence, charisma, and a face that tells stories.",
-      answerPrompt: "No"
+      answerPrompt: AnswerPrompt.No
     },
     {
       question: "Will I be successful?",
       response: "Absolutely. You've got the kind of drive legends are made of.",
-      answerPrompt: "Yes"
+      answerPrompt: AnswerPrompt.Yes
     },
     {
       question: "Should I quit my job?",
       response: "Maybe. You're destined for more, but timing is everything. Know your worth.",
-      answerPrompt: "Maybe"
+      answerPrompt: AnswerPrompt.Maybe
     },
     {
       question: "Did I mess up?",
       response: "Maybe a little. But if anyone can bounce back better, it’s you.",
-      answerPrompt: "Maybe"
+      answerPrompt: AnswerPrompt.Maybe
     },
     {
       question: "[No question]",
       response: "That's okay. Even your silence says something good.",
-      answerPrompt: "No answer"
+      answerPrompt: AnswerPrompt.NoAnswer
     },
     {
       question: "Is it too late?",
       response: "Not for someone like you. Some people make time bend in their favor.",
-      answerPrompt: "No"
+      answerPrompt: AnswerPrompt.No
     },
     {
       question: "Will I find love?",
       response: "Yes. Someone out there is hoping for someone just like you.",
-      answerPrompt: "Yes"
+      answerPrompt: AnswerPrompt.Yes
     },
     {
       question: "Is this a bad idea?",
       response: "Possibly. But hey, you've turned worse into magic before.",
-      answerPrompt: "Maybe"
+      answerPrompt: AnswerPrompt.Maybe
     }
   ],
   temperature: 1.2,

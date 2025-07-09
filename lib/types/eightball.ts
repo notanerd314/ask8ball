@@ -1,5 +1,12 @@
 export type BallStateType = "normal" | "shaking" | "result" | "error";
 
+export enum AnswerPrompt {
+  Yes = "Yes",
+  No = "No",
+  Maybe = "Maybe",
+  NoAnswer = "No answer"
+}
+
 export type DiceSize = {
   width: number;
   height: number;
@@ -25,11 +32,17 @@ export type PersonalityConfig = {
   name: string;
   description: string;
   prompt: string;
-  examples: Record<string, string>[];
+  examples: PersonalityExample[];
   theme: ThemeConfig;
   temperature?: number;
   tag?: string;
   customResponseScript?: (question: string) => string;
+}
+
+export type PersonalityExample = {
+  question: string;
+  response: string;
+  answerPrompt: AnswerPrompt;
 }
 
 export type ThemeConfig = {
