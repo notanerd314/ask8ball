@@ -7,7 +7,7 @@ import PersonalityInfo from "./PersonalityInfo";
 import { ShareIcon, CopyIcon } from "../utils/FontAwesome";
 import Magic8Ball from "./Magic8Ball";
 import { PersonalityConfig } from "../../lib/prompts";
-import CopyDialog from "../dialogs/CopyDialog";
+import useCopyText from "./hooks/useCopyShareText";
 
 const CONTAINER_BASE_CLASSES = "flex flex-col items-center w-full lg:h-[90vh] h-[97vh] overflow-hidden gap-4 pr-5 pl-5 pt-25 pb-6 rounded-b-[40px] mb-10 -z-50";
 const SHARE_BUTTON_CLASSES = "!p-5 lg:!p-4 !text-2xl !rounded-full bg-black/60 transition-transform hover:scale-110 active:scale-95";
@@ -40,31 +40,30 @@ export default function MainEightBall({ personalityData }: { personalityData: Pe
     currentResponse
   } = useEightBall();
 
+  const { copyText } = useCopyText();
+
   const [isShareOpen, setIsShareOpen] = useState(false);
-  const [isCopyOpen, setIsCopyOpen] = useState(false);
 
   return (
     <div className={CONTAINER_BASE_CLASSES} style={containerStyle}>
       <ShareDialog isOpen={isShareOpen} setIsOpen={setIsShareOpen} />
-      <CopyDialog isOpen={isCopyOpen} setIsOpen={setIsCopyOpen} />
 
       <PersonalityInfo />
-      <code>{JSON.stringify(currentResponse, null, 2)}</code>
       <Magic8Ball />
 
       <div className='flex flex-row items-center gap-2'>
         <button
           className={SHARE_BUTTON_CLASSES + " text-green-300"}
           onClick={() => setIsShareOpen(true)}
-          disabled={ballCurrentState === "shaking"}
+          hidden={ballCurrentState === "shaking" || !currentResponse.response}
         >
           <ShareIcon size={20} /> Share
         </button>
 
         <button
           className={SHARE_BUTTON_CLASSES + " text-amber-300"}
-          onClick={() => setIsCopyOpen(true)}
-          disabled={ballCurrentState === "shaking"}
+          onClick={copyText}
+          hidden={ballCurrentState === "shaking" || !currentResponse.response}
         >
           <CopyIcon size={20} /> Copy
         </button>
