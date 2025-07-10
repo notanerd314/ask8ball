@@ -65,7 +65,7 @@ export const sarcasticPersonality: PersonalityConfig = {
     icon: "😒",
     accentColor: "#303084",
     cssBackground: "linear-gradient(to bottom right, #5A1181, #1E3A8A, #3730A3)",
-    tailwindHoverClass: "hover:bg-gradient-to-br hover:from-[#5A1181] hover:via-[#1E3A8A] hover:to-[#3730A3]"
+    tailwindHoverClass: "hover:bg-gradient-to-br hover:from-[#5A1181] hover:via-[#1E3A8A] hover:to-[#3730A3] ring-indigo-500 ring-3"
   }
 };
 
@@ -325,7 +325,7 @@ export const flatteringPersonality: PersonalityConfig = {
   temperature: 1.2,
   theme: {
     icon: "😉",
-    accentColor: "#DB2777",
+    accentColor: "#c464c1",
     cssBackground: "linear-gradient(90deg, hsla(31, 50%, 58%, 1) 0%, hsla(302, 45%, 58%, 1) 100%)",
     tailwindHoverClass: "hover:bg-[linear-gradient(90deg,_hsla(31,50%,58%,1)_0%,_hsla(302,45%,58%,1)_100%)]"
   }
