@@ -40,7 +40,7 @@ export default function MainEightBall({ personalityData }: { personalityData: Pe
     currentResponse
   } = useEightBall();
 
-  const { copyText } = useCopyText();
+  const { copyText, copyIndicated } = useCopyText();
 
   const [isShareOpen, setIsShareOpen] = useState(false);
 
@@ -65,7 +65,7 @@ export default function MainEightBall({ personalityData }: { personalityData: Pe
           onClick={copyText}
           hidden={ballCurrentState === "shaking" || !currentResponse.response}
         >
-          <CopyIcon size={20} /> Copy
+          <CopyIcon size={20} /> {copyIndicated ? "Copied!" : "Copy"}
         </button>
       </div>
 
