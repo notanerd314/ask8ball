@@ -112,7 +112,7 @@ button:disabled {
 
 .toast {
   z-index: 10000;
-  @apply p-3 text-[1.25rem] rounded-md shadow-md bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100;
+  @apply p-3 rounded-xl bg-slate-900/70 text-white backdrop-blur-md;
 }
 
 @layer utilities {
