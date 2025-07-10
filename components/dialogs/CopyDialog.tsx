@@ -20,9 +20,9 @@ export default function CopyDialog({ isOpen, setIsOpen }: { isOpen: boolean, set
   const isEmpty = !currentResponse.question.trim() || currentResponse.question === "[No question]";
 
   const textToCopy = (isEmpty
-    ? `🎱 I asked the Magic 8 Ball NOTHING.\n\n` +
+    ? `🎱 I asked the ${currentResponse.personality} Magic 8 Ball NOTHING.\n\n` +
     `It still replied:\n"${currentResponse.response}"`
-    : `🎱 I asked the Magic 8 Ball:\n` +
+    : `🎱 I asked the ${currentResponse.personality} Magic 8 Ball:\n` +
     `"${currentResponse.question}"\n\n` +
     `It replied:\n"${currentResponse.response}"`
   ) + `\n\n ✨ Try your luck: https://example.com`
