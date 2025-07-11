@@ -4,6 +4,7 @@ import { personalitiesList } from "../../../lib/personalities";
 import { AnswerPrompt } from "../../../lib/types/eightball";
 
 import { signParams } from "../../../lib/cryptography";
+import { QUESTION_MAX_LENGTH } from "../../../lib/constants/eightball";
 
 const llamaScout = "meta-llama/llama-4-scout-17b-16e-instruct";
 const llamaGuard = "meta-llama/llama-guard-4-12b";
@@ -59,7 +60,7 @@ async function fetchAIResponse(question: string, systemPrompt: string, temperatu
       top_p: 1,
       presence_penalty: 1.0,
       frequency_penalty: 0.8,
-      max_completion_tokens: 512,
+      max_completion_tokens: 40,
       stream: false
     }),
   });
@@ -90,7 +91,7 @@ function parseGuardResponse(data: string): GuardResponse {
 export async function POST(req: Request): Promise<Response> {
   try {
     const body = await req.json();
-
+ 545
     const question = body.question;
     if (typeof question !== "string") {
       throw new Error("Invalid question format");
@@ -99,6 +100,10 @@ export async function POST(req: Request): Promise<Response> {
     const personality = body.personality;
     if (typeof personality !== "string") {
       throw new Error("Invalid personality format");
+    }
+
+    if (question.length > QUESTION_MAX_LENGTH) {
+      throw new Error("Question too long");
     }
 
     // const perviousResponse = body.previousResponse;
@@ -137,7 +142,7 @@ export async function POST(req: Request): Promise<Response> {
       isSafe: parsedGuard.isSafe,
       violatedCategories: parsedGuard.categories,
       personality: personalityData.name,
-      imageLink: `/api/image/share-result?question=${encodeURIComponent(question)}&response=${encodeURIComponent(aiResponse)}&personality=${encodeURIComponent(personalityData.linkname)}&sig=${sig}`,
+      shareSig: sig,
     });
   } catch (error) {
     console.error("Error:", error);

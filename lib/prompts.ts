@@ -51,7 +51,7 @@ ${personality.prompt}
 ${getRandomItem(toneHints)}
 
 ${getRandomItem(ruleHeaders)}
-- Maximum 2 sentences, 1 sentence encouraged.
+- Maximum 20 words.
 - NO markdown, code, or explanations.
 - Match their tone and language.
 - No boring or safe guesses. Surprise them.

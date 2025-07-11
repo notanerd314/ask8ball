@@ -5,6 +5,7 @@ import useQuestionInput from "./hooks/useQuestionInput";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { QUESTION_MAX_LENGTH } from "../../lib/constants/eightball";
 
 const INPUT_STYLES = "!text-2xl w-[65vw] lg:w-[35rem] !rounded-r-none";
 const COUNTER_STYLES = "rounded-md backdrop-blur-md bg-black/50 rounded-l-none p-3 w-15 text-center text-2xl";
@@ -45,6 +46,7 @@ export default function QuestionInput() {
           onKeyDown={handleKeyDown}
           onChange={changeQuestion}
           disabled={isDisabled}
+          maxLength={QUESTION_MAX_LENGTH}
         />
         <span className={`${COUNTER_STYLES} ${charactersLeftColor}`}>
           {charactersLeft}

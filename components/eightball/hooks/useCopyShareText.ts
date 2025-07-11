@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useEightBall } from "../context/EightBallContext";
+import { APIResponse } from "../../../lib/types/eightball";
+import { encodeShareData } from "../../../lib/cryptography";
 
 export default function useCopyText() {
   const { currentResponse } = useEightBall();
@@ -8,19 +10,7 @@ export default function useCopyText() {
   const copyText = async () => {
     if (copyIndicated) return;
 
-    const isEmpty = !currentResponse.question.trim() || currentResponse.question === "[No question]";
-    let textToCopy;
-
-    if (isEmpty) {
-      textToCopy = `🎱 I asked the ${currentResponse.personality} Magic 8 Ball NOTHING.\n\n` +
-                   `It still replied:\n"${currentResponse.response}"`;
-    } else {
-      textToCopy = `🎱 I asked the ${currentResponse.personality} Magic 8 Ball:\n` +
-                   `"${currentResponse.question}"\n\n` +
-                   `It replied:\n"${currentResponse.response}"`;
-    }
-
-    textToCopy += `\n\n ✨ Try your luck: https://example.com`;
+    const textToCopy = generateShareText(currentResponse);
 
     await navigator.clipboard.writeText(textToCopy);
 
@@ -31,4 +21,23 @@ export default function useCopyText() {
   };
 
   return { copyText, copyIndicated };
+}
+
+export function generateShareText(currentResponse: APIResponse): string {
+  const isEmpty = !currentResponse.question.trim() || currentResponse.question === "[No question]";
+  let textToCopy;
+
+  if (isEmpty) {
+    textToCopy = `🎱 I asked the ${currentResponse.personality} Magic 8 Ball NOTHING.\n\n` +
+                 `It still replied: "${currentResponse.response}"`;
+  } else {
+    textToCopy = `🎱 I asked the ${currentResponse.personality} Magic 8 Ball: ` +
+                 `"${currentResponse.question}"\n\n` +
+                 `It replied: "${currentResponse.response}"`;
+  }
+
+  // const shareLink = "/share/" + encodeShareData(currentResponse.question, currentResponse.response, currentResponse.personality, currentResponse.shareSig);
+
+  textToCopy += `\n\n✨ Try your luck: https://example.com`;
+  return textToCopy;
 }
