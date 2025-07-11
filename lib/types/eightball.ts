@@ -52,4 +52,12 @@ export type ThemeConfig = {
   tailwindHoverClass: string;
 }
 
-export type { APIResponse, APIError } from './api';
+export type APIResponse = {
+  question: string,
+  response: string,
+  responseType: string,
+  isSafe: boolean,
+  violatedCategories: string[],
+  personality: string,
+  shareSig: string,
+}

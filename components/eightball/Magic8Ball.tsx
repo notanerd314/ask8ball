@@ -23,25 +23,21 @@ function Magic8Ball() {
     currentPersonality
   } = useEightBall();
   
-  const { shakeEightBall, isLoading } = useEightBallShake();
+  const { shakeEightBall } = useEightBallShake();
   const [diceSize, setDiceSize] = useState<DiceSize>({ width: 0, height: 0 });
 
   const getDisplayText = () => {
     return ballCurrentState !== "error" ? currentResponse.response : ">:(";
   };
 
-  const isShaking = ballCurrentState === "shaking" || isLoading;
   return (
     <div className={styles.eightBallWrapper}>
       <button
         id="eightBallWrapper"
         onClick={shakeEightBall}
-        className={`${styles.eightBall} ${isShaking ? styles.shake : ''}`}
+        className={`${styles.eightBall} ${ballCurrentState === "shaking" ? styles.shake : ''}`}
         title="Click me to reveal your destiny."
-        disabled={isShaking}
-        aria-label={`Magic 8 Ball with ${currentPersonality.name} personality. ${isShaking ? 'Thinking...' : 'Click to ask a question'}`}
-        aria-live="polite"
-        aria-atomic="true"
+        disabled={ballCurrentState === "shaking"}
       >
         <EightBallSvg 
           currentState={ballCurrentState} 
@@ -57,7 +53,6 @@ function Magic8Ball() {
           maxHeight={diceSize.height}
           extraStyle={diceStyle}
           className={textStyles.eightBallText}
-          aria-live="polite"
         >
           {getDisplayText()}
         </ResizableText>

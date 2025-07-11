@@ -1,6 +1,6 @@
 import { PersonalityConfig } from "./types/eightball";
 import { DOMAIN } from "./constants/secret";
-import { APIResponse, APIError } from "./types/api";
+import { APIResponse } from "./types/eightball";
 
 /** 
  * Fetches personality configuration by slug
@@ -9,11 +9,13 @@ import { APIResponse, APIError } from "./types/api";
  */
 export async function getPersonalityData(slug: string): Promise<PersonalityConfig | null> {
   try {
+    // Replace with your actual API endpoint
     const res = await fetch(`${DOMAIN}api/get-personality?personality=${slug}`);
 
     if (!res.ok) {
+      // Handle non-2xx responses
       if (res.status === 404) {
-        return null;
+        return null; // Personality not found
       }
       throw new Error(`Failed to fetch personality data: ${res.statusText}`);
     }
@@ -22,7 +24,7 @@ export async function getPersonalityData(slug: string): Promise<PersonalityConfi
     return data;
   } catch (error) {
     console.error("Error fetching personality data:", error);
-    return null;
+    return null; // Handle network errors or other issues
   }
 }
 
@@ -33,11 +35,6 @@ export async function getPersonalityData(slug: string): Promise<PersonalityConfi
 export async function getAllPersonalities(): Promise<PersonalityConfig[]> {
   try {
     const res = await fetch(`${DOMAIN}api/all-personalities`);
-    
-    if (!res.ok) {
-      throw new Error(`Failed to fetch personalities: ${res.statusText}`);
-    }
-    
     const data = await res.json();
     return data;
   } catch (error) {
@@ -50,27 +47,15 @@ export async function getAllPersonalities(): Promise<PersonalityConfig[]> {
  * Sends question to AI and returns response with metadata
  * @param question - User's question string
  * @param personality - Personality identifier
- * @param signal - AbortSignal for request cancellation
  * @returns Promise resolving to AI response with metadata
  */
-export const getAnswer = async (
-  question: string, 
-  personality: string, 
-  signal?: AbortSignal
-): Promise<APIResponse> => {
+export const getAnswer = async (question: string, personality: string): Promise<APIResponse> => {
   const res = await fetch("/api/ask-ai", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ question, personality }),
-    signal,
   });
 
-  if (!res.ok) {
-    const errorData: APIError = await res.json();
-    const error = new Error(errorData.error);
-    (error as any).code = errorData.code;
-    throw error;
-  }
-  const data: APIResponse = await res.json();
+  const data = await res.json();
   return data;
 };

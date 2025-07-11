@@ -1,9 +1,7 @@
-import { createHmac, timingSafeEqual } from 'crypto';
-import { ShareData, createShareSignature, verifyShareSignature } from './utils/share';
+import { createHmac } from 'crypto';
 
 /** 
  * Creates HMAC signature for parameter validation
- * @deprecated Use createShareSignature from utils/share instead
  * @param args - Array of strings to sign
  * @param secret - Secret key for signing
  * @returns HMAC signature as hex string
@@ -13,29 +11,37 @@ export function signParams(args: string[], secret: string): string {
   return createHmac('sha256', secret).update(data).digest('hex');
 }
 
-/** 
- * Verifies HMAC signature with timing-safe comparison
- * @deprecated Use verifyShareSignature from utils/share instead
- * @param args - Array of strings that were signed
- * @param signature - Signature to verify
- * @param secret - Secret key used for signing
- * @returns Whether signature is valid
- */
-export function verifyParams(args: string[], signature: string, secret: string): boolean {
-  const expectedSignature = signParams(args, secret);
-  
-  try {
-    const expectedBuffer = Buffer.from(expectedSignature, 'hex');
-    const providedBuffer = Buffer.from(signature, 'hex');
-    
-    if (expectedBuffer.length !== providedBuffer.length) {
-      return false;
-    }
-    
-    return timingSafeEqual(expectedBuffer, providedBuffer);
-  } catch {
-    return false;
-  }
+export function encodeShareData(question: string, response: string, personality: string, sig: string): string {
+  const escape = (str: string) =>
+    str.replace(/\\/g, '\\\\').replace(/\|/g, '\\p').replace(/\n/g, '\\n');
+
+  const raw = [question, response, personality].map(escape).join('|');
+
+  const base64 = btoa(raw) // browser-safe
+    .replace(/\+/g, '-')   // make URL-safe
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
+
+  return base64;
 }
-// Re-export new functions for backward compatibility
-export { createShareSignature, verifyShareSignature, encodeShareData, decodeShareData } from './utils/share';
+
+export function decodeShareData(encoded: string): { question: string, response: string, personality: string, sig: string } {
+  const base64 = encoded
+    .replace(/-/g, '+')
+    .replace(/_/g, '/');
+
+  const raw = atob(base64);
+
+  const unescape = (str: string) =>
+    str.replace(/\\n/g, '\n').replace(/\\p/g, '|').replace(/\\\\/g, '\\');
+
+  const spilttedString = raw.split('|');
+
+  if (spilttedString.length !== 4) {
+    throw new Error('Invalid share data');
+  }
+
+  const [question, response, personality, sig] = spilttedString.map(unescape);
+
+  return { question, response, personality, sig };
+}

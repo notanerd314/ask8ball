@@ -2,14 +2,17 @@ import { getRandomItem } from "../../../lib/rng";
 import getSystemPrompt from "../../../lib/prompts";
 import { personalitiesList } from "../../../lib/personalities";
 import { AnswerPrompt } from "../../../lib/types/eightball";
-import { APIResponse, APIError, GuardResponse } from "../../../lib/types/api";
-import { validateQuestion, validatePersonality, ValidationError } from "../../../lib/validation/input";
-import { createShareSignature } from "../../../lib/utils/share";
 
+import { signParams } from "../../../lib/cryptography";
+import { QUESTION_MAX_LENGTH } from "../../../lib/constants/eightball";
 
 const llamaScout = "meta-llama/llama-4-scout-17b-16e-instruct";
 const llamaGuard = "meta-llama/llama-guard-4-12b";
 
+type GuardResponse = {
+  isSafe: boolean;
+  categories: string[];
+};
 
 /** 
  * Checks content safety using Llama Guard model
@@ -17,10 +20,6 @@ const llamaGuard = "meta-llama/llama-guard-4-12b";
  * @returns Promise resolving to raw guard response string
  */
 async function fetchGuardResponse(question: string): Promise<string> {
-  if (!process.env.MODERATION_GROQ) {
-    throw new Error('Moderation API key not configured');
-  }
-
   const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -32,10 +31,6 @@ async function fetchGuardResponse(question: string): Promise<string> {
       messages: [{ role: "user", content: question }],
     }),
   });
-
-  if (!response.ok) {
-    throw new Error(`Moderation API error: ${response.status}`);
-  }
 
   const data = await response.json();
   return data.choices?.[0]?.message?.content || "";
@@ -49,10 +44,6 @@ async function fetchGuardResponse(question: string): Promise<string> {
  * @returns Promise resolving to AI-generated response string
  */
 async function fetchAIResponse(question: string, systemPrompt: string, temperature: number | undefined): Promise<string> {
-  if (!process.env.LLM_GROQ) {
-    throw new Error('LLM API key not configured');
-  }
-
   const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -74,16 +65,8 @@ async function fetchAIResponse(question: string, systemPrompt: string, temperatu
     }),
   });
 
-  if (!response.ok) {
-    throw new Error(`LLM API error: ${response.status}`);
-  }
-
   const data = await response.json();
-  
-  if (!data.choices?.[0]?.message?.content) {
-    throw new Error('Invalid AI response format');
-  }
-  
+  console.error(data)
   return data.choices?.[0]?.message?.content;
 }
 
@@ -108,10 +91,22 @@ function parseGuardResponse(data: string): GuardResponse {
 export async function POST(req: Request): Promise<Response> {
   try {
     const body = await req.json();
+ 545
+    const question = body.question;
+    if (typeof question !== "string") {
+      throw new Error("Invalid question format");
+    }
 
-    // Validate inputs
-    const question = validateQuestion(body.question);
-    const personality = validatePersonality(body.personality);
+    const personality = body.personality;
+    if (typeof personality !== "string") {
+      throw new Error("Invalid personality format");
+    }
+
+    if (question.length > QUESTION_MAX_LENGTH) {
+      throw new Error("Question too long");
+    }
+
+    // const perviousResponse = body.previousResponse;
 
     const answerPrompt = getRandomItem([
       AnswerPrompt.Yes,
@@ -126,7 +121,7 @@ export async function POST(req: Request): Promise<Response> {
     const personalityData = personalitiesList.find(p => p.linkname === personality);
 
     if (!personalityData) {
-      throw new ValidationError("Personality not found", "PERSONALITY_NOT_FOUND");
+      throw new Error("Personality not found");
     }
 
     const systemPrompt = getSystemPrompt(answerPrompt, personalityData);
@@ -138,16 +133,9 @@ export async function POST(req: Request): Promise<Response> {
       aiResponse = await fetchAIResponse(question, systemPrompt, personalityData.temperature);
     }
 
-    const shareData = {
-      question,
-      response: aiResponse,
-      personality: personalityData.linkname,
-      timestamp: Date.now()
-    };
-    
-    const sig = createShareSignature(shareData, process.env.IMAGE_SECRET || "");
+    const sig = signParams([question, aiResponse, personalityData.linkname], process.env.IMAGE_SECRET || "");
 
-    const response: APIResponse = {
+    return Response.json({
       question,
       response: aiResponse,
       responseType: parsedGuard.isSafe ? answerPrompt : "Overwritten",
@@ -155,26 +143,7 @@ export async function POST(req: Request): Promise<Response> {
       violatedCategories: parsedGuard.categories,
       personality: personalityData.name,
       shareSig: sig,
-    };
-
-    return Response.json(response);
-    
-  } catch (error) {
-    console.error("API Error:", error);
-    
-    if (error instanceof ValidationError) {
-      const apiError: APIError = {
-        error: error.message,
-        code: error.code
-      };
-      return Response.json(apiError, { status: 400 });
-    }
-    
-    const apiError: APIError = {
-      error: "Internal server error",
-      code: "INTERNAL_ERROR"
-    };
-    return Response.json(apiError, { status: 500 });
+    });
   } catch (error) {
     console.error("Error:", error);
     return Response.json({ error: error }, { status: 500 });

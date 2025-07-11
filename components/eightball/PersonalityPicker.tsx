@@ -26,8 +26,9 @@ export function PersonalityCard({ personality }: { personality: PersonalityConfi
       className={cardClasses}
       aria-label={`Choose ${personality.name} personality`}
       title={`Choose ${personality.name} personality`}
+      role="link"
     >
-      <span className={ICON_CLASSES} aria-hidden="true">{personality.theme.icon}</span>
+      <span className={ICON_CLASSES}>{personality.theme.icon}</span>
       <h2 className={titleClasses}>
         {personality.name}
         {personality.tag && <mark className={TAG_CLASSES}>{personality.tag}</mark>}
@@ -45,18 +46,12 @@ export default async function PersonalityPicker() {
   const personalitiesList = await getAllPersonalities();
 
   return (
-    <section aria-labelledby="personality-picker-title">
-      <h2 id="personality-picker-title" className='text-center'>Try more personalities</h2>
+    <section>
+      <h2 className='text-center'>Try more personalities</h2>
 
-      <div 
-        className='items-stretch p-5 mx-auto grid grid-cols-2 gap-6 xl:w-5xl lg:w-4xl md:grid-cols-3'
-        role="grid"
-        aria-label="Personality selection grid"
-      >
+      <div className='items-stretch p-5 mx-auto grid grid-cols-2 gap-6 xl:w-5xl lg:w-4xl md:grid-cols-3'>
         {personalitiesList.map((personality, index) => (
-          <div key={personality.linkname} role="gridcell">
-            <PersonalityCard personality={personality} />
-          </div>
+          <PersonalityCard key={personality.linkname} personality={personality} />
         ))}
       </div>
     </section>
