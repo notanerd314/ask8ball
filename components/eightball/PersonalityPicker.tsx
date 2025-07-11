@@ -49,7 +49,7 @@ export default async function PersonalityPicker() {
     <section>
       <h2 className='text-center'>Try more personalities</h2>
 
-      <div className='grid items-stretch grid-cols-2 gap-6 p-5 mx-auto xl:w-5xl lg:w-4xl md:grid-cols-3'>
+      <div className='items-stretch p-5 mx-auto grid grid-cols-2 gap-6 xl:w-5xl lg:w-4xl md:grid-cols-3'>
         {personalitiesList.map((personality, index) => (
           <PersonalityCard key={personality.linkname} personality={personality} />
         ))}

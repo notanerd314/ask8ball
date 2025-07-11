@@ -37,7 +37,7 @@ function ShareDialog({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: React.
         </>
         :
         <div className="aspect-[5/6] bg-black/60 border border-white/10 rounded-2xl w-full flex items-center justify-center">
-          <p className="text-white/50 text-center">
+          <p className="text-center text-white/50">
             Try asking the Magic 8 Ball a question first!
           </p>
         </div>

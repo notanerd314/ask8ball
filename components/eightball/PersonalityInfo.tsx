@@ -21,7 +21,7 @@ export default function PersonalityInfo() {
   }`;
 
   return (
-    <div className='text-center leading-relaxed'>
+    <div className='leading-relaxed text-center'>
       <h2 className={titleClasses}>
         <span className={ICON_CLASSES}>{currentPersonality.theme.icon}</span>
         <span className={NAME_CLASSES}>{currentPersonality.name}</span>
