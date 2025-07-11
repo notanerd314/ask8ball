@@ -37,6 +37,7 @@ export type PersonalityConfig = {
   temperature?: number;
   tag?: string;
   customResponseScript?: (question: string) => string;
+  backgroundSound?: string;
 }
 
 export type PersonalityExample = {

@@ -170,7 +170,7 @@ export const classicPersonality: PersonalityConfig = {
       "As I see it, yes",
       "Most likely",
       "Outlook good",
-      AnswerPrompt.Yes,
+      "Yes",
       "Signs point to yes"
     ];
     return getRandomItem(responses);
@@ -249,9 +249,10 @@ export const childishPersonality: PersonalityConfig = {
   theme: {
     icon: "👶",
     accentColor: "#DB2777",
-    cssBackground: "linear-gradient(90deg, rgba(155,0,0,1) 0%, rgba(155,100,0,1) 10%, rgba(158,172,23,1) 20%, rgba(39,170,34,1) 30%, rgba(33,168,166,1) 40%, rgba(27,151,176,1) 50%, rgba(18,77,188,1) 60%, rgba(65,11,192,1) 70%, rgba(136,2,198,1) 80%, rgba(181,0,167,1) 90%, rgba(155,0,0,1) 100%)",
-    tailwindHoverClass: "hover:bg-[linear-gradient(90deg,_rgba(155,0,0,1)_0%,_rgba(155,100,0,1)_10%,_rgba(158,172,23,1)_20%,_rgba(39,170,34,1)_30%,_rgba(33,168,166,1)_40%,_rgba(27,151,176,1)_50%,_rgba(18,77,188,1)_60%,_rgba(65,11,192,1)_70%,_rgba(136,2,198,1)_80%,_rgba(181,0,167,1)_90%,_rgba(155,0,0,1)_100%)]"
-  }
+    cssBackground: "linear-gradient(90deg, hsla(197, 100%, 63%, 1) 0%, hsla(294, 100%, 55%, 1) 100%)",
+    tailwindHoverClass: "hover:bg-[linear-gradient(90deg,_hsla(197,_100%,_63%,_1)_0%,_hsla(294,_100%,_55%,_1)_100%)]"
+  },
+  backgroundSound: "/sounds/loops/childish.mp3"
 };
 
 export const flatteringPersonality: PersonalityConfig = {

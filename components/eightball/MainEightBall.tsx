@@ -5,6 +5,8 @@ import PersonalityInfo from "./PersonalityInfo";
 import Magic8Ball from "./Magic8Ball";
 import { PersonalityConfig } from "../../lib/prompts";
 import useCopyText, { generateShareText } from "./hooks/useCopyShareText";
+import useSound from "use-sound";
+import { useAudioUnlock } from "./hooks/useAudioUnlock";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
@@ -38,8 +40,18 @@ export default function MainEightBall({ personalityData }: { personalityData: Pe
  */ function Main8BallContent({ containerStyle }: { containerStyle: React.CSSProperties }) {
   const {
     ballCurrentState,
-    currentResponse
+    currentResponse,
+    currentPersonality
   } = useEightBall();
+
+  if (currentPersonality.backgroundSound) {
+    const [play, { stop }] = useSound(currentPersonality.backgroundSound, {
+      loop: true,
+      volume: 0.1,
+    });
+
+    useAudioUnlock(play);
+  };
 
   const { copyText, copyIndicated } = useCopyText();
 
