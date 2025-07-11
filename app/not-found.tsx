@@ -1,10 +1,7 @@
 'use client';
 
-import { useEffect, useState } from "react";
-
-import { getRandomItem } from "../lib/rng"
-
-import { ChevronRightIcon } from "../components/utils/FontAwesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 /** 
  * 404 Not Found page component
@@ -23,7 +20,9 @@ export default function NotFound() {
         <h1>You stupid person.</h1>
         <br />
 
-        <button className="p-4 mx-[50%] text-white bg-indigo-500 hover:bg-indigo-600" onClick={() => window.location.replace("/")}>Go Back <ChevronRightIcon /></button>
+        <button className="p-4 mx-[50%] text-white bg-indigo-500 hover:bg-indigo-600" onClick={() => window.location.replace("/")}>
+          Go Back <FontAwesomeIcon icon={faChevronRight} color="white" />
+        </button>
       </div>
 
       <picture>

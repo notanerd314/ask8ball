@@ -1,7 +1,9 @@
 'use client';
 
 import Image from "next/image";
-import { RefreshIcon } from "../components/utils/FontAwesome";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRotateRight } from "@fortawesome/free-solid-svg-icons";
 
 /** 
  * Global error boundary component
@@ -21,8 +23,7 @@ export default function GlobalError({ error, reset }: { error: Error, reset: () 
         <p className="text-2xl">{error.message}</p>
         <br />
         <button onClick={() => reset()} className="px-4 py-2 text-white bg-indigo-500 rounded">
-          <RefreshIcon />
-          Refresh
+          <FontAwesomeIcon icon={faArrowRotateRight} color="white" /> Refresh
         </button>
       </div>
 

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from 'react';
-import { CloseIcon } from '../utils/FontAwesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 type ModalProps = {
   isOpen: boolean;
@@ -35,7 +36,7 @@ export default function Modal({ isOpen, setIsOpen, children, onOpen = () => { },
   }, [isOpen]);
 
   return (
-    <dialog ref={modalRef} className="fixed p-6 overflow-auto leading-relaxed text-white border shadow-xl -translate-x-1/2 -translate-y-1/2 rounded-md bg-slate-950/90 backdrop-blur-3xl w-2xl top-1/2 left-1/2 border-gray-700/80">
+    <dialog ref={modalRef} className="fixed p-6 overflow-auto leading-relaxed text-white -translate-x-1/2 -translate-y-1/2 border rounded-md shadow-xl bg-slate-950/90 backdrop-blur-3xl w-2xl top-1/2 left-1/2 border-gray-700/80">
       {children}
       <button
         className="absolute top-5 right-5 !p-2.5 buttonRed"
@@ -44,7 +45,7 @@ export default function Modal({ isOpen, setIsOpen, children, onOpen = () => { },
           setIsOpen(false);
         }}
       >
-        <CloseIcon size={20} />
+        <FontAwesomeIcon icon={faXmark} color='white' size='xl' />
       </button>
     </dialog>
   );

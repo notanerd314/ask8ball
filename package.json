@@ -11,6 +11,9 @@
     "analyze": "cross-env ANALYZE=1 next build"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "critters": "^0.0.23",
     "next": "^15.3.5",
     "normalize.css": "^8.0.1",

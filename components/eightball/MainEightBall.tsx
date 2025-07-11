@@ -4,10 +4,12 @@ import { useState } from "react";
 import ShareDialog from "../dialogs/ShareDialog";
 import { EightBallProvider, useEightBall } from "./context/EightBallContext";
 import PersonalityInfo from "./PersonalityInfo";
-import { ShareIcon, CopyIcon } from "../utils/FontAwesome";
 import Magic8Ball from "./Magic8Ball";
 import { PersonalityConfig } from "../../lib/prompts";
 import useCopyText from "./hooks/useCopyShareText";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShareNodes, faCopy } from "@fortawesome/free-solid-svg-icons";
 
 const CONTAINER_BASE_CLASSES = "flex flex-col items-center w-full lg:h-[90vh] h-[97vh] overflow-hidden gap-4 pr-5 pl-5 pt-25 pb-6 rounded-b-[40px] mb-10 -z-50";
 const SHARE_BUTTON_CLASSES = "!p-5 lg:!p-4 !text-2xl !rounded-full bg-black/60 transition-transform hover:scale-110 active:scale-95";
@@ -57,7 +59,7 @@ export default function MainEightBall({ personalityData }: { personalityData: Pe
           onClick={() => setIsShareOpen(true)}
           hidden={ballCurrentState === "shaking" || !currentResponse.response}
         >
-          <ShareIcon size={20} /> Share
+          <FontAwesomeIcon icon={faShareNodes} /> Share
         </button>
 
         <button
@@ -65,7 +67,7 @@ export default function MainEightBall({ personalityData }: { personalityData: Pe
           onClick={copyText}
           hidden={ballCurrentState === "shaking" || !currentResponse.response}
         >
-          <CopyIcon size={20} /> {copyIndicated ? "Copied!" : "Copy"}
+          <FontAwesomeIcon icon={faCopy} /> {copyIndicated ? "Copied!" : "Copy"}
         </button>
       </div>
 

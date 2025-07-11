@@ -2,7 +2,9 @@
 
 import useEightBallShake from "./hooks/useEightBallShake";
 import useQuestionInput from "./hooks/useQuestionInput";
-import { CloseIcon } from "../utils/FontAwesome";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const INPUT_STYLES = "!text-2xl w-[65vw] lg:w-[35rem] !rounded-r-none";
 const COUNTER_STYLES = "rounded-md backdrop-blur-md bg-black/50 rounded-l-none p-3 w-15 text-center text-2xl";
@@ -55,7 +57,7 @@ export default function QuestionInput() {
         disabled={isDisabled}
         title='Clear question'
       >
-        <CloseIcon />
+        <FontAwesomeIcon icon={faXmark} color="white" size="xl" />
       </button>
     </div>
   );
