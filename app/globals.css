@@ -51,13 +51,13 @@ p {
 }
 
 a {
-  @apply cursor-pointer dark:text-purple-500 dark:hover:text-purple-400 text-purple-800 hover:text-purple-900
+  @apply cursor-pointer text-purple-500 hover:text-purple-400 active:text-purple-400
 }
 
 /* Form Elements */
 input,
 textarea {
-  @apply p-3 rounded-md backdrop-blur-md bg-white/30 dark:bg-black/30 dark:border-slate-800;
+  @apply p-3 rounded-md backdrop-blur-md bg-black/50 border-slate-800;
 }
 
 input:focus,
@@ -66,11 +66,11 @@ textarea:focus {
 }
 
 input[type="checkbox"] {
-  @apply appearance-none p-1.5 mr-2 border-2 bg-slate-200 dark:bg-slate-800 border-slate-300 dark:border-slate-600 checked:bg-green-500 text-white after:content-[''];
+  @apply appearance-none p-1.5 mr-2 border-2 bg-slate-800 border-slate-600 checked:bg-green-500 text-white after:content-[''];
 }
 
 code {
-  @apply p-3 text-sm rounded-md shadow-md bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 border-2 border-slate-200 dark:border-slate-900;
+  @apply p-3 text-sm rounded-md shadow-md bg-slate-800 text-slate-100 border-2 border-slate-900;
 }
 
 mark {
