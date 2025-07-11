@@ -1,4 +1,5 @@
-import { StarIcon } from './utils/FontAwesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 type Props = {
   quote: string;
@@ -21,10 +22,10 @@ export function StarRating({ stars, className = "" }: StarProps) {
   return (
     <div className={'flex' + ' ' + className}>
       {Array.from({ length: stars }).map((_, i) => (
-        <StarIcon key={`filled-${i}`} color="#fcba03" />
+        <FontAwesomeIcon key={`filled-${i}`} icon={faStar} color="#fcba03" />
       ))}
       {Array.from({ length: 5 - stars }).map((_, i) => (
-        <StarIcon key={`empty-${i}`} color="#000000" />
+        <FontAwesomeIcon key={`empty-${i}`} icon={faStar} color="#000000" />
       ))}
     </div>
   )

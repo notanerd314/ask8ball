@@ -15,7 +15,7 @@ const COUNTER_STYLES = "rounded-md backdrop-blur-md bg-black/50 rounded-l-none p
  * @returns JSX element with question input and character counter
  */
 export default function QuestionInput() {
-  const { shakeEightBall } = useEightBallShake();
+  const { shakeEightBall, isLoading } = useEightBallShake();
   const {
     questionRef,
     charactersLeft,
@@ -35,8 +35,9 @@ export default function QuestionInput() {
     }
   };
 
+  const inputDisabled = isDisabled || isLoading;
   return (
-    <div className='flex flex-row gap-1 mt-2.5'>
+    <div className='flex flex-row gap-1 mt-2.5' role="group" aria-label="Question input">
       <div className="flex">
         <input
           ref={questionRef}
@@ -45,10 +46,16 @@ export default function QuestionInput() {
           className={INPUT_STYLES}
           onKeyDown={handleKeyDown}
           onChange={changeQuestion}
-          disabled={isDisabled}
+          disabled={inputDisabled}
           maxLength={QUESTION_MAX_LENGTH}
+          aria-label="Enter your question"
+          aria-describedby="character-counter"
         />
-        <span className={`${COUNTER_STYLES} ${charactersLeftColor}`}>
+        <span 
+          id="character-counter"
+          className={`${COUNTER_STYLES} ${charactersLeftColor}`}
+          aria-label={`${charactersLeft} characters remaining`}
+        >
           {charactersLeft}
         </span>
       </div>
@@ -56,8 +63,9 @@ export default function QuestionInput() {
       <button
         className='buttonRed !rounded-lg'
         onClick={deleteQuestion}
-        disabled={isDisabled}
+        disabled={inputDisabled}
         title='Clear question'
+        aria-label='Clear question'
       >
         <FontAwesomeIcon icon={faXmark} color="white" size="xl" />
       </button>

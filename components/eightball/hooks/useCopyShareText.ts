@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEightBall } from "../context/EightBallContext";
-import { APIResponse } from "../../../lib/types/eightball";
-import { encodeShareData } from "../../../lib/cryptography";
+import { APIResponse } from "../../../lib/types/api";
+import { encodeShareData, createShareSignature } from "../../../lib/utils/share";
 
 export default function useCopyText() {
   const { currentResponse } = useEightBall();
@@ -36,8 +36,18 @@ export function generateShareText(currentResponse: APIResponse): string {
                  `It replied: "${currentResponse.response}"`;
   }
 
-  // const shareLink = "/share/" + encodeShareData(currentResponse.question, currentResponse.response, currentResponse.personality, currentResponse.shareSig);
+  // Generate secure share link
+  const shareData = {
+    question: currentResponse.question,
+    response: currentResponse.response,
+    personality: currentResponse.personality,
+    timestamp: Date.now()
+  };
+  
+  const signature = createShareSignature(shareData, process.env.NEXT_PUBLIC_SHARE_SECRET || '');
+  const shareToken = encodeShareData(shareData, signature);
+  const shareLink = `/api/image/share-result?token=${shareToken}`;
 
-  textToCopy += `\n\n✨ Try your luck: https://example.com`;
+  textToCopy += `\n\n✨ Try your luck: ${window.location.origin}${shareLink}`;
   return textToCopy;
 }

@@ -29,6 +29,40 @@ html, body {
 
 input, button, textarea, select, .toast { font-family: inherit; }
 
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #8B5CF6;
+  outline-offset: 2px;
+}
+
+/* Skip link for screen readers */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 /* Reset */
 
 h1, h2, h3 {
@@ -115,6 +149,35 @@ button:disabled {
   @apply p-3 rounded-xl bg-slate-900/70 text-white backdrop-blur-md;
 }
 
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .buttonNormal {
+    @apply border-2 border-white;
+  }
+  
+  .buttonRed {
+    @apply border-2 border-red-300;
+  }
+  
+  .buttonGreen {
+    @apply border-2 border-green-300;
+  }
+  
+  .buttonBlue {
+    @apply border-2 border-purple-300;
+  }
+}
 @layer utilities {
   @supports not (backdrop-filter: blur(4px)) {
     .backdrop-blur-md {

@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import { signParams } from '../../../../lib/cryptography';
+import { verifyShareSignature, decodeShareData } from '../../../../lib/utils/share';
 import { getPersonalityData } from '../../../../lib/api';
 
 /** 
@@ -9,20 +9,45 @@ import { getPersonalityData } from '../../../../lib/api';
  */
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const response = searchParams.get('response');
-  const question = searchParams.get('question');
-  const personality = searchParams.get('personality');
-  const sig = searchParams.get('sig');
+  const shareToken = searchParams.get('token');
 
-  if (!response) return new Response('No response provided', { status: 400 });
-  if (!question) return new Response('No question provided', { status: 400 });
-  if (!personality) return new Response('No personality provided', { status: 400 });
-  if (!sig) return new Response('Signature not provided', { status: 400 });
-
-  if (sig !== signParams([question, response, personality], process.env.IMAGE_SECRET || '')) {
-    return new Response('Invalid signature', { status: 403 });
+  if (!shareToken) {
+    return new Response('Share token required', { status: 400 });
   }
 
+  try {
+    const shareData = decodeShareData(shareToken);
+    
+    // Verify signature
+    if (!verifyShareSignature(
+      { 
+        question: shareData.question, 
+        response: shareData.response, 
+        personality: shareData.personality,
+        timestamp: shareData.timestamp 
+      }, 
+      shareData.sig, 
+      process.env.IMAGE_SECRET || ''
+    )) {
+      return new Response('Invalid or expired share link', { status: 403 });
+    }
+    
+    const { question, response, personality } = shareData;
+    const personalityData = await getPersonalityData(personality);
+    
+    if (!personalityData) {
+      return new Response('Personality not found', { status: 404 });
+    }
+    
+    return generateShareImage(question, response, personalityData);
+    
+  } catch (error) {
+    console.error('Share image error:', error);
+    return new Response('Invalid share data', { status: 400 });
+  }
+}
+
+function generateShareImage(question: string, response: string, personalityData: any) {
   /** 
    * Calculates optimal font size based on text length
    * @param text - The text to calculate font size for
@@ -36,8 +61,6 @@ export async function GET(request: Request) {
     if (text.length < 80) return 17;
     return 17;
   }
-
-  const personalityData = await getPersonalityData(personality);
 
   return new ImageResponse(
     (
