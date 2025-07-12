@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { EightBallProvider, useEightBall } from "./context/EightBallContext";
 import PersonalityInfo from "./PersonalityInfo";
@@ -11,12 +11,8 @@ import useSound from "use-sound";
 import { useAudioUnlock } from "./hooks/useAudioUnlock";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { faCopy, faShare } from "@fortawesome/free-solid-svg-icons";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
-
-const CONTAINER_BASE_CLASSES = "flex flex-col items-center w-full h-[80vh] overflow-hidden gap-4 pr-5 pl-5 pt-25 pb-6 rounded-b-[40px] mb-10 -z-50";
-const SHARE_BUTTON_CLASSES = "!p-5 lg:!p-4 !text-2xl !rounded-full !bg-black/60 transition-transform hover:scale-110 active:scale-95";
-const DISCLAIMER_CLASSES = "text-sm text-center text-white/50";
 
 /** 
  * Main content with provider
@@ -24,77 +20,154 @@ const DISCLAIMER_CLASSES = "text-sm text-center text-white/50";
  * @returns JSX element of the main content wrapped with the provider
  */
 export default function MainEightBall({ personalityData }: { personalityData: PersonalityConfig }) {
-  const containerStyle = {
-    background: personalityData.theme.cssBackground
-  };
-
   return (
     <EightBallProvider personalityData={personalityData}>
-      <Main8BallContent containerStyle={containerStyle} />
+      <Main8BallContent />
     </EightBallProvider>
   );
 }
 
 /**
- * Main container component for eight ball experience
- * @param containerStyle - The background of the personality
- * @returns JSX element of the main content
- */ function Main8BallContent({ containerStyle }: { containerStyle: React.CSSProperties }) {
+ * Enhanced main container component for eight ball experience
+ * @returns JSX element of the main content with modern design
+ */
+function Main8BallContent() {
   const {
     ballCurrentState,
     currentResponse,
     currentPersonality
   } = useEightBall();
 
+  const [audioEnabled, setAudioEnabled] = useState(false);
   const soundUrl = currentPersonality.backgroundSound;
   const [play, { stop }] = useSound(soundUrl || "", {
     loop: true,
-    volume: 0.3,
-    soundEnabled: !!soundUrl,
+    volume: 0.2,
+    soundEnabled: audioEnabled && !!soundUrl,
   });
 
   useAudioUnlock(play);
 
-  // 🔧 Play on mount, stop on unmount
+  // Audio management
   useEffect(() => {
-    if (soundUrl) {
+    if (soundUrl && audioEnabled) {
       play();
+    } else {
+      stop();
     }
 
     return () => {
       stop();
     };
-  }, [soundUrl]);
+  }, [soundUrl, audioEnabled]);
 
   const { copyText, copyIndicated } = useCopyText();
 
+  const containerStyle = {
+    background: currentPersonality.theme.cssBackground,
+    minHeight: '100vh'
+  };
+
+  const hasResponse = currentResponse.response && ballCurrentState !== "shaking";
+
   return (
-    <div className={CONTAINER_BASE_CLASSES + " fade-in"} style={containerStyle}>
-      <PersonalityInfo />
-      <Magic8Ball />
-
-      <div className='flex flex-row items-center gap-2'>
-        <a
-          className={SHARE_BUTTON_CLASSES + " !text-blue-300"}
-          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(generateShareText(currentResponse))}`}
-          target="_blank"
-          hidden={ballCurrentState === "shaking" || !currentResponse.response}
-        >
-          <FontAwesomeIcon icon={faXTwitter} /> Tweet
-        </a>
-
-        <button
-          className={SHARE_BUTTON_CLASSES + " text-amber-300"}
-          onClick={copyText}
-          hidden={ballCurrentState === "shaking" || !currentResponse.response}
-        >
-          <FontAwesomeIcon icon={faCopy} /> {copyIndicated ? "Copied!" : "Copy"}
-        </button>
+    <div className="page-transition">
+      {/* Background with personality theme */}
+      <div 
+        className="fixed inset-0 -z-50 transition-all duration-1000 ease-out"
+        style={containerStyle}
+      />
+      
+      {/* Animated background elements */}
+      <div className="fixed inset-0 -z-40 overflow-hidden pointer-events-none">
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-64 h-64 rounded-full opacity-5 float"
+            style={{
+              background: `radial-gradient(circle, ${currentPersonality.theme.accentColor} 0%, transparent 70%)`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${i * 1.5}s`,
+              animationDuration: `${8 + i * 2}s`
+            }}
+          />
+        ))}
       </div>
 
-      <p className={DISCLAIMER_CLASSES}>
-        The responses are AI-generated for entertainment purposes only. Do not take this seriously.
-      </p>
+      {/* Main content */}
+      <main className="relative min-h-screen flex flex-col">
+        {/* Hero section */}
+        <section className="flex-1 flex flex-col justify-center items-center px-4 py-20 space-y-12">
+          <PersonalityInfo />
+          <Magic8Ball />
+          
+          {/* Share actions */}
+          {hasResponse && (
+            <div className="flex flex-wrap items-center justify-center gap-4 animate-in fade-in duration-500">
+              <button
+                onClick={copyText}
+                className={`
+                  flex items-center gap-2 px-6 py-3 rounded-2xl font-medium
+                  transition-all duration-200 hover:scale-105
+                  ${copyIndicated 
+                    ? 'bg-green-500/20 text-green-300 border border-green-500/30' 
+                    : 'bg-white/10 hover:bg-white/20 text-white border border-white/20'
+                  }
+                  backdrop-blur-md
+                `}
+              >
+                <FontAwesomeIcon icon={copyIndicated ? faShare : faCopy} />
+                {copyIndicated ? "Copied!" : "Copy Result"}
+              </button>
+
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(generateShareText(currentResponse))}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-3 rounded-2xl font-medium bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/30 backdrop-blur-md transition-all duration-200 hover:scale-105"
+              >
+                <FontAwesomeIcon icon={faXTwitter} />
+                Share on X
+              </a>
+            </div>
+          )}
+        </section>
+
+        {/* Audio toggle (floating) */}
+        {soundUrl && (
+          <button
+            onClick={() => setAudioEnabled(!audioEnabled)}
+            className={`
+              fixed bottom-6 right-6 p-4 rounded-2xl
+              backdrop-blur-md border transition-all duration-200
+              hover:scale-110 z-40
+              ${audioEnabled 
+                ? 'bg-green-500/20 text-green-300 border-green-500/30' 
+                : 'bg-white/10 text-white/60 border-white/20'
+              }
+            `}
+            title={audioEnabled ? "Disable background audio" : "Enable background audio"}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              {audioEnabled ? (
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+              ) : (
+                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+              )}
+            </svg>
+          </button>
+        )}
+
+        {/* Disclaimer */}
+        <div className="text-center py-8 px-4">
+          <p className="text-sm text-white/50 max-w-2xl mx-auto">
+            🔮 The responses are AI-generated for entertainment purposes only. 
+            Don't make life decisions based on a digital magic 8-ball! 
+            (But do have fun with it.) ✨
+          </p>
+        </div>
+      </main>
     </div>
-  )
+  );
 }

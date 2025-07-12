@@ -1,14 +1,40 @@
 @import "tailwindcss";
 
+/* Custom Properties for Dynamic Theming */
+:root {
+  --personality-primary: #3B5CFF;
+  --personality-secondary: #1F2937;
+  --personality-accent: #3B5CFF;
+  --personality-text: #ffffff;
+  --personality-bg-overlay: rgba(0, 0, 0, 0.3);
+}
+
+/* Smooth page transitions */
+.page-transition {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced wiggle animation for personality switching */
 @keyframes wigglePause {
-  5% { transform: rotate(4deg); }
-  10% { transform: rotate(-4deg); }
-  15% { transform: rotate(4deg); }
-  20% { transform: rotate(-4deg); }
-  25% { transform: rotate(4deg); }
-  30% { transform: rotate(0deg); }
-  30.01% { transform: rotate(0deg); }
-  100% { transform: rotate(0deg); } /* stay still for the rest */
+  0% { transform: rotate(0deg) scale(1); }
+  5% { transform: rotate(4deg) scale(1.02); }
+  10% { transform: rotate(-4deg) scale(1.02); }
+  15% { transform: rotate(4deg) scale(1.02); }
+  20% { transform: rotate(-4deg) scale(1.02); }
+  25% { transform: rotate(4deg) scale(1.02); }
+  30% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(0deg) scale(1); }
 }
 
 .wiggle {
@@ -16,74 +42,109 @@
   animation-delay: 5s;
 }
 
-html {
-  font-size: clamp(12px, 1.5vmin, 16px);
+/* Floating animation for decorative elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1deg); }
+  66% { transform: translateY(5px) rotate(-1deg); }
+}
 
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Pulse animation for interactive elements */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(var(--personality-accent-rgb), 0.3); }
+  50% { box-shadow: 0 0 40px rgba(var(--personality-accent-rgb), 0.6); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Typography */
+html {
+  font-size: clamp(14px, 1.5vmin, 18px);
+  scroll-behavior: smooth;
 }
 
 html, body {
   height: 100%;
   margin: 0;
+  overflow-x: hidden;
 }
 
-
-input, button, textarea, select, .toast { font-family: inherit; }
-
-/* Reset */
-
-h1, h2, h3 {
-  @apply font-bold;
+/* Enhanced form elements */
+input, button, textarea, select, .toast { 
+  font-family: inherit; 
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-h2 {
-  font-size: 2.5rem;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
+/* Reset with better spacing */
+h1, h2, h3, h4, h5, h6, p {
   margin: 0;
   text-wrap: wrap;
+  line-height: 1.4;
 }
 
+h1 { @apply text-4xl md:text-5xl font-bold; }
+h2 { @apply text-3xl md:text-4xl font-bold; }
+h3 { @apply text-2xl md:text-3xl font-semibold; }
+
+/* Enhanced links */
 a {
-  @apply cursor-pointer text-purple-500 hover:text-purple-400 active:text-purple-400
+  @apply cursor-pointer text-purple-400 hover:text-purple-300 active:text-purple-300 transition-colors duration-200;
+  text-decoration: none;
 }
 
-/* Form Elements */
-input,
-textarea {
-  @apply p-3 rounded-xl backdrop-blur-md bg-black/50 border-slate-800;
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-underline-offset: 4px;
 }
 
-input:focus,
-textarea:focus {
-  @apply border-purple-500 outline-none;
+/* Modern form elements */
+input, textarea {
+  @apply p-4 rounded-2xl backdrop-blur-md bg-white/10 border border-white/20 text-white placeholder-white/60;
+  backdrop-filter: blur(20px);
+}
+
+input:focus, textarea:focus {
+  @apply border-white/40 outline-none ring-2 ring-white/20;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 input[type="checkbox"] {
-  @apply appearance-none p-1.5 mr-2 border-2 bg-slate-800 border-slate-600 checked:bg-green-500 text-white after:content-[''];
+  @apply appearance-none p-2 mr-3 border-2 bg-white/10 border-white/30 checked:bg-green-500 text-white rounded-lg;
 }
 
+/* Enhanced code blocks */
 code {
-  @apply p-3 text-sm rounded-md shadow-md bg-slate-800 text-slate-100 border-2 border-slate-900;
+  @apply px-3 py-2 text-sm rounded-lg shadow-lg bg-black/60 text-slate-100 border border-white/10;
+  backdrop-filter: blur(10px);
 }
 
 mark {
-  @apply bg-yellow-300 py-1 px-2 rounded-full;
+  @apply bg-yellow-400/90 text-black py-1 px-3 rounded-full font-medium;
 }
 
+/* Modal improvements */
 dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(15px);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  animation: fadeIn 0.3s ease-out;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Enhanced button system */
 button {
-  @apply flex items-center justify-center gap-2 py-3 px-4 rounded-md cursor-pointer;
+  @apply flex items-center justify-center gap-3 py-3 px-6 rounded-xl cursor-pointer font-medium transition-all duration-200;
+  transform-origin: center;
 }
 
 button:disabled {
@@ -92,34 +153,123 @@ button:disabled {
   pointer-events: none;
 }
 
+button:not(:disabled):hover {
+  transform: translateY(-2px);
+}
+
+button:not(:disabled):active {
+  transform: translateY(0px);
+}
+
 .buttonNormal {
-  @apply text-white backdrop-blur-md bg-black/50 hover:bg-black/40 active:bg-black/30;
+  @apply text-white backdrop-blur-md bg-white/10 hover:bg-white/20 active:bg-white/15 border border-white/20;
 }
 
 .buttonRed {
-  @apply text-white bg-red-500 hover:bg-red-600 active:bg-red-400;
+  @apply text-white bg-red-500 hover:bg-red-600 active:bg-red-400 shadow-lg hover:shadow-red-500/25;
 }
 
 .buttonGreen {
-  @apply text-white bg-green-500 hover:bg-green-600 active:bg-green-400;
+  @apply text-white bg-green-500 hover:bg-green-600 active:bg-green-400 shadow-lg hover:shadow-green-500/25;
 }
 
 .buttonBlue {
-  @apply text-white bg-purple-500 hover:bg-purple-600 active:bg-purple-400;
+  @apply text-white bg-blue-500 hover:bg-blue-600 active:bg-blue-400 shadow-lg hover:shadow-blue-500/25;
 }
 
-/* Toast */
+.buttonPrimary {
+  @apply text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg hover:shadow-purple-500/25;
+}
 
+/* Enhanced toast notifications */
 .toast {
   z-index: 10000;
-  @apply p-3 rounded-xl bg-slate-900/70 text-white backdrop-blur-md;
+  @apply p-4 rounded-2xl bg-black/80 text-white backdrop-blur-md border border-white/10;
+  backdrop-filter: blur(20px);
 }
 
-@layer utilities {
-  @supports not (backdrop-filter: blur(4px)) {
-    .backdrop-blur-md {
-      -webkit-backdrop-filter: blur(4px);
-      backdrop-filter: blur(4px);
-    }
+/* Glassmorphism utilities */
+.glass {
+  backdrop-filter: blur(20px);
+  @apply bg-white/10 border border-white/20;
+}
+
+.glass-dark {
+  backdrop-filter: blur(20px);
+  @apply bg-black/40 border border-white/10;
+}
+
+/* Personality-specific animations */
+.personality-sarcastic {
+  --personality-accent-rgb: 48, 48, 132;
+}
+
+.personality-childish {
+  --personality-accent-rgb: 219, 39, 119;
+}
+
+.personality-villain {
+  --personality-accent-rgb: 4, 120, 87;
+}
+
+.personality-flattering {
+  --personality-accent-rgb: 196, 100, 193;
+}
+
+.personality-classic {
+  --personality-accent-rgb: 59, 92, 255;
+}
+
+/* Responsive design helpers */
+@media (max-width: 768px) {
+  .mobile-stack {
+    @apply flex-col;
   }
+  
+  .mobile-full {
+    @apply w-full;
+  }
+  
+  .mobile-center {
+    @apply text-center;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus indicators */
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+}
+
+/* Loading states */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }

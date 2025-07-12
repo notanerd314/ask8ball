@@ -6,9 +6,10 @@ import NavBar from '../../../components/common/NavBar'
 import { getPersonalityData } from '../../../lib/api'
 
 import { ToastContainer, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 /** 
- * Dynamic personality page component
+ * Dynamic personality page component with enhanced layout
  * @param params - Route parameters containing personality slug
  * @returns Promise resolving to JSX element for personality-specific eight ball page
  */
@@ -19,32 +20,42 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   if (!personalityData) {
     return (
-      <>
-        <NavBar />
-        <p>Personality not found</p>
-      </>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl font-bold text-white">Personality Not Found</h1>
+          <p className="text-white/70">The personality you're looking for doesn't exist.</p>
+          <a 
+            href="/play" 
+            className="inline-block px-6 py-3 bg-purple-500 hover:bg-purple-600 text-white rounded-2xl transition-colors duration-200"
+          >
+            Choose a Different Personality
+          </a>
+        </div>
+      </div>
     );
   }
 
   return (
-    <>
-      <h1 className='absolute opacity-0'>{`Ask the ${personalityData.name} Eight Ball`}</h1>
+    <div className="min-h-screen">
+      {/* SEO */}
+      <h1 className='sr-only'>{`Ask the ${personalityData.name} Eight Ball`}</h1>
+      
+      {/* Navigation */}
       <NavBar />
 
-      {/* <div className='fixed inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 -z-50' /> */}
-
+      {/* Main Experience */}
       <MainEightBall personalityData={personalityData} />
 
+      {/* Personality Selection */}
       <PersonalityPicker />
 
-      {/* Article for SEO */}
-      <main className="w-full p-0">
-        <Footer />
-      </main>
+      {/* Footer */}
+      <Footer />
 
+      {/* Toast Notifications */}
       <ToastContainer
         position='top-center'
-        autoClose={3000}
+        autoClose={4000}
         hideProgressBar={false}
         newestOnTop={false}
         transition={Slide}
@@ -53,8 +64,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        toastClassName={'toast'}
+        toastClassName="!bg-black/80 !text-white !backdrop-blur-xl !border !border-white/20 !rounded-2xl"
+        progressClassName="!bg-gradient-to-r !from-purple-500 !to-pink-500"
       />
-    </>
+    </div>
   )
 }
