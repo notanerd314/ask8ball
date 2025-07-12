@@ -80,22 +80,6 @@ function Magic8Ball() {
             </div>
           )}
         </button>
-
-        {/* Simplified status indicator */}
-        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
-          <div className={`
-            px-3 py-1 rounded-full text-xs font-medium
-            ${ballCurrentState === "shaking" ? "bg-yellow-500/20 text-yellow-200" : ""}
-            ${ballCurrentState === "result" ? "bg-green-500/20 text-green-200" : ""}
-            ${ballCurrentState === "error" ? "bg-red-500/20 text-red-200" : ""}
-            ${ballCurrentState === "normal" ? "bg-white/10 text-white/60" : ""}
-          `}>
-            {ballCurrentState === "shaking" && "Thinking..."}
-            {ballCurrentState === "result" && "Revealed!"}
-            {ballCurrentState === "error" && "Error"}
-            {ballCurrentState === "normal" && "Ready"}
-          </div>
-        </div>
       </div>
 
       <QuestionInput />

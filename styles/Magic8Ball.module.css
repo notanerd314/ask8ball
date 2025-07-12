@@ -28,8 +28,8 @@
 .eightBall {  
   position: relative;
   aspect-ratio: 1 / 1;
-  height: min(65vw, 65vh, 400px);
-  max-height: 400px;
+  height: min(50vw, 50vh);
+  max-height: 500px;
   
   cursor: pointer;
   border-radius: 50%;

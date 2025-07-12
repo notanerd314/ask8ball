@@ -121,7 +121,7 @@ export default function QuestionInput() {
       </div>
 
       {/* Quick suggestions */}
-      <div className="flex flex-wrap gap-2 justify-center">
+      {/* <div className="flex flex-wrap gap-2 justify-center">
         {[
           "Will I be successful?",
           "Should I take the risk?",
@@ -142,7 +142,7 @@ export default function QuestionInput() {
             {suggestion}
           </button>
         ))}
-      </div>
+      </div> */}
 
       {/* Keyboard shortcuts hint */}
       <div className="text-center text-xs text-white/40 space-x-4">

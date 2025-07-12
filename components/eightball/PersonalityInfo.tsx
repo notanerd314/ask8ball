@@ -19,12 +19,12 @@ export default function PersonalityInfo() {
       {/* Name and tag */}
       <div className="space-y-2">
         <div className="flex items-center justify-center gap-3 flex-wrap">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">
+          <h1 className="!text-4xl md:text-5xl font-bold text-white">
             {currentPersonality.name}
           </h1>
           {currentPersonality.tag && (
             <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-400 text-black">
-              ✨ {currentPersonality.tag}
+              {currentPersonality.tag}
             </span>
           )}
         </div>
