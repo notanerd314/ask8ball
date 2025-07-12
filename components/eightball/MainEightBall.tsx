@@ -84,36 +84,43 @@ function Main8BallContent() {
         <section className="flex-1 flex flex-col justify-center items-center px-4 py-20 space-y-12">
           <PersonalityInfo />
           <Magic8Ball />
-          
-          {/* Share actions */}
-          {hasResponse && (
-            <div className="flex flex-wrap items-center justify-center gap-4 animate-in fade-in duration-300">
-              <button
-                onClick={copyText}
-                className={`
-                  flex items-center gap-2 px-6 py-3 rounded-2xl font-medium
-                  transition-all duration-200 hover:scale-105
-                  ${copyIndicated 
+                    ? 'bg-green-500/20 text-green-300 border border-green-500/30' 
+          {/* Share actions - always visible */}
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <button
+              onClick={copyText}
+              disabled={!hasResponse}
+              className={`
+                flex items-center gap-2 px-6 py-3 rounded-2xl font-medium
+                transition-all duration-200 hover:scale-105
+                ${!hasResponse 
+                  ? 'bg-white/5 text-white/40 border border-white/10 cursor-not-allowed' 
+                  : copyIndicated 
                     ? 'bg-green-500/20 text-green-300 border border-green-500/30' 
                     : 'bg-white/10 hover:bg-white/20 text-white border border-white/20'
-                  }
-                `}
-              >
-                <FontAwesomeIcon icon={copyIndicated ? faShare : faCopy} />
-                {copyIndicated ? "Copied!" : "Copy Result"}
-              </button>
+                }
+              `}
+            >
+              <FontAwesomeIcon icon={copyIndicated ? faShare : faCopy} />
+              {copyIndicated ? "Copied!" : hasResponse ? "Copy Result" : "Get a response first"}
+            </button>
 
-              <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(generateShareText(currentResponse))}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 rounded-2xl font-medium bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/30 transition-all duration-200 hover:scale-105"
-              >
-                <FontAwesomeIcon icon={faXTwitter} />
-                Share on X
-              </a>
-            </div>
-          )}
+            <a
+              href={hasResponse ? `https://twitter.com/intent/tweet?text=${encodeURIComponent(generateShareText(currentResponse))}` : "#"}
+              target={hasResponse ? "_blank" : "_self"}
+              rel="noopener noreferrer"
+              className={`
+                flex items-center gap-2 px-6 py-3 rounded-2xl font-medium transition-all duration-200
+                ${!hasResponse 
+                  ? 'bg-blue-500/10 text-blue-300/40 border border-blue-500/20 cursor-not-allowed pointer-events-none' 
+                  : 'bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/30 hover:scale-105'
+                }
+              `}
+            >
+              <FontAwesomeIcon icon={faXTwitter} />
+              Share on X
+            </a>
+          </div>
         </section>
 
         {/* Audio toggle (floating) - simplified */}
