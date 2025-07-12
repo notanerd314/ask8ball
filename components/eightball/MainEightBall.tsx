@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { EightBallProvider, useEightBall } from "./context/EightBallContext";
 import PersonalityInfo from "./PersonalityInfo";
 import Magic8Ball from "./Magic8Ball";
@@ -12,7 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 
-const CONTAINER_BASE_CLASSES = "flex flex-col items-center w-full lg:h-[90vh] h-[97vh] overflow-hidden gap-4 pr-5 pl-5 pt-25 pb-6 rounded-b-[40px] mb-10 -z-50";
+const CONTAINER_BASE_CLASSES = "flex flex-col items-center w-full h-[80vh] overflow-hidden gap-4 pr-5 pl-5 pt-25 pb-6 rounded-b-[40px] mb-10 -z-50";
 const SHARE_BUTTON_CLASSES = "!p-5 lg:!p-4 !text-2xl !rounded-full !bg-black/60 transition-transform hover:scale-110 active:scale-95";
 const DISCLAIMER_CLASSES = "text-sm text-center text-white/50";
 
@@ -44,19 +46,30 @@ export default function MainEightBall({ personalityData }: { personalityData: Pe
     currentPersonality
   } = useEightBall();
 
-  if (currentPersonality.backgroundSound) {
-    const [play, { stop }] = useSound(currentPersonality.backgroundSound, {
-      loop: true,
-      volume: 0.1,
-    });
+  const soundUrl = currentPersonality.backgroundSound;
+  const [play, { stop }] = useSound(soundUrl || "", {
+    loop: true,
+    volume: 0.3,
+    soundEnabled: !!soundUrl,
+  });
 
-    useAudioUnlock(play);
-  };
+  useAudioUnlock(play);
+
+  // 🔧 Play on mount, stop on unmount
+  useEffect(() => {
+    if (soundUrl) {
+      play();
+    }
+
+    return () => {
+      stop();
+    };
+  }, [soundUrl]);
 
   const { copyText, copyIndicated } = useCopyText();
 
   return (
-    <div className={CONTAINER_BASE_CLASSES} style={containerStyle}>
+    <div className={CONTAINER_BASE_CLASSES + " fade-in"} style={containerStyle}>
       <PersonalityInfo />
       <Magic8Ball />
 
