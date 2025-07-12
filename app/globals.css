@@ -57,7 +57,7 @@ a {
 /* Form Elements */
 input,
 textarea {
-  @apply p-3 rounded-md backdrop-blur-md bg-black/50 border-slate-800;
+  @apply p-3 rounded-xl backdrop-blur-md bg-black/50 border-slate-800;
 }
 
 input:focus,

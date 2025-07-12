@@ -8,7 +8,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { QUESTION_MAX_LENGTH } from "../../lib/constants/eightball";
 
 const INPUT_STYLES = "!text-2xl w-[65vw] lg:w-[35rem] !rounded-r-none";
-const COUNTER_STYLES = "rounded-md backdrop-blur-md bg-black/50 rounded-l-none p-3 w-15 text-center text-2xl";
+const COUNTER_STYLES = "rounded-xl backdrop-blur-md bg-black/50 rounded-l-none p-3 w-15 text-center text-2xl";
 
 /** 
  * Input component for asking questions to the eight ball
@@ -36,7 +36,7 @@ export default function QuestionInput() {
   };
 
   return (
-    <div className='flex flex-row gap-1 mt-2.5'>
+    <div className='flex flex-row gap-2 mt-2.5'>
       <div className="flex">
         <input
           ref={questionRef}
@@ -54,7 +54,7 @@ export default function QuestionInput() {
       </div>
 
       <button
-        className='buttonRed !rounded-lg'
+        className='buttonRed !rounded-xl'
         onClick={deleteQuestion}
         disabled={isDisabled}
         title='Clear question'
