@@ -28,8 +28,8 @@ export default function MainEightBall({ personalityData }: { personalityData: Pe
 }
 
 /**
- * Enhanced main container component for eight ball experience
- * @returns JSX element of the main content with modern design
+ * Optimized main container component for eight ball experience
+ * @returns JSX element of the main content with simplified design
  */
 function Main8BallContent() {
   const {
@@ -42,7 +42,7 @@ function Main8BallContent() {
   const soundUrl = currentPersonality.backgroundSound;
   const [play, { stop }] = useSound(soundUrl || "", {
     loop: true,
-    volume: 0.2,
+    volume: 0.15, // Lower volume for better performance
     soundEnabled: audioEnabled && !!soundUrl,
   });
 
@@ -74,26 +74,9 @@ function Main8BallContent() {
     <div className="page-transition">
       {/* Background with personality theme */}
       <div 
-        className="fixed inset-0 -z-50 transition-all duration-1000 ease-out"
+        className="fixed inset-0 -z-50 transition-all duration-500 ease-out"
         style={containerStyle}
       />
-      
-      {/* Animated background elements */}
-      <div className="fixed inset-0 -z-40 overflow-hidden pointer-events-none">
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-64 h-64 rounded-full opacity-5 float"
-            style={{
-              background: `radial-gradient(circle, ${currentPersonality.theme.accentColor} 0%, transparent 70%)`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 1.5}s`,
-              animationDuration: `${8 + i * 2}s`
-            }}
-          />
-        ))}
-      </div>
 
       {/* Main content */}
       <main className="relative min-h-screen flex flex-col">
@@ -104,7 +87,7 @@ function Main8BallContent() {
           
           {/* Share actions */}
           {hasResponse && (
-            <div className="flex flex-wrap items-center justify-center gap-4 animate-in fade-in duration-500">
+            <div className="flex flex-wrap items-center justify-center gap-4 animate-in fade-in duration-300">
               <button
                 onClick={copyText}
                 className={`
@@ -114,7 +97,6 @@ function Main8BallContent() {
                     ? 'bg-green-500/20 text-green-300 border border-green-500/30' 
                     : 'bg-white/10 hover:bg-white/20 text-white border border-white/20'
                   }
-                  backdrop-blur-md
                 `}
               >
                 <FontAwesomeIcon icon={copyIndicated ? faShare : faCopy} />
@@ -125,7 +107,7 @@ function Main8BallContent() {
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(generateShareText(currentResponse))}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 rounded-2xl font-medium bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/30 backdrop-blur-md transition-all duration-200 hover:scale-105"
+                className="flex items-center gap-2 px-6 py-3 rounded-2xl font-medium bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/30 transition-all duration-200 hover:scale-105"
               >
                 <FontAwesomeIcon icon={faXTwitter} />
                 Share on X
@@ -134,13 +116,13 @@ function Main8BallContent() {
           )}
         </section>
 
-        {/* Audio toggle (floating) */}
+        {/* Audio toggle (floating) - simplified */}
         {soundUrl && (
           <button
             onClick={() => setAudioEnabled(!audioEnabled)}
             className={`
               fixed bottom-6 right-6 p-4 rounded-2xl
-              backdrop-blur-md border transition-all duration-200
+              border transition-all duration-200
               hover:scale-110 z-40
               ${audioEnabled 
                 ? 'bg-green-500/20 text-green-300 border-green-500/30' 

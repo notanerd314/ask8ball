@@ -5,12 +5,12 @@ import useQuestionInput from "./hooks/useQuestionInput";
 import { useEightBall } from "./context/EightBallContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faPaperPlane, faMicrophone } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { QUESTION_MAX_LENGTH } from "../../lib/constants/eightball";
 
 /** 
- * Enhanced input component for asking questions with better UX
- * @returns JSX element with modern question input interface
+ * Optimized input component for asking questions
+ * @returns JSX element with simplified question input interface
  */
 export default function QuestionInput() {
   const { shakeEightBall } = useEightBallShake();
@@ -51,11 +51,11 @@ export default function QuestionInput() {
               placeholder="Ask your question..."
               className={`
                 w-full pr-16 text-lg md:text-xl
-                bg-white/10 backdrop-blur-xl border border-white/20
+                bg-white/10 border border-white/20
                 rounded-2xl px-6 py-4
                 text-white placeholder-white/50
                 focus:border-white/40 focus:ring-2 focus:ring-white/20
-                transition-all duration-300
+                transition-all duration-200
                 ${isDisabled ? 'opacity-50 cursor-not-allowed' : ''}
               `}
               onKeyDown={handleKeyDown}
@@ -85,7 +85,7 @@ export default function QuestionInput() {
                 p-4 rounded-2xl font-medium transition-all duration-200
                 ${isDisabled 
                   ? 'bg-gray-500/20 text-gray-400 cursor-not-allowed' 
-                  : 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white shadow-lg hover:shadow-purple-500/25 hover:scale-105'
+                  : 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white hover:scale-105'
                 }
               `}
               title="Ask the 8-ball"
@@ -104,11 +104,11 @@ export default function QuestionInput() {
           </div>
         </div>
 
-        {/* Progress bar for character limit */}
+        {/* Simplified progress bar */}
         <div className="mt-2 h-1 bg-white/10 rounded-full overflow-hidden">
           <div 
             className={`
-              h-full transition-all duration-300 rounded-full
+              h-full transition-all duration-200 rounded-full
               ${charactersLeft <= 0 ? 'bg-red-400' : 
                 charactersLeft <= 30 ? 'bg-yellow-400' : 
                 'bg-green-400'}

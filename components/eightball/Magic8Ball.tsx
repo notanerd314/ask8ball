@@ -12,7 +12,7 @@ import styles from '../../styles/Magic8Ball.module.css';
 import textStyles from '../../styles/EightBallText.module.css';
 
 /** 
- * Enhanced eight ball component with improved animations and feedback
+ * Optimized eight ball component
  * @returns JSX element with interactive eight ball
  */
 function Magic8Ball() {
@@ -42,7 +42,7 @@ function Magic8Ball() {
 
   return (
     <div className={styles.eightBallWrapper}>
-      {/* Enhanced eight ball with personality-based glow */}
+      {/* Simplified eight ball */}
       <div className="relative">
         <button
           id="eightBallWrapper"
@@ -54,20 +54,7 @@ function Magic8Ball() {
           `}
           title={getButtonTitle()}
           disabled={ballCurrentState === "shaking"}
-          style={{
-            boxShadow: ballCurrentState === "result" 
-              ? `0 0 60px ${currentPersonality.theme.accentColor}40, 0 0 120px ${currentPersonality.theme.accentColor}20`
-              : undefined
-          }}
         >
-          {/* Hover glow effect */}
-          <div 
-            className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-30 transition-opacity duration-300 -z-10"
-            style={{
-              background: `radial-gradient(circle, ${currentPersonality.theme.accentColor}40 0%, transparent 70%)`
-            }}
-          />
-
           <EightBallSvg 
             currentState={ballCurrentState} 
             diceColor={currentPersonality.theme.accentColor} 
@@ -86,18 +73,18 @@ function Magic8Ball() {
             {getDisplayText()}
           </ResizableText>
 
-          {/* Loading indicator for shaking state */}
+          {/* Simplified loading indicator */}
           {ballCurrentState === "shaking" && (
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             </div>
           )}
         </button>
 
-        {/* Status indicator */}
+        {/* Simplified status indicator */}
         <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
           <div className={`
-            px-3 py-1 rounded-full text-xs font-medium backdrop-blur-md
+            px-3 py-1 rounded-full text-xs font-medium
             ${ballCurrentState === "shaking" ? "bg-yellow-500/20 text-yellow-200" : ""}
             ${ballCurrentState === "result" ? "bg-green-500/20 text-green-200" : ""}
             ${ballCurrentState === "error" ? "bg-red-500/20 text-red-200" : ""}

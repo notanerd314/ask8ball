@@ -3,36 +3,36 @@ import { getAllPersonalities } from "../../lib/api";
 import Link from "next/link";
 
 /** 
- * Enhanced personality card component with better visual design
+ * Optimized personality card component
  * @param personality - Personality configuration to display
- * @returns JSX element with modern personality card
+ * @returns JSX element with simplified personality card
  */
 export function PersonalityCard({ personality }: { personality: PersonalityConfig }) {
   return (
     <Link
       href={`/play/${personality.linkname}`}
-      className="group block relative overflow-hidden rounded-3xl transition-all duration-300 hover:scale-105 hover:-translate-y-2"
+      className="group block relative overflow-hidden rounded-3xl transition-all duration-200 hover:scale-102"
       aria-label={`Choose ${personality.name} personality`}
       title={`Choose ${personality.name} personality`}
     >
       {/* Background with personality theme */}
       <div 
-        className="absolute inset-0 opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+        className="absolute inset-0 opacity-80 group-hover:opacity-100 transition-opacity duration-200"
         style={{ background: personality.theme.cssBackground }}
       />
       
       {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-200" />
       
       {/* Content */}
       <div className="relative p-6 h-48 flex flex-col justify-between text-white">
         {/* Icon and tag */}
         <div className="flex items-start justify-between">
-          <div className="text-4xl md:text-5xl filter drop-shadow-lg group-hover:scale-110 transition-transform duration-300">
+          <div className="text-4xl md:text-5xl group-hover:scale-105 transition-transform duration-200">
             {personality.theme.icon}
           </div>
           {personality.tag && (
-            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/20 backdrop-blur-sm">
+            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/20">
               {personality.tag}
             </span>
           )}
@@ -49,29 +49,21 @@ export function PersonalityCard({ personality }: { personality: PersonalityConfi
         </div>
         
         {/* Hover indicator */}
-        <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+        <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
             </svg>
           </div>
         </div>
       </div>
-      
-      {/* Glow effect on hover */}
-      <div 
-        className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-300 rounded-3xl"
-        style={{
-          background: `radial-gradient(circle at center, ${personality.theme.accentColor}40 0%, transparent 70%)`
-        }}
-      />
     </Link>
   );
 }
 
 /** 
- * Enhanced personality selection grid with better layout
- * @returns Promise resolving to JSX element with modern personality grid
+ * Optimized personality selection grid
+ * @returns Promise resolving to JSX element with personality grid
  */
 export default async function PersonalityPicker() {
   const personalitiesList = await getAllPersonalities();
@@ -88,11 +80,11 @@ export default async function PersonalityPicker() {
             Each personality brings its own unique wisdom and perspective to your questions
           </p>
           
-          {/* Decorative line */}
+          {/* Simplified decorative line */}
           <div className="flex items-center justify-center gap-4 mt-8">
-            <div className="h-px bg-gradient-to-r from-transparent via-white/30 to-transparent w-24"></div>
+            <div className="h-px bg-white/30 w-24"></div>
             <div className="w-2 h-2 rounded-full bg-white/30"></div>
-            <div className="h-px bg-gradient-to-r from-transparent via-white/30 to-transparent w-24"></div>
+            <div className="h-px bg-white/30 w-24"></div>
           </div>
         </div>
 

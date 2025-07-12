@@ -9,58 +9,26 @@
   --personality-bg-overlay: rgba(0, 0, 0, 0.3);
 }
 
-/* Smooth page transitions */
+/* Simplified page transitions */
 .page-transition {
-  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeIn 0.4s ease-out;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Enhanced wiggle animation for personality switching */
-@keyframes wigglePause {
-  0% { transform: rotate(0deg) scale(1); }
-  5% { transform: rotate(4deg) scale(1.02); }
-  10% { transform: rotate(-4deg) scale(1.02); }
-  15% { transform: rotate(4deg) scale(1.02); }
-  20% { transform: rotate(-4deg) scale(1.02); }
-  25% { transform: rotate(4deg) scale(1.02); }
-  30% { transform: rotate(0deg) scale(1); }
-  100% { transform: rotate(0deg) scale(1); }
+/* Simplified wiggle animation */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(2deg); }
+  75% { transform: rotate(-2deg); }
 }
 
 .wiggle {
-  animation: wigglePause 3.5s ease-in-out infinite;
-  animation-delay: 5s;
-}
-
-/* Floating animation for decorative elements */
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-10px) rotate(1deg); }
-  66% { transform: translateY(5px) rotate(-1deg); }
-}
-
-.float {
-  animation: float 6s ease-in-out infinite;
-}
-
-/* Pulse animation for interactive elements */
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(var(--personality-accent-rgb), 0.3); }
-  50% { box-shadow: 0 0 40px rgba(var(--personality-accent-rgb), 0.6); }
-}
-
-.pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+  animation: wiggle 2s ease-in-out infinite;
+  animation-delay: 3s;
 }
 
 /* Typography */
@@ -78,7 +46,7 @@ html, body {
 /* Enhanced form elements */
 input, button, textarea, select, .toast { 
   font-family: inherit; 
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
 }
 
 /* Reset with better spacing */
@@ -104,47 +72,37 @@ a:hover {
   text-underline-offset: 4px;
 }
 
-/* Modern form elements */
+/* Simplified form elements */
 input, textarea {
-  @apply p-4 rounded-2xl backdrop-blur-md bg-white/10 border border-white/20 text-white placeholder-white/60;
-  backdrop-filter: blur(20px);
+  @apply p-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/60;
 }
 
 input:focus, textarea:focus {
   @apply border-white/40 outline-none ring-2 ring-white/20;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 input[type="checkbox"] {
   @apply appearance-none p-2 mr-3 border-2 bg-white/10 border-white/30 checked:bg-green-500 text-white rounded-lg;
 }
 
-/* Enhanced code blocks */
+/* Simplified code blocks */
 code {
-  @apply px-3 py-2 text-sm rounded-lg shadow-lg bg-black/60 text-slate-100 border border-white/10;
-  backdrop-filter: blur(10px);
+  @apply px-3 py-2 text-sm rounded-lg bg-black/60 text-slate-100 border border-white/10;
 }
 
 mark {
   @apply bg-yellow-400/90 text-black py-1 px-3 rounded-full font-medium;
 }
 
-/* Modal improvements */
+/* Simplified modal */
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(20px);
-  animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.2s ease-out;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Enhanced button system */
+/* Simplified button system */
 button {
   @apply flex items-center justify-center gap-3 py-3 px-6 rounded-xl cursor-pointer font-medium transition-all duration-200;
-  transform-origin: center;
 }
 
 button:disabled {
@@ -154,7 +112,7 @@ button:disabled {
 }
 
 button:not(:disabled):hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 button:not(:disabled):active {
@@ -162,62 +120,38 @@ button:not(:disabled):active {
 }
 
 .buttonNormal {
-  @apply text-white backdrop-blur-md bg-white/10 hover:bg-white/20 active:bg-white/15 border border-white/20;
+  @apply text-white bg-white/10 hover:bg-white/20 active:bg-white/15 border border-white/20;
 }
 
 .buttonRed {
-  @apply text-white bg-red-500 hover:bg-red-600 active:bg-red-400 shadow-lg hover:shadow-red-500/25;
+  @apply text-white bg-red-500 hover:bg-red-600 active:bg-red-400;
 }
 
 .buttonGreen {
-  @apply text-white bg-green-500 hover:bg-green-600 active:bg-green-400 shadow-lg hover:shadow-green-500/25;
+  @apply text-white bg-green-500 hover:bg-green-600 active:bg-green-400;
 }
 
 .buttonBlue {
-  @apply text-white bg-blue-500 hover:bg-blue-600 active:bg-blue-400 shadow-lg hover:shadow-blue-500/25;
+  @apply text-white bg-blue-500 hover:bg-blue-600 active:bg-blue-400;
 }
 
 .buttonPrimary {
-  @apply text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg hover:shadow-purple-500/25;
+  @apply text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600;
 }
 
-/* Enhanced toast notifications */
+/* Simplified toast notifications */
 .toast {
   z-index: 10000;
-  @apply p-4 rounded-2xl bg-black/80 text-white backdrop-blur-md border border-white/10;
-  backdrop-filter: blur(20px);
+  @apply p-4 rounded-2xl bg-black/80 text-white border border-white/10;
 }
 
-/* Glassmorphism utilities */
+/* Simplified glass effect */
 .glass {
-  backdrop-filter: blur(20px);
   @apply bg-white/10 border border-white/20;
 }
 
 .glass-dark {
-  backdrop-filter: blur(20px);
   @apply bg-black/40 border border-white/10;
-}
-
-/* Personality-specific animations */
-.personality-sarcastic {
-  --personality-accent-rgb: 48, 48, 132;
-}
-
-.personality-childish {
-  --personality-accent-rgb: 219, 39, 119;
-}
-
-.personality-villain {
-  --personality-accent-rgb: 4, 120, 87;
-}
-
-.personality-flattering {
-  --personality-accent-rgb: 196, 100, 193;
-}
-
-.personality-classic {
-  --personality-accent-rgb: 59, 92, 255;
 }
 
 /* Responsive design helpers */
@@ -252,7 +186,7 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-/* Loading states */
+/* Simplified loading states */
 .loading {
   position: relative;
   overflow: hidden;
@@ -266,7 +200,7 @@ a:focus-visible {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  animation: shimmer 1.5s infinite;
+  animation: shimmer 1s infinite;
 }
 
 @keyframes shimmer {
