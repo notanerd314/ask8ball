@@ -13,7 +13,7 @@ import { ToastContainer, Slide } from 'react-toastify'
  * @returns Promise resolving to JSX element for personality-specific eight ball page
  */
 export default async function Page({ params }: { params: { slug: string } }) {
-  const slug = params.slug
+  const { slug } = await params;
 
   const personalityData = await getPersonalityData(slug)
 
