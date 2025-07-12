@@ -52,6 +52,7 @@ ${getRandomItem(toneHints)}
 
 ${getRandomItem(ruleHeaders)}
 - Maximum 20 words.
+- Keep the language simple. (A2 level)
 - NO markdown, code, or explanations.
 - Match their tone and language.
 - No boring or safe guesses. Surprise them.

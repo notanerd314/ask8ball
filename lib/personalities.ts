@@ -31,7 +31,7 @@ export const sarcasticPersonality: PersonalityConfig = {
     },
     {
       question: "[No question]",
-      response: "You forgot the question. Again? Bold strategy.",
+      response: "You forgot the question again? Bold strategy.",
       answerPrompt: AnswerPrompt.NoAnswer
     },
     {
