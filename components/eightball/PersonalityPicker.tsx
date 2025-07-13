@@ -56,9 +56,9 @@ export default async function PersonalityPicker() {
           
           {/* Simplified decorative line */}
           <div className="flex items-center justify-center gap-4 mt-4">
-            <div className="h-px bg-white/30 w-24"></div>
-            <div className="w-2 h-2 rounded-full bg-white/30"></div>
-            <div className="h-px bg-white/30 w-24"></div>
+            <hr className="h-px border-white/30 w-24" />
+            <span className="w-3 h-3 rounded-full bg-white/30"></span>
+            <hr className="h-px border-white/30 w-24" />
           </div>
         </div>
 

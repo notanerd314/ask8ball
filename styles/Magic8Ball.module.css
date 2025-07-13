@@ -36,7 +36,7 @@
   overflow: hidden;
   
   /* Simplified border */
-  border: 6px solid rgba(255, 255, 255, 0.3);
+  border: 12px solid rgba(255, 255, 255, 0.3);
   
   /* Simplified shadow */
   box-shadow: 
@@ -137,7 +137,7 @@
 }
 
 /* High contrast mode */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .eightBall {
     border-color: white;
     box-shadow: 

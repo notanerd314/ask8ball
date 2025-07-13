@@ -28,7 +28,7 @@ const EightBallContext = createContext<EightBallContextType>({
     prompt: "",
     description: "",
     examples: [],
-    theme: { icon: "", accentColor: "", cssBackground: "", tailwindHoverClass: "" }
+    theme: { icon: "", accentColor: "", cssBackground: "" }
   },
   setCurrentPersonality: () => { },
   shareImageLink: '',

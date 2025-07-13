@@ -22,7 +22,7 @@ export default function NavBar() {
   return (
     <nav className={`
       fixed flex items-center justify-between
-      left-4 right-4 top-4 z-50
+      left-4 right-8 top-4 z-50
       p-4 rounded-2xl backdrop-blur-md
       transition-all duration-200 ease-out
       bg-black/60 border-2 border-white/20
@@ -34,12 +34,10 @@ export default function NavBar() {
             alt="Logo"
             width={32}
             height={32}
+            className="ring-white/30 ring-2 rounded-full"
           />
         </div>
-        <div className="flex flex-col">
-          <span className="font-bold text-lg text-white">ask8ball</span>
-          <span className="text-xs text-white/60 -mt-1">AI Fortune Teller</span>
-        </div>
+        <span className="font-bold text-lg text-white">ask8ball</span>
       </Link>
 
       <Link
