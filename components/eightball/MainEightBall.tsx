@@ -63,76 +63,61 @@ function Main8BallContent() {
 
   const { copyText, copyIndicated } = useCopyText();
 
-  const containerStyle = {
-    background: currentPersonality.theme.cssBackground,
-    maxHeight: '100vh'
-  };
-
   const hasResponse = currentResponse.response && ballCurrentState !== "shaking";
 
   return (
     <div className="page-transition">
       {/* Background with personality theme */}
-      <div 
-        className="fixed inset-0 -z-50 transition-all duration-500 ease-out"
-        style={containerStyle}
+      <div
+        className="fixed inset-0 opacity-80 -z-50"
+        style={{ background: currentPersonality.theme.cssBackground }}
       />
 
       {/* Main content */}
-      <main className="relative min-h-screen flex flex-col max-h-screen">
-        {/* Hero section */}
-        <section className="flex-1 flex flex-col justify-center items-center px-4 py-20 space-y-12">
-          <PersonalityInfo />
-          <Magic8Ball />
+      <main className="flex flex-col justify-center items-center gap-12 mb-8">
+        <PersonalityInfo />
+        <Magic8Ball />
 
-          {/* Share actions - always visible */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <button
-              onClick={copyText}
-              disabled={!hasResponse}
-              className={`
-                flex items-center gap-2 px-6 py-3 rounded-2xl font-medium
+        {/* Share actions - always visible */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-6">
+          <button
+            onClick={copyText}
+            disabled={!hasResponse}
+            className={`
+                flex items-center gap-2 px-6 py-3 !rounded-2xl font-medium
                 transition-all duration-200 hover:scale-105
-                ${!hasResponse 
-                  ? 'bg-white/5 text-white/40 border border-white/10 cursor-not-allowed' 
-                  : copyIndicated 
-                    ? 'bg-green-500/20 text-green-300 border border-green-500/30' 
-                    : 'bg-white/10 hover:bg-white/20 text-white border border-white/20'
-                }
+                ${!hasResponse
+                ? 'bg-yellow-400/20 text-yellow/40 border border-yellow-400/10 cursor-not-allowed'
+                : copyIndicated
+                  ? 'bg-green-500/40 text-green-300 border border-green-500/30'
+                  : 'bg-yellow-400/40 hover:bg-yellow-400/50 text-white border border-yellow-400/20'
+              }
               `}
-            >
-              <FontAwesomeIcon icon={copyIndicated ? faShare : faCopy} />
-              {copyIndicated ? "Copied!" : hasResponse ? "Copy Result" : "Get a response first"}
-            </button>
+          >
+            <FontAwesomeIcon icon={copyIndicated ? faShare : faCopy} />
+            {copyIndicated ? "Copied!" : hasResponse ? "Copy Result" : "Ask the Ball first!"}
+          </button>
 
-            <a
-              href={hasResponse ? `https://twitter.com/intent/tweet?text=${encodeURIComponent(generateShareText(currentResponse))}` : "#"}
-              target={hasResponse ? "_blank" : "_self"}
-              rel="noopener noreferrer"
-              className={`
+          <a
+            href={hasResponse ? `https://twitter.com/intent/tweet?text=${encodeURIComponent(generateShareText(currentResponse))}` : "#"}
+            target={hasResponse ? "_blank" : "_self"}
+            rel="noopener noreferrer"
+            className={`
                 flex items-center gap-2 px-6 py-3 rounded-2xl font-medium transition-all duration-200
-                ${!hasResponse 
-                  ? 'bg-blue-500/10 text-blue-300/40 border border-blue-500/20 cursor-not-allowed pointer-events-none' 
-                  : 'bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/30 hover:scale-105'
-                }
+                ${!hasResponse
+                ? '!bg-blue-500/20 !text-white/40 border border-blue-500/20 cursor-not-allowed pointer-events-none'
+                : '!bg-blue-500/40 hover:!bg-blue-500/50 !text-white border border-blue-500/30 hover:scale-105'
+              }
               `}
-            >
-              <FontAwesomeIcon icon={faXTwitter} />
-              Share on X
-            </a>
-          </div>
-        </section>
-
-        {/* Audio toggle (floating) - simplified */}
-
-        {/* Disclaimer */}
-        <div className="text-center py-8 px-4">
-          <p className="text-sm text-white/50 max-w-2xl mx-auto">
-            🔮 The responses are AI-generated for entertainment purposes only. 
-            Don't make life decisions based on a digital magic 8-ball! 
-            (But do have fun with it.) ✨
-          </p>
+          >
+            <FontAwesomeIcon icon={faXTwitter} />
+            Tweet it!
+          </a>
         </div>
+
+        <p className="text-center text-sm text-white/40 mx-auto">
+          The responses are AI-generated for entertainment purposes only, don't be serious.
+        </p>
       </main>
     </div>
   );

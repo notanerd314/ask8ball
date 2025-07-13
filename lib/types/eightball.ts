@@ -50,7 +50,6 @@ export type ThemeConfig = {
   icon: string;
   accentColor: string;
   cssBackground: string;
-  tailwindHoverClass: string;
 }
 
 export type APIResponse = {

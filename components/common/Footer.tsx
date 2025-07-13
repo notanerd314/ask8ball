@@ -7,19 +7,12 @@ export default function Footer() {
     <footer className='relative py-12 px-4'>
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
-      
+
       <div className="relative max-w-4xl mx-auto text-center space-y-6">
         {/* Main content */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-center gap-3">
-            <img src="/favicon.min.svg" alt="Logo" width={24} height={24} className="opacity-80" />
-            <span className="text-lg font-semibold text-white/90">ask8ball</span>
-          </div>
-          
-          <p className="text-white/60 max-w-md mx-auto">
-            Your AI-powered fortune teller with personality. 
-            Ask questions, get answers, have fun! ✨
-          </p>
+        <div className="flex items-center justify-center gap-3">
+          <img src="/favicon.min.svg" alt="Logo" width={24} height={24} className="opacity-80" />
+          <span className="text-lg font-semibold text-white/90">ask8ball</span>
         </div>
 
         {/* Links */}
@@ -40,7 +33,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="pt-6 border-t border-white/10">
           <p className='text-sm text-white/40'>
-            © 2025 ask8ball. Made with ✨ and AI magic.
+            © 2025 ask8ball. Some rights reserved.
           </p>
         </div>
       </div>

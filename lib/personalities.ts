@@ -65,7 +65,6 @@ export const sarcasticPersonality: PersonalityConfig = {
     icon: "😒",
     accentColor: "#303084",
     cssBackground: "linear-gradient(to bottom right, #5A1181, #1E3A8A, #3730A3)",
-    tailwindHoverClass: "hover:bg-gradient-to-br hover:from-[#5A1181] hover:via-[#1E3A8A] hover:to-[#3730A3] ring-indigo-500 ring-3"
   }
 };
 
@@ -132,7 +131,6 @@ export const villainPersonality: PersonalityConfig = {
     icon: "😈",
     accentColor: "#047857",
     cssBackground: "linear-gradient(to bottom right, #047857, #1F2937)",
-    tailwindHoverClass: "hover:bg-gradient-to-br hover:from-[#047857] hover:to-[#1F2937]"
   }
 };
 
@@ -145,8 +143,7 @@ export const classicPersonality: PersonalityConfig = {
   theme: {
     icon: "🎱",
     accentColor: "#3B5CFF",
-    cssBackground: "linear-gradient(to bottom right, #1F2937, #3B5CFF, #1F2937)",
-    tailwindHoverClass: "hover:bg-gradient-to-br hover:from-[#1F2937] hover:via-[#3B5CFF] hover:to-[#1F2937]"
+    cssBackground: "linear-gradient(to right, #00416a, #799f0c, #ffe000)",
   },
   customResponseScript: (question: string) => {
     // This script can be used to generate a response based on the question
@@ -249,10 +246,8 @@ export const childishPersonality: PersonalityConfig = {
   theme: {
     icon: "👶",
     accentColor: "#DB2777",
-    cssBackground: "linear-gradient(90deg, hsla(197, 100%, 63%, 1) 0%, hsla(294, 100%, 55%, 1) 100%)",
-    tailwindHoverClass: "hover:bg-[linear-gradient(90deg,_hsla(197,_100%,_63%,_1)_0%,_hsla(294,_100%,_55%,_1)_100%)]"
+    cssBackground: "linear-gradient(to right, #feac5e, #c779d0, #4bc0c8)",
   },
-  backgroundSound: "/sounds/loops/childish.mp3"
 };
 
 export const flatteringPersonality: PersonalityConfig = {
@@ -327,11 +322,9 @@ export const flatteringPersonality: PersonalityConfig = {
   theme: {
     icon: "😉",
     accentColor: "#c464c1",
-    cssBackground: "linear-gradient(90deg, hsla(31, 50%, 58%, 1) 0%, hsla(302, 45%, 58%, 1) 100%)",
-    tailwindHoverClass: "hover:bg-[linear-gradient(90deg,_hsla(31,50%,58%,1)_0%,_hsla(302,45%,58%,1)_100%)]"
+    cssBackground: "linear-gradient(to right, #b24592, #f15f79)",
   }
 };
-
 
 export const personalitiesList: PersonalityConfig[] = [
   sarcasticPersonality,

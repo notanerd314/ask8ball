@@ -14,7 +14,7 @@ export default function NavBar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
     }
-    
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -23,19 +23,16 @@ export default function NavBar() {
     <nav className={`
       fixed flex items-center justify-between
       left-4 right-4 top-4 z-50
-      p-4 rounded-2xl
+      p-4 rounded-2xl backdrop-blur-md
       transition-all duration-200 ease-out
-      ${isScrolled 
-        ? 'bg-black/80 border border-white/20' 
-        : 'bg-black/40 border border-white/10'
-      }
+      bg-black/60 border-2 border-white/20
     `}>
       <Link href="/play" className="flex items-center gap-3 hover:scale-105 transition-transform duration-200">
         <div className="relative">
-          <img 
-            src="/favicon.min.svg" 
-            alt="Logo" 
-            width={32} 
+          <img
+            src="/favicon.min.svg"
+            alt="Logo"
+            width={32}
             height={32}
           />
         </div>
@@ -44,15 +41,13 @@ export default function NavBar() {
           <span className="text-xs text-white/60 -mt-1">AI Fortune Teller</span>
         </div>
       </Link>
-      
-      <div className="flex items-center gap-4">
-        <Link 
-          href="/about" 
-          className="px-4 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200"
-        >
-          About
-        </Link>
-      </div>
+
+      <Link
+        href="/about"
+        className="px-4 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200"
+      >
+        About
+      </Link>
     </nav>
   )
 }
