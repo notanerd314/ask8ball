@@ -13,7 +13,7 @@ const EightBallContext = createContext<EightBallContextType>({
     isSafe: false,
     violatedCategories: [],
     personality: "",
-    shareSig: ""
+    createdAt: new Date()
   },
   setCurrentResponse: () => { },
   ballCurrentState: 'normal',
@@ -58,7 +58,7 @@ export const EightBallProvider: React.FC<EightBallProviderProps> = ({
     isSafe: false,
     violatedCategories: [],
     personality: "",
-    shareSig: "",
+    createdAt: new Date()
   });
   const [ballCurrentState, setBallCurrentState] = useState<BallStateType>("normal");
   const [diceStyle, setDiceStyle] = useState<React.CSSProperties>(INITIAL_DICE_STYLE);

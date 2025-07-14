@@ -5,13 +5,14 @@ import { toast } from "react-toastify";
 import { shakeSounds, errorSound } from "../../../lib/sounds";
 import { getRandomItem } from "../../../lib/rng";
 import { getAnswer } from "../../../lib/api";
-import { 
-  INITIAL_DICE_STYLE, 
-  RESULT_DICE_STYLE, 
-  SHAKE_DURATION, 
+import {
+  INITIAL_DICE_STYLE,
+  RESULT_DICE_STYLE,
+  SHAKE_DURATION,
   RESULT_SHOW_DELAY,
-  QUESTION_MAX_LENGTH 
+  QUESTION_MAX_LENGTH
 } from "../../../lib/constants/eightball";
+import { APIResponse } from "../../../lib/types/eightball";
 
 /** 
  * Hook that handles the eight ball shake animation and API call
@@ -20,6 +21,7 @@ import {
 export default function useEightBallShake() {
   const {
     setCurrentResponse,
+    currentResponse,
     setBallCurrentState,
     question,
     setDiceStyle,
@@ -30,9 +32,27 @@ export default function useEightBallShake() {
   const [playShakeSound2] = useSound(shakeSounds[1]);
   const [playErrorSound] = useSound(errorSound);
 
+  const addToPersonalHistory = (answerData: APIResponse) => {
+    let personalHistory = localStorage.getItem("personalHistory");
+
+    if (!personalHistory) {
+      localStorage.setItem("personalHistory", JSON.stringify([]));
+    }
+
+    personalHistory = localStorage.getItem("personalHistory");
+    const history = JSON.parse(personalHistory!);
+
+    if (history.length >= 50) {
+      history.shift();
+    }
+
+    history.push(answerData);
+    localStorage.setItem("personalHistory", JSON.stringify(history));
+  };
+
   const shakeEightBall = async () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    
+
     if (question.length > QUESTION_MAX_LENGTH) {
       playErrorSound();
       toast("Your question is too long.", { type: "error" });
@@ -48,7 +68,7 @@ export default function useEightBallShake() {
 
       getRandomItem([playShakeSound1, playShakeSound2])();
       setCurrentResponse(answerData),
-
+      addToPersonalHistory(answerData);
       setTimeout(() => {
         setBallCurrentState("result");
 
@@ -56,7 +76,6 @@ export default function useEightBallShake() {
           setDiceStyle(RESULT_DICE_STYLE);
           console.log("Shown result");
         }, RESULT_SHOW_DELAY);
-
       }, SHAKE_DURATION);
 
     } catch (error) {

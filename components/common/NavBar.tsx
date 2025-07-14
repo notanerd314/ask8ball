@@ -21,11 +21,11 @@ export default function NavBar() {
 
   return (
     <nav className={`
-      fixed flex items-center justify-between
-      left-4 right-8 top-4 z-50
-      p-4 rounded-2xl backdrop-blur-md
+      fixed flex items-center
+      left-0 right-0 top-0 z-50
+      p-4 backdrop-blur-md
       transition-all duration-200 ease-out
-      bg-black/60 border-2 border-white/20
+      bg-black/60
     `}>
       <Link href="/play" className="flex items-center gap-3 hover:scale-105 transition-transform duration-200">
         <div className="relative">
@@ -33,7 +33,7 @@ export default function NavBar() {
             src="/favicon.min.svg"
             alt="Logo"
             width={32}
-            height={32}
+            height={32} 
             className="ring-white/30 ring-2 rounded-full"
           />
         </div>
@@ -45,6 +45,13 @@ export default function NavBar() {
         className="px-4 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200"
       >
         About
+      </Link>
+
+      <Link
+        href="/history"
+        className="px-4 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200"
+      >
+        History
       </Link>
     </nav>
   )

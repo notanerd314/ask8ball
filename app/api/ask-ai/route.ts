@@ -142,7 +142,7 @@ export async function POST(req: Request): Promise<Response> {
       isSafe: parsedGuard.isSafe,
       violatedCategories: parsedGuard.categories,
       personality: personalityData.name,
-      shareSig: sig,
+      createdAt: new Date(),
     });
   } catch (error) {
     console.error("Error:", error);

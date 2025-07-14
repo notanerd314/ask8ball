@@ -59,5 +59,6 @@ export type APIResponse = {
   isSafe: boolean,
   violatedCategories: string[],
   personality: string,
-  shareSig: string,
+  createdAt: Date;
+  shareSig?: string,
 }
