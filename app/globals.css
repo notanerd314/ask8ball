@@ -67,7 +67,7 @@ a {
 
 /* Simplified form elements */
 input, textarea {
-  @apply p-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/60;
+  @apply p-4 rounded-2xl bg-white/20 border border-white/30 text-white placeholder-white/60;
 }
 
 input:focus, textarea:focus {

@@ -2,18 +2,15 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import { useEightBall } from "./context/EightBallContext";
 import useEightBallShake from "./hooks/useEightBallShake";
 import useQuestionInput from "./hooks/useQuestionInput";
 import { QUESTION_MAX_LENGTH } from "../../lib/constants/eightball";
 
 export default function QuestionInput() {
   const { shakeEightBall } = useEightBallShake();
-  const { currentPersonality } = useEightBall();
   const {
     questionRef,
     charactersLeft,
-    charactersLeftColor,
     deleteQuestion,
     changeQuestion,
     isDisabled
@@ -43,7 +40,7 @@ export default function QuestionInput() {
       : "bg-green-400";
 
   return (
-    <fieldset className="w-full max-w-2xl mx-auto space-y-4" disabled={isDisabled}>
+    <fieldset className="w-full max-w-2xl mx-auto space-y-4 bg-black/30 rounded-2xl !py-3" disabled={isDisabled}>
       <legend className="sr-only">Ask your question</legend>
 
       <div className="relative flex items-center gap-2">
@@ -59,10 +56,9 @@ export default function QuestionInput() {
             disabled={isDisabled}
             className={`
               w-full pr-16 px-6 py-4 text-lg md:text-xl rounded-2xl
-              bg-white/10 text-white placeholder-white/50
               border border-white/20 focus:border-white/40 focus:ring-2 focus:ring-white/20
               transition-all duration-200
-              ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}
+              ${isDisabled ? "opacity-50 cursor-not-allowed text-center" : ""}
             `}
           />
           <span className={`absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium ${charColor}`}>
@@ -70,7 +66,7 @@ export default function QuestionInput() {
           </span>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2" hidden={isDisabled}>
           <button
             type="button"
             onClick={handleSubmit}
@@ -100,7 +96,7 @@ export default function QuestionInput() {
         </div>
       </div>
 
-      <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+      <div className="h-1 bg-white/20 rounded-full overflow-hidden">
         <div
           className={`h-full ${progressColor} transition-all duration-200 rounded-full`}
           style={{ width: `${progress}%` }}

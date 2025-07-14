@@ -3,15 +3,15 @@
 /* Simplified Keyframe Animations */
 @keyframes shake8Ball {
   0% { transform: translate(0px, 0px) rotate(0deg); }
-  10% { transform: translate(5px, 5px) rotate(2deg); }
-  20% { transform: translate(-5px, -5px) rotate(-2deg); }
-  30% { transform: translate(5px, -5px) rotate(2deg); }
-  40% { transform: translate(-5px, 5px) rotate(-2deg); }
-  50% { transform: translate(5px, 5px) rotate(2deg); }
-  60% { transform: translate(-5px, -5px) rotate(-2deg); }
-  70% { transform: translate(5px, -5px) rotate(2deg); }
-  80% { transform: translate(-5px, 5px) rotate(-2deg); }
-  90% { transform: translate(2px, -2px) rotate(1deg); }
+  10% { transform: translate(8px, 8px) rotate(4deg); }
+  20% { transform: translate(-8px, -8px) rotate(-4deg); }
+  30% { transform: translate(8px, -8px) rotate(4deg); }
+  40% { transform: translate(-8px, 8px) rotate(-4deg); }
+  50% { transform: translate(8px, 8px) rotate(4deg); }
+  60% { transform: translate(-8px, -8px) rotate(-4deg); }
+  70% { transform: translate(8px, -8px) rotate(4deg); }
+  80% { transform: translate(-8px, 8px) rotate(-4deg); }
+  90% { transform: translate(3px, -3px) rotate(2deg); }
   100% { transform: translate(0px, 0px) rotate(0deg); }
 }
 

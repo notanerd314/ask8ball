@@ -16,10 +16,10 @@ export default function ShareButtons({ hasResponse, currentResponse }: { hasResp
           flex items-center gap-2 px-6 py-3 !rounded-2xl font-medium
           transition-all duration-200 hover:scale-105
           ${!hasResponse
-            ? 'bg-yellow-400/20 text-yellow/40 border border-yellow-400/10 cursor-not-allowed'
+            ? 'bg-yellow-400/20 text-yellow/40 border border-yellow-400/30 cursor-not-allowed'
             : copyIndicated
-              ? 'bg-green-500/40 text-green-300 border border-green-500/30'
-              : 'bg-yellow-400/40 hover:bg-yellow-400/50 text-white border border-yellow-400/20'
+              ? 'bg-green-500/40 text-green-300 border border-green-500/50'
+              : 'bg-yellow-400/40 hover:bg-yellow-400/50 text-white border border-yellow-400/50'
           }
         `}
       >
@@ -34,8 +34,8 @@ export default function ShareButtons({ hasResponse, currentResponse }: { hasResp
         className={`
           flex items-center gap-2 px-6 py-3 rounded-2xl font-medium transition-all duration-200
           ${!hasResponse
-            ? '!bg-blue-500/20 !text-white/40 border border-blue-500/20 cursor-not-allowed pointer-events-none'
-            : '!bg-blue-500/40 hover:!bg-blue-500/50 !text-white border border-blue-500/30 hover:scale-105'
+            ? '!bg-blue-500/20 !text-white/40 border border-blue-500/30 cursor-not-allowed pointer-events-none'
+            : '!bg-blue-500/40 hover:!bg-blue-500/50 !text-white border border-blue-500/50 hover:scale-105'
           }
         `}
       >

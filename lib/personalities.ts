@@ -143,7 +143,7 @@ export const classicPersonality: PersonalityConfig = {
   theme: {
     icon: "🎱",
     accentColor: "#3B5CFF",
-    cssBackground: "linear-gradient(to right, #00416a, #799f0c, #ffe000)",
+    cssBackground: "linear-gradient(90deg, hsla(276, 91%, 79%, 1) 0%, hsla(254, 74%, 65%, 1) 100%)",
   },
   customResponseScript: (question: string) => {
     // This script can be used to generate a response based on the question
@@ -245,7 +245,7 @@ export const childishPersonality: PersonalityConfig = {
   temperature: 1.1,
   theme: {
     icon: "👶",
-    accentColor: "#DB2777",
+    accentColor: "#c779d0",
     cssBackground: "linear-gradient(to right, #feac5e, #c779d0, #4bc0c8)",
   },
 };
@@ -321,7 +321,7 @@ export const flatteringPersonality: PersonalityConfig = {
   temperature: 1.2,
   theme: {
     icon: "😉",
-    accentColor: "#c464c1",
+    accentColor: "#b24592",
     cssBackground: "linear-gradient(to right, #b24592, #f15f79)",
   }
 };

@@ -56,9 +56,9 @@ export default async function PersonalityPicker() {
           
           {/* Simplified decorative line */}
           <div className="flex items-center justify-center gap-4 mt-4">
-            <hr className="h-px border-white/30 w-24" />
-            <span className="w-3 h-3 rounded-full bg-white/30"></span>
-            <hr className="h-px border-white/30 w-24" />
+            <hr className="h-px border-white/30 w-36" />
+            <span className="w-2 h-2  rounded-full bg-white/30"></span>
+            <hr className="h-px border-white/30 w-36" />
           </div>
         </div>
 
@@ -71,7 +71,9 @@ export default async function PersonalityPicker() {
         
         {/* Call to action */}
         <p className="text-center text-white/60 text-sm">
-          Can't decide? Start with the <strong className="text-white">Sarcastic</strong> personality!
+          Can't decide? Start with the
+          <Link className="text-white font-bold" href="/play/sarcastic"> Sarcastic </Link>
+          personality!
         </p>
       </div>
     </section>
