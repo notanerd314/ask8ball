@@ -1,26 +1,33 @@
-import PersonalityPicker from '../../components/eightball/PersonalityPicker'
-import Footer from '../../components/common/Footer'
-import NavBar from '../../components/common/NavBar'
+import PersonalityPicker from '../components/eightball/PersonalityPicker'
+import Footer from '../components/common/Footer'
+import NavBar from '../components/common/NavBar'
 
-import { getPersonalityData } from '../../lib/api'
+import { getPersonalityData } from '../lib/api'
 
 import { ToastContainer, Slide } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import MainEightBall from '../../components/eightball/MainEightBall'
+import MainEightBall from '../components/eightball/MainEightBall'
+
+import React from 'react'
+
+export const dynamic = 'force-dynamic';
 
 /** 
  * Enhanced default play page component with sarcastic personality
  * @returns Promise resolving to JSX element for default eight ball page
  */
-export default async function Page() {
-  const personalityData = await getPersonalityData("sarcastic")
+export default async function Page({ searchParams }: { searchParams: Promise<{ personality?: string }> }) {
+  const params = await searchParams
+  console.log('Server render. Personality =', params.personality);
+
+  const personalityData = await getPersonalityData(params.personality || 'sarcastic');
   
   if (!personalityData) { 
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold text-white">Something went wrong</h1>
-          <p className="text-white/70">Unable to load the default personality.</p>
+          <p className="text-white/70">Unable to load the personality.</p>
         </div>
       </div>
     );

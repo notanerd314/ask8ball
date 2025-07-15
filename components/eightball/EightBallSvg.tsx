@@ -62,7 +62,7 @@ export const EightBallSvg: React.FC<Props> = ({
       
       <ellipse cx="568" cy="454" fill="url(#bgGrad)" rx="220" ry="220" />
 
-      <g className="transform scale-125 md:scale-100 origin-center md:translate-0 -translate-y-16 -translate-x-25">
+      <g className="transform scale-125 origin-center md:-translate-y-13 md:-translate-x-19 -translate-y-16 -translate-x-25">
         <ellipse 
           cx="568" 
           cy="454" 

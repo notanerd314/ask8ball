@@ -21,7 +21,6 @@ import { APIResponse } from "../../../lib/types/eightball";
 export default function useEightBallShake() {
   const {
     setCurrentResponse,
-    currentResponse,
     setBallCurrentState,
     question,
     setDiceStyle,
@@ -32,23 +31,23 @@ export default function useEightBallShake() {
   const [playShakeSound2] = useSound(shakeSounds[1]);
   const [playErrorSound] = useSound(errorSound);
 
-  const addToPersonalHistory = (answerData: APIResponse) => {
-    let personalHistory = localStorage.getItem("personalHistory");
+  // const addToPersonalHistory = (answerData: APIResponse) => {
+  //   let personalHistory = localStorage.getItem("personalHistory");
 
-    if (!personalHistory) {
-      localStorage.setItem("personalHistory", JSON.stringify([]));
-    }
+  //   if (!personalHistory) {
+  //     localStorage.setItem("personalHistory", JSON.stringify([]));
+  //   }
 
-    personalHistory = localStorage.getItem("personalHistory");
-    const history = JSON.parse(personalHistory!);
+  //   personalHistory = localStorage.getItem("personalHistory");
+  //   const history = JSON.parse(personalHistory!);
 
-    if (history.length >= 50) {
-      history.shift();
-    }
+  //   if (history.length >= 50) {
+  //     history.shift();
+  //   }
 
-    history.push(answerData);
-    localStorage.setItem("personalHistory", JSON.stringify(history));
-  };
+  //   history.push(answerData);
+  //   localStorage.setItem("personalHistory", JSON.stringify(history));
+  // };
 
   const shakeEightBall = async () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -68,7 +67,7 @@ export default function useEightBallShake() {
 
       getRandomItem([playShakeSound1, playShakeSound2])();
       setCurrentResponse(answerData),
-      addToPersonalHistory(answerData);
+      // addToPersonalHistory(answerData);
       setTimeout(() => {
         setBallCurrentState("result");
 

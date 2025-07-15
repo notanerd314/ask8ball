@@ -1,4 +1,4 @@
-export const DICE_SIZE_MULTIPLIER = 0.6;
+export const DICE_SIZE_MULTIPLIER = 0.5;
 export const QUESTION_MAX_LENGTH = 70;
 export const SHAKE_DURATION = 2200;
 export const RESULT_SHOW_DELAY = 500;
