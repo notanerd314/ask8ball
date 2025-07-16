@@ -44,11 +44,6 @@ function Main8BallContent() {
       {/* Main content */}
       <main className="flex flex-col justify-center items-center gap-12 mb-8">
         <PersonalityInfo />
-        <p className="text-center text-sm text-white/40 mx-auto">
-          See your
-          <Link href="/history"> personal history </Link>
-          of responses.
-        </p>
         <Magic8Ball />
         <ShareButtons hasResponse={hasResponse} currentResponse={currentResponse} />
 

@@ -21,18 +21,16 @@ export default function Footer() {
             About
           </a>
           <span className="text-white/30">•</span>
-          <a href="/privacy" className="text-white/60 hover:text-white transition-colors duration-200">
-            Privacy
-          </a>
-          <span className="text-white/30">•</span>
-          <a href="/terms" className="text-white/60 hover:text-white transition-colors duration-200">
-            Terms
-          </a>
         </div>
 
         {/* Copyright */}
         <div className="pt-6 border-t border-white/10">
-          <p className='text-sm text-white/40'>
+          <small className="text-white/40">
+            This site doesn’t collect personal data. It’s just for fun.
+            By using it, you agree not to take it seriously or blame me for bad advice.
+          </small>
+
+          <p className='text-sm text-white/40 !mt-2'>
             © 2025 ask8ball. Some rights reserved.
           </p>
         </div>

@@ -47,7 +47,7 @@ export default async function PersonalityPicker() {
         {/* Section header */}
         <div className="text-center mb-12 space-y-4">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
-            Choose Your Oracle
+            Choose Your 8-Ball
           </h2>
 
           {/* Simplified decorative line */}
@@ -63,6 +63,18 @@ export default async function PersonalityPicker() {
           {personalitiesList.map((personality) => (
             <PersonalityCard key={personality.linkname} personality={personality} />
           ))}
+          <PersonalityCard personality={{
+            name: "More coming soon!",
+            description: "Stay tuned for more personalities! If I ever will.",
+            linkname: "sarcastic",
+            prompt: '',
+            examples: [],
+            theme: {
+              icon: "👀",
+              accentColor: "bg-white/30",
+              cssBackground: "linear-gradient(45deg, #1e293b, #0f172a)",
+            }
+          }} />
         </div>
 
         {/* Call to action */}

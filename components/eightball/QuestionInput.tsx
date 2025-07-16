@@ -48,9 +48,9 @@ export default function QuestionInput() {
           <input
             ref={questionRef}
             type="text"
-            placeholder="Ask your question..."
+            placeholder="Ask a yes/no question..."
             maxLength={QUESTION_MAX_LENGTH}
-            title="Ask your question..."
+            title="Ask a yes/no question..."
             onKeyDown={handleKeyDown}
             onChange={changeQuestion}
             disabled={isDisabled}

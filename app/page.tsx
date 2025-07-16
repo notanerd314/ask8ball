@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import MainEightBall from '../components/eightball/MainEightBall'
 
 import React from 'react'
+import FAQ from '../components/FAQ'
 
 export const dynamic = 'force-dynamic';
 
@@ -46,6 +47,8 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
       
       {/* Personality Selection */}
       <PersonalityPicker />
+
+      <FAQ />
 
       {/* Footer */}
       <Footer />

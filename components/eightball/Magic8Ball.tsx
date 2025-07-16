@@ -63,7 +63,7 @@ function Magic8Ball() {
           />
 
           <ResizableText
-            minFontSize={12}
+            minFontSize={1}
             initialFontSize={40}
             maxWidth={diceSize.width}
             maxHeight={diceSize.height}
