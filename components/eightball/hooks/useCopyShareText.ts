@@ -1,10 +1,7 @@
 import { useState } from "react";
-import { useEightBall } from "../context/EightBallContext";
 import { APIResponse } from "../../../lib/types/eightball";
-import { encodeShareData } from "../../../lib/cryptography";
 
-export default function useCopyText() {
-  const { currentResponse } = useEightBall();
+export default function useCopyText(currentResponse: APIResponse) {
   const [copyIndicated, setCopyIndicated] = useState(false);
 
   const copyText = async () => {

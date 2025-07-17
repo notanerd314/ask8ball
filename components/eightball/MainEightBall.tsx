@@ -33,6 +33,8 @@ function Main8BallContent() {
 
   const hasResponse = !!currentResponse.response && ballCurrentState !== "shaking";
 
+  console.log("hasResponse", hasResponse, "ballCurrentState", ballCurrentState, "response", currentResponse.response);
+
   return (
     <div className="page-transition">
       {/* Background with personality theme */}

@@ -1,5 +1,4 @@
 import { ImageResponse } from 'next/og';
-import { signParams } from '../../../../lib/cryptography';
 import { getPersonalityData } from '../../../../lib/api';
 
 async function loadGoogleFont(font: string, text: string) {
@@ -24,89 +23,61 @@ async function loadGoogleFont(font: string, text: string) {
  */
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const response = searchParams.get('response');
-  const question = searchParams.get('question');
   const personality = searchParams.get('personality');
-  const sig = searchParams.get('sig');
-
-  if (!response) return new Response('No response provided', { status: 400 });
-  if (!question) return new Response('No question provided', { status: 400 });
   if (!personality) return new Response('No personality provided', { status: 400 });
-  // if (!sig) return new Response('Signature not provided', { status: 400 });
-
-  // if (sig !== signParams([question, response, personality], process.env.IMAGE_SECRET || '')) {
-  //   return new Response('Invalid signature', { status: 403 });
-  // }
-
-  const requiredCharacters = Array.from(
-    new Set(response + question)
-  );
-
-  /** 
-   * Calculates optimal font size based on text length
-   * @param text - The text to calculate font size for
-   * @returns Optimal font size in pixels
-   */
-  function calculateFontSize(text: string): number {
-    if (text.length < 6) return 50;
-    if (text.length < 20) return 37;
-    if (text.length < 40) return 27;
-    if (text.length < 60) return 20;
-    if (text.length < 80) return 17;
-    return 17;
-  }
 
   const personalityData = await getPersonalityData(personality);
+  if (!personalityData) return new Response('Personality not found', { status: 404 });
+
+  const requiredCharacters = Array.from(
+    new Set(personalityData.name + personalityData.description)
+  );
+
+  function calculateFontSize(text: string): number {
+    return Math.max(17, (text.length < 6 ? 50 : text.length < 20 ? 37 : text.length < 40 ? 27 : text.length < 60 ? 20 : 17) * 0.75);
+  }
 
   return new ImageResponse(
     (
       <div
         style={{
           width: '100%',
-          height: '900px',
+          height: '100%',
           display: 'flex',
-          flexDirection: 'column',
           fontFamily: 'DM Sans',
-
+          textShadow: '3px 3px 6px rgba(0, 0, 0, 0.3)',
+          padding: '50px',
+          color: 'white',
           background: personalityData?.theme.cssBackground,
         }}
       >
-        {/* Top banner text */}
         <div style={{
+          flex: 1,
           display: 'flex',
-          padding: '15px',
-          paddingBottom: '0px',
+          flexDirection: 'column',
+          justifySelf: 'center',
+          paddingTop: '70px',
         }}>
-          <div
-            style={{
-              width: '100%',
-              height: '135px',
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
-              borderRadius: '20px',
-              backdropFilter: 'blur(10px)',
-
-              color: 'white',
-              fontSize: 42,
-              fontWeight: 'bold',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              textAlign: 'center',
-            }}
-          >
-            {question}
-          </div>
+          <span style={{ fontSize: '125px', margin: 0 }}>
+            {personalityData?.theme.icon}
+          </span>
+          <h1 style={{ fontSize: '60px', margin: 0, fontWeight: 700 }}>
+            {personalityData?.name}
+          </h1>
+          <p style={{ maxWidth: '550px', fontSize: '30px', margin: 0 }}>
+            {personalityData?.description}
+          </p>
         </div>
 
-        {/* Main content */}
         <div
           style={{
-            flex: 1,
+            flex: 0.9,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             position: 'relative',
-            padding: '50px',
+            borderRadius: '100%',
+            border: '12px solid rgba(255, 255, 255, 0.5)',
             backgroundColor: 'transparent'
           }}
         >
@@ -163,19 +134,19 @@ export async function GET(request: Request) {
           >
             <p
               style={{
-                fontSize: calculateFontSize(response),
+                fontSize: calculateFontSize(personalityData?.examples[0].response),
                 color: 'white',
               }}
             >
-              {response}
+              {personalityData?.examples[0].response}
             </p>
           </div>
         </div>
       </div>
     ),
     {
-      width: 750,
-      height: 900,
+      width: 1200,
+      height: 630,
       emoji: 'twemoji',
       fonts: [
         {
@@ -185,6 +156,6 @@ export async function GET(request: Request) {
           weight: 600,
         },
       ],
-    },
+    }
   );
 }

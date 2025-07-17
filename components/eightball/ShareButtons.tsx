@@ -1,17 +1,22 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy, faShare } from "@fortawesome/free-solid-svg-icons";
+import { faCopy, faShare, faCamera } from "@fortawesome/free-solid-svg-icons";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import useCopyText, { generateShareText } from "./hooks/useCopyShareText";
 import { APIResponse } from "../../lib/types/eightball";
 
 export default function ShareButtons({ hasResponse, currentResponse }: { hasResponse: boolean, currentResponse: APIResponse }) {
-  const { copyText, copyIndicated } = useCopyText();
+  const { copyText, copyIndicated } = useCopyText(currentResponse);
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-4 mb-6">
+    <div className="flex flex-wrap items-center justify-center gap-4 mb-6 transition-opacity" style={{
+      opacity: hasResponse ? 1 : 0,
+      visibility: hasResponse ? "visible" : "hidden",
+      transform: hasResponse ? "scale(1)" : "scale(0.9)",
+      transition: "opacity 0.2s ease, transform 0.2s ease, visibility 0.2s",
+      pointerEvents: hasResponse ? "auto" : "none"
+    }}>
       <button
         onClick={copyText}
-        disabled={!hasResponse}
         className={`
           flex items-center gap-2 px-6 py-3 !rounded-2xl font-medium
           transition-all duration-200 hover:scale-105
@@ -24,7 +29,7 @@ export default function ShareButtons({ hasResponse, currentResponse }: { hasResp
         `}
       >
         <FontAwesomeIcon icon={copyIndicated ? faShare : faCopy} />
-        {copyIndicated ? "Copied!" : hasResponse ? "Copy Result" : "Ask the Ball first!"}
+        {copyIndicated ? "Copied!" : "Copy it!"}
       </button>
 
       <a
@@ -41,6 +46,21 @@ export default function ShareButtons({ hasResponse, currentResponse }: { hasResp
       >
         <FontAwesomeIcon icon={faXTwitter} />
         Tweet it!
+      </a>
+
+      <a
+        href={hasResponse ? `/api/image/share-result?question=${currentResponse.question}&response=${currentResponse.response}&personality=${currentResponse.personality}&sig=${currentResponse.shareSig}` : "#"}
+        download={`${currentResponse.question}.jpg`}
+        target="_self"
+        rel="noopener noreferrer"
+        className={`
+          flex items-center gap-2 px-6 py-3 !rounded-2xl font-medium
+          transition-all duration-200 hover:scale-105
+          !bg-red-500/40 hover:!bg-red-500/50 !text-white border border-red-500/50
+        `}
+      >
+        <FontAwesomeIcon icon={faCamera} />
+        Screenshot it!
       </a>
     </div>
   )

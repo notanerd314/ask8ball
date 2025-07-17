@@ -114,7 +114,7 @@ export async function POST(req: Request): Promise<Response> {
     ]);
 
     const rawGuard = await fetchGuardResponse(question);
-    const parsedGuard = parseGuardResponse(rawGuard);
+    // const parsedGuard = parseGuardResponse(rawGuard);
 
     const personalityData = personalitiesList.find(p => p.linkname === personality);
 
@@ -136,11 +136,12 @@ export async function POST(req: Request): Promise<Response> {
     return Response.json({
       question,
       response: aiResponse,
-      responseType: parsedGuard.isSafe ? answerPrompt : "Overwritten",
-      isSafe: parsedGuard.isSafe,
-      violatedCategories: parsedGuard.categories,
-      personality: personalityData.name,
+      responseType: answerPrompt,
+      // isSafe: parsedGuard.isSafe,
+      // violatedCategories: parsedGuard.categories,
+      personality: personalityData.linkname,
       createdAt: new Date(),
+      shareSig: sig
     });
   } catch (error) {
     console.error("Error:", error);
