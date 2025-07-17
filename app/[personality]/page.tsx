@@ -1,15 +1,15 @@
-import PersonalityPicker from '../components/eightball/PersonalityPicker'
-import Footer from '../components/common/Footer'
-import NavBar from '../components/common/NavBar'
+import PersonalityPicker from '../../components/eightball/PersonalityPicker'
+import Footer from '../../components/common/Footer'
+import NavBar from '../../components/common/NavBar'
 
-import { getPersonalityData } from '../lib/api'
+import { getPersonalityData } from '../../lib/api'
 
 import { ToastContainer, Slide } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import MainEightBall from '../components/eightball/MainEightBall'
+import MainEightBall from '../../components/eightball/MainEightBall'
 
 import React from 'react'
-import FAQ from '../components/FAQ'
+import FAQ from '../../components/FAQ'
 
 export const dynamic = 'force-dynamic';
 
@@ -17,8 +17,9 @@ export const dynamic = 'force-dynamic';
  * Enhanced default play page component with sarcastic personality
  * @returns Promise resolving to JSX element for default eight ball page
  */
-export default async function Page() {
-  const personalityData = await getPersonalityData('sarcastic');
+export default async function Page({ params }: { params: { personality: string } }) {
+  const parameters = await params;
+  const personalityData = await getPersonalityData(parameters.personality);
   
   if (!personalityData) { 
     return (

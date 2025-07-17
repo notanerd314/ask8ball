@@ -12,7 +12,6 @@ import {
   RESULT_SHOW_DELAY,
   QUESTION_MAX_LENGTH
 } from "../../../lib/constants/eightball";
-import { APIResponse } from "../../../lib/types/eightball";
 
 /** 
  * Hook that handles the eight ball shake animation and API call
@@ -50,8 +49,6 @@ export default function useEightBallShake() {
   // };
 
   const shakeEightBall = async () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
     if (question.length > QUESTION_MAX_LENGTH) {
       playErrorSound();
       toast("Your question is too long.", { type: "error" });
@@ -63,13 +60,14 @@ export default function useEightBallShake() {
 
     try {
       const answerData = await getAnswer(question, currentPersonality.linkname);
-      console.log(answerData);
 
       getRandomItem([playShakeSound1, playShakeSound2])();
-      setCurrentResponse(answerData),
+      setCurrentResponse(answerData);
       // addToPersonalHistory(answerData);
+
       setTimeout(() => {
         setBallCurrentState("result");
+        window.scrollTo({ top: 0, behavior: 'smooth' });
 
         setTimeout(() => {
           setDiceStyle(RESULT_DICE_STYLE);

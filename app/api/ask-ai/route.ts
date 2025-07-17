@@ -66,7 +66,6 @@ async function fetchAIResponse(question: string, systemPrompt: string, temperatu
   });
 
   const data = await response.json();
-  console.error(data)
   return data.choices?.[0]?.message?.content;
 }
 
@@ -91,7 +90,6 @@ function parseGuardResponse(data: string): GuardResponse {
 export async function POST(req: Request): Promise<Response> {
   try {
     const body = await req.json();
- 545
     const question = body.question;
     if (typeof question !== "string") {
       throw new Error("Invalid question format");

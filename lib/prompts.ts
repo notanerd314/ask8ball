@@ -60,7 +60,6 @@ ${getRandomItem(ruleHeaders)}
 
 ${examplesBlock}
 `;
-  console.log(prompt)
 
   return prompt.trim();
 }

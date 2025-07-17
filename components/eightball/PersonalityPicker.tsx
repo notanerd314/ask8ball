@@ -1,5 +1,6 @@
 import { PersonalityConfig } from "../../lib/prompts";
 import { getAllPersonalities } from "../../lib/api";
+import Link from "next/link";
 
 /** 
  * Optimized personality card component
@@ -8,11 +9,12 @@ import { getAllPersonalities } from "../../lib/api";
  */
 export function PersonalityCard({ personality }: { personality: PersonalityConfig }) {  
   return (
-    <a
+    <Link
       className="cursor-pointer shadow-2xl rounded-2xl overflow-hidden active:scale-95 hover:scale-105 transition-all duration-200 p-6 h-46 flex flex-col justify-between !text-white relative"
       style={{ background: personality.theme.cssBackground }}
       title={personality.description}
-      href={'?personality=' + personality.linkname}
+      href={`/${personality.linkname}`}
+      scroll={false}
     >
       <div className="flex justify-between items-start">
         <span className="text-5xl">{personality.theme.icon}</span>
@@ -29,7 +31,7 @@ export function PersonalityCard({ personality }: { personality: PersonalityConfi
           {personality.description}
         </p>
       </div>
-    </a>
+    </Link>
   );
 }
 
@@ -80,7 +82,7 @@ export default async function PersonalityPicker() {
         {/* Call to action */}
         <p className="text-center text-white/60 text-sm">
           Can't decide? Start with the
-          <a className="text-white font-bold" href="?personality=sarcastic"> Sarcastic </a>
+          <Link className="text-white font-bold" href="/sarcastic" scroll={false}> Sarcastic </Link>
           personality!
         </p>
       </div>
