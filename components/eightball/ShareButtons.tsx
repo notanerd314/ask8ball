@@ -8,28 +8,27 @@ export default function ShareButtons({ hasResponse, currentResponse }: { hasResp
   const { copyText, copyIndicated } = useCopyText(currentResponse);
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-4 mb-6 transition-opacity" style={{
+    <div className="flex flex-wrap items-center justify-center gap-6 mb-8 transition-all duration-500" style={{
       opacity: hasResponse ? 1 : 0,
       visibility: hasResponse ? "visible" : "hidden",
-      transform: hasResponse ? "scale(1)" : "scale(0.9)",
-      transition: "opacity 0.2s ease, transform 0.2s ease, visibility 0.2s",
+      transform: hasResponse ? "scale(1) translateY(0)" : "scale(0.8) translateY(20px)",
       pointerEvents: hasResponse ? "auto" : "none"
     }}>
       <button
         onClick={copyText}
         className={`
-          flex items-center gap-2 px-6 py-3 !rounded-2xl font-medium
-          transition-all duration-200 hover:scale-105
+          flex items-center gap-3 !px-8 !py-4 !rounded-3xl !font-black !text-xl
+          transition-all duration-300
           ${!hasResponse
-            ? 'bg-yellow-400/20 text-yellow/40 border border-yellow-400/30 cursor-not-allowed'
+            ? '!bg-yellow-400/20 !text-yellow-400/40 !border-4 !border-yellow-400/30 cursor-not-allowed'
             : copyIndicated
-              ? 'bg-green-500/40 text-green-300 border border-green-500/50'
-              : 'bg-yellow-400/40 hover:bg-yellow-400/50 text-white border border-yellow-400/50'
+              ? '!bg-green-500 !text-white !border-4 !border-green-600'
+              : '!bg-gradient-to-r !from-yellow-400 !to-orange-500 !text-white !border-4 !border-yellow-600'
           }
         `}
       >
         <FontAwesomeIcon icon={copyIndicated ? faShare : faCopy} />
-        {copyIndicated ? "Copied!" : "Copy it!"}
+        {copyIndicated ? "COPIED! ✨" : "COPY IT! 📋"}
       </button>
 
       <a
@@ -37,15 +36,15 @@ export default function ShareButtons({ hasResponse, currentResponse }: { hasResp
         target={hasResponse ? "_blank" : "_self"}
         rel="noopener noreferrer"
         className={`
-          flex items-center gap-2 px-6 py-3 rounded-2xl font-medium transition-all duration-200
+          flex items-center gap-3 !px-8 !py-4 !rounded-3xl !font-black !text-xl transition-all duration-300
           ${!hasResponse
-            ? '!bg-blue-500/20 !text-white/40 border border-blue-500/30 cursor-not-allowed pointer-events-none'
-            : '!bg-blue-500/40 hover:!bg-blue-500/50 !text-white border border-blue-500/50 hover:scale-105'
+            ? '!bg-blue-500/20 !text-white/40 !border-4 !border-blue-500/30 cursor-not-allowed pointer-events-none'
+            : '!bg-gradient-to-r !from-blue-500 !to-purple-600 !text-white !border-4 !border-blue-600'
           }
         `}
       >
         <FontAwesomeIcon icon={faXTwitter} />
-        Tweet it!
+        TWEET IT! 🐦
       </a>
 
       <a
@@ -54,13 +53,13 @@ export default function ShareButtons({ hasResponse, currentResponse }: { hasResp
         target="_self"
         rel="noopener noreferrer"
         className={`
-          flex items-center gap-2 px-6 py-3 !rounded-2xl font-medium
-          transition-all duration-200 hover:scale-105
-          !bg-red-500/40 hover:!bg-red-500/50 !text-white border border-red-500/50
+          flex items-center gap-3 !px-8 !py-4 !rounded-3xl !font-black !text-xl
+          transition-all duration-300
+          !bg-gradient-to-r !from-pink-500 !to-red-500 !text-white !border-4 !border-pink-600
         `}
       >
         <FontAwesomeIcon icon={faCamera} />
-        Screenshot it!
+        SCREENSHOT IT! 📸
       </a>
     </div>
   )

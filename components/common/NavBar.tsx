@@ -21,23 +21,23 @@ export default function NavBar() {
 
   return (
     <nav className={`
-      fixed flex items-center
+      fixed flex items-center z-50
       left-0 right-0 top-0 z-50
-      p-6
-      transition-all duration-200 ease-out
+      p-8
+      transition-all duration-300 ease-out
       bg-black/0
     `}>
-      <Link href="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-200">
+      <Link href="/" className="flex items-center gap-4 hover:scale-110 transition-transform duration-300 group">
         <div className="relative">
           <img
             src="/favicon.min.svg"
             alt="Logo"
-            width={40}
-            height={40} 
-            className="ring-white/30 ring-2 rounded-full"
+            width={50}
+            height={50} 
+            className="ring-white/50 ring-4 rounded-full group-hover:ring-yellow-400 transition-all duration-300"
           />
         </div>
-        <span className="font-bold text-2xl text-white">ask8ball</span>
+        <span className="font-black text-3xl text-white group-hover:text-yellow-400 transition-colors duration-300 drop-shadow-lg">ask8ball</span>
       </Link>
     </nav>
   )

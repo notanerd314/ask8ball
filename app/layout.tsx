@@ -1,12 +1,18 @@
 import 'normalize.css';
 
-import { DM_Sans } from 'next/font/google';
+import { Fredoka, Rubik } from 'next/font/google';
 import './globals.css'
 
-const dmSans = DM_Sans({
+const fredoka = Fredoka({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-family'
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-fredoka'
+});
+
+const rubik = Rubik({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-rubik'
 });
 
 export const metadata = {
@@ -30,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={dmSans.style} className="text-slate-50 bg-slate-900">
+      <body className={`${fredoka.variable} ${rubik.variable} font-fredoka text-white`}>
         {children}
       </body>
     </html>

@@ -1,39 +1,107 @@
 @import "tailwindcss";
 
-/* Custom Properties for Dynamic Theming */
+/* Fun Toy Theme Variables */
 :root {
-  --personality-primary: #3B5CFF;
-  --personality-secondary: #1F2937;
-  --personality-accent: #3B5CFF;
-  --personality-text: #ffffff;
-  --personality-bg-overlay: rgba(0, 0, 0, 0.3);
+  --magic-purple: #8B5CF6;
+  --neon-blue: #06B6D4;
+  --hot-pink: #EC4899;
+  --electric-yellow: #FBBF24;
+  --deep-purple: #5B21B6;
+  --cosmic-indigo: #4338CA;
 }
 
-/* Simplified page transitions */
-.page-transition {
-  animation: fadeIn 0.4s ease-out;
+/* Magical Background Animation */
+@keyframes floatingParticles {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% { 
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 1;
+  }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes sparkle {
+  0%, 100% { 
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% { 
+    transform: scale(1) rotate(180deg);
+    opacity: 1;
+  }
 }
 
-/* Simplified wiggle animation */
-@keyframes wiggle {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(2deg); }
-  75% { transform: rotate(-2deg); }
+@keyframes magicalSwirl {
+  0% { 
+    transform: rotate(0deg) scale(1);
+    opacity: 0.3;
+  }
+  50% { 
+    transform: rotate(180deg) scale(1.1);
+    opacity: 0.6;
+  }
+  100% { 
+    transform: rotate(360deg) scale(1);
+    opacity: 0.3;
+  }
 }
 
-.wiggle {
-  animation: wiggle 2s ease-in-out infinite;
-  animation-delay: 3s;
+/* Magical Background Elements */
+.magical-bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -2;
 }
 
-/* Typography */
+.magical-bg::after {
+  content: '✨ ⭐ 🌟 ✨ ⭐ 🌟 ✨ ⭐ 🌟 ✨ ⭐ 🌟';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  font-size: 2rem;
+  opacity: 0.1;
+  animation: floatingParticles 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+  white-space: pre-wrap;
+  line-height: 4;
+}
+
+/* Enhanced wiggle animation */
+@keyframes toyWiggle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  10% { transform: rotate(3deg) scale(1.02); }
+  20% { transform: rotate(-3deg) scale(0.98); }
+  30% { transform: rotate(3deg) scale(1.02); }
+  40% { transform: rotate(-3deg) scale(0.98); }
+  50% { transform: rotate(2deg) scale(1.01); }
+  60% { transform: rotate(-2deg) scale(0.99); }
+  70% { transform: rotate(2deg) scale(1.01); }
+  80% { transform: rotate(-2deg) scale(0.99); }
+  90% { transform: rotate(1deg) scale(1.005); }
+}
+
+.toy-wiggle {
+  animation: toyWiggle 3s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Typography - Fun and Chunky */
 html {
-  font-size: clamp(14px, 1.5vmin, 18px);
+  font-size: clamp(16px, 2vmin, 20px);
   scroll-behavior: smooth;
 }
 
@@ -41,110 +109,204 @@ html, body {
   height: 100%;
   margin: 0;
   overflow-x: hidden;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 25%, #1e3a8a 50%, #1e40af 75%, #1d4ed8 100%);
 }
 
-/* Enhanced form elements */
-input, button, textarea, select, .toast { 
-  font-family: inherit; 
-  transition: all 0.2s ease;
+/* Enhanced form elements with toy styling */
+input, button, textarea, select { 
+  font-family: var(--font-fredoka), cursive;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Reset with better spacing */
+/* Reset with playful spacing */
 h1, h2, h3, h4, h5, h6, p {
   margin: 0;
   text-wrap: wrap;
-  line-height: 1.4;
+  line-height: 1.3;
+  font-family: var(--font-fredoka), cursive;
 }
 
-h1 { @apply text-4xl md:text-5xl font-bold; }
-h2 { @apply text-3xl md:text-4xl font-bold; }
-h3 { @apply text-2xl md:text-3xl font-semibold; }
+h1 { 
+  @apply text-5xl md:text-7xl font-bold;
+  background: linear-gradient(45deg, var(--hot-pink), var(--neon-blue), var(--magic-purple));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
 
-/* Enhanced links */
+h2 { 
+  @apply text-4xl md:text-6xl font-bold;
+  color: var(--electric-yellow);
+  text-shadow: 3px 3px 0px var(--deep-purple);
+}
+
+h3 { 
+  @apply text-3xl md:text-4xl font-bold;
+  color: var(--neon-blue);
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Playful links */
 a {
-  @apply cursor-pointer text-purple-400 hover:text-purple-300 active:text-purple-300;
+  @apply cursor-pointer font-bold;
+  color: var(--hot-pink);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
 }
 
-/* Simplified form elements */
+a:hover {
+  color: var(--electric-yellow);
+  transform: scale(1.05);
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.5);
+}
+
+/* Toy-style form elements */
 input, textarea {
-  @apply p-4 rounded-2xl bg-white/20 border border-white/30 text-white placeholder-white/60;
+  @apply p-6 rounded-3xl border-4 text-xl font-bold;
+  background: rgba(255, 255, 255, 0.9);
+  border-color: var(--magic-purple);
+  color: var(--deep-purple);
+  box-shadow: 0 8px 0 var(--deep-purple);
 }
 
 input:focus, textarea:focus {
-  @apply border-white/40 outline-none ring-2 ring-white/20;
+  @apply outline-none;
+  border-color: var(--hot-pink);
+  box-shadow: 0 8px 0 var(--hot-pink), 0 0 20px rgba(236, 72, 153, 0.5);
+  transform: translateY(-2px);
 }
 
+input::placeholder, textarea::placeholder {
+  color: var(--magic-purple);
+  opacity: 0.7;
+}
+
+/* Fun checkbox styling */
 input[type="checkbox"] {
-  @apply appearance-none p-2 mr-3 border-2 bg-white/10 border-white/30 checked:bg-green-500 text-white rounded-lg;
+  @apply appearance-none w-8 h-8 mr-4 border-4 rounded-2xl;
+  background: var(--electric-yellow);
+  border-color: var(--deep-purple);
+  position: relative;
 }
 
-/* Simplified code blocks */
+input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--deep-purple);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Playful code blocks */
 code {
-  @apply px-3 py-2 text-sm rounded-lg bg-black/60 text-slate-100 border border-white/10;
+  @apply px-4 py-2 text-lg rounded-2xl font-bold;
+  background: var(--deep-purple);
+  color: var(--electric-yellow);
+  border: 3px solid var(--magic-purple);
+  box-shadow: 0 4px 0 var(--magic-purple);
 }
 
 mark {
-  @apply bg-yellow-400/90 text-black py-1 px-3 rounded-full font-medium;
+  @apply py-2 px-4 rounded-full font-bold text-xl;
+  background: var(--electric-yellow);
+  color: var(--deep-purple);
+  box-shadow: 0 4px 0 var(--deep-purple);
 }
 
-/* Simplified modal */
+/* Toy-style modal */
 dialog::backdrop {
-  background: rgba(0, 0, 0, 0.7);
-  animation: fadeIn 0.2s ease-out;
+  background: rgba(30, 27, 75, 0.8);
+  animation: fadeIn 0.3s ease-out;
 }
 
-/* Simplified button system */
+/* Enhanced button system - BIG and CHUNKY */
 button {
-  @apply flex items-center justify-center gap-3 py-3 px-6 rounded-xl cursor-pointer font-medium transition-all duration-200;
+  @apply flex items-center justify-center gap-4 py-4 px-8 rounded-3xl cursor-pointer font-bold text-xl;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  border: 4px solid transparent;
+  box-shadow: 0 8px 0 rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+  font-family: var(--font-rubik), sans-serif;
 }
 
 button:disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
   pointer-events: none;
+  transform: none !important;
 }
 
 button:not(:disabled):hover {
-  transform: translateY(-1px);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 0 rgba(0,0,0,0.3);
 }
 
 button:not(:disabled):active {
-  transform: translateY(0px);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 0 rgba(0,0,0,0.3);
 }
 
 .buttonNormal {
-  @apply text-white bg-white/10 hover:bg-white/20 active:bg-white/15 border border-white/20;
+  background: linear-gradient(45deg, var(--magic-purple), var(--neon-blue));
+  color: white;
+  border-color: var(--deep-purple);
+}
+
+.buttonNormal:hover {
+  background: linear-gradient(45deg, var(--neon-blue), var(--magic-purple));
 }
 
 .buttonRed {
-  @apply text-white bg-red-500 hover:bg-red-600 active:bg-red-400;
+  background: linear-gradient(45deg, #EF4444, var(--hot-pink));
+  color: white;
+  border-color: #DC2626;
 }
 
 .buttonGreen {
-  @apply text-white bg-green-500 hover:bg-green-600 active:bg-green-400;
+  background: linear-gradient(45deg, #10B981, #06D6A0);
+  color: white;
+  border-color: #059669;
 }
 
 .buttonBlue {
-  @apply text-white bg-blue-500 hover:bg-blue-600 active:bg-blue-400;
+  background: linear-gradient(45deg, var(--neon-blue), #3B82F6);
+  color: white;
+  border-color: var(--cosmic-indigo);
 }
 
 .buttonPrimary {
-  @apply text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600;
+  background: linear-gradient(45deg, var(--hot-pink), var(--electric-yellow), var(--magic-purple));
+  background-size: 200% 200%;
+  animation: gradientShift 2s ease infinite;
+  color: white;
+  border-color: var(--deep-purple);
 }
 
-/* Simplified toast notifications */
-.toast {
-  z-index: 10000;
-  @apply p-4 rounded-2xl bg-black/80 text-white border border-white/10;
-}
-
-/* Simplified glass effect */
+/* Enhanced glass effect with toy styling */
 .glass {
-  @apply bg-white/10 border border-white/20;
+  background: rgba(255, 255, 255, 0.15);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 0 rgba(0,0,0,0.2);
 }
 
 .glass-dark {
-  @apply bg-black/40 border border-white/10;
+  background: rgba(30, 27, 75, 0.6);
+  border: 3px solid rgba(139, 92, 246, 0.4);
+  border-radius: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 0 rgba(0,0,0,0.3);
 }
 
 /* Responsive design helpers */
@@ -160,6 +322,10 @@ button:not(:disabled):active {
   .mobile-center {
     @apply text-center;
   }
+  
+  button {
+    @apply py-3 px-6 text-lg;
+  }
 }
 
 /* Accessibility improvements */
@@ -171,15 +337,16 @@ button:not(:disabled):active {
   }
 }
 
-/* Focus indicators */
+/* Focus indicators - more playful */
 button:focus-visible,
 input:focus-visible,
 a:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.8);
-  outline-offset: 2px;
+  outline: 4px solid var(--electric-yellow);
+  outline-offset: 4px;
+  border-radius: 1rem;
 }
 
-/* Simplified loading states */
+/* Enhanced loading states */
 .loading {
   position: relative;
   overflow: hidden;
@@ -192,11 +359,41 @@ a:focus-visible {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  animation: shimmer 1s infinite;
+  background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.4), transparent);
+  animation: shimmer 1.5s infinite;
 }
 
 @keyframes shimmer {
   0% { left: -100%; }
   100% { left: 100%; }
+}
+
+/* Page transition with bounce */
+.page-transition {
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bounceIn {
+  0% { 
+    opacity: 0; 
+    transform: scale(0.3) translateY(50px);
+  }
+  50% { 
+    opacity: 0.8; 
+    transform: scale(1.05) translateY(-10px);
+  }
+  100% { 
+    opacity: 1; 
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Toast notifications - toy style */
+.toast {
+  z-index: 10000;
+  @apply p-6 rounded-3xl font-bold text-lg;
+  background: linear-gradient(45deg, var(--deep-purple), var(--magic-purple));
+  color: white;
+  border: 4px solid var(--electric-yellow);
+  box-shadow: 0 8px 0 rgba(0,0,0,0.3);
 }
