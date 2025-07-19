@@ -15,7 +15,9 @@ const rubik = Rubik({
   variable: '--font-rubik'
 });
 
-  },
+export const metadata = {
+  title: 'Default Title',
+  description: 'Default Description'
 };
 
 export const viewport = {
@@ -36,4 +38,3 @@ export default function RootLayout({
     </html>
   );
 }
-      <body className={`${fredoka.variable} ${rubik.variable} font-fredoka text-white`}>
