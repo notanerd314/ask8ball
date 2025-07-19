@@ -36,20 +36,20 @@ function Main8BallContent() {
   console.log("hasResponse", hasResponse, "ballCurrentState", ballCurrentState, "response", currentResponse.response);
 
   return (
-    <div className="page-transition magical-bg">
+    <div className="page-transition">
       {/* Background with personality theme */}
       <div
-        className="fixed inset-0 opacity-60 -z-40"
+        className="fixed inset-0 opacity-80 -z-50"
         style={{ background: currentPersonality.theme.cssBackground }}
       />
 
       {/* Main content */}
-      <main className="flex flex-col justify-center items-center gap-16 mb-8 overflow-auto relative z-10" id="eightball">
+      <main className="flex flex-col justify-center items-center gap-12 mb-8 overflow-auto" id="eightball">
         <PersonalityInfo />
         <Magic8Ball />
         <ShareButtons hasResponse={hasResponse} currentResponse={currentResponse} />
 
-        <p className="text-center text-lg font-bold text-white/60 mx-auto bg-black/30 px-6 py-3 rounded-full border-2 border-white/20">
+        <p className="text-center text-sm text-white/40 mx-auto">
           The responses are AI-generated for entertainment purposes only, don't be serious.
         </p>
       </main>

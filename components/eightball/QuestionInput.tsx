@@ -40,65 +40,67 @@ export default function QuestionInput() {
       : "bg-green-400";
 
   return (
-    <fieldset className="w-full max-w-3xl mx-auto space-y-6 glass-dark !py-6 !px-6" disabled={isDisabled}>
+    <fieldset className="w-full max-w-2xl mx-auto space-y-4 bg-black/30 rounded-2xl !py-3" disabled={isDisabled}>
       <legend className="sr-only">Ask your question</legend>
 
-      <div className="relative flex items-center gap-4">
+      <div className="relative flex items-center gap-2">
         <div className="relative flex-1">
           <input
             ref={questionRef}
             type="text"
-            placeholder="Ask me anything magical! ✨"
+            placeholder="Ask a yes/no question..."
             maxLength={QUESTION_MAX_LENGTH}
-            title="Ask me anything magical!"
+            title="Ask a yes/no question..."
             onKeyDown={handleKeyDown}
             onChange={changeQuestion}
             disabled={isDisabled}
             className={`
-              w-full pr-20 px-8 py-6 text-xl md:text-2xl rounded-3xl font-bold
-              transition-all duration-300
+              w-full pr-16 px-6 py-4 text-lg md:text-xl rounded-2xl
+              border border-white/20 focus:border-white/40 focus:ring-2 focus:ring-white/20
+              transition-all duration-200
               ${isDisabled ? "opacity-50 cursor-not-allowed text-center" : ""}
             `}
           />
-          <span className={`absolute right-6 top-1/2 -translate-y-1/2 text-lg font-black ${charColor}`}>
+          <span className={`absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium ${charColor}`}>
             {charactersLeft}
           </span>
         </div>
 
-        <div className="flex gap-4" hidden={isDisabled}>
+        <div className="flex gap-2" hidden={isDisabled}>
           <button
             type="button"
             onClick={handleSubmit}
             title="Ask the 8-ball"
             className={`
-              !p-6 !rounded-3xl transition-all duration-300 !text-2xl
+              p-4 !rounded-2xl transition-all duration-200
               ${isDisabled
-                ? "!bg-gray-500/20 !text-gray-400 cursor-not-allowed"
-                : "buttonPrimary"
+                ? "bg-gray-500/20 text-gray-400 cursor-not-allowed"
+                : "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white hover:scale-105"
               }
             `}
           >
-            <FontAwesomeIcon icon={faPaperPlane} />
+            <FontAwesomeIcon icon={faPaperPlane} size="lg" />
           </button>
 
           <button
             type="button"
             onClick={deleteQuestion}
             title="Clear question"
-            className="buttonRed !p-6 !text-2xl"
+            className={`
+              !p-4 !rounded-2xl text-white transition-all duration-200 hover:scale-105
+              ${isDisabled ? "bg-red-500/30 cursor-not-allowed" : "bg-red-500/70 hover:bg-red-500/80"}
+            `}
           >
-            <FontAwesomeIcon icon={faXmark} />
+            <FontAwesomeIcon icon={faXmark} size="lg" />
           </button>
         </div>
       </div>
 
-      <div className="h-3 bg-black/50 rounded-full overflow-hidden border-2 border-white/30">
+      <div className="h-1 bg-white/20 rounded-full overflow-hidden">
         <div
-          className={`h-full ${progressColor} transition-all duration-300 rounded-full relative overflow-hidden`}
+          className={`h-full ${progressColor} transition-all duration-200 rounded-full`}
           style={{ width: `${progress}%` }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
-        </div>
+        />
       </div>
     </fieldset>
   );

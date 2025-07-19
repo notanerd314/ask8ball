@@ -10,24 +10,24 @@ import Link from "next/link";
 export function PersonalityCard({ personality }: { personality: PersonalityConfig }) {  
   return (
     <Link
-      className="cursor-pointer shadow-2xl rounded-3xl overflow-hidden active:scale-95 hover:scale-110 transition-all duration-300 p-8 h-52 flex flex-col justify-between !text-white relative border-4 border-white/20 hover:border-white/40"
+      className="cursor-pointer shadow-2xl rounded-2xl overflow-hidden active:scale-95 hover:scale-105 transition-all duration-200 p-6 h-46 flex flex-col justify-between !text-white relative"
       style={{ background: personality.theme.cssBackground }}
       title={personality.description}
       href={`/${personality.linkname}`}
       scroll={false}
     >
       <div className="flex justify-between items-start">
-        <span className="text-6xl drop-shadow-lg">{personality.theme.icon}</span>
+        <span className="text-5xl">{personality.theme.icon}</span>
         {personality.tag && (
-          <span className="text-sm font-bold bg-black/50 px-3 py-1 rounded-full border-2 border-white/30">
+          <span className="text-xs bg-black/30 px-2 py-0.5 rounded-full">
             {personality.tag}
           </span>
         )}
       </div>
 
       <div>
-        <h3 className="text-2xl font-black mb-2 drop-shadow-lg">{personality.name}</h3>
-        <p className="text-base font-bold text-white/90 line-clamp-2 drop-shadow-md">
+        <h3 className="text-lg font-bold">{personality.name}</h3>
+        <p className="text-sm text-white/80 line-clamp-2">
           {personality.description}
         </p>
       </div>
@@ -44,46 +44,46 @@ export default async function PersonalityPicker() {
   const personalitiesList = await getAllPersonalities(); // empty deps = only runs once
 
   return (
-    <section className="py-16 px-6 bg-black/60 relative">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-12 px-4 bg-black/50">
+      <div className="max-w-6xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-16 space-y-6">
-          <h2 className="text-5xl md:text-7xl font-black">
-            🎱 CHOOSE YOUR MAGIC! 🎱
+        <div className="text-center mb-12 space-y-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            Choose Your 8-Ball
           </h2>
 
           {/* Simplified decorative line */}
-          <div className="flex items-center justify-center gap-6 mt-8">
-            <div className="h-2 bg-gradient-to-r from-transparent via-white/50 to-transparent w-48 rounded-full"></div>
-            <span className="text-4xl">✨</span>
-            <div className="h-2 bg-gradient-to-r from-transparent via-white/50 to-transparent w-48 rounded-full"></div>
+          <div className="flex items-center justify-center gap-4 mt-4">
+            <hr className="h-px border-white/30 w-36" />
+            <span className="w-2 h-2  rounded-full bg-white/30"></span>
+            <hr className="h-px border-white/30 w-36" />
           </div>
         </div>
 
         {/* Personality grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-10">
           {personalitiesList.map((personality) => (
             <PersonalityCard key={personality.linkname} personality={personality} />
           ))}
           <PersonalityCard personality={{
-            name: "MORE MAGIC SOON!",
-            description: "Stay tuned for more wild personalities! The magic never stops! ✨",
+            name: "More coming soon!",
+            description: "Stay tuned for more personalities! If I ever will.",
             linkname: "sarcastic",
             prompt: '',
             examples: [],
             theme: {
-              icon: "🔮",
-              accentColor: "#8B5CF6",
-              cssBackground: "linear-gradient(45deg, #6366f1, #8b5cf6, #ec4899)",
+              icon: "👀",
+              accentColor: "bg-white/30",
+              cssBackground: "linear-gradient(45deg, #1e293b, #0f172a)",
             }
           }} />
         </div>
 
         {/* Call to action */}
-        <p className="text-center text-white/80 text-xl font-bold bg-black/40 px-8 py-4 rounded-3xl border-4 border-white/20 max-w-2xl mx-auto">
-          Can't decide? Start with the 
-          <Link className="text-yellow-400 font-black hover:text-pink-400 transition-colors" href="/sarcastic" scroll={false}> SARCASTIC 😒 </Link>
-          personality for maximum chaos!
+        <p className="text-center text-white/60 text-sm">
+          Can't decide? Start with the
+          <Link className="text-white font-bold" href="/sarcastic" scroll={false}> Sarcastic </Link>
+          personality!
         </p>
       </div>
     </section>
