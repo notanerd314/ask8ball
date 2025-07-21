@@ -1,11 +1,8 @@
 "use client";
 
 import { EightBallProvider, useEightBall } from "./context/EightBallContext";
-import PersonalityInfo from "./PersonalityInfo";
-import Magic8Ball from "./Magic8Ball";
-import ShareButtons from "./ShareButtons";
+import UnifiedEightBall from "./UnifiedEightBall";
 import { PersonalityConfig } from "../../lib/prompts";
-import Link from "next/link";
 
 /** 
  * Main content with provider
@@ -15,42 +12,7 @@ import Link from "next/link";
 export default function MainEightBall({ personalityData }: { personalityData: PersonalityConfig }) {
   return (
     <EightBallProvider personalityData={personalityData}>
-      <Main8BallContent />
+      <UnifiedEightBall />
     </EightBallProvider>
-  );
-}
-
-/**
- * Optimized main container component for eight ball experience
- * @returns JSX element of the main content with simplified design
- */
-function Main8BallContent() {
-  const {
-    ballCurrentState,
-    currentResponse,
-    currentPersonality
-  } = useEightBall();
-
-  const hasResponse = !!currentResponse.response && ballCurrentState !== "shaking";
-
-  return (
-    <>
-      {/* Background with personality theme */}
-      <div
-        className="fixed inset-0 opacity-80 -z-50"
-        style={{ background: currentPersonality.theme.cssBackground }}
-      />
-
-      {/* Main content */}
-      <main className="flex flex-col justify-center items-center gap-12 mb-8 overflow-auto" id="eightball">
-        <PersonalityInfo />
-        <Magic8Ball />
-        <ShareButtons hasResponse={hasResponse} currentResponse={currentResponse} />
-
-        <p className="text-center text-sm text-white/40 mx-auto shrink-0">
-          The responses are AI-generated for entertainment purposes only, don't be serious.
-        </p>
-      </main>
-    </>
   );
 }
