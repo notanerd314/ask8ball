@@ -8,7 +8,7 @@ export default function ShareButtons({ hasResponse, currentResponse }: { hasResp
   const { copyText, copyIndicated } = useCopyText(currentResponse);
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-4 mb-6 transition-opacity sr" style={{
+    <div className="flex flex-wrap items-center justify-center gap-4 transition-opacity sr" style={{
       opacity: hasResponse ? 1 : 0,
       visibility: hasResponse ? "visible" : "hidden",
       transform: hasResponse ? "scale(1)" : "scale(0.9)",

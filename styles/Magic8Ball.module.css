@@ -84,6 +84,7 @@
 /* Container */
 .eightBallWrapper {
   display: flex;
+  flex: 1;
 
   gap: 3rem;
   flex-direction: column;

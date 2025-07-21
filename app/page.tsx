@@ -32,7 +32,7 @@ export default async function Page() {
   }
 
   return (
-    <div className="min-h-screen">
+    <>
       {/* SEO */}
       <h1 className='sr-only'>Ask the AI Magic Eight Ball</h1>
       
@@ -66,6 +66,6 @@ export default async function Page() {
         toastClassName="!bg-black/80 !text-white !backdrop-blur-xl !border !border-white/20 !rounded-2xl"
         progressClassName="!bg-gradient-to-r !from-purple-500 !to-pink-500"
       />
-    </div>
+    </>
   )
 }

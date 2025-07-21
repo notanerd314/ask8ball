@@ -42,15 +42,15 @@ function Main8BallContent() {
       />
 
       {/* Main content */}
-      <main className="flex flex-col justify-center items-center gap-12 mb-8 overflow-auto" id="eightball">
+      <div className="h-screen flex flex-col gap-6 py-5">
         <PersonalityInfo />
         <Magic8Ball />
         <ShareButtons hasResponse={hasResponse} currentResponse={currentResponse} />
 
-        <p className="text-center text-sm text-white/40 mx-auto shrink-0">
+        <p className="text-center text-sm text-white/40 mx-auto">
           The responses are AI-generated for entertainment purposes only, don't be serious.
         </p>
-      </main>
+      </div>
     </>
   );
 }
