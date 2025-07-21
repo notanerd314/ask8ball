@@ -42,7 +42,10 @@ export default async function Page() {
       {/* Main Experience */}
       <MainEightBall personalityData={personalityData} />
 
-      
+      {/* Personality Picker */}
+      <PersonalityPicker />
+
+      {/* FAQ */}
       <FAQ />
 
       {/* Footer */}

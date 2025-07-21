@@ -42,7 +42,7 @@ function Main8BallContent() {
       />
 
       {/* Main content */}
-      <main className="flex flex-col justify-center items-center gap-12 mb-8 overflow-auto h-screen" id="eightball">
+      <main className="flex flex-col justify-center items-center gap-12 mb-8 overflow-auto" id="eightball">
         <PersonalityInfo />
         <Magic8Ball />
         <ShareButtons hasResponse={hasResponse} currentResponse={currentResponse} />
