@@ -1,4 +1,6 @@
 import PersonalityPicker from '../../components/eightball/PersonalityPicker'
+import Footer from '../../components/common/Footer'
+import NavBar from '../../components/common/NavBar'
 
 import { getPersonalityData } from '../../lib/api'
 
@@ -7,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import MainEightBall from '../../components/eightball/MainEightBall'
 
 import React from 'react'
+import FAQ from '../../components/FAQ'
 
 export const dynamic = 'force-dynamic';
 
@@ -34,8 +37,20 @@ export default async function Page({ params }: { params: { personality: string }
       {/* SEO */}
       <h1 className='sr-only'>Ask the AI Magic Eight Ball</h1>
       
+      {/* Navigation */}
+      <NavBar />
+
       {/* Main Experience */}
       <MainEightBall personalityData={personalityData} />
+
+      {/* Personality Picker */}
+      <PersonalityPicker />
+
+      {/* FAQ */}
+      <FAQ />
+
+      {/* Footer */}
+      <Footer />
 
       {/* Toast Notifications */}
       <ToastContainer
