@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy, faShare, faCamera } from "@fortawesome/free-solid-svg-icons";
+import { faCopy, faCheck, faCamera } from "@fortawesome/free-solid-svg-icons";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import useCopyText, { generateShareText } from "./hooks/useCopyShareText";
 import { APIResponse } from "../../lib/types/eightball";
@@ -8,7 +8,7 @@ export default function ShareButtons({ hasResponse, currentResponse }: { hasResp
   const { copyText, copyIndicated } = useCopyText(currentResponse);
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-4 mb-6 transition-opacity" style={{
+    <div className="flex flex-wrap items-center justify-center gap-4 mb-6 transition-opacity sr" style={{
       opacity: hasResponse ? 1 : 0,
       visibility: hasResponse ? "visible" : "hidden",
       transform: hasResponse ? "scale(1)" : "scale(0.9)",
@@ -16,6 +16,8 @@ export default function ShareButtons({ hasResponse, currentResponse }: { hasResp
       pointerEvents: hasResponse ? "auto" : "none"
     }}>
       <button
+        type="button"
+        title="Copy result to clipboard!"
         onClick={copyText}
         className={`
           flex items-center gap-2 px-6 py-3 !rounded-2xl font-medium
@@ -28,14 +30,14 @@ export default function ShareButtons({ hasResponse, currentResponse }: { hasResp
           }
         `}
       >
-        <FontAwesomeIcon icon={copyIndicated ? faShare : faCopy} />
-        {copyIndicated ? "Copied!" : "Copy it!"}
+        <FontAwesomeIcon icon={copyIndicated ? faCheck : faCopy} />
       </button>
 
       <a
         href={hasResponse ? `https://twitter.com/intent/tweet?text=${encodeURIComponent(generateShareText(currentResponse))}` : "#"}
         target={hasResponse ? "_blank" : "_self"}
         rel="noopener noreferrer"
+        title="Share result on Twitter!"
         className={`
           flex items-center gap-2 px-6 py-3 rounded-2xl font-medium transition-all duration-200
           ${!hasResponse
@@ -45,7 +47,6 @@ export default function ShareButtons({ hasResponse, currentResponse }: { hasResp
         `}
       >
         <FontAwesomeIcon icon={faXTwitter} />
-        Tweet it!
       </a>
 
       <a
@@ -53,6 +54,7 @@ export default function ShareButtons({ hasResponse, currentResponse }: { hasResp
         download={`${currentResponse.question}.jpg`}
         target="_self"
         rel="noopener noreferrer"
+        title="Download result as image!"
         className={`
           flex items-center gap-2 px-6 py-3 !rounded-2xl font-medium
           transition-all duration-200 hover:scale-105
@@ -60,7 +62,6 @@ export default function ShareButtons({ hasResponse, currentResponse }: { hasResp
         `}
       >
         <FontAwesomeIcon icon={faCamera} />
-        Screenshot it!
       </a>
     </div>
   )

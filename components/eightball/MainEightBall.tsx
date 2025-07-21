@@ -33,10 +33,8 @@ function Main8BallContent() {
 
   const hasResponse = !!currentResponse.response && ballCurrentState !== "shaking";
 
-  console.log("hasResponse", hasResponse, "ballCurrentState", ballCurrentState, "response", currentResponse.response);
-
   return (
-    <div className="page-transition">
+    <>
       {/* Background with personality theme */}
       <div
         className="fixed inset-0 opacity-80 -z-50"
@@ -44,15 +42,15 @@ function Main8BallContent() {
       />
 
       {/* Main content */}
-      <main className="flex flex-col justify-center items-center gap-12 mb-8 overflow-auto" id="eightball">
+      <main className="flex flex-col justify-center items-center gap-12 mb-8 overflow-auto h-screen" id="eightball">
         <PersonalityInfo />
         <Magic8Ball />
         <ShareButtons hasResponse={hasResponse} currentResponse={currentResponse} />
 
-        <p className="text-center text-sm text-white/40 mx-auto">
+        <p className="text-center text-sm text-white/40 mx-auto shrink-0">
           The responses are AI-generated for entertainment purposes only, don't be serious.
         </p>
       </main>
-    </div>
+    </>
   );
 }

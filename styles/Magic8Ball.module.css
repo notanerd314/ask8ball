@@ -26,10 +26,9 @@
 
 /* Eight Ball Styles */
 .eightBall {  
-  flex: 1;
   position: relative;
   aspect-ratio: 1 / 1;
-  height: min(55vw, 55svh);
+  height: min(55vw, 55vh);
   
   cursor: pointer;
   border-radius: 50%;
@@ -85,14 +84,11 @@
 /* Container */
 .eightBallWrapper {
   display: flex;
-  flex: 1;
-  width: 100%;
+
   gap: 3rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem 1rem;
-  min-height: 70vh;
 }
 
 /* Responsive Design */
