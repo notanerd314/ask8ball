@@ -1,5 +1,3 @@
-import 'normalize.css';
-
 import { DM_Sans } from 'next/font/google';
 import './globals.css'
 
