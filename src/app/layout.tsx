@@ -1,11 +1,4 @@
-import { DM_Sans } from 'next/font/google';
 import './globals.css'
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-family'
-});
 
 export const metadata = {
   title: 'Ask the 8 Ball',
@@ -28,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={dmSans.style} className="text-slate-50 bg-slate-900">
+      <body className="text-slate-50">
         {children}
       </body>
     </html>
