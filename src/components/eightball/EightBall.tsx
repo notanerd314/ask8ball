@@ -1,12 +1,44 @@
-"use client";
+import { useState } from "react";
+import style from "./EightBall.module.css";
 
-import { EightBallProvider } from "./EightBallContext";
-import { PersonalityConfig } from "@/helpers/types";
+import { useEightBall } from "./EightBallContext";
+import EightBallSVG from "./EightBallSVG";
+import useEightBallShake from "../hooks/useEightBallShake";
+import EightBallText from "./EightBallText";
+import { EightBallState } from "@/helpers/types";
 
-export default function EightBall({ personalityData }: { personalityData: PersonalityConfig }) {
+export default function EightBall() {
+  const { currentPersonality, currentBallState, currentResponse, diceStyle } = useEightBall();
+  const [diceSize, setDiceSize] = useState({
+    width: 0,
+    height: 0
+  });
+  const { shakeEightBall } = useEightBallShake();
+
   return (
-    <EightBallProvider personality={personalityData}>
-      <p>{JSON.stringify(personalityData)}</p>
-    </EightBallProvider>
+    <button
+      className={`
+        ${style.eightBall}
+        ${currentBallState === EightBallState.Shaking ? style.shake : ""}
+      `}
+      onClick={shakeEightBall}
+    >
+      <EightBallSVG
+        diceColor={currentPersonality.theme?.accentColor!}
+        currentState={currentBallState}
+        diceStyle={diceStyle}
+        setDiceSize={setDiceSize}
+      />
+      <EightBallText 
+        minFontSize={1}
+        initialFontSize={40}
+        maxWidth={diceSize.width}
+        maxHeight={diceSize.height}
+        extraStyle={diceStyle}
+        className={style.eightBallText}
+      >
+        {currentResponse.answer || "Ask me anything..."}
+      </EightBallText>
+    </button>
   )
 }

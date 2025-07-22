@@ -4,6 +4,13 @@ export enum AnswerPrompt {
   Maybe = "Maybe",
   NoAnswer = "No answer"
 }
+
+export enum EightBallState {
+  Idle = "idle",
+  Shaking = "shaking",
+  Result = "result"
+}
+
 export type PersonalityConfig = {
   linkname: string;
   name: string;
@@ -25,4 +32,11 @@ export type ThemeConfig = {
   icon: string;
   accentColor: string;
   cssBackground: string;
+}
+
+export type APIResponse = {
+  question: string,
+  answer: string,
+  answerType: string,
+  personality: string,
 }

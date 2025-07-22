@@ -14,3 +14,15 @@ html {
 body {
   font-family: 'Tiktok Sans', sans-serif;
 }
+
+h1 {
+  @apply text-5xl font-bold;
+}
+
+input, textarea {
+  @apply p-4 rounded-2xl bg-white/20 border border-white/30 text-white placeholder-white/60;
+}
+
+input:focus, textarea:focus {
+  @apply border-white/40 outline-none ring-2 ring-white/20;
+}

@@ -64,7 +64,7 @@ export async function POST(req: NextRequest): Promise<Response> {
   const answer = await fetchAIResponse(question, systemPrompt, personality?.temperature);
 
   return new Response(JSON.stringify({
-    answer, answerType, personality: personalityName
+    question, answer, answerType, personality: personalityName
   }), {
     status: 200,
     headers: {
