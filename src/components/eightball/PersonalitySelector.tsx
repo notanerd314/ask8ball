@@ -15,9 +15,9 @@ export default function PersonalitySelector() {
           className={
             `flex items-center gap-1.5 text-lg font-medium py-2 px-4 rounded-full shadow-lg
             hover:scale-105 hover:brightness-110 active:scale-95 transition-all
-            ${currentPersonality.linkname === p.linkname ? "border-2 border-white" : "border border-white/30"}
+            ${currentPersonality.linkname === p.linkname ? "border-2 border-white" : "border border-white/40"}
           `}
-          style={{ backgroundColor: `${p.theme?.accentColor}66` }}
+          style={{ backgroundColor: `${p.theme?.accentColor}77` }}
           title={p.description}
         >
           <span className="text-2xl">{p.theme?.icon}</span>

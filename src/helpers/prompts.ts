@@ -51,7 +51,7 @@ ${personality.prompt}
 ${getRandomItem(toneHints)}
 
 ${getRandomItem(ruleHeaders)}
-- Maximum 20 words.
+- Maximum 60 characters.
 - Keep the language simple. (A2 level)
 - NO markdown, code, or explanations.
 - Match their tone and language.
