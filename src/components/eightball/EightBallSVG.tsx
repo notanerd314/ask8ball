@@ -1,7 +1,7 @@
 "use client";
 
 import { EightBallState } from "@/helpers/types";
-import useDiceSize from "../hooks/useDiceSize";
+import useDiceSize from "./hooks/useDiceSize";
 
 type Props = {
   currentState: EightBallState;

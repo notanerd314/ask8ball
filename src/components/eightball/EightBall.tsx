@@ -3,7 +3,7 @@ import style from "./EightBall.module.css";
 
 import { useEightBall } from "./EightBallContext";
 import EightBallSVG from "./EightBallSVG";
-import useEightBallShake from "../hooks/useEightBallShake";
+import useEightBallShake from "./hooks/useEightBallShake";
 import EightBallText from "./EightBallText";
 import { EightBallState } from "@/helpers/types";
 

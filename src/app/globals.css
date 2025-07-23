@@ -28,5 +28,5 @@ input:focus, textarea:focus {
 }
 
 button {
-  @apply p-4 rounded-2xl;
+  @apply py-3.5 px-4 rounded-2xl cursor-pointer;
 }

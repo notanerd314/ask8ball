@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import useEightBallShake from "../hooks/useEightBallShake";
+import useEightBallShake from "./hooks/useEightBallShake";
 import { QUESTION_MAX_LENGTH } from "@/helpers/constants";
 import { useEightBall } from "./EightBallContext";
 import { EightBallState } from "@/helpers/types";

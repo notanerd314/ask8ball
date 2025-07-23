@@ -22,7 +22,7 @@ export default function MainEightBall({ personalityData }: { personalityData: Pe
         <PersonalitySelector />
         <EightBall />
         <QuestionInput />
-        {/* <ShareButtons /> */}
+        <ShareButtons />
       </main>
     </EightBallProvider>
   )
