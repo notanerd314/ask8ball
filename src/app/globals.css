@@ -26,3 +26,7 @@ input, textarea {
 input:focus, textarea:focus {
   @apply border-white/40 outline-none ring-2 ring-white/20;
 }
+
+button {
+  @apply p-4 rounded-2xl;
+}

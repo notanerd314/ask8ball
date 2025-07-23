@@ -52,8 +52,8 @@ export default function QuestionInput() {
           onChange={changeQuestion}
           disabled={isDisabled}
           className={`
-              w-full pr-16 px-6 py-4 text-lg md:text-xl rounded-2xl
-              border border-white/20 focus:border-white/40 focus:ring-2 focus:ring-white/20
+              w-full pr-16 px-6 py-4 text-lg md:text-xl rounded-2xl shadow-lg
+              border border-white/20 focus:border-white/40 focus:ring-4 focus:ring-white/20
               transition-all duration-200
               ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}
             `}

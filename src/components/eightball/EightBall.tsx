@@ -21,6 +21,9 @@ export default function EightBall() {
         ${style.eightBall}
         ${currentBallState === EightBallState.Shaking ? style.shake : ""}
       `}
+      style={{
+        border: `10px solid ${currentPersonality.theme?.accentColor}B3`,
+      }}
       onClick={shakeEightBall}
     >
       <EightBallSVG

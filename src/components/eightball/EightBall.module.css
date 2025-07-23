@@ -25,7 +25,7 @@
 .eightBall {
   position: relative;
   aspect-ratio: 1 / 1;
-  height: min(55vw, 55vh);
+  height: min(45vw, 45vh);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,7 +35,6 @@
   overflow: hidden;
   cursor: pointer;
 
-  border: 12px solid rgba(255, 255, 255, 0.3);
   box-shadow:
     0 15px 30px rgba(0, 0, 0, 0.3),
     0 5px 15px rgba(0, 0, 0, 0.2);
@@ -103,6 +102,12 @@
 }
 
 /* Responsive tweaks */
+@media screen and (max-width: 1100px) {
+  .eightBall {
+    height: min(60vw, 60vh);
+  }
+}
+
 @media screen and (max-width: 800px) {
   .eightBall {
     height: min(75vw, 75vh);
@@ -122,15 +127,5 @@
 
   .eightBall:hover {
     transform: scale(1.01);
-  }
-}
-
-/* High contrast */
-@media (prefers-contrast: more) {
-  .eightBall {
-    border-color: white;
-    box-shadow:
-      0 0 0 2px black,
-      0 15px 30px rgba(0, 0, 0, 0.5);
   }
 }

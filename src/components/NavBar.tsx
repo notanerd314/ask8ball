@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function NavBar() {
   return (
-    <nav className="p-4 fixed">
+    <nav className="p-4 fixed z-50">
       <Link href="/" className="flex items-center gap-2.5 text-2xl font-semibold">
         <Image
           src="/favicon.min.svg"
