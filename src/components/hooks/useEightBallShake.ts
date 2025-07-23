@@ -17,7 +17,7 @@ export default function useEightBallShake() {
     setDiceStyle
   } = useEightBall();
 
-  const shakeSounds = new Array(6).fill(null); // slots for 6 sounds (1–6)
+  const shakeSounds = new Array(5).fill(null); // slots for 6 sounds (1–6)
 
   const playRandomShakeSound = () => {
     const index = Math.floor(Math.random() * shakeSounds.length);

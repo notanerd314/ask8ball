@@ -7,7 +7,6 @@ export default async function Home({ params }: { params: { personality: string }
 
   const personality = getPersonalityByLinkName(currentParams.personality);
 
-
   return (
     <>
       <NavBar />

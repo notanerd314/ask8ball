@@ -18,6 +18,7 @@ export default function PersonalitySelector() {
             ${currentPersonality.linkname === p.linkname ? "border-2 border-white" : "border border-white/30"}
           `}
           style={{ backgroundColor: `${p.theme?.accentColor}66` }}
+          title={p.description}
         >
           <span className="text-2xl">{p.theme?.icon}</span>
           {p.name}
