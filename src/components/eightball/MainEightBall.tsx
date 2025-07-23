@@ -14,7 +14,7 @@ export default function MainEightBall({ personalityData }: { personalityData: Pe
         className="flex flex-col gap-6 items-center justify-center h-screen"
         style={{ background: personalityData?.theme?.cssBackground, opacity: 0.95 }}
       >
-        <div className="text-center space-y-4">
+        <div className="text-center space-y-4 px-3">
           <h1 className="text-shadow-lg">The Magic 8 Ball</h1>
           <p className="text-2xl text-shadow-lg">{personalityData?.description}</p>
         </div>

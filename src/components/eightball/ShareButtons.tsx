@@ -24,7 +24,7 @@ export default function ShareButtons() {
         title="Copy result to clipboard!"
         onClick={copyText}
         className={`
-          flex items-center !py-3.5 !px-4 gap-2 !rounded-2xl font-medium
+          flex items-center !py-3.5 !px-4 gap-3 !rounded-2xl font-medium text-xl
           transition-all duration-200 hover:scale-105
           ${!hasResponse
             ? 'bg-yellow-400/20 text-yellow/40 border border-yellow-400/30 cursor-not-allowed'
@@ -35,6 +35,7 @@ export default function ShareButtons() {
         `}
       >
         <FontAwesomeIcon icon={copyIndicated ? faCheck : faCopy} size="xl" />
+        {copyIndicated ? "Copied!" : "Copy"}
       </button>
 
       <a
@@ -43,7 +44,7 @@ export default function ShareButtons() {
         rel="noopener noreferrer"
         title="Share result on Twitter!"
         className={`
-          flex items-center gap-2 py-3.5 px-4 rounded-2xl font-medium transition-all duration-200
+          flex items-center gap-3 py-3.5 px-4 rounded-2xl font-medium transition-all duration-200 text-xl
           ${!hasResponse
             ? '!bg-blue-500/20 !text-white/40 border border-blue-500/30 cursor-not-allowed pointer-events-none'
             : '!bg-blue-500/40 hover:!bg-blue-500/50 !text-white border border-blue-500/50 hover:scale-105'
@@ -51,21 +52,7 @@ export default function ShareButtons() {
         `}
       >
         <FontAwesomeIcon icon={faXTwitter} size="xl" />
-      </a>
-
-      <a
-        href={hasResponse ? `/api/image/share-result?question=${currentResponse.question}&response=${currentResponse.answer}&personality=${currentResponse.personality}` : "#"}
-        download={`${currentResponse.question}.jpg`}
-        target="_self"
-        rel="noopener noreferrer"
-        title="Download result as image!"
-        className={`
-          flex items-center gap-2 py-3.5 px-4 !rounded-2xl font-medium
-          transition-all duration-200 hover:scale-105
-          !bg-red-500/40 hover:!bg-red-500/50 !text-white border border-red-500/50
-        `}
-      >
-        <FontAwesomeIcon icon={faCamera} size="xl" />
+        Tweet
       </a>
     </div>
   )

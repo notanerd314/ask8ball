@@ -4,10 +4,9 @@ import { useEightBall } from "./EightBallContext";
 
 export default function PersonalitySelector() {
   const personalities = getAllPersonalities();
-  const { currentPersonality } = useEightBall();
 
   return (
-    <div className="flex gap-4">
+    <div className="flex flex-wrap justify-center gap-4 px-4">
       {personalities.map(p => (
         <Link
           href={`/${p.linkname}`}
@@ -15,7 +14,7 @@ export default function PersonalitySelector() {
           className={
             `flex items-center gap-1.5 text-lg font-medium py-2 px-4 rounded-full shadow-lg
             hover:scale-105 hover:brightness-110 active:scale-95 transition-all
-            ${currentPersonality.linkname === p.linkname ? "border-2 border-white" : "border border-white/40"}
+            border border-white/40
           `}
           style={{ backgroundColor: `${p.theme?.accentColor}77` }}
           title={p.description}
