@@ -17,6 +17,26 @@ export default function useEightBallShake() {
     setDiceStyle
   } = useEightBall();
 
+  const shakeSounds = new Array(6).fill(null); // slots for 6 sounds (1–6)
+
+  const playRandomShakeSound = () => {
+    const index = Math.floor(Math.random() * shakeSounds.length);
+
+    // Lazy-load if not loaded yet
+    if (!shakeSounds[index]) {
+      const audio = new Audio(`/sounds/Shaking${index + 1}.mp3`);
+      audio.preload = "auto";
+      shakeSounds[index] = audio;
+    }
+
+    // Reuse & play
+    const sound = shakeSounds[index];
+    sound.currentTime = 0;
+    sound.play();
+  };
+
+
+
   const shakeEightBall = async () => {
     // if (question.length > QUESTION_MAX_LENGTH) {
     //   return;
@@ -43,6 +63,8 @@ export default function useEightBallShake() {
       const answerData = await response.json();
 
       setCurrentResponse(answerData);
+
+      playRandomShakeSound();
 
       setTimeout(() => {
         setCurrentBallState(EightBallState.Result);
