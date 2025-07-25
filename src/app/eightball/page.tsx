@@ -1,6 +1,6 @@
 import MainEightBall from "@/components/eightball/MainEightBall";
-import Footer from "@/components/Footer";
-import NavBar from "@/components/NavBar";
+import Footer from "@/components/eightball/Footer";
+import NavBar from "@/components/eightball/NavBar";
 import { getPersonalityByLinkName } from "@/helpers/api";
 
 export default function Home() {

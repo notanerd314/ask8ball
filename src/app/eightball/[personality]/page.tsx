@@ -1,5 +1,5 @@
 import MainEightBall from "@/components/eightball/MainEightBall";
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/eightball/NavBar";
 import { getPersonalityByLinkName } from "@/helpers/api";
 import { notFound } from "next/navigation";
 

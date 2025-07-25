@@ -9,7 +9,7 @@ export default function PersonalitySelector() {
     <div className="flex flex-wrap justify-center gap-4 px-4">
       {personalities.map(p => (
         <Link
-          href={`/${p.linkname}`}
+          href={`/eightball/${p.linkname}`}
           key={p.linkname}
           className={
             `flex items-center gap-1.5 text-lg font-medium py-2 px-4 rounded-full shadow-lg

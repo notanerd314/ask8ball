@@ -1,6 +1,6 @@
 import PersonalitySelector from "@/components/eightball/PersonalitySelector";
-import Footer from "@/components/Footer";
-import NavBar from "@/components/NavBar";
+import Footer from "@/components/eightball/Footer";
+import NavBar from "@/components/eightball/NavBar";
 
 export default function Home() {
 
@@ -14,7 +14,7 @@ export default function Home() {
       >
         <div className="text-center space-y-4 px-3">
           <h1 className="text-shadow-lg">Buddy… that’s not a real personality.</h1>
-          <p className="text-2xl text-shadow-lg">We only have THESE personalities existing.</p>
+          <p className="text-2xl text-shadow-lg">We only have THESE personalities available.</p>
         </div>
 
         <PersonalitySelector />
