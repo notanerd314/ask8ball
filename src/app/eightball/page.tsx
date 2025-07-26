@@ -1,18 +1,15 @@
 import MainEightBall from "@/components/eightball/MainEightBall";
-import Footer from "@/components/eightball/Footer";
-import NavBar from "@/components/eightball/NavBar";
 import { getPersonalityByLinkName } from "@/helpers/api";
+import Logo from "@/components/Logo";
+import Link from "next/link";
 
-export default function Home() {
+export default function EightBall() {
   const personality = getPersonalityByLinkName("sarcastic");
 
   return (
     <>
-      <NavBar />
-      
-      <MainEightBall personalityData={personality!} />
 
-      <Footer />
+      <MainEightBall personalityData={personality!} />
     </>
   );
 }

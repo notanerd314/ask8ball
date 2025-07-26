@@ -49,7 +49,7 @@ export default function useEightBallShake() {
     setCurrentBallState(EightBallState.Shaking);
 
     try {
-      const response = await fetch("/api/ask", {
+      const response = await fetch("/eightball/ask", {
         method: "POST",
         body: JSON.stringify({
           question: question,

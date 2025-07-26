@@ -1,7 +1,4 @@
-import '@/app/globals.css'
-import '@/app/eightball/globals.css'
-import Link from 'next/link';
-import Logo from '@/components/Logo';
+import './globals.css'
 
 export const metadata = {
   title: 'Ask the 8 Ball',
@@ -17,19 +14,16 @@ export const viewport = {
   initialScale: 1,
 };
 
-export default function EightBallLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <>
-      <nav className="fixed z-50 px-6 py-3">
-        <Link href="/">
-          <Logo size={50} />
-        </Link>
-      </nav>
-      {children}
-    </>
+    <html lang="en">
+      <body className='text-white'>
+        {children}
+      </body>
+    </html>
   );
 }

@@ -1,5 +1,6 @@
 import MainEightBall from "@/components/eightball/MainEightBall";
-import NavBar from "@/components/eightball/NavBar";
+import Logo from "@/components/Logo";
+import Link from "next/link";
 import { getPersonalityByLinkName } from "@/helpers/api";
 import { notFound } from "next/navigation";
 
@@ -13,7 +14,6 @@ export default async function Home({ params }: { params: { personality: string }
 
   return (
     <>
-      <NavBar />
       
       <MainEightBall personalityData={personality!} />
     </>

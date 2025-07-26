@@ -1,12 +1,9 @@
 import PersonalitySelector from "@/components/eightball/PersonalitySelector";
-import Footer from "@/components/eightball/Footer";
-import NavBar from "@/components/eightball/NavBar";
 
 export default function Home() {
 
   return (
     <>
-      <NavBar />
 
       <main
         className="flex flex-col gap-6 items-center justify-center h-screen"
@@ -20,7 +17,6 @@ export default function Home() {
         <PersonalitySelector />
       </main>
 
-      <Footer />
     </>
   );
 }

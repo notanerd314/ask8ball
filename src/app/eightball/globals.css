@@ -6,12 +6,6 @@
   font-display: swap;
 }
 
-html {
-  font-size: clamp(11px, 1.5vw, 18px);
-
-  scroll-behavior: smooth;
-}
-
 body {
   font-family: 'Tiktok Sans', sans-serif;
 }
