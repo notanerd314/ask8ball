@@ -11,7 +11,7 @@ export default function MainEightBall({ personalityData }: { personalityData: Pe
   return (
     <EightBallProvider personality={personalityData}>
       <main
-        className="flex flex-col gap-6 items-center justify-center h-screen"
+        className="flex flex-col gap-6 items-center justify-center h-screen font-comicneue"
         style={{ background: personalityData?.theme?.cssBackground, opacity: 0.95 }}
       >
         <div className="text-center space-y-4 px-3">

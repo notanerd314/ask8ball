@@ -24,8 +24,8 @@ export default function EightBallLayout({
 }) {
   return (
     <>
-      <nav className="fixed z-50 px-6 py-3">
-        <Link href="/">
+      <nav className="fixed z-50 mx-6 my-5">
+        <Link href="/" className='transition-all hover:scale-105 active:scale-102'>
           <Logo size={50} />
         </Link>
       </nav>

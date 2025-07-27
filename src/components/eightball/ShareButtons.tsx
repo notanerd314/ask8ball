@@ -12,7 +12,7 @@ export default function ShareButtons() {
   const { copyText, copyIndicated } = useCopyText(currentResponse);
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-4 transition-opacity sr" style={{
+    <div className="flex flex-wrap items-center justify-center gap-4 transition-opacity" style={{
       opacity: hasResponse ? 1 : 0,
       visibility: hasResponse ? "visible" : "hidden",
       transform: hasResponse ? "scale(1)" : "scale(0.9)",
@@ -24,7 +24,7 @@ export default function ShareButtons() {
         title="Copy result to clipboard!"
         onClick={copyText}
         className={`
-          flex items-center !py-3.5 !px-4 gap-3 !rounded-2xl font-medium text-xl
+          flex items-center !py-2.5 !px-4 gap-3 !rounded-2xl font-bold text-lg
           transition-all duration-200 hover:scale-105
           ${!hasResponse
             ? 'bg-yellow-400/20 text-yellow/40 border border-yellow-400/30 cursor-not-allowed'
@@ -34,7 +34,7 @@ export default function ShareButtons() {
           }
         `}
       >
-        <FontAwesomeIcon icon={copyIndicated ? faCheck : faCopy} size="xl" />
+        <FontAwesomeIcon icon={copyIndicated ? faCheck : faCopy} size="lg" />
         {copyIndicated ? "Copied!" : "Copy"}
       </button>
 
@@ -44,14 +44,14 @@ export default function ShareButtons() {
         rel="noopener noreferrer"
         title="Share result on Twitter!"
         className={`
-          flex items-center gap-3 py-3.5 px-4 rounded-2xl font-medium transition-all duration-200 text-xl
+          flex items-center gap-3 py-2.5 px-4 rounded-2xl font-bold transition-all duration-200 text-lg
           ${!hasResponse
             ? '!bg-blue-500/20 !text-white/40 border border-blue-500/30 cursor-not-allowed pointer-events-none'
             : '!bg-blue-500/40 hover:!bg-blue-500/50 !text-white border border-blue-500/50 hover:scale-105'
           }
         `}
       >
-        <FontAwesomeIcon icon={faXTwitter} size="xl" />
+        <FontAwesomeIcon icon={faXTwitter} size="lg" />
         Tweet
       </a>
     </div>

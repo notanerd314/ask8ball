@@ -1,7 +1,7 @@
 export default function Logo({ color, size }: { color?: string, size?: number }) {
   return (
     <p
-      className="text-center font-bold font-comic hover:scale-105 transition-all"
+      className="font-bold true-comic"
       style={{ color, fontSize: size || 60 }}
     >
       not

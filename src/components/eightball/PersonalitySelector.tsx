@@ -12,7 +12,7 @@ export default function PersonalitySelector() {
           href={`/eightball/${p.linkname}`}
           key={p.linkname}
           className={
-            `flex items-center gap-1.5 text-lg font-medium py-2 px-4 rounded-full shadow-lg
+            `flex items-center gap-1.5 text-lg font-bold py-2 px-4 rounded-full shadow-lg
             hover:scale-105 hover:brightness-110 active:scale-95 transition-all
             border border-white/40
           `}

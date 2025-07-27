@@ -21,7 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className='text-white'>
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className='text-white bg-blue-600'>
         {children}
       </body>
     </html>

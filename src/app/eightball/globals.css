@@ -1,13 +1,7 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'Tiktok Sans';
-  src: url('/TiktokSans.ttf') format('truetype');
-  font-display: swap;
-}
-
-body {
-  font-family: 'Tiktok Sans', sans-serif;
+html {
+  font-size: clamp(12px, 1.8svw, 20px);
 }
 
 h1 {
