@@ -1,29 +1,34 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 
 export default function Boombox() {
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const toggleAudio = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
+    if (!audioRef.current) {
+      audioRef.current = new Audio("/sounds/nintendowii.mp3");
+      audioRef.current.loop = true;
+    }
 
     if (isPlaying) {
-      audio.pause();
-      setIsPlaying(false);
+      audioRef.current.pause();
     } else {
-      audio.play();
-      setIsPlaying(true);
+      audioRef.current.play();
     }
+
+    setIsPlaying(!isPlaying);
   };
 
   return (
     <button
       onClick={toggleAudio}
-      className="ml-5 hover:-translate-y-2 transition-transform duration-100 cursor-pointer shadow-2xl"
+      className="ml-5 duration-100 cursor-pointer shadow-2xl hover:-translate-y-2 transition-transform"
+      style={{
+        animation: isPlaying ? "boomboxBounce 1s infinite ease-in-out" : "none",
+      }}
       title={isPlaying ? "Pause it" : "Hit the beat"}
     >
       <Image
@@ -33,7 +38,6 @@ export default function Boombox() {
         height={116}
         priority
       />
-      <audio ref={audioRef} src="/sounds/nintendowii.mp3" loop />
     </button>
   );
 }

@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy, faCheck, faCamera } from "@fortawesome/free-solid-svg-icons";
-import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import useCopyText, { generateShareText } from "./hooks/useCopyShareText";
 import { useEightBall } from "./EightBallContext";
 import { EightBallState } from "@/helpers/types";
@@ -34,7 +31,6 @@ export default function ShareButtons() {
           }
         `}
       >
-        <FontAwesomeIcon icon={copyIndicated ? faCheck : faCopy} size="lg" />
         {copyIndicated ? "Copied!" : "Copy"}
       </button>
 
@@ -51,7 +47,6 @@ export default function ShareButtons() {
           }
         `}
       >
-        <FontAwesomeIcon icon={faXTwitter} size="lg" />
         Tweet
       </a>
     </div>

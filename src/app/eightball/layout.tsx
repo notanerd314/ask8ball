@@ -1,6 +1,5 @@
 import '@/app/globals.css'
 import '@/app/eightball/globals.css'
-import Link from 'next/link';
 import Logo from '@/components/Logo';
 
 export const metadata = {
@@ -25,9 +24,9 @@ export default function EightBallLayout({
   return (
     <>
       <nav className="fixed z-50 mx-6 my-5">
-        <Link href="/" className='transition-all hover:scale-105 active:scale-102'>
+        <a href="/" className='transition-all hover:scale-105 active:scale-102'>
           <Logo size={50} />
-        </Link>
+        </a>
       </nav>
       {children}
     </>
