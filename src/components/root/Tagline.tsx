@@ -16,9 +16,9 @@ const taglines = [
   "i have a life btw, weird right?"
 ]
 
-export default function RandomizedDescription() {
+export default function Tagline() {
   return (
-    <p className="text-3xl mt-2 font-bold">
+    <p className="text-3xl mt-2 font-bold text-shadow-xl">
       {getRandomItem(taglines)}
     </p>
   );
