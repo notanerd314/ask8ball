@@ -58,19 +58,17 @@ export default function Boombox() {
   return (
     <button
       onClick={toggleAudio}
-      className="ml-5 duration-100 cursor-pointer hover:-translate-y-2 transition-transform"
+      className="ml-5 cursor-pointer duration-100 hover:-translate-y-2 transition-transform max-w-40"
       title={isPlaying ? "Pause it" : "Hit the beat"}
     >
-      <Image
+      <img
         src="/images/boombox.webp"
         alt="Boombox"
         className="drop-shadow-2xl"
+        loading="lazy"
         style={{
           animation: isPlaying ? "boomboxBounce 1s infinite ease-in-out" : "none",
         }}
-        width={190}
-        height={116}
-        priority
       />
     </button>
   );

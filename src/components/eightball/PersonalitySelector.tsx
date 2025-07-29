@@ -6,7 +6,7 @@ export default function PersonalitySelector() {
   const personalities = getAllPersonalities();
 
   return (
-    <div className="flex flex-wrap justify-center gap-4 px-4">
+    <div className="flex flex-wrap justify-center px-4 gap-4">
       {personalities.map(p => (
         <Link
           href={`/eightball/${p.linkname}`}

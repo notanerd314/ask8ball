@@ -1,15 +1,19 @@
 @import "tailwindcss";
 
+body {
+  color: white;
+}
+
 h1 {
   @apply text-5xl font-bold;
 }
 
 input, textarea {
-  @apply p-4 rounded-2xl bg-white/20 border border-white/30 text-white placeholder-white/60;
+  @apply p-4 text-white border rounded-2xl bg-white/20 border-white/30 placeholder-white/60;
 }
 
 input:focus, textarea:focus {
-  @apply border-white/40 outline-none ring-2 ring-white/20;
+  @apply outline-none border-white/40 ring-2 ring-white/20;
 }
 
 button {

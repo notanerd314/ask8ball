@@ -1,39 +1,36 @@
-import Image from "next/image";
-import { ProjectPreview, Placeholder } from "@/components/root/ProjectPreview";
-import Tagline from "@/components/root/Tagline";
+import { ProjectPreview } from "@/components/root/ProjectPreview";
 import Boombox from "@/components/root/Boombox";
+import Shelf from "@/components/root/Shelf";
+import Clicker from "@/components/root/Clicker";
 
 export default function Home() {
   return (
     <>
-      <nav className="py-6 mt-5 mb-7 relative text-center">
-        <Image src="/images/logo.webp" alt="Logo" width={500} height={150} className="mx-auto" />
-        <Tagline />
+      <div className="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-full h-screen gap-6 text-center text-white pointer-events-none sm:hidden bg-blue-600/95 backdrop-blur-md">
+        <h2 className="text-6xl font-bold">Sorry to interrupt, but...</h2>
+        <h2 className="text-3xl">Can you rotate your phone? The website will break if not.</h2>
+      </div>
+
+      <nav className="relative py-6 mt-5 text-center mb-7">
+        <img src="/images/logo.webp" alt="Logo" className="mx-auto max-w-115" />
+        <p className="text-3xl font-bold">the shelf full of random things, feel free to click</p>
       </nav>
 
-      <main className="relative px-10 mx-auto max-w-4xl leading-none">
-        {/* Decorative Shelves */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="flex flex-col lg:gap-26 sm:gap-46 gap-38">
-            <div />
-            <img src="/images/shelf.png" alt="Shelf" className="w-full drop-shadow-2xl" />
-            <img src="/images/shelf.png" alt="Shelf" className="w-full rotate-2  drop-shadow-2xl" />
-            <img src="/images/shelf.png" alt="Shelf" className="w-full  drop-shadow-2xl" />
-            {/* Add more shelves if needed */}
-          </div>
-        </div>
+      <main className="relative max-w-4xl px-10 mx-auto leading-none">
+        <div className="relative flex flex-col gap-5">
+         <Shelf>
+            <ProjectPreview title="Magic 8 Ball" img="/images/thumbnails/8ball.png" href="/eightball" />
+            <div className="mr-5" />
+            <Boombox />
+          </Shelf>
 
-        {/* Project Grid */}
-        <div className="relative z-10 grid lg:grid-cols-3 grid-cols-2 gap-x-6 gap-y-20 justify-center items-end">
-          <ProjectPreview title="Magic 8 Ball" img="/images/thumbnails/placeholder.png" href="/eightball" />
-          <ProjectPreview title="Magic 8 Ball" img="/images/thumbnails/placeholder.png" href="/eightball" />
-          <ProjectPreview title="Magic 8 Ball" img="/images/thumbnails/placeholder.png" href="/eightball" />
-          <Placeholder />
-          <Boombox />
-          <ProjectPreview title="Magic 8 Ball" img="/images/thumbnails/placeholder.png" href="/eightball" />
-          {/* Keep adding cards, no need to touch shelves */}
+          <Shelf>
+            <div className="ml-15" />
+            <Clicker />
+          </Shelf>
         </div>
       </main>
+
     </>
   )
 }
