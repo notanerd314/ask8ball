@@ -7,33 +7,67 @@ export default function Boombox() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const toggleAudio = () => {
+  const fadeInAndPlay = () => {
     if (!audioRef.current) {
       audioRef.current = new Audio("/sounds/nintendowii.mp3");
       audioRef.current.loop = true;
+      audioRef.current.volume = 0;
     }
 
+    audioRef.current.play();
+
+    const step = 0.2;
+    const interval = setInterval(() => {
+      if (!audioRef.current) return;
+
+      if (audioRef.current.volume < 1 - step) {
+        audioRef.current.volume += step;
+      } else {
+        audioRef.current.volume = 1;
+        clearInterval(interval);
+      }
+    }, 100);
+  };
+
+  const fadeOutAndPause = () => {
+    if (!audioRef.current) return;
+
+    const step = 0.2;
+    const interval = setInterval(() => {
+      if (audioRef.current!.volume > step) {
+        audioRef.current!.volume -= step;
+      } else {
+        audioRef.current!.volume = 0;
+        audioRef.current!.pause();
+        clearInterval(interval);
+      }
+    }, 100);
+  };
+
+
+  const toggleAudio = () => {
     if (isPlaying) {
-      audioRef.current.pause();
+      fadeOutAndPause();
     } else {
-      audioRef.current.play();
+      fadeInAndPlay();
     }
 
-    setIsPlaying(!isPlaying);
+    setIsPlaying((prev) => !prev);
   };
 
   return (
     <button
       onClick={toggleAudio}
-      className="ml-5 duration-100 cursor-pointer shadow-2xl hover:-translate-y-2 transition-transform"
-      style={{
-        animation: isPlaying ? "boomboxBounce 1s infinite ease-in-out" : "none",
-      }}
+      className="ml-5 duration-100 cursor-pointer hover:-translate-y-2 transition-transform"
       title={isPlaying ? "Pause it" : "Hit the beat"}
     >
       <Image
         src="/images/boombox.webp"
         alt="Boombox"
+        className="drop-shadow-2xl"
+        style={{
+          animation: isPlaying ? "boomboxBounce 1s infinite ease-in-out" : "none",
+        }}
         width={190}
         height={116}
         priority

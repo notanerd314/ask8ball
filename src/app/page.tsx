@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ProjectView from "@/components/root/ProjectView";
+import { ProjectPreview, Placeholder } from "@/components/root/ProjectPreview";
 import Tagline from "@/components/root/Tagline";
 import Boombox from "@/components/root/Boombox";
 
@@ -7,15 +7,31 @@ export default function Home() {
   return (
     <>
       <nav className="py-6 mt-5 mb-7 relative text-center">
-        <Image src="/images/logo.png" alt="Logo" width={500} height={150} className="mx-auto" />
+        <Image src="/images/logo.webp" alt="Logo" width={500} height={150} className="mx-auto" />
         <Tagline />
       </nav>
 
-      <main className="px-10 mx-auto max-w-[86rem] md:-translate-y-20 translate-0 leading-0">
-        <Boombox />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
-          <ProjectView href="/eightball" img="/images/thumbnails/8ball.png" title="The Magic 8 Ball" />
-          <ProjectView href="/eightball" img="/images/thumbnails/8ball.png" title="The Magic 8 Ball" />
+      <main className="relative px-10 mx-auto max-w-4xl leading-none">
+        {/* Decorative Shelves */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="flex flex-col lg:gap-26 sm:gap-46 gap-38">
+            <div />
+            <img src="/images/shelf.png" alt="Shelf" className="w-full drop-shadow-2xl" />
+            <img src="/images/shelf.png" alt="Shelf" className="w-full rotate-2  drop-shadow-2xl" />
+            <img src="/images/shelf.png" alt="Shelf" className="w-full  drop-shadow-2xl" />
+            {/* Add more shelves if needed */}
+          </div>
+        </div>
+
+        {/* Project Grid */}
+        <div className="relative z-10 grid lg:grid-cols-3 grid-cols-2 gap-x-6 gap-y-20 justify-center items-end">
+          <ProjectPreview title="Magic 8 Ball" img="/images/thumbnails/placeholder.png" href="/eightball" />
+          <ProjectPreview title="Magic 8 Ball" img="/images/thumbnails/placeholder.png" href="/eightball" />
+          <ProjectPreview title="Magic 8 Ball" img="/images/thumbnails/placeholder.png" href="/eightball" />
+          <Placeholder />
+          <Boombox />
+          <ProjectPreview title="Magic 8 Ball" img="/images/thumbnails/placeholder.png" href="/eightball" />
+          {/* Keep adding cards, no need to touch shelves */}
         </div>
       </main>
     </>
