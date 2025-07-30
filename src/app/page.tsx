@@ -20,8 +20,10 @@ export default function Home() {
         <div className="relative flex flex-col gap-5">
          <Shelf>
             <ProjectPreview title="Magic 8 Ball" img="/images/thumbnails/8ball.png" href="/eightball" />
-            <div className="mr-5" />
+            <div className="mr-3" />
             <Boombox />
+            <div className="mr-1" />
+            <ProjectPreview title="ADHD Weather Broadcast" img="/images/thumbnails/placeholder.png" href="/adhd-weather" />
           </Shelf>
 
           <Shelf>
@@ -30,7 +32,6 @@ export default function Home() {
           </Shelf>
         </div>
       </main>
-
     </>
   )
 }
