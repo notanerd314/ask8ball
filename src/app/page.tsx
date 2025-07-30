@@ -1,7 +1,7 @@
-import { ProjectPreview } from "@/components/root/ProjectPreview";
-import Boombox from "@/components/root/Boombox";
-import Shelf from "@/components/root/Shelf";
-import Clicker from "@/components/root/Clicker";
+import { ProjectPreview } from "@/components/shelf/ProjectPreview";
+import Boombox from "@/components/shelf/Boombox";
+import Shelf from "@/components/shelf/Shelf";
+import Clicker from "@/components/shelf/Clicker";
 
 export default function Home() {
   return (

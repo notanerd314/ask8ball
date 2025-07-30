@@ -1,9 +1,9 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'Ask the 8 Ball',
-  description: "The fortune teller you did know you don't need it.",
-  keywords: 'fortune, magic 8 ball, eight ball, ai, artifical intelligence',
+  title: "notanerd's shelf",
+  description: "Just a bunch of random web toys I made for no reason.",
+  keywords: 'fun websites, useless web apps, random javascript projects, interactive web tools, boredom killer, notanerd projects',
   icons: {
     icon: '/favicon.min.svg',
   },

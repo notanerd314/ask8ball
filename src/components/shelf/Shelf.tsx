@@ -7,7 +7,7 @@ export default function Shelf({ children, className }: { children: React.ReactNo
         {children}
       </div>
       <img
-        src="/images/shelf.png"
+        src="/images/shelf.webp"
         alt="Shelf"
         loading="lazy"
         className="z-0 w-full drop-shadow-2xl"
