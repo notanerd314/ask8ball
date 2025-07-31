@@ -77,7 +77,7 @@ export const EightBallSVG: React.FC<Props> = ({
       {/* Outer 8-ball sphere */}
       <ellipse cx="568" cy="454" fill="url(#bgGrad)" rx="220" ry="220" />
 
-      <g transform="translate(568,454) scale(1.25) translate(-568,-454)">
+      <g transform="translate(568,454) scale(1.4) translate(-568,-454)">
         {/* Border ring */}
         <ellipse
           cx="568"

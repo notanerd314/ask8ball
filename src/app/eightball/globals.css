@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  font-size: calc(0.5vw + 0.8vh) !important;
+}
+
 body {
   color: white;
 }
