@@ -17,12 +17,12 @@ export default function Home() {
 
       <nav className="relative py-6 mt-5 text-center mb-7">
         <img src="/images/logo.webp" alt="Logo" className="mx-auto max-w-115" />
-        <p className="text-3xl font-bold">the shelf full of random things, feel free to click</p>
+        <p className="text-3xl font-bold">just a bunch of random webtoys displayed in a shelf.</p>
       </nav>
 
       <main className="relative max-w-4xl px-10 mx-auto leading-none">
         <div className="relative flex flex-col gap-5">
-         <Shelf>
+          <Shelf>
             <ProjectPreview title="Magic 8 Ball" img="/images/thumbnails/8ball.png" href="/eightball" />
             <div className="mr-3" />
             <Boombox />
