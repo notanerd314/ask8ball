@@ -5,13 +5,13 @@
     transform: scale(1);
   }
   25% {
-    transform: scale(1.05, 0.95) translateY(3px);
+    transform: scale(1.05, 0.95);
   }
   50% {
     transform: scale(0.97, 1.03);
   }
   75% {
-    transform: scale(1.03, 0.98) translateY(3px);
+    transform: scale(1.03, 0.98);
   }
 }
 

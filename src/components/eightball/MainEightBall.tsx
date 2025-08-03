@@ -2,7 +2,7 @@
 
 import EightBall from "./EightBall";
 import { EightBallProvider } from "./EightBallContext";
-import { PersonalityConfig } from "@/helpers/types";
+import { PersonalityConfig } from "@/helpers/eightball/types";
 import QuestionInput from "./QuestionInput";
 import PersonalitySelector from "./PersonalitySelector";
 import ShareButtons from "./ShareButtons";

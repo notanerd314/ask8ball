@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 import { useEightBall } from "../EightBallContext";
-import { QUESTION_MAX_LENGTH } from "@/helpers/constants";
-import { EightBallState, APIResponse } from "@/helpers/types";
+import { QUESTION_MAX_LENGTH } from "@/helpers/eightball/constants";
+import { EightBallState, APIResponse } from "@/helpers/eightball/types";
 
 /** 
  * Hook that handles the eight ball shake animation and API call

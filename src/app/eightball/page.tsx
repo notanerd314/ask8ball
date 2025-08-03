@@ -1,5 +1,5 @@
 import MainEightBall from "@/components/eightball/MainEightBall";
-import { getPersonalityByLinkName } from "@/helpers/api";
+import { getPersonalityByLinkName } from "@/helpers/eightball/api";
 import Logo from "@/components/Logo";
 import Link from "next/link";
 

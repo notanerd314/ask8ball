@@ -1,4 +1,4 @@
-import { getAllPersonalities } from "@/helpers/api"
+import { getAllPersonalities } from "@/helpers/eightball/api"
 import Link from "next/link"
 import { useEightBall } from "./EightBallContext";
 

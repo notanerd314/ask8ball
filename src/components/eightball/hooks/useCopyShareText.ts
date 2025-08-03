@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { APIResponse } from "@/helpers/types";
+import { APIResponse } from "@/helpers/eightball/types";
 
 export default function useCopyText(currentResponse: APIResponse) {
   const [copyIndicated, setCopyIndicated] = useState(false);

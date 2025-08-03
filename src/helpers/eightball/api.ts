@@ -1,5 +1,5 @@
-import { personalitiesList } from "@/personalities";
-import { PersonalityConfig } from "@/helpers/types";
+import { personalitiesList } from "@/helpers/eightball/personalities";
+import { PersonalityConfig } from "@/helpers/eightball/types";
 
 export function getAllPersonalities() {
   let smallPersonalitiesList: Array<PersonalityConfig> = [];
