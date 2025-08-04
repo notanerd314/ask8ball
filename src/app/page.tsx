@@ -1,7 +1,4 @@
-import { ProjectPreview } from "@/components/shelf/ProjectPreview";
-import Boombox from "@/components/shelf/Boombox";
 import Shelf from "@/components/shelf/Shelf";
-import Clicker from "@/components/shelf/Clicker";
 
 export default function Home() {
   return (
@@ -20,22 +17,7 @@ export default function Home() {
         <p className="text-3xl font-bold">just a bunch of random webtoys displayed in a shelf.</p>
       </nav>
 
-      <main className="relative max-w-4xl px-10 mx-auto leading-none">
-        <div className="relative flex flex-col gap-5">
-          <Shelf>
-            <ProjectPreview title="Magic 8 Ball" img="/images/thumbnails/8ball.png" href="/eightball" />
-            <div className="mr-3" />
-            <Boombox />
-            <div className="mr-1" />
-            <ProjectPreview title="ADHD Weather Broadcast" img="/images/thumbnails/placeholder.png" href="/adhd-weather" />
-          </Shelf>
-
-          <Shelf>
-            <div className="ml-15" />
-            <Clicker />
-          </Shelf>
-        </div>
-      </main>
+      <Shelf />
     </>
   )
 }

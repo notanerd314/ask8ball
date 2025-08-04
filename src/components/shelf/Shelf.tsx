@@ -1,17 +1,23 @@
-import React from "react";
+import { ProjectPreview } from "@/components/shelf/ProjectPreview";
+import Boombox from "@/components/shelf/Boombox";
+import ShelfSection from "@/components/shelf/ShelfSection";
+import Clicker from "@/components/shelf/Clicker";
 
-export default function Shelf({ children, className }: { children: React.ReactNode, className?: string }) {
+export default function Shelf() {
   return (
-    <section className={className}>
-      <div className="relative z-10 max-w-full px-10 grid grid-flow-col auto-cols-max gap-5 translate-y-8">
-        {children}
-      </div>
-      <img
-        src="/images/shelf.webp"
-        alt="Shelf"
-        loading="lazy"
-        className="z-0 w-full drop-shadow-2xl"
-      />
-    </section>
+    <main className="relative max-w-4xl px-10 mx-auto leading-none space-y-5">
+      <ShelfSection>
+        <ProjectPreview title="Magic 8 Ball" img="/images/thumbnails/8ball.png" href="/eightball" />
+        <div className="mr-3" />
+        <Boombox />
+        <div className="mr-1" />
+        <ProjectPreview title="Most Popular Emojis" img="/images/thumbnails/placeholder.png" href="/most-popular-emojis" />
+      </ShelfSection>
+
+      <ShelfSection>
+        <div className="ml-15" />
+        <Clicker />
+      </ShelfSection>
+    </main>
   )
 }

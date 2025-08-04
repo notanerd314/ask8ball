@@ -15,25 +15,15 @@ export default function Clicker() {
     play();
   };
 
-  const evilClickAndPlay = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (e.button === 1) {
-      e.preventDefault();
-      setCount((prev) => prev - 1);
-      play();
-    }
-  };
-
   return (
     <button
       onClick={clickAndPlay}
-      onAuxClick={evilClickAndPlay}
       className="
-        px-4 py-2 text-2xl text-black
+        px-3 py-2 text-2xl text-black
         bg-gradient-to-b from-gray-200 to-gray-300 border border-gray-500 rounded-md
         shadow-[inset_-2px_-2px_0px_#ffffff,2px_2px_0px_#a1a1aa]
         active:shadow-[inset_2px_2px_0px_#a1a1aa,inset_-2px_-2px_0px_#ffffff]
-        active:from-gray-300 active:to-gray-200
-        transition-all duration-100 ease-in-out max-w-55
+        active:from-gray-300 active:to-gray-200 max-w-55
       "
       title="Click me!"
       aria-label="Click me!"

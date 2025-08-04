@@ -4,9 +4,6 @@ export const metadata = {
   title: "notanerd's shelf",
   description: "Just a bunch of random web toys I made for no reason.",
   keywords: 'fun websites, useless web apps, random javascript projects, interactive web tools, boredom killer, notanerd projects',
-  icons: {
-    icon: '/favicon.min.svg',
-  },
 };
 
 export const viewport = {

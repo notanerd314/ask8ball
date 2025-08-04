@@ -1,13 +1,10 @@
-import './globals.css'
+import '@/app/most-popular-emojis/globals.css'
 import Logo from '@/components/Logo';
 
 export const metadata = {
-  title: 'Ask the 8 Ball',
+  title: 'Most Popular Emojis',
   description: "The fortune teller you did know you don't need it.",
   keywords: 'fortune, magic 8 ball, eight ball, ai, artifical intelligence',
-  icons: {
-    icon: '/favicon.min.svg',
-  },
 };
 
 export const viewport = {
@@ -24,7 +21,7 @@ export default function EightBallLayout({
     <>
       <nav className="fixed z-50 mx-6 my-5">
         <a href="/" className='transition-all hover:scale-105 active:scale-102'>
-          <Logo size={50} color='white' />
+          <Logo size={50} color='black' />
         </a>
       </nav>
       {children}
