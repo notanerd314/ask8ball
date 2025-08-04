@@ -1,6 +1,5 @@
 import { getAllPersonalities } from "@/helpers/eightball/api"
 import Link from "next/link"
-import { useEightBall } from "./EightBallContext";
 
 export default function PersonalitySelector() {
   const personalities = getAllPersonalities();
