@@ -11,7 +11,7 @@ export default function Shelf() {
         <div className="mr-3" />
         <Boombox />
         <div className="mr-1" />
-        <ProjectPreview title="Most Popular Emojis" img="/images/thumbnails/placeholder.png" href="/most-popular-emojis" />
+        <ProjectPreview title="Number Facts" img="/images/thumbnails/placeholder.png" href="/number-facts" />
       </ShelfSection>
 
       <ShelfSection>

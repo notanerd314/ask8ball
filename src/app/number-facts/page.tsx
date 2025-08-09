@@ -1,45 +1,36 @@
-export default function NumberFacts() {
+import Fact from "@/components/number-facts/Fact";
+import Search from "@/components/number-facts/Search.client";
+
+export default async function NumberFacts() {
+  const res = await fetch('http://numbersapi.com/0,1..100')
+  const secondres = await fetch('http://numbersapi.com/101,102..200')
+  const firstFacts: Record<string, string> = await res.json()
+  const secondFacts: Record<string, string> = await secondres.json()
+
+  const facts = { ...firstFacts, ...secondFacts }
+
   return (
     <>
-      <header className="mt-10">
-        <h1 className="text-center ">Number Facts 0</h1>
+      <header className="pt-30 text-center space-y-1.5">
+        <h1 className="text-6xl font-bold bg-white">Number Facts</h1>
+        <h2 className="text-3xl bg-white ">Random facts about numbers, from 0 to 200!</h2>
       </header>
 
-      <main className="mx-auto max-w-2xl mt-10">
-        <section className="bg-gradient-to-b from-gray-200 to-gray-300 w-full h-36 p-5">
-          <div className="flex text-6xl gap-0.5 leading-none text-white" title="Number" style={{
-            fontFamily: "monospace"
-          }}>
-            <span className="py-5 px-2.5 rounded-l-xl" style={{
-              background: `linear-gradient(180deg, 
-                #FFD700 0%, 
-                #FFA500 40%, 
-                #FF8C00 60%, 
-                #FF4500 80%, 
-                #8B0000 100%)`,
-              boxShadow: 'inset 0 2px 6px rgba(255, 255, 255, 0.6), inset 0 -2px 6px rgba(0, 0, 0, 0.5)',
-            }}>0</span>
-            <span className="py-5 px-2.5" style={{
-              background: `linear-gradient(180deg, 
-                #FFD700 0%, 
-                #FFA500 40%, 
-                #FF8C00 60%, 
-                #FF4500 80%, 
-                #8B0000 100%)`,
-              boxShadow: 'inset 0 2px 6px rgba(255, 255, 255, 0.6), inset 0 -2px 6px rgba(0, 0, 0, 0.5)',
-            }}>0</span>
-            <span className="py-5 px-2.5 rounded-r-xl" style={{
-              background: `linear-gradient(180deg, 
-                #FFD700 0%, 
-                #FFA500 40%, 
-                #FF8C00 60%, 
-                #FF4500 80%, 
-                #8B0000 100%)`,
-              boxShadow: 'inset 0 2px 6px rgba(255, 255, 255, 0.6), inset 0 -2px 6px rgba(0, 0, 0, 0.5)',
-            }}>1</span>
-          </div>
-        </section>
+      <main className="mx-auto max-w-3xl px-10 mt-10 space-y-2 mb-10">
+        <Search />
+        {Object.entries(facts).map(([number, fact]) => (
+          <Fact key={number} number={number} fact={fact} />
+        ))}
       </main>
+
+      <footer className="bg-white pb-5 pt-1">
+        <p className="text-center">
+          The facts are provided by <a href="https://numbersapi.com/" target="_blank" className="font-bold underline">numbersapi.com</a>
+        </p>
+        <p className="text-center">
+          Made with 💔 by notanerd
+        </p>
+      </footer>
     </>
   )
 }  

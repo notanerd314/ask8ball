@@ -22,9 +22,9 @@ export default function EightBallLayout({
 }) {
   return (
     <>
-      <nav className="fixed z-50 mx-6 my-5">
+      <nav className="absolute z-50 mx-6 my-5">
         <a href="/" className='transition-all hover:scale-105 active:scale-102'>
-          <Logo size={50} />
+          <Logo size={60} />
         </a>
       </nav>
       {children}
