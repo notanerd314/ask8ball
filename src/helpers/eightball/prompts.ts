@@ -1,5 +1,5 @@
 import { AnswerPrompt, PersonalityConfig, PersonalityExample } from '@/helpers/eightball/types';
-import { getRandomString, getRandomItem } from '../rng';
+import { getRandomString, getRandomItem } from '@/rng';
 
 /**
  * Picks a random subset of examples
