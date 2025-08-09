@@ -13,7 +13,8 @@ export default function Home() {
       </div>
 
       <header className="relative py-6 mt-5 text-center mb-7">
-        <img src="/images/logo.webp" alt="Logo" className="mx-auto max-w-115" />
+        <img src="/images/logo.min.svg" alt="Logo" className="mx-auto mb-4" width={486.5} height={106.875}
+          loading="lazy" />
         <h1 className="sr-only">notanerd</h1>
         <h2 className="text-3xl font-bold">this is my shelf</h2>
       </header>
