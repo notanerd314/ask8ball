@@ -1,4 +1,4 @@
-import MainEightBall from "@/components/eightball/MainEightBall";
+import MainEightBall from "@/components/eightball/MainEightBall.client";
 import { getPersonalityByLinkName } from "@/helpers/eightball/api";
 
 export default function EightBall() {

@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import useEightBallShake from "./hooks/useEightBallShake";
 import { QUESTION_MAX_LENGTH } from "@/helpers/eightball/constants";
-import { useEightBall } from "./EightBallContext";
+import { useEightBall } from "./EightBallContext.client";
 import { EightBallState } from "@/helpers/eightball/types";
 
 export default function QuestionInput() {

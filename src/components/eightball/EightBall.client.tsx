@@ -1,10 +1,12 @@
+"use client";
+
 import { useState } from "react";
 import style from "./EightBall.module.css";
 
-import { useEightBall } from "./EightBallContext";
-import EightBallSVG from "./EightBallSVG";
+import { useEightBall } from "./EightBallContext.client";
+import EightBallSVG from "./EightBallSVG.client";
 import useEightBallShake from "./hooks/useEightBallShake";
-import EightBallText from "./EightBallText";
+import EightBallText from "./EightBallText.client";
 import { EightBallState } from "@/helpers/eightball/types";
 
 export default function EightBall() {

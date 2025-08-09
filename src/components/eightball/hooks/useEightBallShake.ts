@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useEightBall } from "../EightBallContext";
+import { useEightBall } from "../EightBallContext.client";
 import { QUESTION_MAX_LENGTH } from "@/helpers/eightball/constants";
 import { EightBallState, APIResponse } from "@/helpers/eightball/types";
 

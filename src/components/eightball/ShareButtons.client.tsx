@@ -1,5 +1,5 @@
 import useCopyText, { generateShareText } from "./hooks/useCopyShareText";
-import { useEightBall } from "./EightBallContext";
+import { useEightBall } from "./EightBallContext.client";
 import { EightBallState } from "@/helpers/eightball/types";
 
 export default function ShareButtons() {

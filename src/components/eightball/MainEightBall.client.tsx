@@ -1,11 +1,11 @@
 "use client";
 
-import EightBall from "./EightBall";
-import { EightBallProvider } from "./EightBallContext";
+import EightBall from "./EightBall.client";
+import { EightBallProvider } from "./EightBallContext.client";
 import { PersonalityConfig } from "@/helpers/eightball/types";
-import QuestionInput from "./QuestionInput";
+import QuestionInput from "./QuestionInput.client";
 import PersonalitySelector from "./PersonalitySelector";
-import ShareButtons from "./ShareButtons";
+import ShareButtons from "./ShareButtons.client";
 
 export default function MainEightBall({ personalityData }: { personalityData: PersonalityConfig }) {
   return (
