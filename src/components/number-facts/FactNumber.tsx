@@ -34,9 +34,9 @@ export default function FactNumber({ number }: { number: string }) {
       {number.split('').map((digit, index) => (
         <span
           key={index}
-          className={`py-4 w-14 ${index === 0 ? 'rounded-l-xl' : ''} ${index === number.length - 1 ? 'rounded-r-xl' : ''}`}
+          className={`h-24 py-4 w-14 ${index === 0 ? 'rounded-l-xl' : ''} ${index === number.length - 1 ? 'rounded-r-xl' : ''}`}
           style={{
-            background: gradients[digit] ?? gradients['0'],
+            background: number == "069" ? gradients['7'] : gradients[digit] ?? gradients['0'],
             boxShadow: 'inset 0 2px 6px rgba(255, 255, 255, 0.6), inset 0 -2px 6px rgba(0, 0, 0, 0.5)',
             overflowWrap: "break-word",
             wordBreak: "break-word",
