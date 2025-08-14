@@ -10,7 +10,7 @@ export default function Boombox() {
 
   const fadeInAndPlay = () => {
     if (!audioRef.current) {
-      audioRef.current = new Audio("/sounds/nintendowii.mp3");
+      audioRef.current = new Audio("/sounds/boombox/wiishopbling.mp3");
       audioRef.current.loop = true;
       audioRef.current.volume = 0;
     }
@@ -66,14 +66,14 @@ export default function Boombox() {
   return (
     <button
       onClick={toggleAudio}
-      className="ml-5 cursor-pointer duration-100 hover:-translate-y-2 transition-transform max-w-40"
+      className="inline-block ml-5 cursor-pointer duration-100 hover:-translate-y-2 transition-transform max-w-40"
       title={isPlaying ? "Pause it" : "Hit the beat"}
       disabled={isToggling}
     >
       <img
-        src="/images/boombox.webp"
+        src="/images/gadgets/boombox.webp"
         alt="Boombox"
-        className="drop-shadow-2xl"
+        className="drop-shadow-2xl origin-bottom"
         loading="lazy"
         style={{
           animation: isPlaying ? "boomboxBounce 1s infinite ease-in-out" : "none",

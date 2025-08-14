@@ -11,7 +11,7 @@ export default function Shelf() {
         <div className="mr-3" />
         <Boombox />
         <div className="mr-1" />
-        <ProjectPreview title="Number Facts" img="/images/thumbnails/placeholder.png" href="/number-facts" />
+        <ProjectPreview title="Flag Generator" img="/images/thumbnails/placeholder.png" href="/flag-generator" />
       </ShelfSection>
 
       <ShelfSection>

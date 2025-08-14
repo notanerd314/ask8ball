@@ -19,11 +19,7 @@ export default function Clicker() {
     <button
       onClick={clickAndPlay}
       className="
-        px-3 py-2 text-2xl text-black
-        bg-gradient-to-b from-gray-200 to-gray-300 border border-gray-500 rounded-md
-        shadow-[inset_-2px_-2px_0px_#ffffff,2px_2px_0px_#a1a1aa]
-        active:shadow-[inset_2px_2px_0px_#a1a1aa,inset_-2px_-2px_0px_#ffffff]
-        active:from-gray-300 active:to-gray-200 max-w-55
+        text-white max-w-40 translate-y-10 transition-transform hover:scale-105 active:scale-95
       "
       title="Click me!"
       aria-label="Click me!"
@@ -32,7 +28,16 @@ export default function Clicker() {
         fontFamily: "Arial, sans-serif",
       }}
     >
-      Clicked <strong>{count}</strong> time{count === 1 ? "" : "s"}
+      <img
+        src="/images/gadgets/button.png"
+        alt="Button"
+        className="drop-shadow-2xl origin-bottom z-0"
+        loading="lazy"
+      />
+
+      <p className="font-bold -translate-y-30 text-4xl scale-y-65 z-10 text-center">
+        {count}
+      </p>
     </button>
   );
 }
