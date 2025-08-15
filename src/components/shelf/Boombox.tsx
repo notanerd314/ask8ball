@@ -1,7 +1,12 @@
 "use client";
 
-import Image from "next/image";
+import { getRandomItem } from "@/rng";
 import { useRef, useState } from "react";
+
+const songs = [
+  "wiishopbling",
+  "ohmydayum"
+]
 
 export default function Boombox() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -9,11 +14,9 @@ export default function Boombox() {
   const [isToggling, setIsToggling] = useState(false);
 
   const fadeInAndPlay = () => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio("/sounds/boombox/wiishopbling.mp3");
-      audioRef.current.loop = true;
-      audioRef.current.volume = 0;
-    }
+    audioRef.current = new Audio(`/sounds/boombox/${getRandomItem(songs)}.mp3`);
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0;
 
     audioRef.current.play();
 
@@ -44,7 +47,6 @@ export default function Boombox() {
         audioRef.current!.volume -= step;
       } else {
         audioRef.current!.volume = 0;
-        audioRef.current!.pause();
         setIsToggling(false);
         clearInterval(interval);
       }
@@ -67,7 +69,7 @@ export default function Boombox() {
     <button
       onClick={toggleAudio}
       className="inline-block ml-5 cursor-pointer duration-100 hover:-translate-y-2 transition-transform max-w-40"
-      title={isPlaying ? "Pause it" : "Hit the beat"}
+      title={isPlaying ? "Stop playing" : "Hit the beat"}
       disabled={isToggling}
     >
       <img
