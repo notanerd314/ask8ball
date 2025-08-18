@@ -1,4 +1,4 @@
-import { getPersonalityByLinkName } from "@/utils/eightball/api";
+import { getPersonalityByLinkName } from "@/utils/eightball/personalities";
 import { QUESTION_MAX_LENGTH, AI_MODEL } from "@/utils/eightball/types";
 import getSystemPrompt from "@/utils/eightball/prompts";
 import { getRandomItem } from "@/rng";
