@@ -2,9 +2,9 @@
 
 import { useRef, useState } from "react";
 import useEightBallShake from "./hooks/useEightBallShake";
-import { QUESTION_MAX_LENGTH } from "@/helpers/eightball/constants";
+import { QUESTION_MAX_LENGTH } from "@/utils/eightball/types";
 import { useEightBall } from "./EightBallContext.client";
-import { EightBallState } from "@/helpers/eightball/types";
+import { EightBallState } from "@/utils/eightball/types";
 
 export default function QuestionInput() {
   const { setQuestion, currentBallState } = useEightBall();

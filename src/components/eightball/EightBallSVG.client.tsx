@@ -1,6 +1,6 @@
 "use client";
 
-import { EightBallState } from "@/helpers/eightball/types";
+import { EightBallState } from "@/utils/eightball/types";
 import useDiceSize from "./hooks/useDiceSize";
 
 type Props = {

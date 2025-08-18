@@ -1,4 +1,4 @@
-import { PersonalityConfig, EightBallState, APIResponse } from '@/helpers/eightball/types';
+import { PersonalityConfig, EightBallState, APIResponse } from '@/utils/eightball/types';
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface EightBallContextType {

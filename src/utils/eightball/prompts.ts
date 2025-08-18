@@ -1,4 +1,4 @@
-import { AnswerPrompt, PersonalityConfig, PersonalityExample } from '@/helpers/eightball/types';
+import { AnswerPrompt, PersonalityConfig, PersonalityExample } from './types';
 import { getRandomString, getRandomItem } from '@/rng';
 
 /**

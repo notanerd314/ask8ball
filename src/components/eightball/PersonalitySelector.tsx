@@ -1,4 +1,4 @@
-import { getAllPersonalities } from "@/helpers/eightball/api"
+import { getAllPersonalities } from "@/utils/eightball/api"
 import Link from "next/link"
 
 export default function PersonalitySelector() {

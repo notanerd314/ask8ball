@@ -1,4 +1,4 @@
-import { PersonalityConfig, AnswerPrompt } from "@/helpers/eightball/types";
+import { PersonalityConfig, AnswerPrompt } from "./types";
 
 export const sarcasticPersonality: PersonalityConfig = {
   linkname: "sarcastic",

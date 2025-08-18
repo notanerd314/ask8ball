@@ -7,7 +7,7 @@ import { useEightBall } from "./EightBallContext.client";
 import EightBallSVG from "./EightBallSVG.client";
 import useEightBallShake from "./hooks/useEightBallShake";
 import EightBallText from "./EightBallText.client";
-import { EightBallState } from "@/helpers/eightball/types";
+import { EightBallState } from "@/utils/eightball/types";
 
 export default function EightBall() {
   const { currentPersonality, currentBallState, currentResponse, diceStyle } = useEightBall();

@@ -1,8 +1,8 @@
-import { getPersonalityByLinkName } from "@/helpers/eightball/api";
-import { QUESTION_MAX_LENGTH, AI_MODEL } from "@/helpers/eightball/constants";
-import getSystemPrompt from "@/helpers/eightball/prompts";
+import { getPersonalityByLinkName } from "@/utils/eightball/api";
+import { QUESTION_MAX_LENGTH, AI_MODEL } from "@/utils/eightball/types";
+import getSystemPrompt from "@/utils/eightball/prompts";
 import { getRandomItem } from "@/rng";
-import { AnswerPrompt } from "@/helpers/eightball/types";
+import { AnswerPrompt } from "@/utils/eightball/types";
 import { NextRequest } from "next/server";
 
 /** 
