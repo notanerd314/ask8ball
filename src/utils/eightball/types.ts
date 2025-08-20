@@ -43,8 +43,8 @@ export type APIResponse = {
   personality: string,
 }
 
-export const QUESTION_MAX_LENGTH = 70;
-export const AI_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct";
+export const QUESTION_MAX_LENGTH = 100;
+export const AI_MODEL = "llama3-70b-8192";
 export const ALL_RESPONSES_TYPES = [
   AnswerPrompt.Yes,
   AnswerPrompt.No,

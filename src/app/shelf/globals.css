@@ -15,18 +15,8 @@
   }
 }
 
-@keyframes shimmer {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 100%; }
-}
-
-.true-comic {
-  font-family: 'Comic Sans MS', sans-serif;
-}
-
 html {
-  scroll-behavior: smooth;
-  font-size: clamp(12px, 1.4vw, 20px) !important;
+  font-size: clamp(12px, 1.4vw, 20px);
 }
 
 body {
@@ -36,7 +26,6 @@ body {
 :disabled {
   cursor: not-allowed;
 }
-
 
 button {
   cursor: pointer;

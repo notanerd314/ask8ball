@@ -1,5 +1,3 @@
-import './globals.css'
-
 export const metadata = {
   title: "notanerd's shelf",
   description: "Just a bunch of random web toys I made for no reason.",
@@ -11,6 +9,7 @@ export const viewport = {
   initialScale: 1,
   userScalable: false
 };
+
 
 export default function RootLayout({
   children,
