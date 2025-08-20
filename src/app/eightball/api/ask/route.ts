@@ -17,7 +17,7 @@ async function fetchAIResponse(question: string, systemPrompt: string, temperatu
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.LLM_GROQ!}`,
+      Authorization: `Bearer ${process.env.EIGHTBALL_GROQ_KEY!}`,
     },
     body: JSON.stringify({
       model: AI_MODEL,
