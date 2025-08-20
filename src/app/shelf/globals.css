@@ -19,10 +19,6 @@ html {
   font-size: clamp(12px, 1.4vw, 20px);
 }
 
-body {
-  font-family: 'Comic Neue', sans-serif;
-}
-
 :disabled {
   cursor: not-allowed;
 }

@@ -1,5 +1,8 @@
 import '@/app/eightball/globals.css'
 import Logo from '@/components/Logo';
+import { TikTok_Sans } from 'next/font/google'
+
+const font = TikTok_Sans({ subsets: ['latin'], display: 'swap' });
 
 export const metadata = {
   title: 'Ask the 8 Ball',
@@ -27,7 +30,9 @@ export default function EightBallLayout({
           <Logo size={60} />
         </a>
       </nav>
-      {children}
+      <div className={font.className}>
+        {children}
+      </div>
     </>
   );
 }
