@@ -10,8 +10,6 @@ interface EightBallContextType {
   setCurrentResponse: (response: APIResponse) => void;
   question: string;
   setQuestion: (question: string) => void;
-  diceStyle: React.CSSProperties;
-  setDiceStyle: (style: React.CSSProperties) => void;
 }
 
 interface EightBallProviderProps {
@@ -31,10 +29,9 @@ export const EightBallProvider = ({ children, personality }: EightBallProviderPr
     personality: ""
   });
   const [question, setQuestion] = useState("[No question]");
-  const [diceStyle, setDiceStyle] = useState<React.CSSProperties>({ opacity: 0, transition: "none" });
 
   return (
-    <EightBallContext.Provider value={{ currentPersonality, setCurrentPersonality, currentBallState, setCurrentBallState, currentResponse, setCurrentResponse, question, setQuestion, diceStyle, setDiceStyle }}>
+    <EightBallContext.Provider value={{ currentPersonality, setCurrentPersonality, currentBallState, setCurrentBallState, currentResponse, setCurrentResponse, question, setQuestion, }}>
       {children}
     </EightBallContext.Provider>
   );
