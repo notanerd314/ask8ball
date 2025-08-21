@@ -25,8 +25,8 @@ export default function MainEightBall({ personalityData }: { personalityData: Pe
         <ShareButtons />
 
         <footer>
-          <p className="text-center text-white/40">
-            Made with 💔 by notanerd
+          <p className="text-center text-white/50">
+            Made with 🎱 by notanerd
           </p>
         </footer>
       </main>

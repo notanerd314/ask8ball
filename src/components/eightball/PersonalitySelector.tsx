@@ -15,7 +15,7 @@ export default function PersonalitySelector() {
             hover:scale-105 hover:brightness-110 active:scale-95 transition-all
             border border-white/40
           `}
-          style={{ backgroundColor: `${p.theme?.accentColor}77` }}
+          style={{ backgroundColor: `${p.theme?.accentColor}` }}
           title={p.description}
         >
           <span className="text-2xl">{p.theme?.icon}</span>

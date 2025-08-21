@@ -62,10 +62,9 @@ export const sarcasticPersonality: PersonalityConfig = {
   temperature: 1.3,
   theme: {
     icon: "😒",
-    accentColor: "#1e3a8a", // deep cold blue
-    cssBackground: "linear-gradient(to bottom right, #1e3a8a, #000000)", // bitter, moody
+    accentColor: "#4F46E5", // a modern blue-indigo color
+    cssBackground: "linear-gradient(120deg, #4F46E5 0%, #3B3F7E 25%, #2B306E 50%, #3B3F7E 75%, #4F46E5 100%)", // a modern blue-indigo color, darkening to a deep indigo
   }
-
 };
 
 export const villainPersonality: PersonalityConfig = {
@@ -129,8 +128,8 @@ export const villainPersonality: PersonalityConfig = {
   temperature: 1.2,
   theme: {
     icon: "😈",
-    accentColor: "#7f1d1d", // deep blood red
-    cssBackground: "linear-gradient(to bottom right, #7f1d1d, #1e1b4b)", // dramatic and sinister
+    accentColor: "#9e2a2b", // slightly brighter deep blood red
+    cssBackground: "linear-gradient(to bottom right, #9e2a2b, #a71d1d, #6b103d)", // slightly brighter dramatic and sinister
   }
 
 
@@ -207,10 +206,9 @@ export const motivationalPersonality: PersonalityConfig = {
   temperature: 1.2,
   theme: {
     icon: "😉",
-    accentColor: "#f59e0b", // vibrant amber gold
-    cssBackground: "linear-gradient(to right, #f59e0b, #f97316, #ef4444)", // fire, energy, hype
+    accentColor: "#ffa500", // slightly less bright vibrant amber gold
+    cssBackground: "linear-gradient(to right, #ffa500, #ff8c00, #ff69b4)", // slightly less bright fire, energy, hype
   }
-
 };
 
 export const mysticPersonality: PersonalityConfig = {
