@@ -7,7 +7,7 @@ export function ProjectPreview(
         src={img}
         alt={title}
         loading="lazy"
-        className="object-contain h-auto border-4 rounded-3xl"
+        className="object-contain h-auto rounded-3xl shadow-2xl"
       />
     </a>
   );
