@@ -22,7 +22,7 @@ export default function Clicker() {
       onMouseDown={() => {setIsPressed(true); clickAndPlay();}}
       onMouseUp={() => setIsPressed(false)}
       onMouseLeave={() => setIsPressed(false)}
-      className="text-white max-w-35 translate-y-10 transition-transform hover:scale-105"
+      className="text-white max-w-40 translate-y-10 transition-transform hover:scale-105"
       title="Click me!"
       aria-label="Click me!"
       role="button"
@@ -39,7 +39,7 @@ export default function Clicker() {
         loading="lazy"
       />
 
-      <p className={`font-bold ${isPressed ? "-translate-y-18" : "-translate-y-27"} drop-shadow-lg text-3xl scale-y-65 z-10 text-center`}>
+      <p className={`font-bold ${isPressed ? "-translate-y-20" : "-translate-y-30"} drop-shadow-lg text-4xl scale-y-65 z-10 text-center`}>
         {count}
       </p>
     </button>

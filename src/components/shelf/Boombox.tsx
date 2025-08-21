@@ -68,7 +68,7 @@ export default function Boombox() {
   return (
     <button
       onClick={toggleAudio}
-      className="inline-block ml-5 cursor-pointer duration-100 hover:-translate-y-2 transition-transform max-w-40"
+      className="inline-block ml-5 cursor-pointer duration-100 hover:-translate-y-2 transition-transform max-w-45"
       title={isPlaying ? "Stop playing" : "Hit the beat"}
       disabled={isToggling}
     >
