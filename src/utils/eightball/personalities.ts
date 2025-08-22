@@ -62,8 +62,8 @@ export const sarcasticPersonality: PersonalityConfig = {
   temperature: 1.3,
   theme: {
     icon: "😒",
-    accentColor: "#4F46E5", // a modern blue-indigo color
-    cssBackground: "linear-gradient(120deg, #4F46E5 0%, #3B3F7E 25%, #2B306E 50%, #3B3F7E 75%, #4F46E5 100%)", // a modern blue-indigo color, darkening to a deep indigo
+    accentColor: "#6c5ce7", // a vibrant blue-indigo color
+    cssBackground: "linear-gradient(120deg, #6c5ce7 0%, #5a51ce 25%, #4557c3 50%, #5a51ce 75%, #6c5ce7 100%)", // a vibrant blue-indigo color, darkening to a deep indigo
   }
 };
 

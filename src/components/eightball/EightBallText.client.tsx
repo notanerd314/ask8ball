@@ -54,7 +54,7 @@ const EightBallText = ({
   return (
     <p
       ref={textRef}
-      className={"text-wrap " + className}
+      className={"text-wrap pointer-events-none " + className}
       style={{
         fontSize: fontSize + 'px',
         maxWidth: maxWidth + 'px',
