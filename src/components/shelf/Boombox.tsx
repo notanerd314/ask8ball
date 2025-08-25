@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 
 const songs = [
   "wiishopbling",
-  "ohmydayum"
+  "mrbeastphonk"
 ]
 
 export default function Boombox() {

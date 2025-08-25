@@ -16,7 +16,7 @@
 }
 
 html {
-  font-size: clamp(1px, 1.4vw, 20px);
+  font-size: clamp(1px, 1.4vw, 22px);
 }
 
 :disabled {
