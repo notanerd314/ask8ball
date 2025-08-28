@@ -1,3 +1,5 @@
+import './globals.css'
+
 export const metadata = {
   title: "notanerd's shelf",
   description: "Just a bunch of random web toys I made for no reason.",

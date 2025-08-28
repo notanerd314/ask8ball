@@ -1,17 +1,9 @@
 import '@/app/eightball/globals.css'
 import Logo from '@/components/Logo';
-import { Inter } from 'next/font/google'
+import { Comic_Neue } from 'next/font/google'
+import './globals.css'
 
-const font = Inter({ subsets: ['latin'], display: 'swap' });
-
-export const metadata = {
-  title: 'Ask the 8 Ball',
-  description: "The fortune teller you did know you don't need it.",
-  keywords: 'fortune, magic 8 ball, eight ball, ai, artifical intelligence',
-  icons: {
-    icon: '/favicon.min.svg',
-  },
-};
+const font = Comic_Neue({ subsets: ['latin'], display: 'swap', weight: ['400', '700'] });
 
 export const viewport = {
   width: 'device-width',
@@ -27,7 +19,7 @@ export default function EightBallLayout({
     <>
       <nav className="absolute z-50 mx-6 my-5">
         <a href="/" className='transition-all hover:scale-105 active:scale-102'>
-          <Logo color='white' />
+          <Logo color='black' />
         </a>
       </nav>
       <div className={font.className}>
