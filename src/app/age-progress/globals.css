@@ -1,7 +1,0 @@
-html {
-  font-size: clamp(0px, calc(0.5vw + 0.8vh), 20px);
-}
-
-body {
-  color: black;
-}
