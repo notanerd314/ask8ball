@@ -1,5 +1,6 @@
 import Logo from "@/components/Logo";
 import PaintDry from "@/components/watch-paint-dry/PaintDry.client";
+import { PaintDryProvider } from "@/components/watch-paint-dry/PaintDryContext.client";
 
 export default function WatchPaintDry() {
   return (
@@ -9,7 +10,9 @@ export default function WatchPaintDry() {
           <Logo color='black' />
         </a>
       </nav>
-      <PaintDry color="random" />
+      <PaintDryProvider>
+        <PaintDry color="random" />
+      </PaintDryProvider>
     </>
   )
 }
