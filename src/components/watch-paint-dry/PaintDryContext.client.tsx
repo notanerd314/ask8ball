@@ -19,7 +19,7 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
   const [dryProgress, setDryProgress] = useState(0);
 
   useEffect(() => {
-    setTotalSeconds(getRandomInt(5, 10));
+    setTotalSeconds(getRandomInt(60 * 30, 60 * 45));
   }, []);
 
   useEffect(() => {

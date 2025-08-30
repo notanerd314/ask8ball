@@ -22,7 +22,7 @@ export default function IntroductionOverlay() {
       <h1 className="text-4xl font-bold">Paint Drying Challenge</h1>
 
       <p className="mt-4 text-lg leading-relaxed">
-        Welcome to the Paint Drying Challenge. Your goal is to do nothing but wait until the paint is fully dry.
+        Your goal is to do nothing but wait until the paint is fully dry.
       </p>
       <p className="mt-4 text-lg leading-relaxed text-red-300">
         <strong>

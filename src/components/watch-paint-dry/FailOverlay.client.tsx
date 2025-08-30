@@ -14,7 +14,7 @@ export default function FailOverlay() {
       backdropClassName="bg-black/70 cursor-pointer"
       onClick={() => window.location.reload()}
     >
-      <h1 className="text-5xl font-bold text-red-400">You lost!</h1>
+      <h1 className="text-5xl font-bold text-red-400">You had ONE job.</h1>
 
       <p className="mt-4 text-lg leading-relaxed">
         You put your device to sleep or left the page.

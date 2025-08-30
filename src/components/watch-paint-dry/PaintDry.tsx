@@ -1,13 +1,3 @@
-"use client";
-import { getRandomInt, getRandomItem } from "@/rng";
-import { useEffect, useState } from "react";
-import { usePaintDry } from "./PaintDryContext.client";
-
-const bgColors = [
-  "#FFADAD", "#FFD6A5", "#CAFFBF", "#9BF6FF", "#A0C4FF",
-  "#BDB2FF", "#FFC6FF", "#FFB5A7", "#FCD5CE", "#C1FFD7", "#D0F4DE"
-];
-
 // Helper: maps percent (0-100) to value between min and max
 function percentToValue(percent: number, min = 0, max = 1) {
   return min + (percent / 100) * (max - min);
@@ -25,19 +15,8 @@ function glossOpacity(progress: number) {
   return 0;
 }
 
-export default function PaintDry({ color }: { color: string }) {
-  const { dryProgress, totalSeconds, gameState } = usePaintDry();
-  const [noiseSize, setNoiseSize] = useState(0);
-  const [bgColor, setBgColor] = useState(color);
-
-  useEffect(() => {
-    setNoiseSize(getRandomInt(650, 800));
-    if (bgColor === "random") setBgColor(getRandomItem(bgColors));
-  }, []);
-
-  // Clamp and ease progress for more realistic drying feel
-  const clampedProgress = Math.min(dryProgress, 100);
-  const easedProgress = easeOutQuad(clampedProgress / 100) * 100;
+export default function PaintDry({ color, noiseSize, progress }: { color: string, noiseSize: number, progress: number }) {
+  const easedProgress = easeOutQuad(Math.min(progress, 100) / 100) * 100;
 
   // Base paint layer filter with brightness, saturation, and subtle hue shift
   const baseFilter = `
@@ -48,18 +27,13 @@ export default function PaintDry({ color }: { color: string }) {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-white z-0">
-      {/* DEBUG */}
-      <div className="absolute bottom-4 right-4 z-1 text-black text-right">
-        <p>Progress: {clampedProgress.toFixed(2)}%</p>
-        <p>Total seconds: {totalSeconds}</p>
-        <p>Game state: {gameState}</p>
-      </div>
+      <h1 className="absolute">{easedProgress}</h1>
 
       {/* Base paint layer (darker, richer at first) */}
       <div
         className="absolute inset-0"
         style={{
-          backgroundColor: bgColor,
+          backgroundColor: color,
           filter: baseFilter,
         }}
       />
@@ -104,7 +78,7 @@ export default function PaintDry({ color }: { color: string }) {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: "url('/images/watch-paint-dry/texture.webp')",
+          backgroundImage: "url('/images/watch-paint-dry/texture.png')",
           backgroundSize: `${noiseSize}px`,
           opacity: percentToValue(easedProgress, 0, 0.45),
         }}

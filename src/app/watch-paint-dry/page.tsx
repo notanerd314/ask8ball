@@ -1,9 +1,5 @@
 import Logo from "@/components/Logo";
-import IntroductionOverlay from "@/components/watch-paint-dry/IntroductionOverlay.client";
-import PaintDry from "@/components/watch-paint-dry/PaintDry.client";
-import { PaintDryProvider } from "@/components/watch-paint-dry/PaintDryContext.client";
-import WinOverlay from "@/components/watch-paint-dry/WinOverlay";
-import FailOverlay from "@/components/watch-paint-dry/FailOverlay";
+import PaintDryMain from "@/components/watch-paint-dry/PaintDryMain.client";
 
 export default function WatchPaintDry() {
   return (
@@ -14,12 +10,7 @@ export default function WatchPaintDry() {
         </a>
       </nav>
 
-      <PaintDryProvider>
-        <IntroductionOverlay />
-        <FailOverlay />
-        <WinOverlay />
-        <PaintDry color="random" />
-      </PaintDryProvider>
+      <PaintDryMain />
     </>
   )
 }
