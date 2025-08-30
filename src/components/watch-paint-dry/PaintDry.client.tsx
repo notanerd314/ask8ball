@@ -4,9 +4,8 @@ import { useEffect, useState } from "react";
 import { usePaintDry } from "./PaintDryContext.client";
 
 const bgColors = [
-  "#FFADAD", "#FFD6A5", "#FDFFB6", "#CAFFBF", "#9BF6FF", "#A0C4FF",
-  "#BDB2FF", "#FFC6FF", "#FFB5A7", "#FCD5CE", "#C1FFD7", "#D0F4DE",
-  "#F5F5F5", "#EDEDED"
+  "#FFADAD", "#FFD6A5", "#CAFFBF", "#9BF6FF", "#A0C4FF",
+  "#BDB2FF", "#FFC6FF", "#FFB5A7", "#FCD5CE", "#C1FFD7", "#D0F4DE"
 ];
 
 // Helper: maps percent (0-100) to value between min and max
@@ -27,7 +26,7 @@ function glossOpacity(progress: number) {
 }
 
 export default function PaintDry({ color }: { color: string }) {
-  const { dryProgress } = usePaintDry();
+  const { dryProgress, totalSeconds, gameState } = usePaintDry();
   const [noiseSize, setNoiseSize] = useState(0);
   const [bgColor, setBgColor] = useState(color);
 
@@ -48,10 +47,12 @@ export default function PaintDry({ color }: { color: string }) {
   `;
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-white">
+    <div className="relative w-screen h-screen overflow-hidden bg-white z-0">
       {/* DEBUG */}
-      <div className="absolute top-4 left-4 z-50 text-black">
-        <p>Progress: {clampedProgress.toFixed(1)}%</p>
+      <div className="absolute bottom-4 right-4 z-1 text-black text-right">
+        <p>Progress: {clampedProgress.toFixed(2)}%</p>
+        <p>Total seconds: {totalSeconds}</p>
+        <p>Game state: {gameState}</p>
       </div>
 
       {/* Base paint layer (darker, richer at first) */}
@@ -103,7 +104,7 @@ export default function PaintDry({ color }: { color: string }) {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: "url('/images/watch-paint-dry/buried.png')",
+          backgroundImage: "url('/images/watch-paint-dry/texture.webp')",
           backgroundSize: `${noiseSize}px`,
           opacity: percentToValue(easedProgress, 0, 0.45),
         }}
