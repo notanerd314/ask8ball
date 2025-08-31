@@ -4,9 +4,9 @@ import './globals.css'
 const font = Comic_Neue({ subsets: ['latin'], display: 'swap', weight: ['400', '700'] })
 
 export const metadata = {
-  title: "Paint Drying Challenge",
-  description: "Can you sit and watch paint dry for 30 minutes?",
-  keywords: 'paint dry, challenge',
+  title: "Watch Paint Dry",
+  description: "Can you sit and ONLY watch paint dry for 30 minutes?",
+  keywords: 'paint dry, challenge, patience, game',
   icons: {
     icon: '/images/watch-paint-dry/favicon.png',
   },

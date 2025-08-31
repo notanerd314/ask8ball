@@ -19,12 +19,12 @@ export default function IntroductionOverlay() {
         alt="Logo"
         className="mx-auto w-40"
       />
-      <h1 className="text-4xl font-bold">Paint Drying Challenge</h1>
+      <h1 className="text-4xl font-bold">Watch Paint Dry</h1>
 
       <p className="mt-4 text-lg leading-relaxed">
         Your goal is to do nothing but wait until the paint is fully dry.
       </p>
-      <p className="mt-4 text-lg leading-relaxed text-red-300">
+      <p className="text-lg leading-relaxed text-red-300">
         <strong>
           Leaving the page or putting your device to sleep will result in failure.
         </strong>

@@ -10,11 +10,14 @@ const PaintDryContext = createContext({
   dryProgress: 0,
   setDryProgress: (value: number) => { },
   totalSeconds: 0,
-  setTotalSeconds: (value: number) => { }
+  setTotalSeconds: (value: number) => { },
+  timeElapsed: 0,
+  setTimeElapsed: (value: number) => { },
 });
 
 export const PaintDryProvider = ({ children }: { children: React.ReactNode }) => {
   const [totalSeconds, setTotalSeconds] = useState(0);
+  const [timeElapsed, setTimeElapsed] = useState(0);
   const [gameState, setGameState] = useState<GameState>("notstarted");
   const [dryProgress, setDryProgress] = useState(0);
 
@@ -27,7 +30,6 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
     if (totalSeconds === 0) return;
 
     const intervalMs = (totalSeconds * 1000) / 1000;
-    console.log(intervalMs);
 
     const interval = setInterval(() => {
       setDryProgress((p) => {
@@ -38,7 +40,7 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
 
           return p;
         }
-        return p + 0.1;
+        return p + 10;
       });
     }, intervalMs);
 
@@ -46,21 +48,30 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
   }, [gameState]);
 
   useEffect(() => {
-    function handleFailure() {
-      if (gameState === "inprogress") setGameState("failed");
-    }
+    if (gameState !== "inprogress") return;
+    if (totalSeconds === 0) return;
 
+    const interval = setInterval(() => {
+      setTimeElapsed((p) => p + 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [gameState]);
+
+  useEffect(() => {
+    function handleFailure() {
+      setGameState((prev) => (prev === "inprogress" ? "failed" : prev));
+    }
     window.addEventListener("blur", handleFailure);
     window.addEventListener("visibilitychange", handleFailure);
-
     return () => {
       window.removeEventListener("blur", handleFailure);
       window.removeEventListener("visibilitychange", handleFailure);
     };
-  }, [gameState]);
+  }, []);
 
   return (
-    <PaintDryContext.Provider value={{ gameState, setGameState, dryProgress, setDryProgress, totalSeconds, setTotalSeconds }}>
+    <PaintDryContext.Provider value={{ gameState, setGameState, dryProgress, setDryProgress, totalSeconds, setTotalSeconds, timeElapsed, setTimeElapsed }}>
       {children}
     </PaintDryContext.Provider>
   );
