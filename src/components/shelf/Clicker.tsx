@@ -31,8 +31,8 @@ export default function Clicker() {
       <img
         src={
           isPressed
-            ? "/images/gadgets/buttonpressed.webp"
-            : "/images/gadgets/button.webp"
+            ? "/shelf/buttonpressed.webp"
+            : "/shelf/button.webp"
         }
         alt="Button"
         className="drop-shadow-2xl origin-bottom z-0 block pointer-events-none"

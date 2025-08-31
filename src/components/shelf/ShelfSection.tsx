@@ -7,7 +7,7 @@ export default function ShelfSection({ children, className }: { children: React.
         {children}
       </div>
       <img
-        src="/images/shelf.webp"
+        src="/shelf/shelf.webp"
         alt="Shelf"
         loading="lazy"
         className="z-0 w-full drop-shadow-2xl -translate-y-8"

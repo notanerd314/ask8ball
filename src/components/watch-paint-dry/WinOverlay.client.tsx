@@ -14,7 +14,7 @@ export default function WinOverlay() {
       backdropClassName="bg-black/70 cursor-pointer"
     >
       <img
-        src="/images/watch-paint-dry/trophy.png"
+        src="/watch-paint-dry/trophy.png"
         alt="Logo"
         className="mx-auto w-40 mb-4"
       />

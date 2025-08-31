@@ -1,6 +1,6 @@
 "use client";
 import { getRandomInt } from '@/rng';
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, useRef } from 'react';
 
 type GameState = "notstarted" | "inprogress" | "failed" | "completed";
 
@@ -21,9 +21,7 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
   const [gameState, setGameState] = useState<GameState>("notstarted");
   const [dryProgress, setDryProgress] = useState(0);
 
-  useEffect(() => {
-    setTotalSeconds(getRandomInt(60 * 30, 60 * 45));
-  }, []);
+  const audioClockTickRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     if (gameState !== "inprogress") return;
@@ -40,7 +38,7 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
 
           return p;
         }
-        return p + 10;
+        return p + 0.1;
       });
     }, intervalMs);
 
@@ -52,6 +50,7 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
     if (totalSeconds === 0) return;
 
     const interval = setInterval(() => {
+      audioClockTickRef.current?.play();
       setTimeElapsed((p) => p + 1);
     }, 1000);
 
@@ -62,11 +61,22 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
     function handleFailure() {
       setGameState((prev) => (prev === "inprogress" ? "failed" : prev));
     }
+    
+    setTotalSeconds(getRandomInt(60 * 30, 60 * 45));
+
     window.addEventListener("blur", handleFailure);
     window.addEventListener("visibilitychange", handleFailure);
+
+    audioClockTickRef.current = new Audio("/watch-paint-dry/clockticking.mp3");
+
     return () => {
       window.removeEventListener("blur", handleFailure);
       window.removeEventListener("visibilitychange", handleFailure);
+
+      if (audioClockTickRef.current) {
+        audioClockTickRef.current.pause();
+        audioClockTickRef.current = null;
+      }
     };
   }, []);
 

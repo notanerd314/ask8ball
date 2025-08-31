@@ -34,7 +34,7 @@ function PaintDryView() {
       <FailOverlay />
       <WinOverlay />
       <PaintDry color={bgColor} noiseSize={noiseSize} progress={dryProgress} />
-      <TTS />
+      {/* <TTS /> */}
     </>
   );
 }

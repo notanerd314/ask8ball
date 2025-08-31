@@ -1,10 +1,25 @@
 "use client";
 
 import { Modal } from "../Modal";
+import { useEffect } from "react";
 import { usePaintDry } from "./PaintDryContext.client";
 
 export default function FailOverlay() {
   const { gameState, dryProgress, timeElapsed } = usePaintDry();
+
+  useEffect(() => {
+    if (gameState !== "failed") return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === "Space") {
+        e.preventDefault();
+        window.location.reload();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [gameState]);
 
   return (
     <Modal
@@ -15,7 +30,7 @@ export default function FailOverlay() {
       onClick={() => window.location.reload()}
     >
       <img
-        src="/images/watch-paint-dry/taketheL.png"
+        src="/watch-paint-dry/taketheL.png"
         alt="Logo"
         className="mx-auto w-40 mb-5"
       />
@@ -30,7 +45,7 @@ export default function FailOverlay() {
       </p>
 
       <small className="text-white/50">
-        (Press anywhere to restart)
+        (Press anywhere or <kbd className="bg-white/30 p-0.5 rounded-md">Space</kbd> to restart)
       </small>
     </Modal>
   )

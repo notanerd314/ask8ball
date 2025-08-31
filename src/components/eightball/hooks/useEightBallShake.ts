@@ -21,7 +21,7 @@ export default function useEightBallShake() {
 
     // Lazy-load if not loaded yet
     if (!shakeSounds[index]) {
-      const audio = new Audio(`/sounds/eightball/Shaking${index + 1}.mp3`);
+      const audio = new Audio(`/eightball/Shaking${index + 1}.mp3`);
       audio.preload = "auto";
       shakeSounds[index] = audio;
     }

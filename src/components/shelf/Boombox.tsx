@@ -14,7 +14,7 @@ export default function Boombox() {
   const [isToggling, setIsToggling] = useState(false);
 
   const fadeInAndPlay = () => {
-    audioRef.current = new Audio(`/sounds/boombox/${getRandomItem(songs)}.mp3`);
+    audioRef.current = new Audio(`/boombox/${getRandomItem(songs)}.mp3`);
     audioRef.current.loop = true;
     audioRef.current.volume = 0;
 
@@ -73,7 +73,7 @@ export default function Boombox() {
       disabled={isToggling}
     >
       <img
-        src="/images/gadgets/boombox.webp"
+        src="/shelf/boombox.webp"
         alt="Boombox"
         className="drop-shadow-2xl origin-bottom"
         loading="lazy"

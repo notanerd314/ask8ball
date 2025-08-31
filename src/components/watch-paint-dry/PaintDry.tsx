@@ -78,7 +78,7 @@ export default function PaintDry({ color, noiseSize, progress }: { color: string
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: "url('/images/watch-paint-dry/texture.png')",
+          backgroundImage: "url('/watch-paint-dry/texture.png')",
           backgroundSize: `${noiseSize}px`,
           opacity: percentToValue(easedProgress, 0, 0.45),
         }}

@@ -1,21 +1,36 @@
 "use client";
 
 import { Modal } from "../Modal";
+import { useEffect } from "react";
 import { usePaintDry } from "./PaintDryContext.client";
 
 export default function IntroductionOverlay() {
   const { gameState, setGameState } = usePaintDry();
 
+  useEffect(() => {
+    if (gameState !== "notstarted") return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === "Space") {
+        e.preventDefault();
+        setGameState("inprogress")
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [gameState]);
+
   return (
     <Modal
       isOpen={gameState === "notstarted"}
-      onClose={() => {}}
+      onClose={() => { }}
       modalClassName="max-w-2xl text-white text-center cursor-pointer"
       backdropClassName="bg-black/70 cursor-pointer"
       onClick={() => setGameState("inprogress")}
     >
       <img
-        src="/images/watch-paint-dry/favicon.png"
+        src="/watch-paint-dry/favicon.png"
         alt="Logo"
         className="mx-auto w-40"
       />
@@ -33,8 +48,8 @@ export default function IntroductionOverlay() {
         <strong>Good luck.</strong>
       </p>
 
-      <small className="text-white/50">
-        (Press anywhere to start)
+      <small className="text-white/50 text-sm">
+        (Press anywhere or <kbd className="bg-white/30 p-0.5 rounded-md">Space</kbd> to start)
       </small>
     </Modal>
   )
