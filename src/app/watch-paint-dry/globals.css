@@ -1,5 +1,5 @@
 @import "tailwindcss";
 
 html {
-  font-size: clamp(0px, calc(0.5vw + 0.8vh), 30px);
+  font-size: clamp(13px, calc(0.5vw + 0.8vh), 25px);
 }

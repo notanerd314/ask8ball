@@ -7,7 +7,7 @@ export default function Clicker() {
   const [count, setCount] = useState(0);
   const [isPressed, setIsPressed] = useState(false);
 
-  const [play] = useSound("/sounds/click.mp3", {
+  const [play] = useSound("/shelf/click.mp3", {
     volume: 0.5,
     interrupt: false,
   });

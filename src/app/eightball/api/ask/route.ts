@@ -29,11 +29,17 @@ async function fetchAIResponse(question: string, systemPrompt: string, temperatu
       top_p: 1,
       presence_penalty: 1.0,
       frequency_penalty: 0.8,
-      max_completion_tokens: 40,
       stream: false
     }),
   });
 
+  if (!response.ok) {
+  const errorText = await response.text();
+  console.error("Groq API Error:", errorText);
+  throw new Error("Failed to fetch AI response");
+}
+
+  
   const data = await response.json();
   return data.choices?.[0]?.message?.content;
 }
@@ -63,6 +69,9 @@ export async function POST(req: NextRequest): Promise<Response> {
   const systemPrompt = getSystemPrompt(answerType, personality!);
   const answer = await fetchAIResponse(question, systemPrompt, personality?.temperature);
 
+  console.log({
+    question, answer, answerType, personality: personalityName
+  });
   return new Response(JSON.stringify({
     question, answer, answerType, personality: personalityName
   }), {

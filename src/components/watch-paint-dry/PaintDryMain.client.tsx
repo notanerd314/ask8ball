@@ -8,7 +8,6 @@ import IntroductionOverlay from "./IntroductionOverlay.client";
 import FailOverlay from "./FailOverlay.client";
 import WinOverlay from "./WinOverlay.client";
 import PaintDry from "./PaintDry";
-import TTS from "./TTS.client";
 import PageTitle from "./PageTitle.client";
 
 const bgColors = [
@@ -34,7 +33,6 @@ function PaintDryView() {
       <FailOverlay />
       <WinOverlay />
       <PaintDry color={bgColor} noiseSize={noiseSize} progress={dryProgress} />
-      {/* <TTS /> */}
     </>
   );
 }

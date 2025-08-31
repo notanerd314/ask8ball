@@ -25,7 +25,7 @@ export default function IntroductionOverlay() {
     <Modal
       isOpen={gameState === "notstarted"}
       onClose={() => { }}
-      modalClassName="max-w-2xl text-white text-center cursor-pointer"
+      modalClassName="max-w-2xl text-white text-center cursor-pointer px-5"
       backdropClassName="bg-black/70 cursor-pointer"
       onClick={() => setGameState("inprogress")}
     >

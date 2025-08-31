@@ -44,7 +44,7 @@ export type APIResponse = {
 }
 
 export const QUESTION_MAX_LENGTH = 100;
-export const AI_MODEL = "llama3-70b-8192";
+export const AI_MODEL = "llama-3.1-8b-instant";
 export const ALL_RESPONSES_TYPES = [
   AnswerPrompt.Yes,
   AnswerPrompt.No,

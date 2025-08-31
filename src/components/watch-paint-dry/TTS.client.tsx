@@ -18,9 +18,9 @@ export default function TTS() {
   }, [ttsSpeech]);
 
   useEffect(() => {
-    if (gameState === "notstarted") return;
+    if (gameState !== "inprogress") return;
 
-    setTtsSpeech(`Just give up.`);
+    setTtsSpeech(`are you actually serious man, you literally sat there for 30 minutes`);
   }, [gameState]);
 
   return (
