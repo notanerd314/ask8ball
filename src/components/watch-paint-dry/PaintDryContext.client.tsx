@@ -146,6 +146,18 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
     };
   }, []);
 
+  useEffect(() => {
+    if (gameState === "failed") {
+      document.title = `You failed! - ${dryProgress.toFixed(1)}%`
+    } else if (gameState === "completed") {
+      document.title = "You won!"
+    } else if (gameState === "inprogress") {
+      document.title = `Watch Paint Dry - ${dryProgress.toFixed(1)}%`
+    } else {
+      document.title = "Watch Paint Dry"
+    }
+  }, [gameState, dryProgress.toFixed(1)]);
+
   return (
     <PaintDryContext.Provider
       value={{

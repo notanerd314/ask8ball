@@ -11,6 +11,11 @@ export default function WatchPaintDry() {
       </nav>
 
       <PaintDryMain />
+      <footer className="absolute bottom-2 left-1/2 -translate-x-1/2">
+        <p className="text-center text-white/50 text-sm">
+          Made with 🖌 by notanerd
+        </p>
+      </footer>
     </>
   )
 }

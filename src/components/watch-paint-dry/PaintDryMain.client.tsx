@@ -8,8 +8,6 @@ import IntroductionOverlay from "./IntroductionOverlay.client";
 import FailOverlay from "./FailOverlay.client";
 import WinOverlay from "./WinOverlay.client";
 import PaintDry from "./PaintDry";
-import PageTitle from "./PageTitle.client";
-import StateDebug from "./StateDebug.client";
 import ProgressIndicator from "./ProgressIndicator.client";
 
 const bgColors = [
@@ -64,9 +62,6 @@ function PaintDryView() {
 
   return (
     <>
-      <StateDebug />
-      <PageTitle />
-
       <ProgressIndicator />
 
       <IntroductionOverlay />

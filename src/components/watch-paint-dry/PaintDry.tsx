@@ -64,13 +64,13 @@ export default function PaintDry({ color, noiseSize, progress }: { color: string
         style={{
           backgroundImage: `repeating-linear-gradient(
             90deg,
-            rgba(255,255,255,0) 0px,
-            rgba(255,255,255,0) 3px,
+            rgba(255,255,255,0.05) 0px,
+            rgba(255,255,255,0.05) 3px,
             transparent 2px,
             transparent 16px
           )`,
           mixBlendMode: "overlay",
-          opacity: 0.7 - percentToValue(easedProgress, 0.3, 1),
+          opacity: 1 - percentToValue(easedProgress, 0, 1),
         }}
       />
 
