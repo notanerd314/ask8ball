@@ -9,11 +9,10 @@ import { Cinzel } from "next/font/google";
 const font = Cinzel({ subsets: ["latin"], display: "swap", weight: "500" });
 
 export default function FailOverlay() {
-  const { gameState, dryProgress, timeElapsed, setGameState, randomizeTotalSeconds, setTimeElapsed, setDryProgress } = usePaintDry();
+  const { gameState, dryProgress, timeElapsed, setGameState, randomizeTotalSeconds, setDryProgress } = usePaintDry();
 
   function restartGame() {
     randomizeTotalSeconds();
-    setTimeElapsed(0);
     setDryProgress(0);
     setGameState("notstarted");
   }
