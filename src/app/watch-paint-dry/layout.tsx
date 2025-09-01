@@ -8,7 +8,7 @@ export const metadata = {
   description: "Can you sit and ONLY watch paint dry for 30 minutes?",
   keywords: 'paint dry, challenge, patience, game',
   icons: {
-    icon: '/images/watch-paint-dry/favicon.png',
+    icon: '/watch-paint-dry/favicon.png',
   },
 };
 

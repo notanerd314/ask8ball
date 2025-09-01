@@ -23,6 +23,8 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
   const [dryProgress, setDryProgress] = useState(0);
 
   const [playClockTick] = useSound("/watch-paint-dry/clockticking.mp3", { volume: 1, interrupt: false });
+  const [playFail] = useSound("/watch-paint-dry/fail.mp3", { volume: 1, interrupt: false });
+  const [playWin] = useSound("/watch-paint-dry/win.mp3", { volume: 1, interrupt: false });
 
   useEffect(() => {
     if (gameState !== "inprogress") return;
@@ -39,7 +41,7 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
 
           return p;
         }
-        return p + 0.1;
+        return p + 50;
       });
     }, intervalMs);
 
@@ -47,7 +49,13 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
   }, [gameState]);
 
   useEffect(() => {
-    if (gameState !== "inprogress") return;
+    if (gameState === "failed") {
+      playFail();
+      return;
+    } else if (gameState === "completed") {
+      playWin();
+      return;
+    } else if (gameState !== "inprogress") return;
     if (totalSeconds === 0) return;
 
     const interval = setInterval(() => {
