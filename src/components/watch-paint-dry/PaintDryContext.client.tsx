@@ -22,31 +22,31 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
   const [gameState, setGameState] = useState<GameState>("notstarted");
   const [dryProgress, setDryProgress] = useState(0);
 
-  const [playClockTick] = useSound("/watch-paint-dry/clockticking.mp3", { volume: 1, interrupt: false });
-  const [playFail] = useSound("/watch-paint-dry/fail.mp3", { volume: 1, interrupt: false });
+  const [playClockTick] = useSound("/watch-paint-dry/clockticking.mp3", { volume: 0.3, interrupt: false });
+  const [playFail] = useSound("/watch-paint-dry/fail.mp3", { volume: 0.3, interrupt: false });
   const [playWin] = useSound("/watch-paint-dry/win.mp3", { volume: 1, interrupt: false });
 
   useEffect(() => {
-    if (gameState !== "inprogress") return;
-    if (totalSeconds === 0) return;
+    if (gameState !== "inprogress" || totalSeconds <= 0) return;
 
-    const intervalMs = (totalSeconds * 1000) / 1000;
+    const totalMs = totalSeconds * 1000;
+    const start = performance.now();
 
-    const interval = setInterval(() => {
-      setDryProgress((p) => {
-        if (p >= 100) {
-          console.log("Paint dry");
-          clearInterval(interval);
-          setGameState("completed");
+    const id = setInterval(() => {
+      const elapsed = performance.now() - start;
+      const pct = Math.min(100, (elapsed / totalMs) * 100);
+      setDryProgress(pct);
 
-          return p;
-        }
-        return p + 50;
-      });
-    }, intervalMs);
+      if (pct >= 100) {
+        clearInterval(id);
+        console.log("Paint dry");
+        setGameState("completed");
+      }
+    }, 1000); // update every second, since you don’t care about smoothness
 
-    return () => clearInterval(interval);
-  }, [gameState]);
+    return () => clearInterval(id);
+  }, [gameState, totalSeconds]);
+
 
   useEffect(() => {
     if (gameState === "failed") {
@@ -64,14 +64,14 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [gameState]);
+  }, [gameState, totalSeconds]);
 
   useEffect(() => {
     function handleFailure() {
       setGameState((prev) => (prev === "inprogress" ? "failed" : prev));
     }
-    
-    setTotalSeconds(getRandomInt(60 * 30, 60 * 45));
+
+    setTotalSeconds(getRandomInt(60 * 30, 60 * 50));
 
     window.addEventListener("blur", handleFailure);
     window.addEventListener("visibilitychange", handleFailure);

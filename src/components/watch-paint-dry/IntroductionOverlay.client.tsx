@@ -5,7 +5,12 @@ import { useEffect } from "react";
 import { usePaintDry } from "./PaintDryContext.client";
 
 export default function IntroductionOverlay() {
-  const { gameState, setGameState } = usePaintDry();
+  const { gameState, setGameState, totalSeconds } = usePaintDry();
+
+  function startGame() {
+    if (totalSeconds === 0) return;
+    setGameState("inprogress");
+  }
 
   useEffect(() => {
     if (gameState !== "notstarted") return;
@@ -13,7 +18,7 @@ export default function IntroductionOverlay() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.code === "Space") {
         e.preventDefault();
-        setGameState("inprogress")
+        startGame();
       }
     };
 
@@ -27,7 +32,7 @@ export default function IntroductionOverlay() {
       onClose={() => { }}
       modalClassName="max-w-2xl text-white text-center cursor-pointer px-5"
       backdropClassName="bg-black/70 cursor-pointer"
-      onClick={() => setGameState("inprogress")}
+      onClick={() => startGame()}
     >
       <img
         src="/watch-paint-dry/favicon.png"

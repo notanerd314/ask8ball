@@ -9,6 +9,7 @@ import FailOverlay from "./FailOverlay.client";
 import WinOverlay from "./WinOverlay.client";
 import PaintDry from "./PaintDry";
 import PageTitle from "./PageTitle.client";
+import StateDebug from "./StateDebug.client";
 
 const bgColors = [
   "#FFADAD", "#FFD6A5", "#CAFFBF", "#9BF6FF", "#A0C4FF",
@@ -28,6 +29,7 @@ function PaintDryView() {
 
   return (
     <>
+      <StateDebug />
       <PageTitle />
       <IntroductionOverlay />
       <FailOverlay />
