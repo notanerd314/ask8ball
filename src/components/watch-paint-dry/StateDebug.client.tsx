@@ -14,7 +14,7 @@ export default function StateDebug() {
   const remaining = Math.max(0, totalSeconds - timeElapsed);
 
   return (
-    <div className="fixed bottom-6 right-6 z-100 bg-black/70 p-3 rounded-2xl text-sm space-y-1 text-white shadow-lg">
+    <div className="fixed bottom-6 right-6 z-100 bg-black/70 p-3 rounded-2xl text-sm space-y-1 text-white shadow-lg" draggable={true}>
       <p className="text-lg font-bold">DEBUG</p>
       
       <p className="px-2 rounded-full bg-green-600">

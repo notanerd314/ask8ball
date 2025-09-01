@@ -39,7 +39,7 @@ export default function FailOverlay() {
       backdropClassName="bg-black/60 cursor-pointer"
       onClick={() => restartGame()}
     >
-      <h1 className={"text-[4.5rem] text-red-500/60 leading-none " + font.className}>YOU FAILED</h1>
+      <h1 className={"text-[4rem] text-red-500/60 leading-none " + font.className}>YOU FAILED</h1>
 
       <p className="text-md leading-relaxed font-bold text-white/70">
         Failed when paint is {dryProgress.toFixed(1)}% dry, wasted {timeElapsed} seconds.

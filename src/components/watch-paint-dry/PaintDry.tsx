@@ -11,7 +11,7 @@ function easeOutQuad(t: number) {
 // Gloss opacity: stays full till 80%, then fades out by 100%
 function glossOpacity(progress: number) {
   if (progress < 80) return 1;
-  if (progress < 100) return 1 - (progress - 80) / 20;
+  if (progress < 100) return 1 - (progress - 80) / 20 * 0.9;
   return 0;
 }
 
@@ -52,8 +52,8 @@ export default function PaintDry({ color, noiseSize, progress }: { color: string
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: `radial-gradient(circle at 35% 25%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 25%, rgba(255,255,255,0) 60%)`,
-          mixBlendMode: "screen",
+          background: `radial-gradient(circle at 35% 25%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.15) 25%, rgba(255,255,255,0) 60%)`,
+          mixBlendMode: "soft-light",
           opacity: glossOpacity(easedProgress),
         }}
       />
@@ -64,13 +64,13 @@ export default function PaintDry({ color, noiseSize, progress }: { color: string
         style={{
           backgroundImage: `repeating-linear-gradient(
             90deg,
-            rgba(255,255,255,0.08) 0px,
-            rgba(255,255,255,0.08) 3px,
+            rgba(255,255,255,0) 0px,
+            rgba(255,255,255,0) 3px,
             transparent 2px,
             transparent 16px
           )`,
           mixBlendMode: "overlay",
-          opacity: 1 - percentToValue(easedProgress, 0, 1),
+          opacity: 0.7 - percentToValue(easedProgress, 0.3, 1),
         }}
       />
 
@@ -80,7 +80,7 @@ export default function PaintDry({ color, noiseSize, progress }: { color: string
         style={{
           backgroundImage: "url('/watch-paint-dry/texture.png')",
           backgroundSize: `${noiseSize}px`,
-          opacity: percentToValue(easedProgress, 0, 0.45),
+          opacity: percentToValue(easedProgress, 0, 0.5),
         }}
       />
     </div>
