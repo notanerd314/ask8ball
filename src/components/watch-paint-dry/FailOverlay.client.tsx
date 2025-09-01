@@ -9,7 +9,14 @@ import { Cinzel } from "next/font/google";
 const font = Cinzel({ subsets: ["latin"], display: "swap", weight: "500" });
 
 export default function FailOverlay() {
-  const { gameState, dryProgress, timeElapsed } = usePaintDry();
+  const { gameState, dryProgress, timeElapsed, setGameState, randomizeTotalSeconds, setTimeElapsed, setDryProgress } = usePaintDry();
+
+  function restartGame() {
+    randomizeTotalSeconds();
+    setTimeElapsed(0);
+    setDryProgress(0);
+    setGameState("notstarted");
+  }
 
   useEffect(() => {
     if (gameState !== "failed") return;
@@ -17,7 +24,7 @@ export default function FailOverlay() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.code === "Space") {
         e.preventDefault();
-        window.location.reload();
+        restartGame();
       }
     };
 
@@ -31,7 +38,7 @@ export default function FailOverlay() {
       onClose={() => { }}
       modalClassName="text-white text-center cursor-pointer w-full py-13 bg-[linear-gradient(to_bottom,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_10%,rgba(0,0,0,0.7)_20%,rgba(0,0,0,0.7)_80%,rgba(0,0,0,0)_90%,rgba(0,0,0,0)_100%)] animate-[fadeIn_2s_ease-out_forwards]"
       backdropClassName="bg-black/60 cursor-pointer"
-      onClick={() => window.location.reload()}
+      onClick={() => restartGame()}
     >
       <h1 className={"text-[4.5rem] text-red-500/60 leading-none " + font.className}>YOU FAILED</h1>
 

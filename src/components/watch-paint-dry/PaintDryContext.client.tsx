@@ -14,6 +14,7 @@ const PaintDryContext = createContext({
   setTotalSeconds: (value: number) => { },
   timeElapsed: 0,
   setTimeElapsed: (value: number) => { },
+  randomizeTotalSeconds: () => { },
 });
 
 export const PaintDryProvider = ({ children }: { children: React.ReactNode }) => {
@@ -25,6 +26,10 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
   const [playClockTick] = useSound("/watch-paint-dry/clockticking.mp3", { volume: 0.3, interrupt: false });
   const [playFail] = useSound("/watch-paint-dry/fail.mp3", { volume: 0.3, interrupt: false });
   const [playWin] = useSound("/watch-paint-dry/win.mp3", { volume: 1, interrupt: false });
+
+  function randomizeTotalSeconds() {
+    setTotalSeconds(getRandomInt(60 * 30, 60 * 60));
+  }
 
   useEffect(() => {
     if (gameState !== "inprogress" || totalSeconds <= 0) return;
@@ -71,7 +76,7 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
       setGameState((prev) => (prev === "inprogress" ? "failed" : prev));
     }
 
-    setTotalSeconds(getRandomInt(60 * 30, 60 * 50));
+    randomizeTotalSeconds();
 
     window.addEventListener("blur", handleFailure);
     window.addEventListener("visibilitychange", handleFailure);
@@ -83,7 +88,7 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
   }, []);
 
   return (
-    <PaintDryContext.Provider value={{ gameState, setGameState, dryProgress, setDryProgress, totalSeconds, setTotalSeconds, timeElapsed, setTimeElapsed }}>
+    <PaintDryContext.Provider value={{ gameState, setGameState, dryProgress, setDryProgress, totalSeconds, setTotalSeconds, timeElapsed, setTimeElapsed, randomizeTotalSeconds }}>
       {children}
     </PaintDryContext.Provider>
   );
