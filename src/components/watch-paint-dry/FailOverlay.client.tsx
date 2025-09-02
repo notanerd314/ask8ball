@@ -46,17 +46,17 @@ export default function FailOverlay() {
     <Modal
       isOpen={gameState === "failed"}
       onClose={() => { }}
-      modalClassName="text-white text-center w-full py-16 bg-[linear-gradient(to_bottom,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_10%,rgba(0,0,0,0.7)_20%,rgba(0,0,0,0.7)_80%,rgba(0,0,0,0)_90%,rgba(0,0,0,0)_100%)] animate-[fadeIn_2s_ease-out_forwards]"
+      modalClassName="text-white text-center w-full"
       backdropClassName="bg-black/60 cursor-pointer"
       onClick={() => restartGame()}
     >
-      <h1 className={"text-[4rem] text-red-500/60 leading-none " + font.className}>YOU FAILED</h1>
+      <h1 className={"text-[4rem] text-red-500/60 leading-none py-9 bg-[linear-gradient(to_bottom,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_10%,rgba(0,0,0,0.7)_20%,rgba(0,0,0,0.7)_80%,rgba(0,0,0,0)_90%,rgba(0,0,0,0)_100%)] animate-[fadeIn_2s_ease-out_forwards] " + font.className}>YOU FAILED</h1>
 
       <p className="text-md leading-relaxed font-bold text-white/70">
         Failed when paint is {dryProgress.toFixed(1)}% dry, wasted {timeElapsed} seconds.
       </p>
 
-      <div className="flex gap-3 mt-4 justify-center text-md">
+      <div className="flex gap-3 mt-4 mb-2 justify-center text-md">
         <button onClick={copyToClipboard} className="bg-yellow-400 rounded-2xl px-3 py-2 cursor-pointer font-bold transition-all hover:bg-yellow-500 hover:scale-105">
           Copy and share!
         </button>
