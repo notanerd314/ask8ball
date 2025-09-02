@@ -5,18 +5,16 @@ import style from "./EightBall.module.css";
 
 import { useEightBall } from "./EightBallContext.client";
 import EightBallSVG from "./EightBallSVG.client";
-import useEightBallShake from "./hooks/useEightBallShake";
 import EightBallText from "./EightBallText.client";
 import { EightBallState } from "@/utils/eightball/types";
 
 export default function EightBall() {
-  const { currentPersonality, currentBallState, currentResponse } = useEightBall();
+  const { currentPersonality, currentBallState, currentResponse, shakeEightBall } = useEightBall();
   const [diceStyle, setDiceStyle] = useState({ opacity: 0, transition: "none" })
   const [diceSize, setDiceSize] = useState({
     width: 0,
     height: 0
   });
-  const { shakeEightBall } = useEightBallShake();
 
   useEffect(() => {
     if (currentBallState === EightBallState.Shaking) {
