@@ -47,6 +47,7 @@ const PaintDryContext = createContext<{
    * Randomizes the total number of seconds the paint should take to dry.
    */
   randomizeTotalSeconds: () => void;
+  roundedProgress: number
 }>({
   gameState: "notstarted",
   setGameState: () => { },
@@ -56,6 +57,7 @@ const PaintDryContext = createContext<{
   setTotalSeconds: () => { },
   timeElapsed: 0,
   randomizeTotalSeconds: () => { },
+  roundedProgress: 0
 });
 
 /**
@@ -80,6 +82,7 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
   }
 
   const timeElapsed = Math.floor((dryProgress / 100) * totalSeconds);
+  const roundedProgress = Math.round(dryProgress * 10) / 10;
 
   /**
    * Clears the progress interval.
@@ -99,9 +102,10 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
 
     if (gameState !== "inprogress" || totalSeconds <= 0) return;
 
-    const start = performance.now();
+    const startRef = performance.now();
+
     intervalRef.current = window.setInterval(() => {
-      const elapsed = performance.now() - start;
+      const elapsed = performance.now() - startRef;
       const pct = Math.min(100, (elapsed / (totalSeconds * 1000)) * 100);
       setDryProgress(pct);
       playClockTick();
@@ -114,6 +118,7 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
 
     return clearProgressInterval;
   }, [gameState, totalSeconds]);
+
 
   /**
    * Handles the game state change effect: plays sound effects.
@@ -148,15 +153,15 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
 
   useEffect(() => {
     if (gameState === "failed") {
-      document.title = `You failed! - ${dryProgress.toFixed(1)}%`
+      document.title = `You failed! - ${roundedProgress}%`
     } else if (gameState === "completed") {
       document.title = "You won!"
     } else if (gameState === "inprogress") {
-      document.title = `Watch Paint Dry - ${dryProgress.toFixed(1)}%`
+      document.title = `Watch Paint Dry - ${roundedProgress}%`
     } else {
       document.title = "Watch Paint Dry"
     }
-  }, [gameState, dryProgress.toFixed(1)]);
+  }, [gameState, roundedProgress]);
 
   return (
     <PaintDryContext.Provider
@@ -169,6 +174,7 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
         setTotalSeconds,
         timeElapsed,
         randomizeTotalSeconds,
+        roundedProgress
       }}
     >
       {children}

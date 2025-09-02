@@ -3,7 +3,7 @@
 import { usePaintDry } from "./PaintDryContext.client";
 
 export default function ProgressIndicator() {
-  const { dryProgress } = usePaintDry();
+  const { roundedProgress } = usePaintDry();
 
   return (
     <p
@@ -17,7 +17,7 @@ export default function ProgressIndicator() {
         `,
       }}
     >
-      {dryProgress.toFixed(1)}%
+      {roundedProgress}%
     </p>
   );
 }
