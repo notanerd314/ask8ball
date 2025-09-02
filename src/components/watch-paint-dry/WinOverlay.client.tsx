@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Modal } from "../Modal";
 import { usePaintDry } from "./PaintDryContext.client";
 import { confetti } from "@tsparticles/confetti";
+import { getRandomInt } from "@/rng";
 
 function generateShareableText(timeElapsed: number) {
   return `I beat the Paint Drying Challenge by doing NOTHING for ${(timeElapsed / 60).toFixed(0)} minutes. Test your patience here: https://example.com`;
@@ -22,37 +23,15 @@ export default function WinOverlay() {
   useEffect(() => {
     if (gameState !== "completed") return;
 
-    const duration = 2000; // 2 seconds
-    const animationEnd = Date.now() + duration;
-
-    const interval = setInterval(() => {
-      const timeLeft = animationEnd - Date.now();
-
-      if (timeLeft <= 0) {
-        clearInterval(interval);
-        return;
-      }
-
-      const particleCount = 50 * (timeLeft / duration);
-
-      // left burst
-      confetti({
-        particleCount,
-        angle: 60,
-        spread: 60,
-        origin: { x: 0 },
-      });
-
-      // right burst
-      confetti({
-        particleCount,
-        angle: 120,
-        spread: 60,
-        origin: { x: 1 },
-      });
-    }, 250);
-
-    return () => clearInterval(interval);
+    confetti({
+      particleCount: getRandomInt(600, 700),
+      startVelocity: getRandomInt(50, 60),
+      spread: 360,
+      origin: {
+        x: 0.5,
+        y: 0.5,
+      },
+    });
   }, [gameState]);
 
   return (
@@ -65,7 +44,7 @@ export default function WinOverlay() {
       <img
         src="/watch-paint-dry/trophy.png"
         alt="Trophy"
-        className="mx-auto w-40 mb-4 animate-bounce"
+        className="mx-auto w-40 mb-4"
       />
 
       <h1 className="text-5xl font-extrabold text-yellow-400 drop-shadow-lg animate-pulse">

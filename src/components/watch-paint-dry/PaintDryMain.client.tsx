@@ -9,6 +9,7 @@ import FailOverlay from "./FailOverlay.client";
 import WinOverlay from "./WinOverlay.client";
 import PaintDry from "./PaintDry";
 import ProgressIndicator from "./ProgressIndicator.client";
+import StateDebug from "./StateDebug.client";
 
 const bgColors = [
   // Bold & Vibrant
@@ -33,18 +34,6 @@ const bgColors = [
   "#3E2723", // Espresso Brown
   "#4A4E69", // Twilight Purple
   "#003366", // Navy Blue
-
-  // Cool & Neutral
-  "#B0BEC5", // Cool Gray
-  "#D3D3D3", // Light Gray
-  "#ECECEC", // Off White
-  "#5D737E", // Steel Blue-Gray
-
-  // Pastel & Soft (to complement your existing ones)
-  "#F8C8DC", // Baby Pink
-  "#D0E8F2", // Powder Blue
-  "#D9EAD3", // Pale Mint
-  "#FFFACD", // Lemon Chiffon
 ];
 
 
@@ -67,6 +56,8 @@ function PaintDryView() {
       <IntroductionOverlay />
       <FailOverlay />
       <WinOverlay />
+
+      <StateDebug />
 
       <PaintDry color={bgColor} noiseSize={noiseSize} progress={dryProgress} />
     </>

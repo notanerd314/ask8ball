@@ -71,8 +71,8 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
   const intervalRef = useRef<number | null>(null);
 
   const [playClockTick] = useSound("/watch-paint-dry/clockticking.mp3", { volume: 0.3, interrupt: false });
-  const [playFail] = useSound("/watch-paint-dry/fail.mp3", { volume: 0.3, interrupt: false });
-  const [playWin] = useSound("/watch-paint-dry/win.mp3", { volume: 1, interrupt: false });
+  const [playFail] = useSound("/watch-paint-dry/fail.mp3", { volume: 0.3, interrupt: true });
+  const [playWin] = useSound("/watch-paint-dry/win.mp3", { volume: 1, interrupt: true });
 
   /**
    * Randomizes the total number of seconds the paint should take to dry.

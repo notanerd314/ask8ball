@@ -27,8 +27,6 @@ export default function PaintDry({ color, noiseSize, progress }: { color: string
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-white z-0">
-      <h1 className="absolute">{easedProgress}</h1>
-
       {/* Base paint layer (darker, richer at first) */}
       <div
         className="absolute inset-0"
@@ -42,7 +40,7 @@ export default function PaintDry({ color, noiseSize, progress }: { color: string
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: `linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 65%)`,
+          background: `linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 65%)`,
           mixBlendMode: "screen",
           opacity: glossOpacity(easedProgress),
         }}
@@ -52,13 +50,13 @@ export default function PaintDry({ color, noiseSize, progress }: { color: string
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: `radial-gradient(circle at 35% 25%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.15) 25%, rgba(255,255,255,0) 60%)`,
+          background: `radial-gradient(circle at 35% 25%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.15) 25%, rgba(255,255,255,0) 60%)`,
           mixBlendMode: "soft-light",
           opacity: glossOpacity(easedProgress),
         }}
       />
 
-      {/* Roller streaks */}
+      {/* Roller streaks
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -72,7 +70,7 @@ export default function PaintDry({ color, noiseSize, progress }: { color: string
           mixBlendMode: "overlay",
           opacity: 1 - percentToValue(easedProgress, 0, 1),
         }}
-      />
+      /> */}
 
       {/* Texture layer (fades IN slowly as paint dries) with animated noise */}
       <div
