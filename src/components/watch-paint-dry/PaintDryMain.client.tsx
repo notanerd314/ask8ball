@@ -9,7 +9,6 @@ import FailOverlay from "./FailOverlay.client";
 import WinOverlay from "./WinOverlay.client";
 import PaintDry from "./PaintDry";
 import ProgressIndicator from "./ProgressIndicator.client";
-import StateDebug from "./StateDebug.client";
 
 const bgColors = [
   // Bold & Vibrant
@@ -56,8 +55,6 @@ function PaintDryView() {
       <IntroductionOverlay />
       <FailOverlay />
       <WinOverlay />
-
-      <StateDebug />
 
       <PaintDry color={bgColor} noiseSize={noiseSize} progress={dryProgress} />
     </>

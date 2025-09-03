@@ -1,3 +1,5 @@
+"use client";
+
 import { getAllPersonalities } from "@/utils/eightball/personalities"
 import { useEightBall } from "./EightBallContext.client";
 import { EightBallState } from "@/utils/eightball/types";

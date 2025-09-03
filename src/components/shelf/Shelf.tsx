@@ -7,11 +7,11 @@ export default function Shelf() {
   return (
     <main className="max-w-5xl px-10 mx-auto space-y-5">
       <ShelfSection>
-        <ProjectPreview title="Magic 8 Ball" img="/shelf/thumbnails/8ball.webp" href="/eightball" borderColor="#4F46E5" />
+        <ProjectPreview title="Magic 8 Ball" img="/shelf/thumbnails/eightball.png" href="/eightball" />
         <div className="mr-3" />
         <Boombox />
         <div className="mr-1" />
-        <ProjectPreview title="Watch Paint Dry" img="/shelf/thumbnails/placeholder.png" href="/watch-paint-dry" />
+        <ProjectPreview title="Watch Paint Dry" img="/shelf/thumbnails/watch-paint-dry.png" href="/watch-paint-dry" />
       </ShelfSection>
 
       <ShelfSection>

@@ -3,13 +3,42 @@ import Logo from '@/components/Logo';
 import { Inter } from 'next/font/google'
 
 const font = Inter({ subsets: ['latin'], display: 'swap' });
+const faviconLink = `${process.env.NEXT_PUBLIC_URL!}/eightball/favicon.min.svg`
+const thumbnailLink = `${process.env.NEXT_PUBLIC_URL!}/shelf/thumbnails/eightball.png`
 
 export const metadata = {
   title: 'Ask the 8 Ball',
   description: "The fortune teller you did know you don't need it.",
   keywords: 'fortune, magic 8 ball, eight ball, ai, artifical intelligence',
   icons: {
-    icon: '/favicon.min.svg',
+    icon: faviconLink,
+  },
+  openGraph: {
+    title: 'Ask the 8 Ball',
+    description: "The fortune teller you did know you don't need it.",
+    images: [
+      {
+        url: thumbnailLink,
+        width: 1200,
+        height: 630,
+        alt: 'Ask the 8 Ball',
+      },
+    ],
+    siteName: 'Ask the 8 Ball',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ask the 8 Ball',
+    description: "The fortune teller you did know you don't need it.",
+    images: [
+      {
+        url: thumbnailLink,
+        width: 1200,
+        height: 630,
+        alt: 'Ask the 8 Ball',
+      },
+    ],
   },
 };
 

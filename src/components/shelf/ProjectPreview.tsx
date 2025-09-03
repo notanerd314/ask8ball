@@ -1,14 +1,18 @@
+import Image from "next/image";
+
 export function ProjectPreview(
-  { href, img, title, borderColor }: { href: string, img: string, title: string, borderColor?: string },
+  { href, img, title }: { href: string, img: string, title: string },
 ) {
   return (
     <a href={href} title={title} className="hover:scale-105 active:scale-102 transition-all rounded-3xl max-w-70">
-      <img
+      <Image
         src={img}
         alt={title}
         loading="lazy"
-        className="object-contain h-auto rounded-3xl shadow-2xl"
-        style={{ borderColor, borderWidth: "0.25rem", borderStyle: "solid" }}
+        width={1200}
+        height={630}
+        className="object-contain h-auto rounded-xl shadow-2xl"
+        style={{ borderColor: "rgba(255,255,255,0.5)", borderWidth: "0.2rem", borderStyle: "solid" }}
       />
     </a>
   );

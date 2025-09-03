@@ -34,12 +34,11 @@ async function fetchAIResponse(question: string, systemPrompt: string, temperatu
   });
 
   if (!response.ok) {
-  const errorText = await response.text();
-  console.error("Groq API Error:", errorText);
-  throw new Error("Failed to fetch AI response");
-}
+    const errorText = await response.text();
+    console.error("Groq API Error:", errorText);
+    throw new Error("Failed to fetch AI response");
+  }
 
-  
   const data = await response.json();
   return data.choices?.[0]?.message?.content;
 }
