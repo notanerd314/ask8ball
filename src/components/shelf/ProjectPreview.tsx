@@ -4,7 +4,7 @@ export function ProjectPreview(
   { href, img, title }: { href: string, img: string, title: string },
 ) {
   return (
-    <a href={href} title={title} className="hover:scale-105 active:scale-102 transition-all rounded-3xl max-w-70">
+    <a href={href} title={title} className="hover:scale-105 active:scale-102 transition-all rounded-xl max-w-70">
       <Image
         src={img}
         alt={title}

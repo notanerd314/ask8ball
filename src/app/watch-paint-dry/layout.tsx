@@ -40,7 +40,8 @@ export const metadata = {
         alt: 'Watch Paint Dry',
       },
     ],
-  }
+  },
+  htmlLimited: true,
 };
 
 export const viewport = {

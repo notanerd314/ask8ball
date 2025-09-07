@@ -17,6 +17,8 @@ export default function Shelf() {
       <ShelfSection>
         <div className="ml-15" />
         <Clicker />
+        <div className="ml-20" />
+        <ProjectPreview title="Fact or False" img="/shelf/thumbnails/placeholder.png" href="/fact-or-false" />
       </ShelfSection>
     </main>
   )

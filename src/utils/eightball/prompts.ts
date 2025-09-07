@@ -1,5 +1,5 @@
 import { AnswerPrompt, PersonalityConfig, PersonalityExample } from './types';
-import { getRandomString, getRandomItem } from '@/rng';
+import { getRandomItem } from '@/rng';
 
 function getRandomExamples(examples: PersonalityExample[], count: number): PersonalityExample[] {
   const shuffled = [...examples].sort(() => Math.random() - 0.5);
@@ -7,8 +7,6 @@ function getRandomExamples(examples: PersonalityExample[], count: number): Perso
 }
 
 export default function getSystemPrompt(answerPrompt: AnswerPrompt, personality: PersonalityConfig) {
-  const entropy = getRandomString(15);
-
   const toneHints = [
     "Be bold, weird, and punchy.",
     "Stay chaotic, sharp, and change it up.",
@@ -24,8 +22,6 @@ export default function getSystemPrompt(answerPrompt: AnswerPrompt, personality:
     : '';
 
   return `
-ENTROPY ${entropy}
-
 You are a Magic 8-Ball with the personality: **${personality.name}**
 ${personality.prompt}
 
@@ -36,7 +32,6 @@ Rules:
 - Max 60 characters.
 - Use simple language, no markdown (A2 level).
 - Be surprising; avoid safe answers.
-- Don’t promote anything illegal or unsafe.
 
 ${examplesText}
 `.trim();
