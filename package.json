@@ -1,0 +1,27 @@
+{
+  "name": "notanerd",
+  "private": true,
+  "devDependencies": {
+    "turbo": "latest",
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "postcss": "^8",
+    "autoprefixer": "^10",
+    "tailwindcss": "^4",
+    "@tailwindcss/postcss": "^4",
+    "@biomejs/biome": "2.2.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "packageManager": "npm@11.5.2",
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test"
+  }
+}
