@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+html {
+  font-size: clamp(0px, calc(0.5vw + 0.8vh), 20px);
+}
+
+body {
+  color: white;
+}
+
+h1 {
+  @apply text-5xl font-bold;
+}
+
+input, textarea {
+  @apply p-4 text-white border rounded-2xl bg-white/20 border-white/30 placeholder-white/60;
+}
+
+input:focus, textarea:focus {
+  @apply outline-none border-white/40 ring-2 ring-white/20;
+}
+
+button {
+  @apply py-3.5 px-4 rounded-2xl cursor-pointer;
+}

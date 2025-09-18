@@ -9,6 +9,14 @@
       "cache": false,
       "persistent": true
     },
+    "dev:shelf": {
+      "dependsOn": [],
+      "cache": false
+    },
+    "dev:magic-8-ball": {
+      "dependsOn": ["dev:shelf"],
+      "cache": false
+    },
     "lint": {},
     "test": {}
   }

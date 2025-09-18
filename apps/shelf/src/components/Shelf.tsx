@@ -7,7 +7,7 @@ export default function Shelf() {
   return (
     <main className="max-w-5xl px-10 mx-auto space-y-5">
       <ShelfSection>
-        <ProjectPreview title="Magic 8 Ball" img="/thumbnails/eightball.png" href="/eightball" />
+        <ProjectPreview title="Magic 8 Ball" img="/thumbnails/eightball.png" href="/magic-8-ball" />
         <div className="mr-3" />
         <Boombox />
         <div className="mr-1" />
