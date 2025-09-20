@@ -6,7 +6,41 @@ import { useSound } from 'use-sound';
 /**
  * Possible states of the game.
  */
-type GameState = "notstarted" | "inprogress" | "failed" | "completed";
+type GameState = "notstarted" | "inprogress" | "failed" | "completed" | "paintselection";
+
+interface PaintType {
+  name: string;
+  minDuration: number;
+  maxDuration: number;
+  imageUrl: string;
+}
+
+export const PaintTypes: { [key: string]: PaintType } = {
+  "latex": {
+    name: "Latex",
+    minDuration: 60 * 30,
+    maxDuration: 60 * 60,
+    imageUrl: "/paintbg/latexpaint.webp"
+  },
+  "acrylic": {
+    name: "Acrylic",
+    minDuration: 60 * 15,
+    maxDuration: 60 * 30,
+    imageUrl: "/paintbg/acrylicpaint.webp"
+  },
+  "oil": {
+    name: "Oil",
+    minDuration: 60 * 60,
+    maxDuration: 60 * 100,
+    imageUrl: "/paintbg/oilpaint.jpeg"
+  },
+  "enamel": {
+    name: "Enamel",
+    minDuration: 60 * 120,
+    maxDuration: 60 * 180,
+    imageUrl: "/paintbg/enamelpaint.webp"
+  }
+}
 
 /**
  * The context for the game state.
@@ -46,8 +80,16 @@ const PaintDryContext = createContext<{
   /**
    * Randomizes the total number of seconds the paint should take to dry.
    */
-  randomizeTotalSeconds: () => void;
-  roundedProgress: number
+  randomizeTotalSeconds: (min: number, max: number) => void;
+  /**
+   * The current selected paint type.
+   */
+  paintType: string | null;
+  /**
+   * Sets the current selected paint type.
+   * @param value The new selected paint type.
+   */
+  setPaintType: (value: string | null) => void;
 }>({
   gameState: "notstarted",
   setGameState: () => { },
@@ -57,7 +99,8 @@ const PaintDryContext = createContext<{
   setTotalSeconds: () => { },
   timeElapsed: 0,
   randomizeTotalSeconds: () => { },
-  roundedProgress: 0
+  paintType: "latex",
+  setPaintType: () => { },
 });
 
 /**
@@ -68,6 +111,7 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
   const [totalSeconds, setTotalSeconds] = useState(0);
   const [gameState, setGameState] = useState<GameState>("notstarted");
   const [dryProgress, setDryProgress] = useState(0);
+  const [paintType, setPaintType] = useState<string | null>(null);
   const intervalRef = useRef<number | null>(null);
 
   const [playClockTick] = useSound("/clockticking.mp3", { volume: 0.3, interrupt: false });
@@ -77,12 +121,11 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
   /**
    * Randomizes the total number of seconds the paint should take to dry.
    */
-  function randomizeTotalSeconds() {
-    setTotalSeconds(getRandomInt(60 * 30, 60 * 50));
+  function randomizeTotalSeconds(min: number = 60 * 30, max: number = 60 * 50) {
+    setTotalSeconds(getRandomInt(min, max));
   }
 
   const timeElapsed = Math.floor((dryProgress / 100) * totalSeconds);
-  const roundedProgress = Math.round(dryProgress * 10) / 10;
 
   /**
    * Clears the progress interval.
@@ -153,15 +196,13 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
 
   useEffect(() => {
     if (gameState === "failed") {
-      document.title = `You failed! - ${roundedProgress}%`
+      document.title = `You failed!`
     } else if (gameState === "completed") {
       document.title = "You won!"
-    } else if (gameState === "inprogress") {
-      document.title = `Watch Paint Dry - ${roundedProgress}%`
     } else {
       document.title = "Watch Paint Dry"
     }
-  }, [gameState, roundedProgress]);
+  }, [gameState]);
 
   return (
     <PaintDryContext.Provider
@@ -174,7 +215,8 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
         setTotalSeconds,
         timeElapsed,
         randomizeTotalSeconds,
-        roundedProgress
+        paintType,
+        setPaintType
       }}
     >
       {children}

@@ -1,0 +1,25 @@
+'use client';
+
+import { usePaintDry } from "./PaintDryContext.client";
+
+export default function ProgressIndicator() {
+  const { timeElapsed, gameState } = usePaintDry();
+
+  function convertHHMMSS(seconds: number) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+    return `${hours.toString().padStart(2, "0")}:${minutes
+      .toString()
+      .padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
+  }
+
+  return (
+    <p
+      className="absolute z-50 p-3 md:text-[12rem] text-[6rem] font-bold text-black/30 rounded-2xl top-1/2 left-1/2 -translate-1/2"
+      hidden={gameState !== "inprogress"}
+    >
+      {convertHHMMSS(timeElapsed)}
+    </p>
+  );
+}

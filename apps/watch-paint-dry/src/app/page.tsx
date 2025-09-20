@@ -12,7 +12,7 @@ export default function WatchPaintDry() {
 
       <PaintDryMain />
       <footer className="absolute bottom-2 left-1/2 -translate-x-1/2">
-        <p className="text-center text-white/50 text-sm">
+        <p className="text-sm text-center text-white/50">
           Made with 🖌 by notanerd
         </p>
       </footer>

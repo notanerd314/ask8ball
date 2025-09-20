@@ -4,11 +4,13 @@ import { getRandomInt, getRandomItem } from "@notanerd/rng";
 import { useEffect, useState } from "react";
 import { usePaintDry, PaintDryProvider } from "./PaintDryContext.client";
 
-import IntroductionOverlay from "./IntroductionOverlay.client";
-import FailOverlay from "./FailOverlay.client";
-import WinOverlay from "./WinOverlay.client";
+import IntroductionModal from "./IntroductionModal.client";
+import FailModal from "./FailModal.client";
+import WinModal from "./WinModal.client";
 import PaintDry from "./PaintDry";
-import ProgressIndicator from "./ProgressIndicator.client";
+import ProgressIndicator from "./TimeProgressIndicator";
+import PaintSelectionModal from "./PaintSelectionModal.client";
+import StateDebug from "./StateDebug.client";
 
 const bgColors = [
   // Bold & Vibrant
@@ -26,13 +28,6 @@ const bgColors = [
   "#DAA520", // Goldenrod
   "#BC986A", // Khaki Brown
   "#A2A392", // Sage Gray-Green
-
-  // Dark & Rich
-  "#2F4858", // Dark Slate Blue
-  "#1B1B1E", // Charcoal Black
-  "#3E2723", // Espresso Brown
-  "#4A4E69", // Twilight Purple
-  "#003366", // Navy Blue
 ];
 
 
@@ -52,9 +47,12 @@ function PaintDryView() {
     <>
       <ProgressIndicator />
 
-      <IntroductionOverlay />
-      <FailOverlay />
-      <WinOverlay />
+      <IntroductionModal />
+      <PaintSelectionModal />
+      <FailModal />
+      <WinModal />
+
+      <StateDebug />
 
       <PaintDry color={bgColor} noiseSize={noiseSize} progress={dryProgress} />
     </>

@@ -14,14 +14,14 @@ export default function StateDebug() {
   const remaining = Math.max(0, totalSeconds - timeElapsed);
 
   return (
-    <div className="fixed bottom-6 right-6 z-100 bg-black/70 p-3 rounded-2xl text-sm space-y-1 text-white shadow-lg" draggable={true}>
+    <div className="fixed p-3 text-sm text-white shadow-lg bottom-6 right-6 z-100 bg-black/70 rounded-2xl space-y-1" draggable={true}>
       <p className="text-lg font-bold">DEBUG</p>
       
-      <p className="px-2 rounded-full bg-green-600">
+      <p className="px-2 bg-green-600 rounded-full">
         State: {gameState}
       </p>
 
-      <p className="px-2 rounded-full bg-yellow-600">
+      <p className="px-2 bg-yellow-600 rounded-full">
         Progress: {dryProgress}%
       </p>
 
@@ -38,22 +38,22 @@ export default function StateDebug() {
       </p>
 
       {/* Dev controls */}
-      <div className="flex space-x-2 pt-2">
+      <div className="flex pt-2 space-x-2">
         <button 
           onClick={() => setGameState("notstarted")}
-          className="bg-blue-600 px-2 py-1 rounded text-xs"
+          className="px-2 py-1 text-xs bg-blue-600 rounded"
         >
           Reset
         </button>
         <button 
           onClick={() => setGameState("failed")}
-          className="bg-red-600 px-2 py-1 rounded text-xs"
+          className="px-2 py-1 text-xs bg-red-600 rounded"
         >
           Fail
         </button>
         <button 
           onClick={() => setGameState("completed")}
-          className="bg-green-600 px-2 py-1 rounded text-xs"
+          className="px-2 py-1 text-xs bg-green-600 rounded"
         >
           Complete
         </button>

@@ -14,8 +14,8 @@ export function Modal({
   isOpen,
   onClose,
   children,
-  backdropClassName = "bg-black/50",
-  modalClassName = "bg-white rounded-xl p-6 max-w-lg w-[90%] shadow-lg relative",
+  backdropClassName = "",
+  modalClassName = "",
   ...props
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);

@@ -11,7 +11,7 @@ export function ProjectPreview(
         loading="lazy"
         width={1200}
         height={630}
-        className="object-contain h-auto rounded-xl shadow-2xl"
+        className="object-contain h-auto shadow-2xl rounded-xl"
         style={{ borderColor: "rgba(255,255,255,0.5)", borderWidth: "0.2rem", borderStyle: "solid" }}
       />
     </a>
