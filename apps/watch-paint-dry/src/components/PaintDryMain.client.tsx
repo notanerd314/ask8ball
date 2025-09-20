@@ -10,7 +10,6 @@ import WinModal from "./WinModal.client";
 import PaintDry from "./PaintDry";
 import ProgressIndicator from "./TimeProgressIndicator";
 import PaintSelectionModal from "./PaintSelectionModal.client";
-import StateDebug from "./StateDebug.client";
 
 const bgColors = [
   // Bold & Vibrant
@@ -51,8 +50,6 @@ function PaintDryView() {
       <PaintSelectionModal />
       <FailModal />
       <WinModal />
-
-      <StateDebug />
 
       <PaintDry color={bgColor} noiseSize={noiseSize} progress={dryProgress} />
     </>

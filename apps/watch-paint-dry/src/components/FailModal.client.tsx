@@ -25,7 +25,7 @@ export default function FailModal() {
       backdropClassName="bg-black/60 cursor-pointer"
       onClick={() => restartGame()}
     >
-      <h1 className={"text-[4.5rem] text-red-500/60 leading-none py-9 bg-[linear-gradient(to_bottom,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_10%,rgba(0,0,0,0.7)_20%,rgba(0,0,0,0.7)_80%,rgba(0,0,0,0)_90%,rgba(0,0,0,0)_100%)] animate-[fadeIn_2s_ease-out_forwards] " + font.className}>YOU FAILED</h1>
+      <h1 className={"sm:text-[5rem] text-[3.5rem] text-red-500/60 leading-none py-9 bg-[linear-gradient(to_bottom,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_10%,rgba(0,0,0,0.7)_20%,rgba(0,0,0,0.7)_80%,rgba(0,0,0,0)_90%,rgba(0,0,0,0)_100%)] animate-[fadeIn_2s_ease-out_forwards] " + font.className}>YOU FAILED</h1>
 
       <p className="font-bold leading-relaxed text-xl text-white/70">
         Failed when paint is {dryProgress.toFixed(1)}% dry, wasted {timeElapsed} seconds.

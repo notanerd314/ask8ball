@@ -28,7 +28,7 @@ export default function WinModal() {
     <Modal
       isOpen={gameState === "completed"}
       onClose={() => { }}
-      modalClassName="max-w-2xl text-white text-center absolute -translate-1/2 top-1/2 left-1/2"
+      modalClassName="max-w-4xl w-full px-5 text-white text-center absolute -translate-1/2 top-1/2 left-1/2"
       backdropClassName="bg-black/70"
     >
       <img

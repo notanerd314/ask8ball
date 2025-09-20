@@ -35,7 +35,7 @@ export function PaintTypeOption({ paintType }: { paintType: string }) {
       {/* text */}
       <div className="relative flex flex-col items-center justify-center h-full text-white">
         <h2
-          className="text-5xl font-bold"
+          className="sm:text-5xl text-4xl font-bold"
         >
           {paintTypeData.name}
         </h2>
@@ -57,11 +57,11 @@ export default function PaintSelectionModal() {
       `}
       backdropClassName="bg-black/70"
     >
-      <p className="mb-2 text-6xl font-bold">Choose your paint wisely.</p>
+      <p className="mb-2 text-5xl font-bold">Choose your paint wisely.</p>
       <p className="mb-8 text-lg opacity-80 italic">
         i won't tell you the details because screw you :)))
       </p>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div className="grid gap-6 grid-cols-2">
         {Object.keys(PaintTypes).map((paintType) => (
           <PaintTypeOption key={paintType} paintType={paintType} />
         ))}
