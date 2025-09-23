@@ -3,9 +3,7 @@ import './globals.css'
 
 const font = Comic_Neue({ subsets: ['latin'], display: 'swap', weight: ['400', '700'] })
 const thumbnailLink = `${process.env.NEXT_PUBLIC_URL!}/shelf/thumbnails/watch-paint-dry.png`
-const faviconLink = `${process.env.NEXT_PUBLIC_URL!}/watch-paint-dry/favicon.png`;
-
-console.log(thumbnailLink);
+const faviconLink = `/favicon.png`;
 
 export const metadata = {
   title: "Watch Paint Dry",

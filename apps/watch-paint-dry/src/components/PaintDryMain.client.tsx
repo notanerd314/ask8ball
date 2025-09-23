@@ -9,7 +9,6 @@ import FailModal from "./FailModal.client";
 import WinModal from "./WinModal.client";
 import PaintDry from "./PaintDry";
 import ProgressIndicator from "./TimeProgressIndicator";
-import PaintSelectionModal from "./PaintSelectionModal.client";
 
 const bgColors = [
   // Bold & Vibrant
@@ -47,7 +46,6 @@ function PaintDryView() {
       <ProgressIndicator />
 
       <IntroductionModal />
-      <PaintSelectionModal />
       <FailModal />
       <WinModal />
 

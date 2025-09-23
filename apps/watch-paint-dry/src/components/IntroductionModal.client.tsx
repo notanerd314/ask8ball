@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function IntroductionModal() {
-  const { gameState, setGameState } = usePaintDry();
+  const { gameState, setGameState, randomizeTotalSeconds } = usePaintDry();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -19,7 +19,8 @@ export default function IntroductionModal() {
   }, [gameState]);
 
   function goToPaintSelection() {
-    setGameState("paintselection");
+    randomizeTotalSeconds(60 * 20, 60 * 60);
+    setGameState("inprogress");
   }
 
   return (

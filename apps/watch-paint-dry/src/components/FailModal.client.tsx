@@ -8,13 +8,12 @@ import { Cinzel } from "next/font/google";
 const font = Cinzel({ subsets: ["latin"], display: "swap", weight: "500" });
 
 export default function FailModal() {
-  const { gameState, dryProgress, timeElapsed, setGameState, setTotalSeconds, setDryProgress, setPaintType } = usePaintDry();
+  const { gameState, dryProgress, timeElapsed, setGameState, setTotalSeconds, setDryProgress } = usePaintDry();
 
   function restartGame() {
     setDryProgress(0);
-    setPaintType(null);
     setTotalSeconds(0);
-    setGameState("paintselection");
+    setGameState("notstarted");
   }
 
   return (

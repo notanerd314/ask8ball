@@ -6,7 +6,7 @@ import { useSound } from 'use-sound';
 /**
  * Possible states of the game.
  */
-type GameState = "notstarted" | "inprogress" | "failed" | "completed" | "paintselection";
+type GameState = "notstarted" | "inprogress" | "failed" | "completed";
 
 interface PaintType {
   name: string;
@@ -81,15 +81,6 @@ const PaintDryContext = createContext<{
    * Randomizes the total number of seconds the paint should take to dry.
    */
   randomizeTotalSeconds: (min: number, max: number) => void;
-  /**
-   * The current selected paint type.
-   */
-  paintType: string | null;
-  /**
-   * Sets the current selected paint type.
-   * @param value The new selected paint type.
-   */
-  setPaintType: (value: string | null) => void;
 }>({
   gameState: "notstarted",
   setGameState: () => { },
@@ -99,8 +90,6 @@ const PaintDryContext = createContext<{
   setTotalSeconds: () => { },
   timeElapsed: 0,
   randomizeTotalSeconds: () => { },
-  paintType: "latex",
-  setPaintType: () => { },
 });
 
 /**
@@ -111,7 +100,6 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
   const [totalSeconds, setTotalSeconds] = useState(0);
   const [gameState, setGameState] = useState<GameState>("notstarted");
   const [dryProgress, setDryProgress] = useState(0);
-  const [paintType, setPaintType] = useState<string | null>(null);
   const intervalRef = useRef<number | null>(null);
 
   const [playClockTick] = useSound("/clockticking.mp3", { volume: 0.3, interrupt: false });
@@ -121,7 +109,7 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
   /**
    * Randomizes the total number of seconds the paint should take to dry.
    */
-  function randomizeTotalSeconds(min: number = 60 * 30, max: number = 60 * 50) {
+  function randomizeTotalSeconds(min: number, max: number) {
     setTotalSeconds(getRandomInt(min, max));
   }
 
@@ -183,8 +171,6 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
       setGameState((prev) => (prev === "inprogress" ? "failed" : prev));
     }
 
-    randomizeTotalSeconds();
-
     window.addEventListener("blur", handleFailure);
     window.addEventListener("visibilitychange", handleFailure);
 
@@ -214,9 +200,7 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
         totalSeconds,
         setTotalSeconds,
         timeElapsed,
-        randomizeTotalSeconds,
-        paintType,
-        setPaintType
+        randomizeTotalSeconds
       }}
     >
       {children}

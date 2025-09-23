@@ -11,8 +11,16 @@ export default function WatchPaintDry() {
       </nav>
 
       <PaintDryMain />
+
       <footer className="absolute bottom-2 left-1/2 -translate-x-1/2">
-        <p className="text-sm text-center text-white/50">
+        <p className="text-xl italic font-bold text-center text-white"
+          style={{
+            textShadow: "1px 0px 0px #000000"
+          }}
+        >
+          You have to wait for the paint to fully touch dry in order to win!
+        </p>
+        <p className="text-md text-center text-white/50">
           Made with 🖌 by notanerd
         </p>
       </footer>

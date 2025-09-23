@@ -18,11 +18,13 @@ export default function ProgressIndicator() {
   }
 
   return (
-    <p
-      className={`absolute z-50 p-3 md:text-[12rem] text-[6rem] tracking-[-0.075em] font-bold text-black/30 rounded-2xl top-1/2 left-1/2 -translate-1/2 ${font.className}`}
-      hidden={gameState !== "inprogress"}
-    >
-      {convertHHMMSS(timeElapsed)}
-    </p>
+    <>
+      <p
+        className={`absolute z-50 p-3 md:text-[12rem] text-[6rem] tracking-[-0.075em] font-bold text-black/30 top-1/2 left-1/2 -translate-1/2 ${font.className}`}
+        hidden={gameState !== "inprogress"}
+      >
+        {convertHHMMSS(timeElapsed)}
+      </p>
+    </>
   );
 }
