@@ -17,7 +17,7 @@
     "apps/*",
     "packages/*"
   ],
-  "packageManager": "pnpm@10.17.0",
+  "packageManager": "pnpm@10.17.1",
   "scripts": {
     "dev": "turbo run dev --parallel",
     "dev:shelf": "cd apps/shelf && next dev",
