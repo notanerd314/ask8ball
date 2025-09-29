@@ -2,23 +2,12 @@
 
 import { Modal } from "@notanerd/components";
 import { usePaintDry } from "./PaintDryContext.client";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function IntroductionModal() {
   const { gameState, setGameState, randomizeTotalSeconds } = usePaintDry();
-  const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    if (gameState === "notstarted") {
-      const timeout = setTimeout(() => setShow(true), 50); // slight delay to trigger animation
-      return () => clearTimeout(timeout);
-    } else {
-      setShow(false);
-    }
-  }, [gameState]);
-
-  function goToPaintSelection() {
+  function startGame() {
     randomizeTotalSeconds(60 * 20, 60 * 60);
     setGameState("inprogress");
   }
@@ -28,28 +17,33 @@ export default function IntroductionModal() {
       isOpen={gameState === "notstarted"}
       onClose={() => {}}
       modalClassName={`
-        max-w-4xl w-full text-white text-center cursor-pointer px-5 absolute -translate-1/2 top-1/2 left-1/2
-        transition-all duration-500 ease-out
-        ${show ? "opacity-100 scale-100" : "opacity-0 scale-90"}
+        max-w-4xl z-50 w-full text-white text-center px-5 absolute -translate-1/2 top-1/2 left-1/2
       `}
-      backdropClassName="bg-black/70 cursor-pointer"
-      onClick={goToPaintSelection}
+      backdropClassName="bg-black/70 backdrop-blur-sm"
     >
-      <Image src="/favicon.png" alt="Logo" className="mx-auto w-50" width={500} height={500} />
-      <h1 className="text-5xl font-bold">Watch Paint Dry</h1>
-
+      <Image src="/logo.webp" alt="Logo" className="mx-auto w-220" width={1734} height={372} />
+      
+      <h2 className="font-bold text-3xl">Rules:</h2>
       <p className="mt-4 text-xl leading-relaxed">
         Your goal is to do nothing but wait until the paint is fully dry.
       </p>
-      <p className="text-xl leading-relaxed text-red-300">
+      <p className="text-red-300 text-xl leading-relaxed">
         <strong>
           Leaving the page or putting your device to sleep will result in failure.
         </strong>
       </p>
 
-      <small className="text-white/50 text-md">
-        (Click anywhere to continue)
-      </small>
+      <button
+        className="bg-green-500 mt-12 px-16 py-4 border-3 border-green-600 rounded-2xl font-bold text-5xl hover:rotate-3 active:-rotate-2 hover:scale-110 active:scale-95 transition-all cursor-pointer"
+        type="button"
+        disabled={gameState !== "notstarted"}
+        style={{
+          textShadow: "3px 3px 0px #000000",
+        }}
+        onClick={startGame}
+      >
+        START!
+      </button>
     </Modal>
   );
 }

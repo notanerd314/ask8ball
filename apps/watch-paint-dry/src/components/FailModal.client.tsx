@@ -21,7 +21,7 @@ export default function FailModal() {
       isOpen={gameState === "failed"}
       onClose={() => { }}
       modalClassName="text-white text-center w-full absolute -translate-1/2 top-1/2 left-1/2"
-      backdropClassName="bg-black/60 cursor-pointer"
+      backdropClassName="bg-black/60 cursor-pointer backdrop-blur-sm"
       onClick={() => restartGame()}
     >
       <h1 className={"sm:text-[5rem] text-[3.5rem] text-red-500/60 leading-none py-9 bg-[linear-gradient(to_bottom,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_10%,rgba(0,0,0,0.7)_20%,rgba(0,0,0,0.7)_80%,rgba(0,0,0,0)_90%,rgba(0,0,0,0)_100%)] animate-[fadeIn_2s_ease-out_forwards] " + font.className}>YOU FAILED</h1>

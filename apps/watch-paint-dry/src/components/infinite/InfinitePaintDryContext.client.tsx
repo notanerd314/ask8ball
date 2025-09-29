@@ -1,17 +1,17 @@
 "use client";
-import { getRandomInt } from '@notanerd/rng';
+
 import { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { useSound } from 'use-sound';
 
 /**
  * Possible states of the game.
  */
-type GameState = "notstarted" | "inprogress" | "failed" | "completed";
+type GameState = "notstarted" | "inprogress" | "failed";
 
 /**
  * The context for the game state.
  */
-const PaintDryContext = createContext<{
+const InfinitePaintDryContext = createContext<{
   /**
    * The current state of the game.
    */
@@ -22,64 +22,31 @@ const PaintDryContext = createContext<{
    */
   setGameState: (value: GameState) => void;
   /**
-   * The current progress of the paint drying.
-   */
-  dryProgress: number;
-  /**
-   * Sets the current progress of the paint drying.
-   * @param value The new progress of the paint drying.
-   */
-  setDryProgress: (value: number) => void;
-  /**
-   * The total number of seconds the paint should take to dry.
-   */
-  totalSeconds: number;
-  /**
-   * Sets the total number of seconds the paint should take to dry.
-   * @param value The new total number of seconds the paint should take to dry.
-   */
-  setTotalSeconds: (value: number) => void;
-  /**
    * The number of seconds that have elapsed since the game started.
    */
   timeElapsed: number;
   /**
-   * Randomizes the total number of seconds the paint should take to dry.
+   * Sets the number of seconds that have elapsed since the game started.
    */
-  randomizeTotalSeconds: (min: number, max: number) => void;
+  setTimeElapsed: (value: number) => void;
 }>({
   gameState: "notstarted",
   setGameState: () => { },
-  dryProgress: 0,
-  setDryProgress: () => { },
-  totalSeconds: 0,
-  setTotalSeconds: () => { },
   timeElapsed: 0,
-  randomizeTotalSeconds: () => { },
+  setTimeElapsed: () => { },
 });
 
 /**
  * The provider for the game state context.
  * @param children The children to render.
  */
-export const PaintDryProvider = ({ children }: { children: React.ReactNode }) => {
-  const [totalSeconds, setTotalSeconds] = useState(0);
+export const InfinitePaintDryProvider = ({ children }: { children: React.ReactNode }) => {
   const [gameState, setGameState] = useState<GameState>("notstarted");
-  const [dryProgress, setDryProgress] = useState(0);
+  const [timeElapsed, setTimeElapsed] = useState(0);
   const intervalRef = useRef<number | null>(null);
 
   const [playClockTick] = useSound("/clockticking.mp3", { volume: 0.3, interrupt: false });
   const [playFail] = useSound("/fail.mp3", { volume: 0.3, interrupt: true });
-  const [playWin] = useSound("/win.mp3", { volume: 1, interrupt: true });
-
-  /**
-   * Randomizes the total number of seconds the paint should take to dry.
-   */
-  function randomizeTotalSeconds(min: number, max: number) {
-    setTotalSeconds(getRandomInt(min, max));
-  }
-
-  const timeElapsed = Math.floor((dryProgress / 100) * totalSeconds);
 
   /**
    * Clears the progress interval.
@@ -96,25 +63,15 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
    */
   useEffect(() => {
     clearProgressInterval();
-
-    if (gameState !== "inprogress" || totalSeconds <= 0) return;
-
-    const startRef = performance.now();
+    if (gameState !== "inprogress") return;
 
     intervalRef.current = window.setInterval(() => {
-      const elapsed = performance.now() - startRef;
-      const pct = Math.min(100, (elapsed / (totalSeconds * 1000)) * 100);
-      setDryProgress(pct);
+      setTimeElapsed((prev) => prev + 1);
       playClockTick();
-
-      if (pct >= 100) {
-        clearProgressInterval();
-        setGameState("completed");
-      }
     }, 1000);
 
     return clearProgressInterval;
-  }, [gameState, totalSeconds]);
+  }, [gameState]);
 
 
   /**
@@ -124,8 +81,6 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
     if (gameState === "failed") {
       playFail();
       clearProgressInterval();
-    } else if (gameState === "completed") {
-      playWin();
     }
   }, [gameState]);
 
@@ -148,34 +103,28 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
 
   useEffect(() => {
     if (gameState === "failed") {
-      document.title = `You failed!`
-    } else if (gameState === "completed") {
-      document.title = "You won!"
+      document.title = `You failed at ${timeElapsed} seconds!`;
     } else {
-      document.title = "Watch Paint Dry"
+      document.title = "[INFINITE] Watch Paint Dry"
     }
   }, [gameState]);
 
   return (
-    <PaintDryContext.Provider
+    <InfinitePaintDryContext.Provider
       value={{
         gameState,
         setGameState,
-        dryProgress,
-        setDryProgress,
-        totalSeconds,
-        setTotalSeconds,
         timeElapsed,
-        randomizeTotalSeconds
+        setTimeElapsed
       }}
     >
       {children}
-    </PaintDryContext.Provider>
+    </InfinitePaintDryContext.Provider>
   );
 };
 
 /**
  * Hook to get the current game state.
  */
-export const usePaintDry = () => useContext(PaintDryContext);
+export const useInfinitePaintDry = () => useContext(InfinitePaintDryContext);
 

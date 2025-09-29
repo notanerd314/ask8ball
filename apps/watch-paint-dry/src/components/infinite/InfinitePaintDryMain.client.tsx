@@ -2,13 +2,12 @@
 
 import { getRandomInt, getRandomItem } from "@notanerd/rng";
 import { useEffect, useState } from "react";
-import { usePaintDry, PaintDryProvider } from "./PaintDryContext.client";
+import { useInfinitePaintDry, InfinitePaintDryProvider } from "./InfinitePaintDryContext.client";
 
-import IntroductionModal from "./IntroductionModal.client";
-import FailModal from "./FailModal.client";
-import WinModal from "./WinModal.client";
-import PaintDry from "./PaintDry";
-import ProgressIndicator from "./TimeProgressIndicator";
+import IntroductionScene from "./IntroductionScene.client";
+import TimeProgressIndicator from "../TimeProgressIndicator";
+import PaintDry from "@/components/PaintDry";
+import FailScene from "./FailScene.client";
 
 const bgColors = [
   // Bold & Vibrant
@@ -29,41 +28,39 @@ const bgColors = [
 ];
 
 
-function PaintDryView() {
+function InfinitePaintDryView() {
   const [bgColor, setBgColor] = useState("");
   const [noiseSize, setNoiseSize] = useState(0);
 
-  const { dryProgress, totalSeconds, timeElapsed, gameState } = usePaintDry();
+  const { timeElapsed, gameState } = useInfinitePaintDry();
 
   useEffect(() => {
     setBgColor(getRandomItem(bgColors));
+    setNoiseSize(getRandomInt(500, 650));
   }, [])
 
   useEffect(() => {
-    if (totalSeconds === 0) return;
+    if (gameState !== "inprogress") return;
     setBgColor(getRandomItem(bgColors));
     setNoiseSize(getRandomInt(500, 650));
-  }, [totalSeconds]);
+  }, [gameState]);
 
   return (
     <>
-      <ProgressIndicator timeElapsed={timeElapsed} />
-
-      <IntroductionModal />
-      <FailModal />
-      <WinModal />
-
-      <PaintDry color={bgColor} noiseSize={noiseSize} progress={dryProgress} />
+      <IntroductionScene />
+      <FailScene />
+      <TimeProgressIndicator timeElapsed={timeElapsed} />
+      <PaintDry color={bgColor} noiseSize={noiseSize} progress={40} />
     </>
   );
 }
 
-export default function PaintDryMain() {
+export default function InfinitePaintDryMain() {
   return (
     <main>
-      <PaintDryProvider>
-        <PaintDryView />
-      </PaintDryProvider>
+      <InfinitePaintDryProvider>
+        <InfinitePaintDryView />
+      </InfinitePaintDryProvider>
     </main>
   );
 }

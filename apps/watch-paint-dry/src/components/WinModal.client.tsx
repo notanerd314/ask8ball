@@ -29,7 +29,7 @@ export default function WinModal() {
       isOpen={gameState === "completed"}
       onClose={() => { }}
       modalClassName="max-w-4xl w-full px-5 text-white text-center absolute -translate-1/2 top-1/2 left-1/2"
-      backdropClassName="bg-black/70"
+      backdropClassName="bg-black/70 backdrop-blur-sm"
     >
       <img
         src="/trophy.png"
