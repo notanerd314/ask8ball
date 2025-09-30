@@ -1,7 +1,9 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, useRef } from 'react';
-import { useSound } from 'use-sound';
+import { createContext, useCallback, useContext, useState, useEffect, useRef } from 'react';
+import { useLocalStorage } from '@notanerd/hooks';
+import useSound from 'use-sound';
+import { useVolume } from '../VolumeContext';
 
 /**
  * Possible states of the game.
@@ -29,11 +31,22 @@ const InfinitePaintDryContext = createContext<{
    * Sets the number of seconds that have elapsed since the game started.
    */
   setTimeElapsed: (value: number) => void;
+  /**
+   * The current highscore of the game.
+   */
+  highscore: number | undefined;
+  /**
+   * Sets the current highscore of the game.
+   * @param value The new highscore of the game.
+   */
+  setHighscore: (value: number) => void;
 }>({
   gameState: "notstarted",
   setGameState: () => { },
   timeElapsed: 0,
   setTimeElapsed: () => { },
+  highscore: 0,
+  setHighscore: () => { },
 });
 
 /**
@@ -41,22 +54,27 @@ const InfinitePaintDryContext = createContext<{
  * @param children The children to render.
  */
 export const InfinitePaintDryProvider = ({ children }: { children: React.ReactNode }) => {
+  const { volume } = useVolume();
   const [gameState, setGameState] = useState<GameState>("notstarted");
   const [timeElapsed, setTimeElapsed] = useState(0);
+  const [highscore, setHighscore] = useLocalStorage("highscore", 0);
   const intervalRef = useRef<number | null>(null);
 
-  const [playClockTick] = useSound("/clockticking.mp3", { volume: 0.3, interrupt: false });
-  const [playFail] = useSound("/fail.mp3", { volume: 0.3, interrupt: true });
+  const safeVolume = typeof volume === "number" && isFinite(volume) ? volume : 1;
+
+  const [playClockTick] = useSound("/clockticking.mp3", { volume: 0.3 * safeVolume, interrupt: false });
+  const [playFail] = useSound("/fail.mp3", { volume: 0.3 * safeVolume, interrupt: true });
+
 
   /**
    * Clears the progress interval.
    */
-  const clearProgressInterval = () => {
+  const clearProgressInterval = useCallback(() => {
     if (intervalRef.current !== null) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
-  };
+  }, []);
 
   /**
    * Handles the game state change effect: clears the progress interval.
@@ -73,7 +91,6 @@ export const InfinitePaintDryProvider = ({ children }: { children: React.ReactNo
     return clearProgressInterval;
   }, [gameState]);
 
-
   /**
    * Handles the game state change effect: plays sound effects.
    */
@@ -81,6 +98,10 @@ export const InfinitePaintDryProvider = ({ children }: { children: React.ReactNo
     if (gameState === "failed") {
       playFail();
       clearProgressInterval();
+
+      if (timeElapsed > highscore!) {
+        setHighscore(timeElapsed);
+      }
     }
   }, [gameState]);
 
@@ -115,7 +136,9 @@ export const InfinitePaintDryProvider = ({ children }: { children: React.ReactNo
         gameState,
         setGameState,
         timeElapsed,
-        setTimeElapsed
+        setTimeElapsed,
+        highscore,
+        setHighscore
       }}
     >
       {children}

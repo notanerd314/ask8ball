@@ -1,6 +1,6 @@
 {
   "name": "watch-paint-dry",
-  "version": "0.1.0",
+  "version": "1.0.0-beta.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -12,6 +12,7 @@
   "dependencies": {
     "@notanerd/components": "workspace:*",
     "@notanerd/rng": "workspace:*",
+    "@notanerd/hooks": "workspace:*",
     "@tsparticles/confetti": "^3.9.1",
     "next": "15.5.3",
     "react": "19.1.1",

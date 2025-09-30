@@ -8,6 +8,8 @@ import IntroductionScene from "./IntroductionScene.client";
 import TimeProgressIndicator from "../TimeProgressIndicator";
 import PaintDry from "@/components/PaintDry";
 import FailScene from "./FailScene.client";
+import { VolumeProvider } from "../VolumeContext";
+import VolumeToggle from "../VolumeToggle";
 
 const bgColors = [
   // Bold & Vibrant
@@ -49,6 +51,7 @@ function InfinitePaintDryView() {
     <>
       <IntroductionScene />
       <FailScene />
+      <VolumeToggle />
       <TimeProgressIndicator timeElapsed={timeElapsed} />
       <PaintDry color={bgColor} noiseSize={noiseSize} progress={40} />
     </>
@@ -58,9 +61,11 @@ function InfinitePaintDryView() {
 export default function InfinitePaintDryMain() {
   return (
     <main>
-      <InfinitePaintDryProvider>
-        <InfinitePaintDryView />
-      </InfinitePaintDryProvider>
+      <VolumeProvider>
+        <InfinitePaintDryProvider>
+          <InfinitePaintDryView />
+        </InfinitePaintDryProvider>
+      </VolumeProvider>
     </main>
   );
 }

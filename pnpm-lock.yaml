@@ -105,6 +105,9 @@ importers:
       '@notanerd/components':
         specifier: workspace:*
         version: link:../../packages/components
+      '@notanerd/hooks':
+        specifier: workspace:*
+        version: link:../../packages/hooks
       '@notanerd/rng':
         specifier: workspace:*
         version: link:../../packages/rng
@@ -125,6 +128,8 @@ importers:
         version: 5.0.0(react@19.1.1)
 
   packages/components: {}
+
+  packages/hooks: {}
 
   packages/rng: {}
 

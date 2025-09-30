@@ -1,7 +1,8 @@
 "use client";
 import { getRandomInt } from '@notanerd/rng';
-import { createContext, useContext, useState, useEffect, useRef } from 'react';
+import { createContext, useContext, useState, useEffect, useRef, useCallback } from 'react';
 import { useSound } from 'use-sound';
+import { useVolume } from './VolumeContext';
 
 /**
  * Possible states of the game.
@@ -47,6 +48,10 @@ const PaintDryContext = createContext<{
    * Randomizes the total number of seconds the paint should take to dry.
    */
   randomizeTotalSeconds: (min: number, max: number) => void;
+  /**
+   * Restarts the game.
+   */
+  restartGame: () => void;
 }>({
   gameState: "notstarted",
   setGameState: () => { },
@@ -56,6 +61,7 @@ const PaintDryContext = createContext<{
   setTotalSeconds: () => { },
   timeElapsed: 0,
   randomizeTotalSeconds: () => { },
+  restartGame: () => { },
 });
 
 /**
@@ -63,33 +69,45 @@ const PaintDryContext = createContext<{
  * @param children The children to render.
  */
 export const PaintDryProvider = ({ children }: { children: React.ReactNode }) => {
+  const { volume } = useVolume();
   const [totalSeconds, setTotalSeconds] = useState(0);
   const [gameState, setGameState] = useState<GameState>("notstarted");
   const [dryProgress, setDryProgress] = useState(0);
   const intervalRef = useRef<number | null>(null);
 
-  const [playClockTick] = useSound("/clockticking.mp3", { volume: 0.3, interrupt: false });
-  const [playFail] = useSound("/fail.mp3", { volume: 0.3, interrupt: true });
-  const [playWin] = useSound("/win.mp3", { volume: 1, interrupt: true });
+  const safeVolume = typeof volume === "number" && isFinite(volume) ? volume : 1;
+
+  const [playClockTick] = useSound("/clockticking.mp3", { volume: 0.3 * safeVolume, interrupt: false });
+  const [playFail] = useSound("/fail.mp3", { volume: 0.3 * safeVolume, interrupt: true });
+  const [playWin] = useSound("/win.mp3", { volume: 1 * safeVolume, interrupt: true });
+
 
   /**
    * Randomizes the total number of seconds the paint should take to dry.
    */
-  function randomizeTotalSeconds(min: number, max: number) {
+  const randomizeTotalSeconds = useCallback((min: number, max: number) => {
     setTotalSeconds(getRandomInt(min, max));
-  }
+  }, []);
 
   const timeElapsed = Math.floor((dryProgress / 100) * totalSeconds);
 
   /**
    * Clears the progress interval.
    */
-  const clearProgressInterval = () => {
+  const clearProgressInterval = useCallback(() => {
     if (intervalRef.current !== null) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
-  };
+  }, []);
+
+
+  const restartGame = useCallback(() => {
+    clearProgressInterval();
+    setGameState("notstarted");
+    setDryProgress(0);
+    setTotalSeconds(0);
+  }, [clearProgressInterval, setGameState, setDryProgress, setTotalSeconds]);
 
   /**
    * Handles the game state change effect: clears the progress interval.
@@ -166,7 +184,8 @@ export const PaintDryProvider = ({ children }: { children: React.ReactNode }) =>
         totalSeconds,
         setTotalSeconds,
         timeElapsed,
-        randomizeTotalSeconds
+        randomizeTotalSeconds,
+        restartGame
       }}
     >
       {children}

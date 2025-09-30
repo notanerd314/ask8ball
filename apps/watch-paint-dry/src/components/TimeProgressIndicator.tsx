@@ -17,7 +17,7 @@ export default function ProgressIndicator({ timeElapsed }: { timeElapsed: number
   return (
     <>
       <p
-        className={`absolute z-10 p-3 md:text-[12rem] text-[6rem] tracking-[-0.075em] font-bold text-black/30 top-1/2 left-1/2 -translate-1/2 ${font.className}`}
+        className={`absolute z-10 p-3 md:text-[12rem] text-[8rem] tracking-[-0.075em] font-bold text-black/30 top-1/2 left-1/2 -translate-1/2 ${font.className}`}
       >
         {convertHHMMSS(timeElapsed)}
       </p>

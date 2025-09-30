@@ -4,11 +4,14 @@ import { getRandomInt, getRandomItem } from "@notanerd/rng";
 import { useEffect, useState } from "react";
 import { usePaintDry, PaintDryProvider } from "./PaintDryContext.client";
 
-import IntroductionModal from "./IntroductionModal.client";
-import FailModal from "./FailModal.client";
-import WinModal from "./WinModal.client";
+import IntroductionScene from "./IntroductionScene.client";
+import FailScene from "./FailScene.client";
+import WinScene from "./WinScene.client";
 import PaintDry from "./PaintDry";
 import ProgressIndicator from "./TimeProgressIndicator";
+import StateDebug from "./StateDebug.client";
+import { VolumeProvider } from "./VolumeContext";
+import VolumeToggle from "./VolumeToggle";
 
 const bgColors = [
   // Bold & Vibrant
@@ -33,7 +36,7 @@ function PaintDryView() {
   const [bgColor, setBgColor] = useState("");
   const [noiseSize, setNoiseSize] = useState(0);
 
-  const { dryProgress, totalSeconds, timeElapsed, gameState } = usePaintDry();
+  const { dryProgress, totalSeconds, timeElapsed } = usePaintDry();
 
   useEffect(() => {
     setBgColor(getRandomItem(bgColors));
@@ -49,9 +52,10 @@ function PaintDryView() {
     <>
       <ProgressIndicator timeElapsed={timeElapsed} />
 
-      <IntroductionModal />
-      <FailModal />
-      <WinModal />
+      <IntroductionScene />
+      <FailScene />
+      <WinScene />
+      <VolumeToggle />
 
       <PaintDry color={bgColor} noiseSize={noiseSize} progress={dryProgress} />
     </>
@@ -61,9 +65,11 @@ function PaintDryView() {
 export default function PaintDryMain() {
   return (
     <main>
-      <PaintDryProvider>
-        <PaintDryView />
-      </PaintDryProvider>
+      <VolumeProvider>
+        <PaintDryProvider>
+          <PaintDryView />
+        </PaintDryProvider>
+      </VolumeProvider>
     </main>
   );
 }
