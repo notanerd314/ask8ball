@@ -26,7 +26,7 @@ export default function PaintDry({ color, noiseSize, progress }: { color: string
   `;
 
   return (
-    <div className="relative z-0 w-screen h-screen overflow-hidden bg-white">
+    <div className="z-0 relative bg-white w-screen h-screen overflow-hidden">
       {/* Base paint layer (darker, richer at first) */}
       <div
         className="absolute inset-0"
@@ -60,7 +60,7 @@ export default function PaintDry({ color, noiseSize, progress }: { color: string
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: "url('/texture.png')",
+          backgroundImage: "url('/texture.webp')",
           backgroundSize: `${noiseSize}px`,
           opacity: percentToValue(easedProgress, 0, 0.5),
         }}

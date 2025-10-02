@@ -24,7 +24,7 @@ export default function WinScene() {
       onClick={restartGame}
     >
       <img
-        src="/trophy.png"
+        src="/trophy.webp"
         alt="Trophy"
         className="mx-auto mb-4 w-40"
       />

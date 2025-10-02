@@ -2,19 +2,19 @@ import { Comic_Neue } from 'next/font/google'
 import './globals.css'
 
 const font = Comic_Neue({ subsets: ['latin'], display: 'swap', weight: ['400', '700'] })
-const thumbnailLink = `${process.env.NEXT_PUBLIC_URL!}/shelf/thumbnails/watch-paint-dry.png`
+const thumbnailLink = `/watch-paint-dry.webp`;
 const faviconLink = `/favicon.png`;
 
 export const metadata = {
   title: "Watch Paint Dry",
-  description: "Can you sit and ONLY watch paint dry for 30 minutes?",
+  description: "Can YOU endure and only watch paint dry without going for distractions at all?",
   keywords: 'paint dry, challenge, patience, game',
   icons: {
     icon: faviconLink,
   },
   openGraph: {
     title: "Watch Paint Dry",
-    description: "Can you sit and ONLY watch paint dry for 30 minutes?",
+    description: "Can YOU endure and only watch paint dry without going for distractions at all?",
     images: [
       {
         url: thumbnailLink,
@@ -29,7 +29,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Watch Paint Dry",
-    description: "Can you sit and ONLY watch paint dry for 30 minutes?",
+    description: "Can YOU endure and only watch paint dry without going for distractions at all?",
     images: [
       {
         url: thumbnailLink,
